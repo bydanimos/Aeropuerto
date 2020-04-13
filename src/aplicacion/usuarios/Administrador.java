@@ -2,7 +2,7 @@ package aplicacion.usuarios;
 
 import java.sql.Timestamp;
 
-public class Administrador {
+public class Administrador extends Usuario{
 
     private java.sql.Timestamp fechaInicio;
     private String curriculum;
