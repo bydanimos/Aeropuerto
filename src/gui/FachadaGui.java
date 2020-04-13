@@ -5,11 +5,11 @@ import aplicacion.*;
 
 public class FachadaGui {
     aplicacion.FachadaAplicacion fa;
-    VPrincipal vp;
+    VAdministrador vp;
     
     public FachadaGui(aplicacion.FachadaAplicacion fa){
         this.fa=fa;
-        this.vp = new VPrincipal(fa);
+        this.vp = new VAdministrador(fa);
     } 
     
     public void iniciaVista(){
