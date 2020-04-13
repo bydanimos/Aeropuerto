@@ -2,13 +2,17 @@ package gui;
 
 public class VAutentificacion extends javax.swing.JDialog {
 
-    aplicacion.FachadaAplicacion fa;
+    private aplicacion.FachadaAplicacion fa;
+    private boolean primeraUser;
+    private boolean primeraPass;
 
     public VAutentificacion(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
         super(parent, modal);
         this.fa = fa;
         initComponents();
         this.incorrectLabel.setVisible(false);
+        this.primeraUser = true;
+        this.primeraPass = true;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -30,10 +34,15 @@ public class VAutentificacion extends javax.swing.JDialog {
         cancelarButton = new javax.swing.JButton();
         incorrectLabel = new javax.swing.JLabel();
         aeropuetoLabel = new javax.swing.JLabel();
-        usarnameTextField = new javax.swing.JTextField();
+        usernameTextField = new javax.swing.JTextField();
         passwordTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -54,10 +63,15 @@ public class VAutentificacion extends javax.swing.JDialog {
 
         aeropuetoLabel.setText("<html>\n<h1> AEROPUERTO </h1>\n</html>\n");
 
-        usarnameTextField.setText("Username");
-        usarnameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+        usernameTextField.setText("Username");
+        usernameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usarnameTextFieldMouseClicked(evt);
+                usernameTextFieldMouseClicked(evt);
+            }
+        });
+        usernameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameTextFieldKeyPressed(evt);
             }
         });
 
@@ -65,6 +79,11 @@ public class VAutentificacion extends javax.swing.JDialog {
         passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordTextFieldMouseClicked(evt);
+            }
+        });
+        passwordTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTextFieldKeyPressed(evt);
             }
         });
 
@@ -90,7 +109,7 @@ public class VAutentificacion extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(usarnameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                             .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -100,7 +119,7 @@ public class VAutentificacion extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(aeropuetoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(usarnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -119,9 +138,9 @@ public class VAutentificacion extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formWindowOpened
 
-    private void usarnameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usarnameTextFieldMouseClicked
-        this.usarnameTextField.setText("");
-    }//GEN-LAST:event_usarnameTextFieldMouseClicked
+    private void usernameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameTextFieldMouseClicked
+        this.usernameTextField.setText("");
+    }//GEN-LAST:event_usernameTextFieldMouseClicked
 
     private void cancelarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarButtonMouseClicked
         System.exit(0);
@@ -130,12 +149,35 @@ public class VAutentificacion extends javax.swing.JDialog {
     private void passwordTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMouseClicked
         this.passwordTextField.setText("");    }//GEN-LAST:event_passwordTextFieldMouseClicked
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if (this.passwordTextField.getText().equals("")) {
+            this.passwordTextField.setText("Password");
+        }
+        if (this.usernameTextField.getText().equals("")) {
+            this.usernameTextField.setText("Username");
+        }
+    }//GEN-LAST:event_formMouseClicked
+
+    private void usernameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTextFieldKeyPressed
+        if (this.primeraUser) {
+            this.usernameTextField.setText("");
+            this.primeraUser = false;
+        }
+    }//GEN-LAST:event_usernameTextFieldKeyPressed
+
+    private void passwordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTextFieldKeyPressed
+        if (this.primeraPass) {
+            this.passwordTextField.setText("");
+            this.primeraPass = false;
+        }
+    }//GEN-LAST:event_passwordTextFieldKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accederButton;
     private javax.swing.JLabel aeropuetoLabel;
     private javax.swing.JButton cancelarButton;
     private javax.swing.JLabel incorrectLabel;
     private javax.swing.JTextField passwordTextField;
-    private javax.swing.JTextField usarnameTextField;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
