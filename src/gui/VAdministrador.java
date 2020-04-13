@@ -58,7 +58,8 @@ public class VAdministrador extends javax.swing.JFrame {
 
         adminLabel.setText("<html>\n<h2> Administrador </h2>\n</html>");
 
-        adminLabel1.setText("<html>\n<h2> Administrador </h2>\n</html>");
+        adminLabel1.setBackground(new java.awt.Color(177, 29, 29));
+        adminLabel1.setText("<html>\n<body style=\"background-color:#FF0080;\">\n<h2> Administrador </h2>\n</body>\n</html>");
 
         aerolineasButton.setText("Aerolíneas");
         aerolineasButton.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +209,6 @@ public class VAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_persoLaboButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formWindowOpened
 
