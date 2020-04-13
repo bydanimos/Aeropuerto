@@ -24,4 +24,12 @@ public class FachadaAplicacion {
         fa = new FachadaAplicacion();
         fa.iniciaInterfazUsuario();
     }
+
+    public void iniciaInterfazUsuario() {
+        fgui.iniciaVista();
+    }
+
+    public void muestraExcepcion(String e) {
+        fgui.muestraExcepcion(e);
+    }
 }
