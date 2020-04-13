@@ -41,7 +41,7 @@ public class FacturarMaleta {
     public float getPrecioExtra(){
         if (this.maleta.getPeso() > this.billete.getVuelo().getAvion().getAerolinea().getPesoBaseMaleta()){
             float diferencia = this.billete.getVuelo().getAvion().getAerolinea().getPesoBaseMaleta() - this.maleta.getPeso();
-            return diferencia * 3;
+            return diferencia * 2;
         } else
             return 0;
     }
