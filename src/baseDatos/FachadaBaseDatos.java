@@ -6,7 +6,8 @@
 package baseDatos;
 
 import aplicacion.*;
-import aplicacion.usuarios.Usuario;
+import aplicacion.usuarios.*;
+import baseDatos.usuarios.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class FachadaBaseDatos {
     private aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
+    private DAOAdministrador daoAdministradores;
     private DAOVuelos daoVuelos;
     private DAOAviones daoAviones;
     private DAOServicios daoServicios;
@@ -48,6 +50,7 @@ public class FachadaBaseDatos {
 
             
             daoUsuarios = new DAOUsuarios(conexion, fa);
+            daoAdministradores = new DAOAdministrador(conexion,fa);
             daoVuelos = new DAOVuelos(conexion, fa);
             daoAviones = new DAOAviones(conexion, fa);
             daoServicios = new DAOServicios(conexion,fa);
@@ -82,6 +85,20 @@ public class FachadaBaseDatos {
     }
     public void modificarUsuario(Usuario u){
         daoUsuarios.modificarUsuario(u);
+    }
+    
+    public Administrador validarAdministrador(String id, String clave){
+        return daoAdministradores.validarAdministrador(id, clave);
+    }
+    
+    public void insertarAdministrador(Administrador ad){
+        daoAdministradores.insertarAdministrador(ad);
+    }
+    public void borrarAdministrador(String dni){
+        daoAdministradores.borrarAdministrador(dni);
+    }
+    public void modificarAdministrador(Administrador ad){
+        daoAdministradores.modificarAdministrador(ad);
     }
     
     
