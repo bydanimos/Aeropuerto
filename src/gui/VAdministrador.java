@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-/**
- *
- * @author ruben
- */
 public class VAdministrador extends javax.swing.JFrame {
 
     /**
@@ -16,7 +7,7 @@ public class VAdministrador extends javax.swing.JFrame {
      */
     aplicacion.FachadaAplicacion fa;
     
-    /** Creates new form VPrincipal */
+    /** Creates new form VAdministrador */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
         this.fa=fa;
         initComponents();
@@ -49,6 +40,11 @@ public class VAdministrador extends javax.swing.JFrame {
         avionFotoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         aeroEtseLabel.setText("<html>\n<h1> AEROETSE </h1>\n</html>");
 
@@ -210,6 +206,11 @@ public class VAdministrador extends javax.swing.JFrame {
     private void persoLaboButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_persoLaboButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_persoLaboButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formWindowOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminLabel;
