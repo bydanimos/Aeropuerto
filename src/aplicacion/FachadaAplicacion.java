@@ -2,20 +2,20 @@ package aplicacion;
 
 public class FachadaAplicacion {
 
-    gui.FachadaGui fgui;
-    baseDatos.FachadaBaseDatos fbd;
-    GestionUsuarios cu;
-    GestionServicios cs;
-    GestionVuelos cv;
-    GestionAviones ca;
+    private final gui.FachadaGui fgui;
+    private final baseDatos.FachadaBaseDatos fbd;
+    private final GestionUsuarios cu;
+    private final GestionServicios cs;
+    private final GestionVuelos cv;
+    private final GestionAviones ca;
 
     public FachadaAplicacion() {
-        fgui = new gui.FachadaGui(this);
-        fbd = new baseDatos.FachadaBaseDatos(this);
-        cu = new GestionUsuarios(fgui, fbd);
-        cs = new GestionServicios(fgui, fbd);
-        cv = new GestionVuelos(fgui, fbd);
-        ca = new GestionAviones(fgui, fbd);
+        this.fgui = new gui.FachadaGui(this);
+        this.fbd = new baseDatos.FachadaBaseDatos(this);
+        this.cu = new GestionUsuarios(this.fgui, this.fbd);
+        this.cs = new GestionServicios(this.fgui, this.fbd);
+        this.cv = new GestionVuelos(this.fgui, this.fbd);
+        this.ca = new GestionAviones(this.fgui, this.fbd);
     }
 
     public static void main(String args[]) {
@@ -26,10 +26,10 @@ public class FachadaAplicacion {
     }
 
     public void iniciaInterfazUsuario() {
-        fgui.iniciaVista();
+        this.fgui.iniciaVista();
     }
 
     public void muestraExcepcion(String e) {
-        fgui.muestraExcepcion(e);
+        this.fgui.muestraExcepcion(e);
     }
 }
