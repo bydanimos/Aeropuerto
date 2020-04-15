@@ -188,12 +188,12 @@ public class DAOUsuarios extends AbstractDAO {
             
             String ts;
                 
-            if(u.getSexo()==TipoSexo.H){
-                ts = "H";
-            }else if(u.getSexo() == TipoSexo.M){
-                ts = "M";
+            if(u.getSexo()==TipoSexo.h){
+                ts = "h";
+            }else if(u.getSexo() == TipoSexo.m){
+                ts = "m";
             }else{
-                ts = "Otro";
+                ts = "otro";
             }
             stmUsuario.setString(9, ts);
              

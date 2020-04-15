@@ -139,12 +139,12 @@ public class DAOAdministrador extends AbstractDAO{
             
             String ts;
                 
-            if(ad.getSexo()==TipoSexo.H){
-                ts = "H";
-            }else if(ad.getSexo() == TipoSexo.M){
-                ts = "M";
+            if(ad.getSexo()==TipoSexo.h){
+                ts = "h";
+            }else if(ad.getSexo() == TipoSexo.m){
+                ts = "m";
             }else{
-                ts = "Otro";
+                ts = "otro";
             }
             stmAdministrador.setString(11, ts);
              
