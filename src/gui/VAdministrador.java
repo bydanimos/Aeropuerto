@@ -5,7 +5,7 @@ public class VAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form VAdministrador
      */
-    aplicacion.FachadaAplicacion fa;
+    private aplicacion.FachadaAplicacion fa;
     
     /** Creates new form VAdministrador */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
