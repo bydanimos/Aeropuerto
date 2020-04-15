@@ -20,9 +20,8 @@ public class FachadaBaseDatos {
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOAdministrador daoAdministradores;
-    private DAOVuelos daoVuelos;
-    private DAOAviones daoAviones;
-    private DAOServicios daoServicios;
+    private DAOPersonalLaboral daoPersonalLaboral;
+    private DAOPersonalExterno daoPersonalExterno;
 
     public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
         
@@ -51,9 +50,8 @@ public class FachadaBaseDatos {
             
             daoUsuarios = new DAOUsuarios(conexion, fa);
             daoAdministradores = new DAOAdministrador(conexion,fa);
-            daoVuelos = new DAOVuelos(conexion, fa);
-            daoAviones = new DAOAviones(conexion, fa);
-            daoServicios = new DAOServicios(conexion,fa);
+            daoPersonalLaboral = new DAOPersonalLaboral(conexion, fa);
+            daoPersonalExterno = new DAOPersonalExterno(conexion, fa);;
           
 
         } catch (FileNotFoundException f){
@@ -75,6 +73,14 @@ public class FachadaBaseDatos {
     
     public Administrador validarAdministrador(String id, String clave){
         return daoAdministradores.validarAdministrador(id, clave);
+    }
+    
+    public PersonalLaboral validarPersonalLaboral(String id, String clave){
+        return daoPersonalLaboral.validarPersonalLaboral(id, clave);
+    }
+    
+    public PersonalExterno validarPersonalExterno(String id, String clave){
+        return daoPersonalExterno.validarPersonalExterno(id, clave);
     }
     
     public Usuario getUsuarioActual() {

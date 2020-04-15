@@ -3,7 +3,7 @@ package aplicacion.usuarios;
 public enum TipoSexo {
     h,
     m,
-    otro
+    o
 }
 
 
