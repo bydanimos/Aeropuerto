@@ -36,7 +36,7 @@ public class FachadaAplicacion {
         this.fgui.muestraExcepcion(e);
     }
     
-    public Boolean comprobarAutentificacion(String idUsuario, String clave) {
+    public boolean comprobarAutentificacion(String idUsuario, String clave) {
         return cu.comprobarAutentificacion(idUsuario, clave);
     }
 
@@ -49,11 +49,19 @@ public class FachadaAplicacion {
     }
     
     public void nuevoUsuario() {
-        cu.nuevoUsuario();
+        this.cu.nuevoUsuario();
     }
     
-    public void registrarUsuario(Usuario usuario){
-        cu.registrarUsuario(usuario);
+    public boolean registrarUsuario(Usuario usuario){
+        return this.cu.registrarUsuario(usuario);
+    }
+
+    public boolean comprobarId(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean comprobarDni(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

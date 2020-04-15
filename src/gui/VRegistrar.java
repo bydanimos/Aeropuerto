@@ -2,18 +2,23 @@ package gui;
 
 import aplicacion.usuarios.Usuario;
 
-
 public class VRegistrar extends javax.swing.JFrame {
 
-        private aplicacion.FachadaAplicacion fa;
+    private aplicacion.FachadaAplicacion fa;
+    private boolean primeraPass;
+    private boolean primeraRepitPass;
 
-        public VRegistrar(aplicacion.FachadaAplicacion fa) {
-            this.fa = fa;
+    public VRegistrar(aplicacion.FachadaAplicacion fa) {
+        this.fa = fa;
         initComponents();
+        this.dniIncorrectLabel.setVisible(false);
         this.contraDistintLabel.setVisible(false);
         this.idRepetidoLabel.setVisible(false);
         this.contraDistintLabel.setVisible(false);
-        this.mensajeError.setVisible(false);
+        this.sexoErrorLabel.setVisible(false);
+        this.todosCamposLabel.setVisible(false);
+        this.primeraPass = true;
+        this.primeraRepitPass = true;
     }
 
     /**
@@ -49,12 +54,20 @@ public class VRegistrar extends javax.swing.JFrame {
         dniIncorrectLabel = new javax.swing.JLabel();
         idRepetidoLabel = new javax.swing.JLabel();
         contraDistintLabel = new javax.swing.JLabel();
-        botonAceptar = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
-        mensajeError = new javax.swing.JLabel();
+        registrarseButton = new javax.swing.JButton();
+        cancelarButton = new javax.swing.JButton();
+        sexoLabel = new javax.swing.JLabel();
+        sexoComboBox = new javax.swing.JComboBox<>();
+        sexoErrorLabel = new javax.swing.JLabel();
+        todosCamposLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(getDefaultCloseOperation());
         setAlwaysOnTop(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         aeropuertoLabel.setText("<html>\n<h1>REGISTRARSE</h1>\n</html>");
 
@@ -79,8 +92,24 @@ public class VRegistrar extends javax.swing.JFrame {
         telefonLabel.setText("TELÉFONO: ");
 
         PasswordField.setText("Password");
+        PasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PasswordFieldKeyPressed(evt);
+            }
+        });
 
         repitPasswordField.setText("Password");
+        repitPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                repitPasswordFieldKeyPressed(evt);
+            }
+        });
+
+        telefonoTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                telefonoTextFieldKeyPressed(evt);
+            }
+        });
 
         dniIncorrectLabel.setForeground(new java.awt.Color(232, 19, 19));
         dniIncorrectLabel.setText("<html>\n¡DNI incorrecto!\n</html>\n");
@@ -91,22 +120,39 @@ public class VRegistrar extends javax.swing.JFrame {
         contraDistintLabel.setForeground(new java.awt.Color(228, 27, 27));
         contraDistintLabel.setText("<html>\n<center>\n¡Las contraseñas deben <br>\nser iguales! </center>\n</html>");
 
-        botonAceptar.setText("Aceptar");
-        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+        registrarseButton.setText("Registrarse");
+        registrarseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAceptarActionPerformed(evt);
+                registrarseButtonActionPerformed(evt);
+            }
+        });
+        registrarseButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                registrarseButtonKeyPressed(evt);
             }
         });
 
-        botonCancelar.setText("Cancelar");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        cancelarButton.setText("Cancelar");
+        cancelarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarButtonMouseClicked(evt);
+            }
+        });
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
+                cancelarButtonActionPerformed(evt);
             }
         });
 
-        mensajeError.setForeground(new java.awt.Color(255, 0, 0));
-        mensajeError.setText("El usuario no se ha podido registrar con éxito");
+        sexoLabel.setText("SEXO: ");
+
+        sexoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Hombre", "Mujer", "No especifica" }));
+
+        sexoErrorLabel.setForeground(new java.awt.Color(228, 39, 39));
+        sexoErrorLabel.setText("<html>\nRecuerde indicar su sexo.<br>\n</html>");
+
+        todosCamposLabel.setForeground(new java.awt.Color(232, 36, 36));
+        todosCamposLabel.setText("<html>\n¡Debe rellenar todos los campos antes de registrarse!\n</html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,48 +161,56 @@ public class VRegistrar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonAceptar))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
+                                .addComponent(todosCamposLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 279, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dniLabel)
-                                    .addComponent(idLabel)
-                                    .addComponent(mailLabel)
-                                    .addComponent(contrasnhaLabel)
-                                    .addComponent(repitPassLabel)
-                                    .addComponent(nombreLabel)
-                                    .addComponent(primerApellLabel)
-                                    .addComponent(segunApellLabel)
-                                    .addComponent(paisLabel)
                                     .addComponent(telefonLabel)
-                                    .addComponent(botonCancelar))
+                                    .addComponent(paisLabel)
+                                    .addComponent(sexoLabel)
+                                    .addComponent(segunApellLabel)
+                                    .addComponent(primerApellLabel)
+                                    .addComponent(nombreLabel))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(paisTextField)
-                                    .addComponent(segunApeTextField)
-                                    .addComponent(primApeTextField)
-                                    .addComponent(nombreTextField)
-                                    .addComponent(repitPasswordField)
-                                    .addComponent(PasswordField)
-                                    .addComponent(telefonoTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(idTextField)
-                                    .addComponent(mailTextField)))
+                                    .addComponent(paisTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(sexoComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(segunApeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(primApeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(telefonoTextField)
+                                    .addComponent(nombreTextField)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(257, 257, 257)
-                                .addComponent(aeropuertoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(repitPassLabel)
+                                    .addComponent(contrasnhaLabel)
+                                    .addComponent(mailLabel)
+                                    .addComponent(idLabel)
+                                    .addComponent(dniLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idTextField)
+                                    .addComponent(mailTextField)
+                                    .addComponent(PasswordField)
+                                    .addComponent(repitPasswordField)
+                                    .addComponent(dniTextField))))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dniIncorrectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(idRepetidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contraDistintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(contraDistintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sexoErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cancelarButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(registrarseButton)))
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(mensajeError)
+                .addGap(364, 364, 364)
+                .addComponent(aeropuertoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -188,11 +242,11 @@ public class VRegistrar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(repitPassLabel)
                     .addComponent(repitPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLabel)
                     .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(primerApellLabel)
                     .addComponent(primApeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,38 +256,75 @@ public class VRegistrar extends javax.swing.JFrame {
                     .addComponent(segunApeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paisLabel)
-                    .addComponent(paisTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sexoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sexoErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sexoLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telefonLabel)
-                    .addComponent(telefonoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(mensajeError)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(paisTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paisLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAceptar)
-                    .addComponent(botonCancelar))
-                .addContainerGap())
+                    .addComponent(telefonoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefonLabel))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarseButton)
+                    .addComponent(cancelarButton)
+                    .addComponent(todosCamposLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+    private void registrarseButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registrarseButtonKeyPressed
         registrarUsuario();
-    }//GEN-LAST:event_botonAceptarActionPerformed
+    }//GEN-LAST:event_registrarseButtonKeyPressed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+    private void cancelarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarButtonMouseClicked
         this.dispose();
-    }//GEN-LAST:event_botonCancelarActionPerformed
+        this.fa.iniciaInterfazUsuario();
+    }//GEN-LAST:event_cancelarButtonMouseClicked
+
+    private void telefonoTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTextFieldKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            registrarUsuario();
+        }
+    }//GEN-LAST:event_telefonoTextFieldKeyPressed
+
+    private void PasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordFieldKeyPressed
+        if (primeraPass) {
+            this.PasswordField.setText("");
+            this.primeraPass = false;
+        }
+    }//GEN-LAST:event_PasswordFieldKeyPressed
+
+    private void repitPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_repitPasswordFieldKeyPressed
+        if (primeraRepitPass) {
+            this.repitPasswordField.setText("");
+            this.primeraRepitPass = false;
+        }
+    }//GEN-LAST:event_repitPasswordFieldKeyPressed
+
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        this.dispose();
+        this.fa.iniciaInterfazUsuario();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.setLocationRelativeTo(null);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void registrarseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseButtonActionPerformed
+        registrarUsuario();
+    }//GEN-LAST:event_registrarseButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel aeropuertoLabel;
-    private javax.swing.JButton botonAceptar;
-    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton cancelarButton;
     private javax.swing.JLabel contraDistintLabel;
     private javax.swing.JLabel contrasnhaLabel;
     private javax.swing.JLabel dniIncorrectLabel;
@@ -244,56 +335,75 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JTextField idTextField;
     private javax.swing.JLabel mailLabel;
     private javax.swing.JTextField mailTextField;
-    private javax.swing.JLabel mensajeError;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JLabel paisLabel;
     private javax.swing.JTextField paisTextField;
     private javax.swing.JTextField primApeTextField;
     private javax.swing.JLabel primerApellLabel;
+    private javax.swing.JButton registrarseButton;
     private javax.swing.JLabel repitPassLabel;
     private javax.swing.JPasswordField repitPasswordField;
     private javax.swing.JTextField segunApeTextField;
     private javax.swing.JLabel segunApellLabel;
+    private javax.swing.JComboBox<String> sexoComboBox;
+    private javax.swing.JLabel sexoErrorLabel;
+    private javax.swing.JLabel sexoLabel;
     private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField telefonoTextField;
+    private javax.swing.JLabel todosCamposLabel;
     // End of variables declaration//GEN-END:variables
 
-    
-    public void registrarUsuario(){
+    private aplicacion.usuarios.TipoSexo getSexo() {
+        switch (this.sexoComboBox.getSelectedIndex()) {
+            case 1:
+                return aplicacion.usuarios.TipoSexo.h;
+            case 2:
+                return aplicacion.usuarios.TipoSexo.m;
+            case 3:
+                return aplicacion.usuarios.TipoSexo.o;
+            default:
+                return null;
+        }
+    }
+
+    public void registrarUsuario() {
         Usuario usuario;
         boolean seguir = true;
         this.dniIncorrectLabel.setVisible(false);
         this.contraDistintLabel.setVisible(false);
         this.idRepetidoLabel.setVisible(false);
-        this.mensajeError.setVisible(false);
-        
-        if(!this.fa.comprobarDni(this.dniTextField.getText())){
+        this.sexoErrorLabel.setVisible(false);
+        this.todosCamposLabel.setVisible(false);
+
+        if (!this.fa.comprobarDni(this.dniTextField.getText())) {
             this.dniIncorrectLabel.setVisible(true);
             seguir = false;
         }
-        if(!this.PasswordField.getText().equals(this.repitPasswordField.getText())){
+        if (!this.PasswordField.getText().equals(this.repitPasswordField.getText())) {
             this.contraDistintLabel.setVisible(true);
             seguir = false;
         }
-        if(!this.fa.comprobarId(idRepetidoLabel.getText())){
+        if (!this.fa.comprobarId(idRepetidoLabel.getText())) {
             this.idRepetidoLabel.setVisible(true);
             seguir = false;
         }
-        if(this.getSexo().equals('z')){
+        if (this.getSexo() == null) {
             this.sexoErrorLabel.setVisible(true);
             seguir = false;
         }
-        if(seguir){
+        if (seguir) {
+           
             usuario = new Usuario(this.dniTextField.getText(), this.idTextField.getText(), this.PasswordField.getText(),
-                                 this.mailTextField.getText(), this.nombreTextField.getText(), this.primApeTextField.getText(),
-                                  this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), this.telefonoTextField.getText());
-        
-            if(fa.registrarUsuario(usuario) != null){
+                    this.mailTextField.getText(), this.nombreTextField.getText(), this.primApeTextField.getText(),
+                    this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), this.telefonoTextField.getText());
+
+            if (this.fa.registrarUsuario(usuario)) {
                 this.dispose();
-            } else{
-                this.mensajeError.setVisible(true);
+            } else {
+                this.todosCamposLabel.setVisible(true);
             }
         }
     }
+
 }

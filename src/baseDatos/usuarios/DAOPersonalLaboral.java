@@ -39,11 +39,12 @@ public class DAOPersonalLaboral extends AbstractDAO{
             rsPersonalLaboral=stmPersonalLaboral.executeQuery();
            
             if (rsPersonalLaboral.next()){
-                resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
+                /* resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
                                               rsPersonalLaboral.getString("correoelectronico"), rsPersonalLaboral.getString("nombre"),
                                               rsPersonalLaboral.getString("primerapellido"),rsPersonalLaboral.getString("segundoapellido"),
                                               TipoSexo.valueOf(rsPersonalLaboral.getString("sexo")),rsPersonalLaboral.getString("paisprocedencia"),rsPersonalLaboral.getString("telefono"),
                                               rsPersonalLaboral.getString("labor"),rsPersonalLaboral.getString("descripciontarea"),rsPersonalLaboral.getTimestamp("fechainicio"));
+                */
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -140,7 +141,7 @@ public class DAOPersonalLaboral extends AbstractDAO{
             }else if(pl.getSexo() == TipoSexo.m){
                 ts = "m";
             }else{
-                ts = "o";
+                ts = "otro";
             }
             stmPersonalLaboral.setString(12, ts);
              

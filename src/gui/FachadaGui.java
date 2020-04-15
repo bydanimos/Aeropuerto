@@ -15,23 +15,22 @@ public class FachadaGui {
     public void iniciaVista(){
         VAutentificacion va;
 
-        va = new VAutentificacion(vp, true, fa);
-        vp.setVisible(true);
+        va = new VAutentificacion(this.vp, true, this.fa);
+        this.vp.setVisible(true);
         va.setVisible(true);
     }
     
     public void muestraExcepcion(String txtExcepcion){
         VAviso va;
 
-        va = new VAviso(vp, true, txtExcepcion);
+        va = new VAviso(this.vp, true, txtExcepcion);
         va.setVisible(true);
     }
-    
-    public void nuevoUsuario(){
+
+    public void nuevoUsuario() {
         VRegistrar vr;
         
-        vr = new VRegistrar(fa);
-        vp.setVisible(true);
+        vr = new VRegistrar(this.fa);
         vr.setVisible(true);
     }
 }

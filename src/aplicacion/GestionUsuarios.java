@@ -17,7 +17,7 @@ public class GestionUsuarios {
         this.fbd = fbd;
     }
 
-    public Boolean comprobarAutentificacion(String idUsuario, String clave) {
+    public boolean comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u;
 
         if((u = fbd.validarAdministrador(idUsuario, clave)) != null){
@@ -40,10 +40,10 @@ public class GestionUsuarios {
     }
     
     public void nuevoUsuario() {
-        fgui.nuevoUsuario();
+        this.fgui.nuevoUsuario();
     }
     
-    public void registrarUsuario(Usuario usuario){
-        fbd.registrarUsuario(usuario);
+    public boolean registrarUsuario(Usuario usuario){
+        return this.fbd.registrarUsuario(usuario);
     }
 }

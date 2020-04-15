@@ -160,7 +160,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelarButtonMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if ("".equals(this.PasswordField.getPassword())) {
+        if ("".equals(this.PasswordField.getText())) {
             this.PasswordField.setText("Password");
         }
         if (this.usernameTextField.getText().equals("")) {
@@ -213,6 +213,6 @@ public class VAutentificacion extends javax.swing.JDialog {
 
     private void registrar() {
         this.dispose();
-        fa.nuevoUsuario();
+        this.fa.nuevoUsuario();
     }
 }

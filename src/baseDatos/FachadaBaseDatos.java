@@ -29,7 +29,7 @@ public class FachadaBaseDatos {
     public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
         
         Properties configuracion = new Properties();
-        this.fa=fa;
+        this.fa = fa;
         FileInputStream arqConfiguracion;
 
         try {
@@ -51,10 +51,10 @@ public class FachadaBaseDatos {
                     usuario);
 
             
-            daoUsuarios = new DAOUsuarios(conexion, fa);
-            daoAdministradores = new DAOAdministrador(conexion,fa);
-            daoPersonalLaboral = new DAOPersonalLaboral(conexion, fa);
-            daoPersonalExterno = new DAOPersonalExterno(conexion, fa);;
+            this.daoUsuarios = new DAOUsuarios(this.conexion, this.fa);
+            this.daoAdministradores = new DAOAdministrador(this.conexion,this.fa);
+            this.daoPersonalLaboral = new DAOPersonalLaboral(this.conexion, this.fa);
+            this.daoPersonalExterno = new DAOPersonalExterno(this.conexion, this.fa);;
           
 
         } catch (FileNotFoundException f){
@@ -98,24 +98,24 @@ public class FachadaBaseDatos {
         return daoUsuarios.consultarRegistroUsuarios(id,dni,nombre,ap1,ap2);
     }
     
-    public void registrarUsuario(Usuario u){
-        daoUsuarios.insertarUsuario(u);
+    public boolean registrarUsuario(Usuario u){
+        return this.daoUsuarios.insertarUsuario(u);
     }
     public void borrarUsuario(String dni){
-        daoUsuarios.borrarUsuario(dni);
+        this.daoUsuarios.borrarUsuario(dni);
     }
     public void modificarUsuario(Usuario u){
-        daoUsuarios.modificarUsuario(u);
+        this.daoUsuarios.modificarUsuario(u);
     }
     
     public void insertarAdministrador(Administrador ad){
-        daoAdministradores.insertarAdministrador(ad);
+        this.daoAdministradores.insertarAdministrador(ad);
     }
     public void borrarAdministrador(String dni){
-        daoAdministradores.borrarAdministrador(dni);
+        this.daoAdministradores.borrarAdministrador(dni);
     }
     public void modificarAdministrador(Administrador ad){
-        daoAdministradores.modificarAdministrador(ad);
+        this.daoAdministradores.modificarAdministrador(ad);
     }
     
     /*public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor){

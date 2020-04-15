@@ -120,13 +120,19 @@ public class DAOUsuarios extends AbstractDAO {
                 stmUsuario.setString(9, u.getTelefono());
                 String ts;
                 
-                if(u.getSexo()==TipoSexo.h){
-                    ts = "h";
-                }else if(u.getSexo() == TipoSexo.m){
-                    ts = "m";
-                }else{
-                    ts = "o";
-                }
+                if(null==u.getSexo()){
+                    ts = "Otro";
+                }else switch (u.getSexo()) {
+                case h:
+                    ts = "H";
+                    break;
+                case m:
+                    ts = "M";
+                    break;
+                default:
+                    ts = "Otro";
+                    break;
+            }
                 stmUsuario.setString(10, ts);
                 stmUsuario.executeUpdate();
             } catch (SQLException e){
@@ -188,12 +194,18 @@ public class DAOUsuarios extends AbstractDAO {
             
             String ts;
                 
-            if(u.getSexo()==TipoSexo.h){
-                ts = "h";
-            }else if(u.getSexo() == TipoSexo.m){
-                ts = "m";
-            }else{
+            if(null == u.getSexo()){
                 ts = "otro";
+            }else switch (u.getSexo()) {
+                case h:
+                    ts = "h";
+                    break;
+                case m:
+                    ts = "m";
+                    break;
+                default:
+                    ts = "otro";
+                    break;
             }
             stmUsuario.setString(9, ts);
              
