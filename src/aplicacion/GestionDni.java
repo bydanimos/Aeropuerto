@@ -18,7 +18,7 @@ class GestionDni {
     Método getLetraIntroducida lo que hace es separar la letra del número del dni
     introducido. También convierte en mayúscula la letra
      */
-    public void getLetraIntroducida() {
+    private void setLetraIntroducida() {
         this.letIntro = Character.toUpperCase(this.dniIntroducido.charAt(this.dniIntroducido.length() - 1));
     }
 
@@ -27,7 +27,7 @@ class GestionDni {
     y una letra, ya sea mayúscula o minúscula. Luego si se cumple el patrón
     devuelve true.
      */
-    public boolean patron() {
+    private boolean patron() {
         Pattern pat = Pattern.compile("[0-9]{7,8}[A-Za-z]");
         Matcher mat = pat.matcher(dniIntroducido);
         boolean cumplePatron = mat.matches();
@@ -38,7 +38,7 @@ class GestionDni {
     Este método pasa el valor introducide por consola del dni a la variable
     dniIntroducido
      */
-    public void setDniIntroducido(String dniIntroducido) {
+    private void setDniIntroducido(String dniIntroducido) {
         this.dniIntroducido = dniIntroducido;
     }
 
@@ -49,11 +49,11 @@ class GestionDni {
         this.dni = Integer.parseInt(this.dniIntroducido.substring(0, this.dniIntroducido.length() - 1));
     }
 
-    public String getDniIntroducido() {
+    private String getDniIntroducido() {
         return dniIntroducido;
     }
 
-    public char getLetIntro() {
+    private char getLetIntro() {
         return letIntro;
     }
 
@@ -65,7 +65,7 @@ class GestionDni {
      */
     private char getLetraDni() {
         int resto;
-        resto = dni % 23;
+        resto = this.dni % 23;
         char letra = 0;
 
         switch (resto) {
@@ -145,8 +145,12 @@ class GestionDni {
     public boolean dniCorrecto(String dni){
         this.setDniNumero(dni);
         this.setDniIntroducido(dni);
+        this.setLetraIntroducida();
+        
         if (patron()){
-            
+            if (getLetIntro() == getLetraDni()){
+                return true;
+            }
         }
         return false;
     }
