@@ -1,5 +1,7 @@
 package aplicacion;
 
+import aplicacion.usuarios.Usuario;
+
 public class FachadaAplicacion {
 
     private final gui.FachadaGui fgui;
@@ -8,6 +10,7 @@ public class FachadaAplicacion {
     private final GestionServicios cs;
     private final GestionVuelos cv;
     private final GestionAviones ca;
+    private Usuario usuarioActual;
 
     public FachadaAplicacion() {
         this.fgui = new gui.FachadaGui(this);
@@ -32,4 +35,18 @@ public class FachadaAplicacion {
     public void muestraExcepcion(String e) {
         this.fgui.muestraExcepcion(e);
     }
+    
+    public Boolean comprobarAutentificacion(String idUsuario, String clave) {
+        return cu.comprobarAutentificacion(idUsuario, clave);
+    }
+
+    public Usuario getUsuarioActual() {
+        return this.usuarioActual;
+    }
+
+    public void setUsuarioActual(Usuario usuarioActual) {
+        this.usuarioActual = usuarioActual;
+    }
+    
+    
 }

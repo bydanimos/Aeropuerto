@@ -194,7 +194,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void acceder() {
-        if (this.fa.comprobarAutentificacion(usernameTextField.getText(), PasswordField.getPassword())) {
+        if (this.fa.comprobarAutentificacion(usernameTextField.getText(), PasswordField.getText())) {
             this.dispose();
         } else {
             this.incorrectLabel.setVisible(true);

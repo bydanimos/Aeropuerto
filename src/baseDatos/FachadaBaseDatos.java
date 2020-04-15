@@ -73,6 +73,18 @@ public class FachadaBaseDatos {
         return daoUsuarios.validarUsuario(idUsuario, clave);
     }
     
+    public Administrador validarAdministrador(String id, String clave){
+        return daoAdministradores.validarAdministrador(id, clave);
+    }
+    
+    public Usuario getUsuarioActual() {
+        return fa.getUsuarioActual();
+    }
+
+    public void setUsuarioActual(Usuario usuarioActual) {
+        fa.setUsuarioActual(usuarioActual);
+    }
+    
     public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2){
         return daoUsuarios.consultarRegistroUsuarios(id,dni,nombre,ap1,ap2);
     }
@@ -85,10 +97,6 @@ public class FachadaBaseDatos {
     }
     public void modificarUsuario(Usuario u){
         daoUsuarios.modificarUsuario(u);
-    }
-    
-    public Administrador validarAdministrador(String id, String clave){
-        return daoAdministradores.validarAdministrador(id, clave);
     }
     
     public void insertarAdministrador(Administrador ad){
