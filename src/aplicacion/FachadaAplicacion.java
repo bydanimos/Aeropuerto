@@ -10,6 +10,7 @@ public class FachadaAplicacion {
     private final GestionServicios cs;
     private final GestionVuelos cv;
     private final GestionAviones ca;
+    private final GestionDni cd;
     private Usuario usuarioActual;
 
     public FachadaAplicacion() {
@@ -19,6 +20,7 @@ public class FachadaAplicacion {
         this.cs = new GestionServicios(this.fgui, this.fbd);
         this.cv = new GestionVuelos(this.fgui, this.fbd);
         this.ca = new GestionAviones(this.fgui, this.fbd);
+        this.cd = new GestionDni();
     }
 
     public static void main(String args[]) {
@@ -60,8 +62,8 @@ public class FachadaAplicacion {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean comprobarDni(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean comprobarDni(String dni) {
+        return this.cd.dniCorrecto(dni);
     }
     
     
