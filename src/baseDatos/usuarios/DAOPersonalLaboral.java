@@ -135,12 +135,12 @@ public class DAOPersonalLaboral extends AbstractDAO{
             
             String ts;
                 
-            if(pl.getSexo()==TipoSexo.H){
-                ts = "H";
-            }else if(pl.getSexo() == TipoSexo.M){
-                ts = "M";
+            if(pl.getSexo()==TipoSexo.h){
+                ts = "h";
+            }else if(pl.getSexo() == TipoSexo.m){
+                ts = "m";
             }else{
-                ts = "Otro";
+                ts = "o";
             }
             stmPersonalLaboral.setString(12, ts);
              
