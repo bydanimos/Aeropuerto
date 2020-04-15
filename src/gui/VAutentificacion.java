@@ -193,7 +193,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 
-    private void acceder(){
+    private void acceder() {
         if (this.fa.comprobarAutentificacion(usernameTextField.getText(), PasswordField.getPassword())) {
             this.dispose();
         } else {
@@ -201,7 +201,7 @@ public class VAutentificacion extends javax.swing.JDialog {
         }
     }
 
-    private void registrar(){
-        
+    private void registrar() {
+
     }
 }
