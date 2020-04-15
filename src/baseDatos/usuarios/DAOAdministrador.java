@@ -135,6 +135,7 @@ public class DAOAdministrador extends AbstractDAO{
             stmAdministrador.setString(8, ad.getContrasenha());
             stmAdministrador.setString(9, ad.getPaisProcedencia());
             stmAdministrador.setString(10, ad.getTelefono());
+            stmAdministrador.setString(12, ad.getDni());
             
             String ts;
                 
@@ -145,7 +146,7 @@ public class DAOAdministrador extends AbstractDAO{
             }else{
                 ts = "Otro";
             }
-            stmAdministrador.setString(9, ts);
+            stmAdministrador.setString(11, ts);
              
             stmAdministrador.executeUpdate();
 

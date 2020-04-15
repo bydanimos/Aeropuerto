@@ -184,6 +184,7 @@ public class DAOUsuarios extends AbstractDAO {
             stmUsuario.setString(6, u.getContrasenha());
             stmUsuario.setString(7, u.getPaisProcedencia());
             stmUsuario.setString(8, u.getTelefono());
+            stmUsuario.setString(10, u.getDni());
             
             String ts;
                 
