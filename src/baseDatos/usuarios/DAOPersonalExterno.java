@@ -141,7 +141,7 @@ public class DAOPersonalExterno extends AbstractDAO{
             }else if(pe.getSexo() == TipoSexo.m){
                 ts = "m";
             }else{
-                ts = "otro";
+                ts = "o";
             }
             stmPersonalExterno.setString(9, ts);
              
