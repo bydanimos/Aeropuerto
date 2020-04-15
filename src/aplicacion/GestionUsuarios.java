@@ -20,16 +20,18 @@ public class GestionUsuarios {
         if((u = fbd.validarAdministrador(idUsuario, clave)) != null){
             fbd.setUsuarioActual(u);
             return true;
-        } else if((u = fbd.validarPersonalLaboral(idUsuario, clave)) != null){
-            fbd.setUsuarioActual(u);
-            return true;
-        }else if((u = fbd.validarPersonalExterno(idUsuario, clave)) != null){
-            fbd.setUsuarioActual(u);
-            return true;
-        } else if((u = fbd.validarUsuario(idUsuario, clave)) != null){
-            fbd.setUsuarioActual(u);
-            return true;
-        } else{
+        } 
+//        else if((u = fbd.validarPersonalLaboral(idUsuario, clave)) != null){
+//            fbd.setUsuarioActual(u);
+//            return true;
+//        }else if((u = fbd.validarPersonalExterno(idUsuario, clave)) != null){
+//            fbd.setUsuarioActual(u);
+//            return true;
+//        } else if((u = fbd.validarUsuario(idUsuario, clave)) != null){
+//            fbd.setUsuarioActual(u);
+//            return true;
+//        } 
+        else{
             return false;
         }
     }
