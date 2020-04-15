@@ -19,6 +19,15 @@ public class PersonalLaboral extends Usuario{
         this.historialTrabajo = historialTrabajo;
         this.fechaInicio = fechaInicio;
     }
+    
+    public PersonalLaboral(String dni, String id, String contrasenha, String correoElectronico, String nombre,
+                           String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
+                           String labor, String descripcionTarea, Timestamp fechaInicio){
+        super(dni, id, contrasenha, correoElectronico, nombre, apellido1, apellido2, sexo, paisProcedencia, telefono);
+        this.labor = labor;
+        this.descripcionTarea = descripcionTarea;
+        this.fechaInicio = fechaInicio;
+    }
 
     public String getLabor() {
         return labor;
