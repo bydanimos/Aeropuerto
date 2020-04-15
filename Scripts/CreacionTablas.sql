@@ -30,7 +30,7 @@ create table usuario
     paisProcedencia char(30),
     telefono integer,
     sexo char(1) not null,
-    check (sexo='m' or sexo='h' or sexo='-'),
+    check (sexo='m' or sexo='h' or sexo='otro'),
     check(valida_dni(dni) =true)
 );
 create table personalExterno

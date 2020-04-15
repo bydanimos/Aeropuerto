@@ -3,7 +3,7 @@ insert into usuario values (
 '48116361Q', 'eliPita', 'eliPita@gmail.com', 'eli', 'Eliseo','Pita','Vilariño','España','981666789','m'
 ); --Administrador
 insert into usuario values (
-'49204425L', 'antong', 'antong@gmail.com', 'ant', 'Anton','Gomez','Lopez','Galicia','604025148','-'
+'49204425L', 'antong', 'antong@gmail.com', 'ant', 'Anton','Gomez','Lopez','Galicia','604025148','otro'
 ); --Personal Externo
 insert into usuario values (
 '12345678Z', 'crisl', 'crisl@gmail.com', 'cri', 'Cristina','Lopez','Amado','Portugal','981234666','m'
