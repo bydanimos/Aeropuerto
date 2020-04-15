@@ -54,6 +54,7 @@ public class VRegistrar extends javax.swing.JFrame {
         mensajeError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         aeropuertoLabel.setText("<html>\n<h1>REGISTRARSE</h1>\n</html>");
 
@@ -258,9 +259,41 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JTextField telefonoTextField;
     // End of variables declaration//GEN-END:variables
 
+    
     public void registrarUsuario(){
         Usuario usuario;
+        boolean seguir = true;
+        this.dniIncorrectLabel.setVisible(false);
+        this.contraDistintLabel.setVisible(false);
+        this.idRepetidoLabel.setVisible(false);
+        this.mensajeError.setVisible(false);
         
-        fa.registrarUsuario(usuario);
+        if(!this.fa.comprobarDni(this.dniTextField.getText())){
+            this.dniIncorrectLabel.setVisible(true);
+            seguir = false;
+        }
+        if(!this.PasswordField.getText().equals(this.repitPasswordField.getText())){
+            this.contraDistintLabel.setVisible(true);
+            seguir = false;
+        }
+        if(!this.fa.comprobarId(idRepetidoLabel.getText())){
+            this.idRepetidoLabel.setVisible(true);
+            seguir = false;
+        }
+        if(this.getSexo().equals('z')){
+            this.sexoErrorLabel.setVisible(true);
+            seguir = false;
+        }
+        if(seguir){
+            usuario = new Usuario(this.dniTextField.getText(), this.idTextField.getText(), this.PasswordField.getText(),
+                                 this.mailTextField.getText(), this.nombreTextField.getText(), this.primApeTextField.getText(),
+                                  this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), this.telefonoTextField.getText());
+        
+            if(fa.registrarUsuario(usuario) != null){
+                this.dispose();
+            } else{
+                this.mensajeError.setVisible(true);
+            }
+        }
     }
 }
