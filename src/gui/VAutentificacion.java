@@ -35,7 +35,8 @@ public class VAutentificacion extends javax.swing.JDialog {
         incorrectLabel = new javax.swing.JLabel();
         aeropuetoLabel = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
-        passwordTextField = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JPasswordField();
+        registrarseLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,15 +76,17 @@ public class VAutentificacion extends javax.swing.JDialog {
             }
         });
 
-        passwordTextField.setText("Password");
-        passwordTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                passwordTextFieldMouseClicked(evt);
+        PasswordField.setText("Password");
+        PasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PasswordFieldKeyPressed(evt);
             }
         });
-        passwordTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordTextFieldKeyPressed(evt);
+
+        registrarseLabel.setText("<html>\n¿No estás registrado?<br>\n<center>Regístrate</center>\n</html>");
+        registrarseLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrarseLabelMouseClicked(evt);
             }
         });
 
@@ -101,17 +104,19 @@ public class VAutentificacion extends javax.swing.JDialog {
                 .addGap(104, 104, 104))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cancelarButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(accederButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(usernameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(cancelarButton)
+                        .addGap(116, 116, 116)
+                        .addComponent(accederButton))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(PasswordField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(usernameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(registrarseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,14 +126,16 @@ public class VAutentificacion extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(incorrectLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accederButton)
                     .addComponent(cancelarButton))
-                .addGap(56, 56, 56))
+                .addGap(18, 18, 18)
+                .addComponent(registrarseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -146,12 +153,9 @@ public class VAutentificacion extends javax.swing.JDialog {
         System.exit(0);
     }//GEN-LAST:event_cancelarButtonMouseClicked
 
-    private void passwordTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextFieldMouseClicked
-        this.passwordTextField.setText("");    }//GEN-LAST:event_passwordTextFieldMouseClicked
-
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (this.passwordTextField.getText().equals("")) {
-            this.passwordTextField.setText("Password");
+        if ("".equals(this.PasswordField.getPassword())) {
+            this.PasswordField.setText("Password");
         }
         if (this.usernameTextField.getText().equals("")) {
             this.usernameTextField.setText("Username");
@@ -165,19 +169,39 @@ public class VAutentificacion extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_usernameTextFieldKeyPressed
 
-    private void passwordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTextFieldKeyPressed
+    private void PasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordFieldKeyPressed
         if (this.primeraPass) {
-            this.passwordTextField.setText("");
+            this.PasswordField.setText("");
             this.primeraPass = false;
         }
-    }//GEN-LAST:event_passwordTextFieldKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            acceder();
+        }
+    }//GEN-LAST:event_PasswordFieldKeyPressed
+
+    private void registrarseLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarseLabelMouseClicked
+        registrar();
+    }//GEN-LAST:event_registrarseLabelMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JButton accederButton;
     private javax.swing.JLabel aeropuetoLabel;
     private javax.swing.JButton cancelarButton;
     private javax.swing.JLabel incorrectLabel;
-    private javax.swing.JTextField passwordTextField;
+    private javax.swing.JLabel registrarseLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
+
+    private void acceder(){
+        if (this.fa.comprobarAutentificacion(usernameTextField.getText(), PasswordField.getPassword())) {
+            this.dispose();
+        } else {
+            this.incorrectLabel.setVisible(true);
+        }
+    }
+
+    private void registrar(){
+        
+    }
 }
