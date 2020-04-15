@@ -23,48 +23,62 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="botonAceptar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="idLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="mailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="contrasnhaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="repitPassLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="primerApellLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="segunApellLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="paisLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="telefonLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="idLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="contrasnhaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="repitPassLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="primerApellLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="segunApellLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="paisLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="telefonLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="paisTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="segunApeTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="primApeTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nombreTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="repitPasswordField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="PasswordField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="telefonoTextField" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="dniTextField" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="idTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="mailTextField" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
+                              <Component id="aeropuertoLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="paisTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="segunApeTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="primApeTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="nombreTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="repitPasswordField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="PasswordField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="telefonoTextField" alignment="1" max="32767" attributes="0"/>
-                          <Component id="dniTextField" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="idTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="mailTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dniIncorrectLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="idRepetidoLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="contraDistintLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
-                      <Component id="aeropuertoLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="dniIncorrectLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="idRepetidoLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="contraDistintLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+              <Component id="mensajeError" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,7 +142,14 @@
                   <Component id="telefonLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="telefonoTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <Component id="mensajeError" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -237,6 +258,30 @@
           <Color blue="1b" green="1b" red="e4" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;center&gt;&#xa;&#xa1;Las contrase&#xf1;as deben &lt;br&gt;&#xa;ser iguales! &lt;/center&gt;&#xa;&lt;/html&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonAceptar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aceptar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAceptarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonCancelar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="mensajeError">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="El usuario no se ha podido registrar con &#xe9;xito"/>
       </Properties>
     </Component>
   </SubComponents>

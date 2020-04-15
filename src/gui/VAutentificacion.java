@@ -202,6 +202,6 @@ public class VAutentificacion extends javax.swing.JDialog {
     }
 
     private void registrar() {
-
+        fa.nuevoUsuario();
     }
 }

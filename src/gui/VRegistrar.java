@@ -1,5 +1,7 @@
 package gui;
 
+import aplicacion.usuarios.Usuario;
+
 
 public class VRegistrar extends javax.swing.JFrame {
 
@@ -11,6 +13,7 @@ public class VRegistrar extends javax.swing.JFrame {
         this.contraDistintLabel.setVisible(false);
         this.idRepetidoLabel.setVisible(false);
         this.contraDistintLabel.setVisible(false);
+        this.mensajeError.setVisible(false);
     }
 
     /**
@@ -46,6 +49,9 @@ public class VRegistrar extends javax.swing.JFrame {
         dniIncorrectLabel = new javax.swing.JLabel();
         idRepetidoLabel = new javax.swing.JLabel();
         contraDistintLabel = new javax.swing.JLabel();
+        botonAceptar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
+        mensajeError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,46 +90,73 @@ public class VRegistrar extends javax.swing.JFrame {
         contraDistintLabel.setForeground(new java.awt.Color(228, 27, 27));
         contraDistintLabel.setText("<html>\n<center>\n¡Las contraseñas deben <br>\nser iguales! </center>\n</html>");
 
+        botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
+
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+
+        mensajeError.setForeground(new java.awt.Color(255, 0, 0));
+        mensajeError.setText("El usuario no se ha podido registrar con éxito");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dniLabel)
-                            .addComponent(idLabel)
-                            .addComponent(mailLabel)
-                            .addComponent(contrasnhaLabel)
-                            .addComponent(repitPassLabel)
-                            .addComponent(nombreLabel)
-                            .addComponent(primerApellLabel)
-                            .addComponent(segunApellLabel)
-                            .addComponent(paisLabel)
-                            .addComponent(telefonLabel))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(paisTextField)
-                            .addComponent(segunApeTextField)
-                            .addComponent(primApeTextField)
-                            .addComponent(nombreTextField)
-                            .addComponent(repitPasswordField)
-                            .addComponent(PasswordField)
-                            .addComponent(telefonoTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idTextField)
-                            .addComponent(mailTextField)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonAceptar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(aeropuertoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dniIncorrectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idRepetidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contraDistintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dniLabel)
+                                    .addComponent(idLabel)
+                                    .addComponent(mailLabel)
+                                    .addComponent(contrasnhaLabel)
+                                    .addComponent(repitPassLabel)
+                                    .addComponent(nombreLabel)
+                                    .addComponent(primerApellLabel)
+                                    .addComponent(segunApellLabel)
+                                    .addComponent(paisLabel)
+                                    .addComponent(telefonLabel)
+                                    .addComponent(botonCancelar))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(paisTextField)
+                                    .addComponent(segunApeTextField)
+                                    .addComponent(primApeTextField)
+                                    .addComponent(nombreTextField)
+                                    .addComponent(repitPasswordField)
+                                    .addComponent(PasswordField)
+                                    .addComponent(telefonoTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(idTextField)
+                                    .addComponent(mailTextField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(257, 257, 257)
+                                .addComponent(aeropuertoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dniIncorrectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idRepetidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contraDistintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(mensajeError)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,16 +207,32 @@ public class VRegistrar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telefonLabel)
                     .addComponent(telefonoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(mensajeError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAceptar)
+                    .addComponent(botonCancelar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        registrarUsuario();
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel aeropuertoLabel;
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JLabel contraDistintLabel;
     private javax.swing.JLabel contrasnhaLabel;
     private javax.swing.JLabel dniIncorrectLabel;
@@ -194,6 +243,7 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JTextField idTextField;
     private javax.swing.JLabel mailLabel;
     private javax.swing.JTextField mailTextField;
+    private javax.swing.JLabel mensajeError;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JLabel paisLabel;
@@ -207,4 +257,10 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField telefonoTextField;
     // End of variables declaration//GEN-END:variables
+
+    public void registrarUsuario(){
+        Usuario usuario;
+        
+        fa.registrarUsuario(usuario);
+    }
 }

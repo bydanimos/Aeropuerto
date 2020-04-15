@@ -26,4 +26,12 @@ public class FachadaGui {
         va = new VAviso(vp, true, txtExcepcion);
         va.setVisible(true);
     }
+    
+    public void nuevoUsuario(){
+        VRegistrar vr;
+        
+        vr = new VRegistrar(fa);
+        vp.setVisible(true);
+        vr.setVisible(true);
+    }
 }

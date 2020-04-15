@@ -48,5 +48,13 @@ public class FachadaAplicacion {
         this.usuarioActual = usuarioActual;
     }
     
+    public void nuevoUsuario() {
+        cu.nuevoUsuario();
+    }
+    
+    public void registrarUsuario(Usuario usuario){
+        cu.registrarUsuario(usuario);
+    }
+    
     
 }

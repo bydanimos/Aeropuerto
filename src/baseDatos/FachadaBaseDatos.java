@@ -8,6 +8,9 @@ package baseDatos;
 import aplicacion.*;
 import aplicacion.usuarios.*;
 import baseDatos.usuarios.*;
+import aplicacion.aviones.*;
+import aplicacion.servicios.*;
+import aplicacion.vuelos.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -95,7 +98,7 @@ public class FachadaBaseDatos {
         return daoUsuarios.consultarRegistroUsuarios(id,dni,nombre,ap1,ap2);
     }
     
-    public void insertarUsuario(Usuario u){
+    public void registrarUsuario(Usuario u){
         daoUsuarios.insertarUsuario(u);
     }
     public void borrarUsuario(String dni){
@@ -114,8 +117,6 @@ public class FachadaBaseDatos {
     public void modificarAdministrador(Administrador ad){
         daoAdministradores.modificarAdministrador(ad);
     }
-    
-    
     
     /*public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor){
         return daoLibros.consultarCatalogo(id, titulo, isbn, autor);

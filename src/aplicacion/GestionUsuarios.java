@@ -1,6 +1,9 @@
 package aplicacion;
 
 import aplicacion.usuarios.*;
+import aplicacion.aviones.*;
+import aplicacion.servicios.*;
+import aplicacion.vuelos.*;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
 
@@ -34,5 +37,13 @@ public class GestionUsuarios {
         else{
             return false;
         }
+    }
+    
+    public void nuevoUsuario() {
+        fgui.nuevoUsuario();
+    }
+    
+    public void registrarUsuario(Usuario usuario){
+        fbd.registrarUsuario(usuario);
     }
 }
