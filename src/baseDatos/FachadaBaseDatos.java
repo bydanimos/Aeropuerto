@@ -59,14 +59,14 @@ public class FachadaBaseDatos {
 
         } catch (FileNotFoundException f){
             System.out.println(f.getMessage());
-            fa.muestraExcepcion(f.getMessage());
+            this.fa.muestraExcepcion(f.getMessage());
         } catch (IOException i){
             System.out.println(i.getMessage());
-            fa.muestraExcepcion(i.getMessage());
+            this.fa.muestraExcepcion(i.getMessage());
         } 
         catch (java.sql.SQLException e){
             System.out.println(e.getMessage());
-            fa.muestraExcepcion(e.getMessage());
+            this.fa.muestraExcepcion(e.getMessage());
         }
     }
     
@@ -91,7 +91,7 @@ public class FachadaBaseDatos {
     }
 
     public void setUsuarioActual(Usuario usuarioActual) {
-        fa.setUsuarioActual(usuarioActual);
+        this.fa.setUsuarioActual(usuarioActual);
     }
     
     public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2){
