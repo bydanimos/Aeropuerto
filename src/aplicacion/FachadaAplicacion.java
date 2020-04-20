@@ -66,5 +66,9 @@ public class FachadaAplicacion {
         return this.cd.dniCorrecto(dni);
     }
     
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return cu.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
+    }
+    
     
 }

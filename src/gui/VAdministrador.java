@@ -1,21 +1,22 @@
 package gui;
 
+import aplicacion.usuarios.Usuario;
+import javax.swing.JPanel;
+
 public class VAdministrador extends javax.swing.JFrame {
 
     /**
      * Creates new form VAdministrador
      */
     private aplicacion.FachadaAplicacion fa;
-    PPrincipal pprincipal;
-    PAdminUsuarios pusuarios;
+    JPanel panelActual;
     /** Creates new form VAdministrador */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
         this.fa=fa;
-        this.pprincipal = new PPrincipal(this);
-        this.pusuarios = new PAdminUsuarios(this);
+        this.panelActual = new PPrincipal(this);
         initComponents();
-        this.panelPrincipalAdministrador.add(pprincipal);
-        pprincipal.setVisible(true);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
     }
 
     /**
@@ -168,10 +169,10 @@ public class VAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void adminLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabel1MouseClicked
-        this.pusuarios.setVisible(false);
-        
-        this.panelPrincipalAdministrador.add(pprincipal);
-        this.pprincipal.setVisible(true);
+        this.panelActual.setVisible(false);
+        this.panelActual = new PPrincipal(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
     }//GEN-LAST:event_adminLabel1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -189,9 +190,15 @@ public class VAdministrador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void pulsarUsuarios(){
-        pprincipal.setVisible(false);
-        this.panelPrincipalAdministrador.add(pusuarios);
-        pusuarios.setVisible(true);
+        this.panelActual.setVisible(false);
+        this.panelActual = new PAdminUsuarios(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+        ((PAdminUsuarios)this.panelActual).buscarUsuarios();
+    }
+    
+    java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return this.fa.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
     }
 }
 

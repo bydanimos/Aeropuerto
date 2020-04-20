@@ -46,4 +46,8 @@ public class GestionUsuarios {
     public boolean registrarUsuario(Usuario usuario){
         return this.fbd.registrarUsuario(usuario);
     }
+    
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return this.fbd.consultarRegistroUsuarios(id,dni,nombre,primerApellido,segundoApellido);
+    }
 }
