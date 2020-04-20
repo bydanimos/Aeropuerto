@@ -118,6 +118,10 @@ public class FachadaBaseDatos {
         this.daoAdministradores.modificarAdministrador(ad);
     }
     
+    public boolean comprobarId(String text) {
+        return this.daoUsuarios.comprobarId(text);
+    }
+    
     /*public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor){
         return daoLibros.consultarCatalogo(id, titulo, isbn, autor);
     }
@@ -233,4 +237,6 @@ public class FachadaBaseDatos {
     public Libro getLibro(Integer id){
         return daoLibros.consultarLibro(id);
     }*/
+
+
 }

@@ -20,8 +20,8 @@ public class GestionUsuarios {
     public boolean comprobarAutentificacion(String idUsuario, String clave) {
         Usuario u;
 
-        if((u = fbd.validarAdministrador(idUsuario, clave)) != null){
-            fbd.setUsuarioActual(u);
+        if((u = this.fbd.validarAdministrador(idUsuario, clave)) != null){
+            this.fbd.setUsuarioActual(u);
             return true;
         } 
 //        else if((u = fbd.validarPersonalLaboral(idUsuario, clave)) != null){
@@ -49,5 +49,9 @@ public class GestionUsuarios {
     
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.fbd.consultarRegistroUsuarios(id,dni,nombre,primerApellido,segundoApellido);
+    }
+
+    boolean comprobarId(String text) {
+        return this.fbd.comprobarId(text);
     }
 }

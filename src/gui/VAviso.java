@@ -1,9 +1,6 @@
 package gui;
 
-/**
- *
- * @author alumno
- */
+
 public class VAviso extends javax.swing.JDialog {
 
     /**
@@ -12,7 +9,7 @@ public class VAviso extends javax.swing.JDialog {
     public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion) {
         super(parent, modal);
         initComponents();
-        textoExcepcion.setText(txtExcepcion);
+        this.textoExcepcion.setText(txtExcepcion);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

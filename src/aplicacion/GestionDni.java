@@ -143,8 +143,8 @@ class GestionDni {
     }
     
     public boolean dniCorrecto(String dni){
-        this.setDniNumero(dni);
         this.setDniIntroducido(dni);
+        this.setDniNumero(dni);
         this.setLetraIntroducida();
         
         if (patron()){

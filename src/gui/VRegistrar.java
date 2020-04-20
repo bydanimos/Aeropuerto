@@ -294,14 +294,14 @@ public class VRegistrar extends javax.swing.JFrame {
     }//GEN-LAST:event_telefonoTextFieldKeyPressed
 
     private void PasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordFieldKeyPressed
-        if (primeraPass) {
+        if (this.primeraPass) {
             this.PasswordField.setText("");
             this.primeraPass = false;
         }
     }//GEN-LAST:event_PasswordFieldKeyPressed
 
     private void repitPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_repitPasswordFieldKeyPressed
-        if (primeraRepitPass) {
+        if (this.primeraRepitPass) {
             this.repitPasswordField.setText("");
             this.primeraRepitPass = false;
         }
@@ -376,15 +376,20 @@ public class VRegistrar extends javax.swing.JFrame {
         this.sexoErrorLabel.setVisible(false);
         this.todosCamposLabel.setVisible(false);
 
-        if (!this.fa.comprobarDni(this.dniTextField.getText())) {
-            this.dniIncorrectLabel.setVisible(true);
+        if (this.dniTextField.getText().equals("")) {
             seguir = false;
+        } else {
+            if (!this.fa.comprobarDni(this.dniTextField.getText())) {
+                this.dniIncorrectLabel.setVisible(true);
+                seguir = false;
+            }
         }
+
         if (!this.PasswordField.getText().equals(this.repitPasswordField.getText())) {
             this.contraDistintLabel.setVisible(true);
             seguir = false;
         }
-        if (!this.fa.comprobarId(idRepetidoLabel.getText())) {
+        if (!this.fa.comprobarId(this.idRepetidoLabel.getText())) {
             this.idRepetidoLabel.setVisible(true);
             seguir = false;
         }
@@ -392,8 +397,19 @@ public class VRegistrar extends javax.swing.JFrame {
             this.sexoErrorLabel.setVisible(true);
             seguir = false;
         }
+        if (this.mailTextField.getText().equals("")){
+            this.todosCamposLabel.setVisible(true);
+            seguir = false;
+        }
+        if (this.nombreTextField.getText().equals("") || 
+                this.primApeTextField.getText().equals("") ||
+                this.segunApeTextField.getText().equals("")){
+            seguir = false;
+            this.todosCamposLabel.setVisible(true);
+        }
+        
         if (seguir) {
-           
+
             usuario = new Usuario(this.dniTextField.getText(), this.idTextField.getText(), this.PasswordField.getText(),
                     this.mailTextField.getText(), this.nombreTextField.getText(), this.primApeTextField.getText(),
                     this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), this.telefonoTextField.getText());
