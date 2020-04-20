@@ -27,7 +27,7 @@ create table usuario
     nombre varchar(40) not null,
     primerApellido varchar(40) not null,
     segundoApellido varchar(40) not null,
-    paisProcedencia char(30),
+    paisProcedencia varchar(30),
     telefono integer,
     sexo char(1) not null,
     check (sexo='m' or sexo='h' or sexo='o'),
