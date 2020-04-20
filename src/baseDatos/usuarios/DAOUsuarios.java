@@ -5,8 +5,8 @@
 
 package baseDatos.usuarios;
 import aplicacion.*;
+import baseDatos.*;
 import aplicacion.usuarios.*;
-import baseDatos.AbstractDAO;
 import java.sql.*;
 /**
  *
@@ -98,7 +98,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-   public void insertarUsuario(Usuario u){
+   public boolean insertarUsuario(Usuario u){
 
         Connection con;
             PreparedStatement stmUsuario=null;
@@ -120,17 +120,17 @@ public class DAOUsuarios extends AbstractDAO {
                 stmUsuario.setString(9, u.getTelefono());
                 String ts;
                 
-                if(null==u.getSexo()){
-                    ts = "Otro";
+                if(null == u.getSexo()){
+                    ts = "o";
                 }else switch (u.getSexo()) {
                 case h:
-                    ts = "H";
+                    ts = "h";
                     break;
                 case m:
-                    ts = "M";
+                    ts = "m";
                     break;
                 default:
-                    ts = "Otro";
+                    ts = "o";
                     break;
             }
                 stmUsuario.setString(10, ts);
@@ -138,15 +138,18 @@ public class DAOUsuarios extends AbstractDAO {
             } catch (SQLException e){
               System.out.println(e.getMessage());
               this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+              return false;
             }finally{
               try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
             }
+            return true;
     }
    
    public void borrarUsuario(String dni){
         Connection con;
         PreparedStatement stmUsuario=null;
 
+        
         con=super.getConexion();
 
         try {
@@ -190,12 +193,11 @@ public class DAOUsuarios extends AbstractDAO {
             stmUsuario.setString(6, u.getContrasenha());
             stmUsuario.setString(7, u.getPaisProcedencia());
             stmUsuario.setString(8, u.getTelefono());
-            stmUsuario.setString(10, u.getDni());
             
             String ts;
                 
-            if(null == u.getSexo()){
-                ts = "otro";
+            if(null==u.getSexo()){
+                ts = "o";
             }else switch (u.getSexo()) {
                 case h:
                     ts = "h";
@@ -204,7 +206,7 @@ public class DAOUsuarios extends AbstractDAO {
                     ts = "m";
                     break;
                 default:
-                    ts = "otro";
+                    ts = "o";
                     break;
             }
             stmUsuario.setString(9, ts);
@@ -218,7 +220,4 @@ public class DAOUsuarios extends AbstractDAO {
             try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
-   
-   
-   
 }
