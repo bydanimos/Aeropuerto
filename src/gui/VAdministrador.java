@@ -68,7 +68,7 @@ public class VAdministrador extends javax.swing.JFrame {
             }
         });
 
-        aeroEtseLabel.setText("<html>\n<h1> AEROETSE </h1>\n</html>");
+        aeroEtseLabel.setText("<html> <h1> AEROETSE </h1> </html>");
 
         vuelosLabel.setText("<html>\n<h2> Vuelos </h2>\n</html>");
 
@@ -78,9 +78,16 @@ public class VAdministrador extends javax.swing.JFrame {
 
         infoLabel.setText("<html>\n<h2> Información </h2>\n</html>");
 
-        adminLabel.setText("<html>\n<h2> Administrador </h2>\n</html>");
+        adminLabel.setText("<html> <h2> Administrador </h2> </html>");
 
-        adminLabel1.setText("<html>\n<h2> Administrador </h2>\n</html>");
+        adminLabel1.setBackground(new java.awt.Color(102, 153, 255));
+        adminLabel1.setForeground(new java.awt.Color(0, 102, 255));
+        adminLabel1.setText("<html> <h2> Administrador </h2> </html>");
+        adminLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabel1MouseClicked(evt);
+            }
+        });
 
         avionFotoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/avion_.png"))); // NOI18N
 
@@ -159,6 +166,13 @@ public class VAdministrador extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formWindowOpened
+
+    private void adminLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabel1MouseClicked
+        this.pusuarios.setVisible(false);
+        
+        this.panelPrincipalAdministrador.add(pprincipal);
+        this.pprincipal.setVisible(true);
+    }//GEN-LAST:event_adminLabel1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminLabel;

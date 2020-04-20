@@ -3,8 +3,9 @@
  * and open the template in the editor.
  */
 
-package baseDatos;
+package baseDatos.usuarios;
 import aplicacion.*;
+import baseDatos.*;
 import aplicacion.usuarios.*;
 import java.sql.*;
 /**
