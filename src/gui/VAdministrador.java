@@ -211,7 +211,7 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PTiendas(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
-        ((PTiendas)this.panelActual).buscarTiendas();
+        ((PTiendas)this.panelActual).buscarTiendas(true);
     }
     
     public List<Tienda> obtenerTiendas(String nombre, int terminal) {
