@@ -189,7 +189,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel vuelosLabel;
     // End of variables declaration//GEN-END:variables
 
-    private void pulsarUsuarios(){
+    public void pulsarUsuarios(){
         this.panelActual.setVisible(false);
         this.panelActual = new PAdminUsuarios(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
@@ -197,7 +197,7 @@ public class VAdministrador extends javax.swing.JFrame {
         ((PAdminUsuarios)this.panelActual).buscarUsuarios();
     }
     
-    private java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.fa.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
     }
 }
