@@ -251,6 +251,7 @@ public class PTiendas extends javax.swing.JPanel {
 
         if (m.getRowCount() > 0) {
             this.tiendasTable.setRowSelectionInterval(0, 0);
+            this.codigoTextField.setText("" + m.getValueAt(0, 1));
         }
     }
 
