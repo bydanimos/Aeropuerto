@@ -39,9 +39,9 @@ public class PTiendas extends javax.swing.JPanel {
         nombreTextField = new javax.swing.JTextField();
         terminalComboBox = new javax.swing.JComboBox<>();
         buscarButton = new javax.swing.JButton();
-        selTerminalLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
         tiendasTable = new javax.swing.JTable();
+        selTerminalLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(813, 385));
 
@@ -73,11 +73,21 @@ public class PTiendas extends javax.swing.JPanel {
             }
         });
 
+        tiendasTable.setModel(new ModeloTablaTiendas());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tiendasTable, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tiendasTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+        );
+
         selTerminalLabel.setForeground(new java.awt.Color(234, 45, 45));
         selTerminalLabel.setText("¡Seleccione un número de Terminal!");
-
-        tiendasTable.setModel(new ModeloTablaTiendas());
-        jScrollPane1.setViewportView(tiendasTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,7 +100,7 @@ public class PTiendas extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreLabel)
@@ -101,7 +111,7 @@ public class PTiendas extends javax.swing.JPanel {
                                 .addComponent(terminalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(93, 93, 93)
                                 .addComponent(selTerminalLabel)
-                                .addContainerGap(125, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,8 +134,8 @@ public class PTiendas extends javax.swing.JPanel {
                     .addComponent(terminalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selTerminalLabel))
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,13 +154,13 @@ public class PTiendas extends javax.swing.JPanel {
     }//GEN-LAST:event_nombreTextFieldKeyPressed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        this.buscarTiendas(false);
+        this.buscarTiendas();
     }//GEN-LAST:event_buscarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JLabel selTerminalLabel;
@@ -160,34 +170,36 @@ public class PTiendas extends javax.swing.JPanel {
     private javax.swing.JTable tiendasTable;
     // End of variables declaration//GEN-END:variables
 
-    public void buscarTiendas(boolean todas) {
+    public void buscarTiendas() {
         ModeloTablaTiendas m;
         m = (ModeloTablaTiendas) this.tiendasTable.getModel();
         int itemSelected = this.terminalComboBox.getSelectedIndex();
-
-        if (todas) {
-            m.setFilas(this.va.obtenerTiendas("", 0));
-        } else {
-            if (this.primNombre) {
-                if (itemSelected > 0) {
-                    m.setFilas(this.va.obtenerTiendas("", itemSelected));
-                    this.selTerminalLabel.setVisible(false);
-                } else {
-                    this.selTerminalLabel.setVisible(true);
-                }
+        
+        if (this.primNombre) {
+            if (itemSelected > 0) {
+                m.setFilas(this.va.obtenerTiendas("",
+                        itemSelected));
+                this.selTerminalLabel.setVisible(false);
             } else {
-                if (itemSelected > 0) {
-                    m.setFilas(this.va.obtenerTiendas(this.nombreTextField.getText(),
-                            itemSelected));
-                    this.selTerminalLabel.setVisible(false);
-                } else {
-                    this.selTerminalLabel.setVisible(true);
-                }
+                this.selTerminalLabel.setVisible(true);
+            }
+        } else {
+            if (itemSelected > 0) {
+                m.setFilas(this.va.obtenerTiendas(this.nombreTextField.getText(),
+                        itemSelected));
+                this.selTerminalLabel.setVisible(false);
+            } else {
+                this.selTerminalLabel.setVisible(true);
             }
         }
 
         if (m.getRowCount() > 0) {
             this.tiendasTable.setRowSelectionInterval(0, 0);
+            // botonEliminar.setEnabled(true);
+            // botonEditar.setEnabled(true);
+        } else {
+            // botonEliminar.setEnabled(false);
+            // botonEditar.setEnabled(true);
         }
     }
 }
