@@ -39,6 +39,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="terminalComboBox" min="-2" pref="190" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="selTerminalLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -68,6 +70,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="terminalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="terminalComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="selTerminalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -155,5 +158,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="selTerminalLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="2d" green="2d" red="ea" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xa1;Seleccione un n&#xfa;mero de Terminal!"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
