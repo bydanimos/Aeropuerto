@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package baseDatos;
 
 import aplicacion.aviones.Terminal;
@@ -11,10 +10,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DAOServicios extends AbstractDAO {
 
-   public DAOServicios (Connection conexion, aplicacion.FachadaAplicacion fa){
+    public DAOServicios(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
@@ -32,19 +30,23 @@ public class DAOServicios extends AbstractDAO {
 
         String consulta = "select terminal, codigo, tipoventas, nombre "
                 + "from tiendas "
-                + "where nombre like ? "
-                + "and terminal = ?";
+                + "where nombre like ? ";
+        if (terminal != 0) {
+            consulta += "and terminal = ?";
+        }
 
         try {
             stmTiendas = con.prepareStatement(consulta);
             stmTiendas.setString(1, "%" + nombre + "%");
-            stmTiendas.setInt(2, terminal);
+            if (terminal != 0) {
+                stmTiendas.setInt(2, terminal);
+            }
 
             rsTienda = stmTiendas.executeQuery();
             while (rsTienda.next()) {
                 terminalAux = terminales.get(rsTienda.getInt("terminal") - 1);
-                tiendaActual = new Tienda(terminalAux, 
-                        rsTienda.getInt("codigo"), 
+                tiendaActual = new Tienda(terminalAux,
+                        rsTienda.getInt("codigo"),
                         rsTienda.getString("tipoventas"),
                         rsTienda.getString("nombre"));
 
@@ -63,7 +65,7 @@ public class DAOServicios extends AbstractDAO {
         }
         return resultado;
     }
-    
+
     public ArrayList<Terminal> obtenerTerminales() {
         ArrayList<Terminal> resultado = new ArrayList<>();
         Terminal terminalActual;
@@ -83,8 +85,8 @@ public class DAOServicios extends AbstractDAO {
             rsTerminal = stmTerminal.executeQuery();
             while (rsTerminal.next()) {
 
-                terminalActual = new Terminal(rsTerminal.getInt("numero"), 
-                        rsTerminal.getInt("primeraPuerta"), 
+                terminalActual = new Terminal(rsTerminal.getInt("numero"),
+                        rsTerminal.getInt("primeraPuerta"),
                         rsTerminal.getInt("ultimaPuerta"));
 
                 resultado.add(terminalActual);
