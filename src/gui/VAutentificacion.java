@@ -51,6 +51,11 @@ public class VAutentificacion extends javax.swing.JDialog {
         });
 
         accederButton.setText("Acceder >");
+        accederButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accederButtonActionPerformed(evt);
+            }
+        });
 
         cancelarButton.setText("Cancelar");
         cancelarButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,6 +199,10 @@ public class VAutentificacion extends javax.swing.JDialog {
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordFieldActionPerformed
+
+    private void accederButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederButtonActionPerformed
+        acceder();
+    }//GEN-LAST:event_accederButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PasswordField;
