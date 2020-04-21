@@ -1,6 +1,8 @@
 package gui;
 
+import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
+import java.util.List;
 import javax.swing.JPanel;
 
 public class VAdministrador extends javax.swing.JFrame {
@@ -197,7 +199,7 @@ public class VAdministrador extends javax.swing.JFrame {
         ((PAdminUsuarios)this.panelActual).buscarUsuarios();
     }
     
-    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+    public List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.fa.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
     }
     
@@ -207,6 +209,10 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
         // ((PTiendas)this.panelActual).buscarTiendas();
+    }
+    
+    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
+        return this.fa.obtenerTiendas(nombre, terminal);
     }
 }
 

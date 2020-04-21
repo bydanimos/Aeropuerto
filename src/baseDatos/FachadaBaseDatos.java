@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 public class FachadaBaseDatos {
@@ -25,6 +26,7 @@ public class FachadaBaseDatos {
     private DAOAdministrador daoAdministradores;
     private DAOPersonalLaboral daoPersonalLaboral;
     private DAOPersonalExterno daoPersonalExterno;
+    private DAOServicios daoServicios;
 
     public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
         
@@ -54,7 +56,8 @@ public class FachadaBaseDatos {
             this.daoUsuarios = new DAOUsuarios(this.conexion, this.fa);
             this.daoAdministradores = new DAOAdministrador(this.conexion,this.fa);
             this.daoPersonalLaboral = new DAOPersonalLaboral(this.conexion, this.fa);
-            this.daoPersonalExterno = new DAOPersonalExterno(this.conexion, this.fa);;
+            this.daoPersonalExterno = new DAOPersonalExterno(this.conexion, this.fa);
+            this.daoServicios = new DAOServicios(this.conexion, this.fa);
           
 
         } catch (FileNotFoundException f){
@@ -71,23 +74,23 @@ public class FachadaBaseDatos {
     }
     
     public Usuario validarUsuario(String idUsuario, String clave){
-        return daoUsuarios.validarUsuario(idUsuario, clave);
+        return this.daoUsuarios.validarUsuario(idUsuario, clave);
     }
     
     public Administrador validarAdministrador(String id, String clave){
-        return daoAdministradores.validarAdministrador(id, clave);
+        return this.daoAdministradores.validarAdministrador(id, clave);
     }
     
     public PersonalLaboral validarPersonalLaboral(String id, String clave){
-        return daoPersonalLaboral.validarPersonalLaboral(id, clave);
+        return this.daoPersonalLaboral.validarPersonalLaboral(id, clave);
     }
     
     public PersonalExterno validarPersonalExterno(String id, String clave){
-        return daoPersonalExterno.validarPersonalExterno(id, clave);
+        return this.daoPersonalExterno.validarPersonalExterno(id, clave);
     }
     
     public Usuario getUsuarioActual() {
-        return fa.getUsuarioActual();
+        return this.fa.getUsuarioActual();
     }
 
     public void setUsuarioActual(Usuario usuarioActual) {
@@ -95,7 +98,7 @@ public class FachadaBaseDatos {
     }
     
     public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2){
-        return daoUsuarios.consultarRegistroUsuarios(id,dni,nombre,ap1,ap2);
+        return this.daoUsuarios.consultarRegistroUsuarios(id,dni,nombre,ap1,ap2);
     }
     
     public boolean registrarUsuario(Usuario u){
@@ -120,6 +123,10 @@ public class FachadaBaseDatos {
     
     public boolean comprobarId(String text) {
         return this.daoUsuarios.comprobarId(text);
+    }
+    
+    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
+        return this.daoServicios.obtenerTiendas(nombre, terminal);
     }
     
     /*public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor){
@@ -237,6 +244,7 @@ public class FachadaBaseDatos {
     public Libro getLibro(Integer id){
         return daoLibros.consultarLibro(id);
     }*/
+
 
 
 }

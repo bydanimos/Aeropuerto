@@ -12,11 +12,13 @@ package gui;
 public class PTiendas extends javax.swing.JPanel {
 
     private VAdministrador va;
+    private boolean primNombre;
     /**
      * Creates new form PTiendas
      */
     public PTiendas(VAdministrador va) {
         this.va = va;
+        this.primNombre = true;
         initComponents();
     }
 
@@ -48,10 +50,25 @@ public class PTiendas extends javax.swing.JPanel {
         terminalLabel.setText("Terminal: ");
 
         nombreTextField.setText("ETSEshop");
+        nombreTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nombreTextFieldMouseClicked(evt);
+            }
+        });
+        nombreTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nombreTextFieldKeyPressed(evt);
+            }
+        });
 
         terminalComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escoger", "T1", "T2", "T3" }));
 
         buscarButton.setText("Buscar");
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
 
         tiendasTable.setModel(new ModeloTablaTiendas());
 
@@ -113,6 +130,24 @@ public class PTiendas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nombreTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTextFieldMouseClicked
+        if (this.primNombre) {
+            this.nombreTextField.setText("");
+            this.primNombre = false;
+        }
+    }//GEN-LAST:event_nombreTextFieldMouseClicked
+
+    private void nombreTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTextFieldKeyPressed
+        if (this.primNombre) {
+            this.nombreTextField.setText("");
+            this.primNombre = false;
+        }
+    }//GEN-LAST:event_nombreTextFieldKeyPressed
+
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        this.buscarTiendas();
+    }//GEN-LAST:event_buscarButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
@@ -124,4 +159,24 @@ public class PTiendas extends javax.swing.JPanel {
     private javax.swing.JLabel tiendasLabel;
     private javax.swing.JTable tiendasTable;
     // End of variables declaration//GEN-END:variables
+    
+    public void buscarTiendas() {
+        ModeloTablaTiendas m;
+        m = (ModeloTablaTiendas) this.tiendasTable.getModel();
+        if (this.primNombre) {
+            m.setFilas(this.va.obtenerTiendas("", (int) this.terminalComboBox.getSelectedItem()));
+        } else {
+            m.setFilas(this.va.obtenerTiendas(this.nombreTextField.getText(), (int) this.terminalComboBox.getSelectedItem()));
+        }
+        
+        if (m.getRowCount() > 0) {
+            this.tiendasTable.setRowSelectionInterval(0, 0);
+            // botonEliminar.setEnabled(true);
+            // botonEditar.setEnabled(true);
+        } else{
+            // botonEliminar.setEnabled(false);
+            // botonEditar.setEnabled(true);
+        }
+    }
 }
+

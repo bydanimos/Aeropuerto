@@ -1,6 +1,8 @@
 package aplicacion;
 
+import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
+import java.util.List;
 
 public class FachadaAplicacion {
 
@@ -39,7 +41,7 @@ public class FachadaAplicacion {
     }
     
     public boolean comprobarAutentificacion(String idUsuario, String clave) {
-        return cu.comprobarAutentificacion(idUsuario, clave);
+        return this.cu.comprobarAutentificacion(idUsuario, clave);
     }
 
     public Usuario getUsuarioActual() {
@@ -67,7 +69,11 @@ public class FachadaAplicacion {
     }
     
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return cu.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
+        return this.cu.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
+    }
+
+    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
+        return this.cs.obtenerTiendas(nombre, terminal);
     }
     
     
