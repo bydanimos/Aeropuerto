@@ -19,10 +19,12 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
         this.usuarios=new java.util.ArrayList<Usuario>();
     }
 
+    @Override
     public int getColumnCount (){
         return 6;
     }
 
+    @Override
     public int getRowCount(){
         return usuarios.size();
     }
@@ -62,6 +64,7 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
         return false;
     }
 
+    @Override
     public Object getValueAt(int row, int col){
         Object resultado=null;
 
@@ -72,9 +75,9 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
             case 3: resultado= usuarios.get(row).getApellido1(); break;
             case 4: resultado= usuarios.get(row).getApellido2(); break;
             case 5: 
-                if(usuarios.get(row).getSexo().equals(TipoSexo.h)){
+                if(this.usuarios.get(row).getSexo().equals(TipoSexo.h)){
                     resultado = "H";
-                }else if(usuarios.get(row).getSexo().equals(TipoSexo.m)){
+                }else if(this.usuarios.get(row).getSexo().equals(TipoSexo.m)){
                     resultado = "M";
                 }else{
                     resultado = "O";
@@ -85,7 +88,7 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
     }
 
     public void setFilas(java.util.List<Usuario> usuarios){
-        this.usuarios=usuarios;
+        this.usuarios = usuarios;
         fireTableDataChanged();
     }
 

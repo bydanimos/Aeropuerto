@@ -146,7 +146,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="aeroEtseLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;h1&gt; AEROETSE &lt;/h1&gt; &lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;h1&gt; AEROETSE &lt;/h1&gt;&#xa;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="vuelosLabel">
@@ -171,22 +171,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="adminLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;h2&gt; Administrador &lt;/h2&gt; &lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;h2&gt; Administrador &lt;/h2&gt;&#xa;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="adminLabel1">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="66" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="66" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;h2&gt; Administrador &lt;/h2&gt; &lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;h2&gt; Administrador &lt;/h2&gt;&#xa;&lt;/html&gt;"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminLabel1MouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="avionFotoLabel">
       <Properties>
