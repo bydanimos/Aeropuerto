@@ -12,7 +12,8 @@ public class VAdministrador extends javax.swing.JFrame {
      */
     private aplicacion.FachadaAplicacion fa;
     private JPanel panelActual;
-    /** Creates new form VAdministrador */
+    /** Creates new form VAdministrador
+     * @param fa */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
         this.panelActual = new PPrincipal(this);
@@ -208,7 +209,7 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PTiendas(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
-        // ((PTiendas)this.panelActual).buscarTiendas();
+        ((PTiendas)this.panelActual).buscarTiendas();
     }
     
     public List<Tienda> obtenerTiendas(String nombre, int terminal) {
