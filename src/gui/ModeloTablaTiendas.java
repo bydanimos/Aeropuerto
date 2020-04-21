@@ -32,8 +32,8 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         Object resultado=null;
 
         switch (columnIndex){
-            case 0: resultado= this.tiendas.get(rowIndex).getCodigo(); break;
-            case 1: resultado= this.tiendas.get(rowIndex).getTerminal().getNumero(); break;
+            case 0: resultado= this.tiendas.get(rowIndex).getTerminal().getNumero(); break;
+            case 1: resultado= this.tiendas.get(rowIndex).getCodigo(); break;
             case 2: resultado= this.tiendas.get(rowIndex).getTipoVentas();break;
             case 3: resultado= this.tiendas.get(rowIndex).getNombre(); break;
         }
@@ -45,8 +45,8 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         String nombre = null;
 
         switch (col){
-            case 0: nombre= "Código"; break;
-            case 1: nombre= "Terminal"; break;
+            case 0: nombre= "Terminal"; break;
+            case 1: nombre= "Código"; break;
             case 2: nombre= "Nombre"; break;
             case 3: nombre= "Tipo"; break;
         }
