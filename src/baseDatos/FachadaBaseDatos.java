@@ -14,8 +14,10 @@ import aplicacion.vuelos.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
 
@@ -27,6 +29,7 @@ public class FachadaBaseDatos {
     private DAOPersonalLaboral daoPersonalLaboral;
     private DAOPersonalExterno daoPersonalExterno;
     private DAOServicios daoServicios;
+    private DAOVuelos daoVuelos;
 
     public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
         
@@ -58,6 +61,7 @@ public class FachadaBaseDatos {
             this.daoPersonalLaboral = new DAOPersonalLaboral(this.conexion, this.fa);
             this.daoPersonalExterno = new DAOPersonalExterno(this.conexion, this.fa);
             this.daoServicios = new DAOServicios(this.conexion, this.fa);
+            this.daoVuelos = new DAOVuelos(this.conexion, this.fa);
           
 
         } catch (FileNotFoundException f){
@@ -127,6 +131,10 @@ public class FachadaBaseDatos {
     
     public List<Tienda> obtenerTiendas(String nombre, int terminal) {
         return this.daoServicios.obtenerTiendas(nombre, terminal);
+    }
+    
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+        return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
     
     /*public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor){

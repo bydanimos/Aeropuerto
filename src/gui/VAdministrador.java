@@ -2,6 +2,9 @@ package gui;
 
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
+import aplicacion.vuelos.Vuelo;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -208,11 +211,22 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PTiendas(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
-        // ((PTiendas)this.panelActual).buscarTiendas();
+        ((PTiendas)this.panelActual).buscarTiendas();
     }
     
     public List<Tienda> obtenerTiendas(String nombre, int terminal) {
         return this.fa.obtenerTiendas(nombre, terminal);
+    }
+    
+    public void pulsarVuelos() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PVuelos(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
+    
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+        return this.fa.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
 }
 

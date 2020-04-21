@@ -2,6 +2,7 @@ package aplicacion.vuelos;
 
 import aplicacion.aviones.Terminal;
 import aplicacion.aviones.Avion;
+import java.sql.Timestamp;
 
 public class Vuelo {
 
@@ -10,17 +11,15 @@ public class Vuelo {
     private String numeroVuelo;
     private String destino;
     private String origen;
-    private Terminal fechaSalida;
-    private Terminal fechaSalidaReal;
-    private Terminal fechaLlegada;
-    private Terminal fechaLlegadaReal;
+    private java.sql.Timestamp fechaSalida;
+    private java.sql.Timestamp fechaSalidaReal;
+    private java.sql.Timestamp fechaLlegada;
+    private java.sql.Timestamp fechaLlegadaReal;
     private float precioActual;
     private int puertaEmbarque;
     private boolean cancelado;
 
-    public Vuelo(Terminal terminal, Avion avion, String numeroVuelo, String destino, String origen, Terminal fechaSalida,
-                 Terminal fechaSalidaReal, Terminal fechaLlegada, Terminal fechaLlegadaReal, float precioActual,
-                 int puertaEmbarque, boolean cancelado) {
+    public Vuelo(Terminal terminal, Avion avion, String numeroVuelo, String destino, String origen, Timestamp fechaSalida, Timestamp fechaSalidaReal, Timestamp fechaLlegada, Timestamp fechaLlegadaReal, float precioActual, int puertaEmbarque, boolean cancelado) {
         this.terminal = terminal;
         this.avion = avion;
         this.numeroVuelo = numeroVuelo;
@@ -75,35 +74,35 @@ public class Vuelo {
         this.origen = origen;
     }
 
-    public Terminal getFechaSalida() {
+    public Timestamp getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Terminal fechaSalida) {
+    public void setFechaSalida(Timestamp fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
-    public Terminal getFechaSalidaReal() {
+    public Timestamp getFechaSalidaReal() {
         return fechaSalidaReal;
     }
 
-    public void setFechaSalidaReal(Terminal fechaSalidaReal) {
+    public void setFechaSalidaReal(Timestamp fechaSalidaReal) {
         this.fechaSalidaReal = fechaSalidaReal;
     }
 
-    public Terminal getFechaLlegada() {
+    public Timestamp getFechaLlegada() {
         return fechaLlegada;
     }
 
-    public void setFechaLlegada(Terminal fechaLlegada) {
+    public void setFechaLlegada(Timestamp fechaLlegada) {
         this.fechaLlegada = fechaLlegada;
     }
 
-    public Terminal getFechaLlegadaReal() {
+    public Timestamp getFechaLlegadaReal() {
         return fechaLlegadaReal;
     }
 
-    public void setFechaLlegadaReal(Terminal fechaLlegadaReal) {
+    public void setFechaLlegadaReal(Timestamp fechaLlegadaReal) {
         this.fechaLlegadaReal = fechaLlegadaReal;
     }
 
@@ -113,10 +112,6 @@ public class Vuelo {
 
     public void setPrecioActual(float precioActual) {
         this.precioActual = precioActual;
-    }
-
-    public float getPrecioPremium(){
-        return this.precioActual * 1.3f;
     }
 
     public int getPuertaEmbarque() {
@@ -134,4 +129,6 @@ public class Vuelo {
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
     }
+
+    
 }

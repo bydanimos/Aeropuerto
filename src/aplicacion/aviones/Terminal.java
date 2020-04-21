@@ -5,6 +5,12 @@ public class Terminal {
     private int primeraPuerta;
     private int ultimaPuerta;
 
+    public Terminal() {
+        this.numero = 0;
+        this.primeraPuerta = 0;
+        this.ultimaPuerta = 0;
+    }
+    
     public Terminal(int numero, int primeraPuerta, int ultimaPuerta) {
         this.numero = numero;
         this.primeraPuerta = primeraPuerta;

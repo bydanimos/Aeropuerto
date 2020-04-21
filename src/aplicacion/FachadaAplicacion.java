@@ -2,6 +2,9 @@ package aplicacion;
 
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
+import aplicacion.vuelos.Vuelo;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class FachadaAplicacion {
@@ -74,6 +77,10 @@ public class FachadaAplicacion {
 
     public List<Tienda> obtenerTiendas(String nombre, int terminal) {
         return this.cs.obtenerTiendas(nombre, terminal);
+    }
+    
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+        return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
     
     

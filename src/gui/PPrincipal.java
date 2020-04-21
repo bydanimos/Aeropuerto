@@ -133,7 +133,7 @@ public class PPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_BotonUsuariosActionPerformed
 
     private void BotonVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVuelosActionPerformed
-        // TODO add your handling code here:
+        this.va.pulsarVuelos();
     }//GEN-LAST:event_BotonVuelosActionPerformed
 
     private void BotonTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTiendasActionPerformed
