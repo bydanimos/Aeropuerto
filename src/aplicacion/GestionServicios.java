@@ -7,8 +7,8 @@ import java.util.List;
 
 public class GestionServicios {
 
-    FachadaGui fgui;
-    FachadaBaseDatos fbd;
+    private final FachadaGui fgui;
+    private final FachadaBaseDatos fbd;
 
     public GestionServicios(FachadaGui fgui, FachadaBaseDatos fbd) {
         this.fgui = fgui;
@@ -17,5 +17,13 @@ public class GestionServicios {
 
     public List<Tienda> obtenerTiendas(String nombre, int terminal) {
         return this.fbd.obtenerTiendas(nombre, terminal);
+    }
+
+    public void anhadirTienda(String nombre, int terminal, String tipo) {
+        this.fbd.anhadirTienda(nombre, terminal, tipo);
+    }
+    
+    public void borrarTienda(int terminal, int codigo) {
+        this.fbd.borrarTienda(terminal, codigo);
     }
 }

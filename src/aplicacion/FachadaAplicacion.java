@@ -82,6 +82,14 @@ public class FachadaAplicacion {
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
+
+    public void anhadirTienda(String nombre, int terminal, String tipo) {
+        this.cs.anhadirTienda(nombre, terminal, tipo);
+    }
+
+    public void borrarTienda(int terminal, int codigo) {
+        this.cs.borrarTienda(terminal, codigo);
+    }
     
     
 }

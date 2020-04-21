@@ -133,6 +133,14 @@ public class FachadaBaseDatos {
         return this.daoServicios.obtenerTiendas(nombre, terminal);
     }
     
+    public void anhadirTienda(String nombre, int terminal, String tipo) {
+        this.daoServicios.anhadirTienda(nombre, terminal, tipo);
+    }
+    
+    public void borrarTienda(int terminal, int codigo) {
+        this.daoServicios.borrarTienda(terminal, codigo);
+    }
+    
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
@@ -252,6 +260,8 @@ public class FachadaBaseDatos {
     public Libro getLibro(Integer id){
         return daoLibros.consultarLibro(id);
     }*/
+
+    
 
 
 
