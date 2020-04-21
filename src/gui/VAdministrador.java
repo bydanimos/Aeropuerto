@@ -200,5 +200,13 @@ public class VAdministrador extends javax.swing.JFrame {
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.fa.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
     }
+    
+    public void pulsarTiendas() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PTiendas(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+        // ((PTiendas)this.panelActual).buscarTiendas();
+    }
 }
 

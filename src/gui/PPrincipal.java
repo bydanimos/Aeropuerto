@@ -44,6 +44,11 @@ public class PPrincipal extends javax.swing.JPanel {
         });
 
         BotonTiendas.setText("Tiendas");
+        BotonTiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTiendasActionPerformed(evt);
+            }
+        });
 
         BotonUsuarios.setText("Usuarios");
         BotonUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +135,10 @@ public class PPrincipal extends javax.swing.JPanel {
     private void BotonVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVuelosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonVuelosActionPerformed
+
+    private void BotonTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTiendasActionPerformed
+        this.va.pulsarTiendas();
+    }//GEN-LAST:event_BotonTiendasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
