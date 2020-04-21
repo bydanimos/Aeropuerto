@@ -24,7 +24,7 @@ public class ModeloTablaTiendas extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -32,9 +32,10 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         Object resultado=null;
 
         switch (columnIndex){
-            case 0: resultado= this.tiendas.get(rowIndex).getNombre(); break;
-            case 1: resultado= this.tiendas.get(rowIndex).getCodigo();break;
-            case 2: resultado= this.tiendas.get(rowIndex).getTerminal().getNumero(); break;
+            case 0: resultado= this.tiendas.get(rowIndex).getCodigo(); break;
+            case 1: resultado= this.tiendas.get(rowIndex).getTerminal().getNumero(); break;
+            case 2: resultado= this.tiendas.get(rowIndex).getTipoVentas();break;
+            case 3: resultado= this.tiendas.get(rowIndex).getNombre(); break;
         }
         return resultado;
     }
@@ -44,9 +45,10 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         String nombre = null;
 
         switch (col){
-            case 0: nombre= "Nombre"; break;
-            case 1: nombre= "Tipo"; break;
-            case 2: nombre= "Terminal"; break;
+            case 0: nombre= "Código"; break;
+            case 1: nombre= "Terminal"; break;
+            case 2: nombre= "Nombre"; break;
+            case 3: nombre= "Tipo"; break;
         }
         return nombre;
     }
@@ -56,9 +58,10 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         Class clase = null;
 
         switch (col){
-            case 0: clase = java.lang.String.class; break;
+            case 0: clase = int.class; break;
             case 1: clase = int.class; break;
-            case 2: clase = int.class; break;
+            case 2: clase = java.lang.String.class; break;
+            case 3: clase = java.lang.String.class; break;
         }
         return clase;
     }

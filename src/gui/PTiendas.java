@@ -22,6 +22,7 @@ public class PTiendas extends javax.swing.JPanel {
         this.primNombre = true;
         initComponents();
         this.selTerminalLabel.setVisible(false);
+        this.codigoTextField.setEditable(false);
     }
 
     /**
@@ -39,9 +40,15 @@ public class PTiendas extends javax.swing.JPanel {
         nombreTextField = new javax.swing.JTextField();
         terminalComboBox = new javax.swing.JComboBox<>();
         buscarButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        tiendasTable = new javax.swing.JTable();
         selTerminalLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tiendasTable = new javax.swing.JTable();
+        codigoLabel = new javax.swing.JLabel();
+        codigoTextField = new javax.swing.JTextField();
+        tipoLabel = new javax.swing.JLabel();
+        tipoTextField = new javax.swing.JTextField();
+        borrarButton = new javax.swing.JButton();
+        anhadirButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(813, 385));
 
@@ -73,21 +80,29 @@ public class PTiendas extends javax.swing.JPanel {
             }
         });
 
-        tiendasTable.setModel(new ModeloTablaTiendas());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tiendasTable, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tiendasTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-        );
-
         selTerminalLabel.setForeground(new java.awt.Color(234, 45, 45));
         selTerminalLabel.setText("¡Seleccione un número de Terminal!");
+
+        tiendasTable.setModel(new ModeloTablaTiendas());
+        jScrollPane1.setViewportView(tiendasTable);
+
+        codigoLabel.setText("Código: ");
+
+        tipoLabel.setText("Tipo: ");
+
+        borrarButton.setText("Borrar");
+        borrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarButtonActionPerformed(evt);
+            }
+        });
+
+        anhadirButton.setText("Añadir");
+        anhadirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anhadirButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,23 +115,38 @@ public class PTiendas extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreLabel)
-                            .addComponent(terminalLabel))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(terminalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)
-                                .addComponent(selTerminalLabel)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreLabel)
+                                    .addComponent(codigoLabel))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(codigoTextField)
+                                    .addComponent(nombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                                .addGap(92, 92, 92)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(selTerminalLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(buscarButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(terminalLabel)
+                                            .addComponent(tipoLabel))
+                                        .addGap(28, 28, 28)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tipoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(terminalComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(138, 138, 138))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(borrarButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscarButton)
-                                .addGap(58, 58, 58))))))
+                                .addComponent(anhadirButton)))
+                        .addGap(58, 58, 58))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,17 +155,26 @@ public class PTiendas extends javax.swing.JPanel {
                 .addComponent(tiendasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreLabel)
-                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarButton))
+                    .addComponent(buscarButton)
+                    .addComponent(terminalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(terminalLabel)
+                    .addComponent(codigoLabel)
+                    .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(terminalLabel)
-                    .addComponent(terminalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selTerminalLabel))
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(nombreLabel)
+                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoLabel)
+                    .addComponent(tipoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(selTerminalLabel)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(borrarButton)
+                    .addComponent(anhadirButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,13 +193,25 @@ public class PTiendas extends javax.swing.JPanel {
     }//GEN-LAST:event_nombreTextFieldKeyPressed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        this.buscarTiendas();
+        this.buscarTiendas(false);
     }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButtonActionPerformed
+        borrar();
+    }//GEN-LAST:event_borrarButtonActionPerformed
+
+    private void anhadirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anhadirButtonActionPerformed
+        anhadir();
+    }//GEN-LAST:event_anhadirButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anhadirButton;
+    private javax.swing.JButton borrarButton;
     private javax.swing.JButton buscarButton;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel codigoLabel;
+    private javax.swing.JTextField codigoTextField;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTextField;
     private javax.swing.JLabel selTerminalLabel;
@@ -168,38 +219,54 @@ public class PTiendas extends javax.swing.JPanel {
     private javax.swing.JLabel terminalLabel;
     private javax.swing.JLabel tiendasLabel;
     private javax.swing.JTable tiendasTable;
+    private javax.swing.JLabel tipoLabel;
+    private javax.swing.JTextField tipoTextField;
     // End of variables declaration//GEN-END:variables
 
-    public void buscarTiendas() {
+    public void buscarTiendas(boolean todas) {
         ModeloTablaTiendas m;
         m = (ModeloTablaTiendas) this.tiendasTable.getModel();
         int itemSelected = this.terminalComboBox.getSelectedIndex();
-        
-        if (this.primNombre) {
-            if (itemSelected > 0) {
-                m.setFilas(this.va.obtenerTiendas("",
-                        itemSelected));
-                this.selTerminalLabel.setVisible(false);
-            } else {
-                this.selTerminalLabel.setVisible(true);
-            }
+
+        if (todas) {
+            m.setFilas(this.va.obtenerTiendas("", 0));
         } else {
-            if (itemSelected > 0) {
-                m.setFilas(this.va.obtenerTiendas(this.nombreTextField.getText(),
-                        itemSelected));
-                this.selTerminalLabel.setVisible(false);
+            if (this.primNombre) {
+                if (itemSelected > 0) {
+                    m.setFilas(this.va.obtenerTiendas("", itemSelected));
+                    this.selTerminalLabel.setVisible(false);
+                } else {
+                    this.selTerminalLabel.setVisible(true);
+                }
             } else {
-                this.selTerminalLabel.setVisible(true);
+                if (itemSelected > 0) {
+                    m.setFilas(this.va.obtenerTiendas(this.nombreTextField.getText(),
+                            itemSelected));
+                    this.selTerminalLabel.setVisible(false);
+                } else {
+                    this.selTerminalLabel.setVisible(true);
+                }
             }
         }
 
         if (m.getRowCount() > 0) {
             this.tiendasTable.setRowSelectionInterval(0, 0);
-            // botonEliminar.setEnabled(true);
-            // botonEditar.setEnabled(true);
-        } else {
-            // botonEliminar.setEnabled(false);
-            // botonEditar.setEnabled(true);
         }
+    }
+
+    private void anhadir() {
+        if (!this.nombreTextField.getText().equals("")) {
+            if (this.terminalComboBox.getSelectedIndex() != 0) {
+                if (!this.tipoTextField.getText().equals("")) {
+                    this.va.anhadirTienda(this.nombreTextField.getText(), 
+                            this.terminalComboBox.getSelectedIndex(),
+                            this.tipoTextField.getText());
+                }
+            }
+        }
+    }
+
+    private void borrar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
