@@ -162,9 +162,11 @@ public class VAutentificacion extends javax.swing.JDialog {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         if ("".equals(this.PasswordField.getText())) {
             this.PasswordField.setText("Password");
+            this.primeraPass = true;
         }
         if (this.usernameTextField.getText().equals("")) {
             this.usernameTextField.setText("Username");
+            this.primeraUser = true;
         }
     }//GEN-LAST:event_formMouseClicked
 
