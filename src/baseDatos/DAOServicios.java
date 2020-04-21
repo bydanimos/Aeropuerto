@@ -31,7 +31,7 @@ public class DAOServicios extends AbstractDAO {
         con = this.getConexion();
 
         String consulta = "select terminal, codigo, tipoventas, nombre "
-                + "from tiendas "
+                + "from tienda "
                 + "where nombre like ? "
                 + "and terminal = ?";
 
