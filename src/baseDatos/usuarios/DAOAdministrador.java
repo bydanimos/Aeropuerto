@@ -129,9 +129,9 @@ public class DAOAdministrador extends AbstractDAO {
                     + "    segundoapellido=?, "
                     + "    correoelectronico=?, "
                     + "    contrasenha=crypt(?, gen_salt('md5')), "
-                    + "    paisprocedencia=? "
+                    + "    paisprocedencia=?, "
                     + "    telefono=?, "
-                    + "    sexo=?, "
+                    + "    sexo=? "
                     + "where dni=?");
 
             stmAdministrador.setString(1, ad.getCurriculum());
