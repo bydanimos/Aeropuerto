@@ -108,7 +108,7 @@ public class PAerolineas extends javax.swing.JPanel {
     public void buscarAerolineas(){
         ModeloTablaAerolineas m;
         m=(ModeloTablaAerolineas) tablaAerolineas.getModel();
-        m.setFilas(this.va.obtenerAerolineas(this.txtNombreAerolinea.getText());
+        m.setFilas(this.va.obtenerAerolineas(this.txtNombreAerolinea.getText()));
         if (m.getRowCount() > 0) {
             tablaAerolineas.setRowSelectionInterval(0, 0);
             botonBorrar.setEnabled(true);

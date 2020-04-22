@@ -1,11 +1,14 @@
 package gui;
 
 import aplicacion.aviones.Aerolinea;
+import aplicacion.aviones.Avion;
+import aplicacion.aviones.Terminal;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -16,9 +19,12 @@ public class VAdministrador extends javax.swing.JFrame {
      */
     private aplicacion.FachadaAplicacion fa;
     JPanel panelActual;
-    /** Creates new form VAdministrador */
+
+    /**
+     * Creates new form VAdministrador
+     */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
-        this.fa=fa;
+        this.fa = fa;
         this.panelActual = new PPrincipal(this);
         initComponents();
         this.panelPrincipalAdministrador.add(this.panelActual);
@@ -196,28 +202,28 @@ public class VAdministrador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // ------------------------------- Usuarios -------------------------------
-    public void pulsarUsuarios(){
+    public void pulsarUsuarios() {
         this.panelActual.setVisible(false);
         this.panelActual = new PAdminUsuarios(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
-        ((PAdminUsuarios)this.panelActual).buscarUsuarios();
+        ((PAdminUsuarios) this.panelActual).buscarUsuarios();
     }
-    
-    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.fa.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
+
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+        return this.fa.obtenerUsuarios(dni, id, nombre, primerApellido, segundoApellido);
     }
-    
-    public String getTipoUsuario(Usuario u){
+
+    public String getTipoUsuario(Usuario u) {
         return this.fa.getTipoUsuario(u);
     }
-    
-    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
-        this.fa.modificarUsuario(u,tipoAnterior,tipoNuevo);
+
+    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo) {
+        this.fa.modificarUsuario(u, tipoAnterior, tipoNuevo);
     }
-    
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.fa.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
+
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+        return this.fa.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
 
     // ------------------------------- Tiendas -------------------------------
@@ -226,25 +232,25 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PTiendas(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
-        ((PTiendas)this.panelActual).buscarTiendas(true);
+        ((PTiendas) this.panelActual).buscarTiendas(true);
     }
-    
+
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         return this.fa.obtenerTiendas(nombre, codigo, terminal);
     }
-    
+
     public void anhadirTienda(String nombre, int terminal, String tipo) {
         this.fa.anhadirTienda(nombre, terminal, tipo);
     }
-    
+
     public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         this.fa.editarTienda(terminal, codigo, nombre, tipo);
     }
-    
+
     public void borrarTienda(int terminal, int codigo) {
         this.fa.borrarTienda(terminal, codigo);
     }
-    
+
     // ------------------------------- Vuelos -------------------------------
     public void pulsarVuelos() {
         this.panelActual.setVisible(false);
@@ -252,9 +258,17 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
     }
-    
+
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.fa.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
+    }
+
+    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
+        return this.fa.obtenerAviones(codigo, aerolinea, retirado);
+    }
+
+    public ArrayList<Terminal> obtenerTerminales() {
+        return this.fa.obtenerTerminales();
     }
     
     // ------------------------------- Aerolineas -------------------------------
@@ -269,7 +283,5 @@ public class VAdministrador extends javax.swing.JFrame {
     public List<Aerolinea> obtenerAerolineas (String nombre){
         return this.fa.obtenerAerolineas(nombre);
     }
-            
-            
-}
 
+}

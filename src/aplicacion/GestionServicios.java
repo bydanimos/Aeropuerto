@@ -1,8 +1,10 @@
 package aplicacion;
 
+import aplicacion.aviones.Terminal;
 import aplicacion.servicios.Tienda;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestionServicios {
@@ -22,12 +24,16 @@ public class GestionServicios {
     public void anhadirTienda(String nombre, int terminal, String tipo) {
         this.fbd.anhadirTienda(nombre, terminal, tipo);
     }
-    
+
     public void borrarTienda(int terminal, int codigo) {
         this.fbd.borrarTienda(terminal, codigo);
     }
 
     public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         this.fbd.editarTienda(terminal, codigo, nombre, tipo);
+    }
+
+    public ArrayList<Terminal> obtenerTerminales() {
+        return this.fbd.obtenerTerminales();
     }
 }

@@ -1,10 +1,13 @@
 package aplicacion;
 
 import aplicacion.aviones.Aerolinea;
+import aplicacion.aviones.Avion;
+import aplicacion.aviones.Terminal;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FachadaAplicacion {
@@ -36,10 +39,9 @@ public class FachadaAplicacion {
         fa = new FachadaAplicacion();
         fa.iniciaInterfazUsuario();
     }
-    
+
     //--------------------------------------------------------------------------
     // ------------------------- Getters / Settets -----------------------------
-
     public Usuario getUsuarioActual() {
         return this.usuarioActual;
     }
@@ -47,10 +49,9 @@ public class FachadaAplicacion {
     public void setUsuarioActual(Usuario usuarioActual) {
         this.usuarioActual = usuarioActual;
     }
-    
+
     //--------------------------------------------------------------------------
     // ------------------------- Iniciar aplicación ----------------------------
-
     public void iniciaInterfazUsuario() {
         this.fgui.iniciaVista();
     }
@@ -58,21 +59,27 @@ public class FachadaAplicacion {
     public void muestraExcepcion(String e) {
         this.fgui.muestraExcepcion(e);
     }
-    
+
     public boolean comprobarAutentificacion(String idUsuario, String clave) {
         return this.cu.comprobarAutentificacion(idUsuario, clave);
     }
-        
+
     // -------------------------------------------------------------------------
     // ------------------------------- Vuelos ----------------------------------
-    
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
     
+    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
+        return this.ca.obtenerAviones(codigo, aerolinea, retirado);
+    }
+
+    public ArrayList<Terminal> obtenerTerminales() {
+        return this.cs.obtenerTerminales();
+    }
+
     // -------------------------------------------------------------------------
     // ------------------------------- Tiendas ---------------------------------
-
     public void anhadirTienda(String nombre, int terminal, String tipo) {
         this.cs.anhadirTienda(nombre, terminal, tipo);
     }
@@ -91,24 +98,23 @@ public class FachadaAplicacion {
 
     // -------------------------------------------------------------------------
     // ------------------------------- Usuarios --------------------------------
-    
-    public String getTipoUsuario(Usuario u){
+    public String getTipoUsuario(Usuario u) {
         return cu.getTipoUsuario(u);
     }
-    
-    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
-        this.cu.modificarUsuario(u,tipoAnterior,tipoNuevo);
+
+    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo) {
+        this.cu.modificarUsuario(u, tipoAnterior, tipoNuevo);
     }
-    
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.cu.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
+
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+        return this.cu.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
-    
+
     public void nuevoUsuario() {
         this.cu.nuevoUsuario();
     }
-    
-    public boolean registrarUsuario(Usuario usuario){
+
+    public boolean registrarUsuario(Usuario usuario) {
         return this.cu.registrarUsuario(usuario);
     }
 
@@ -119,11 +125,11 @@ public class FachadaAplicacion {
     public boolean comprobarDni(String dni) {
         return this.cd.dniCorrecto(dni);
     }
-    
-    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.cu.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
+
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+        return this.cu.obtenerUsuarios(dni, id, nombre, primerApellido, segundoApellido);
     }
-    
+
     // -------------------------------------------------------------------------
     // ------------------------------- Aerolineas --------------------------------
     
@@ -131,6 +137,5 @@ public class FachadaAplicacion {
     public List<Aerolinea> obtenerAerolineas (String nombre){
         return this.ca.obtenerAerolineas(nombre);
     }
-    
-    // -------------------------------------------------------------------------
+  
 }

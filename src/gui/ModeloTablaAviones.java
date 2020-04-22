@@ -35,8 +35,8 @@ public class ModeloTablaAviones extends AbstractTableModel {
 
         switch (columnIndex){
             case 0: resultado= this.aviones.get(rowIndex).getCodigo(); break;
-            case 1: resultado= this.aviones.get(rowIndex).getModeloAvion();break;
-            case 2: resultado= this.aviones.get(rowIndex).getAerolinea(); break;
+            case 1: resultado= this.aviones.get(rowIndex).getModeloAvion().getNombre();break;
+            case 2: resultado= this.aviones.get(rowIndex).getAerolinea().getNombre(); break;
             case 3: resultado= this.aviones.get(rowIndex).getAnhoFabricacion(); break;
         }
         return resultado;
@@ -61,8 +61,8 @@ public class ModeloTablaAviones extends AbstractTableModel {
 
         switch (col){
             case 0: clase = String.class; break;
-            case 1: clase = ModeloAvion.class; break;
-            case 2: clase = Aerolinea.class; break;
+            case 1: clase = String.class; break;
+            case 2: clase = String.class; break;
             case 3: clase = Integer.class; break;
         }
         return clase;
