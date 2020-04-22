@@ -1,5 +1,6 @@
 package gui;
 
+import aplicacion.aviones.Aerolinea;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
@@ -254,6 +255,19 @@ public class VAdministrador extends javax.swing.JFrame {
     
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.fa.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
+    }
+    
+    // ------------------------------- Aerolineas -------------------------------
+    
+    public void pulsarAerolineas() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PAerolineas(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
+    
+    public List<Aerolinea> obtenerAerolineas (String nombre){
+        return this.fa.obtenerAerolineas(nombre);
     }
             
             
