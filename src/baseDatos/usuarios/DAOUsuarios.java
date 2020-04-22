@@ -37,7 +37,7 @@ public class DAOUsuarios extends AbstractDAO {
                 resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
                         rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
                         rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getString("telefono"));
+                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -84,7 +84,7 @@ public class DAOUsuarios extends AbstractDAO {
                 usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
                         rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
                         rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getString("telefono"));
+                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
 
                 resultado.add(usuarioActual);
             }
@@ -121,7 +121,7 @@ public class DAOUsuarios extends AbstractDAO {
             stmUsuario.setString(6, u.getApellido1());
             stmUsuario.setString(7, u.getApellido2());
             stmUsuario.setString(8, u.getPaisProcedencia());
-            stmUsuario.setString(9, u.getTelefono());
+            stmUsuario.setInt(9, u.getTelefono());
             String ts;
 
             if (null == u.getSexo()) {
@@ -204,7 +204,7 @@ public class DAOUsuarios extends AbstractDAO {
             stmUsuario.setString(5, u.getCorreoElectronico());
             stmUsuario.setString(6, u.getContrasenha());
             stmUsuario.setString(7, u.getPaisProcedencia());
-            stmUsuario.setString(8, u.getTelefono());
+            stmUsuario.setInt(8, u.getTelefono());
 
             String ts;
 
@@ -287,7 +287,7 @@ public class DAOUsuarios extends AbstractDAO {
                 resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"),rsUsuario.getString("contrasenha"),
                                         rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
                                         rsUsuario.getString("primerapellido"),rsUsuario.getString("segundoapellido"),
-                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getString("telefono"));
+                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getInt("telefono"));
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
@@ -333,7 +333,7 @@ public class DAOUsuarios extends AbstractDAO {
                usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"),rsUsuario.getString("contrasenha"),
                                         rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
                                         rsUsuario.getString("primerapellido"),rsUsuario.getString("segundoapellido"),
-                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getString("telefono"));
+                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getInt("telefono"));
 
                resultado.add(usuarioActual);
             }

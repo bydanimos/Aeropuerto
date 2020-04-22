@@ -46,7 +46,7 @@ public class DAOPersonalExterno extends AbstractDAO{
                 resultado = new PersonalExterno(rsPersonalExterno.getString("dni"), rsPersonalExterno.getString("id"),rsPersonalExterno.getString("contrasenha"),
                                               rsPersonalExterno.getString("correoelectronico"), rsPersonalExterno.getString("nombre"),
                                               rsPersonalExterno.getString("primerapellido"),rsPersonalExterno.getString("segundoapellido"),
-                                              TipoSexo.valueOf(rsPersonalExterno.getString("sexo")),rsPersonalExterno.getString("paisprocedencia"),rsPersonalExterno.getString("telefono"),
+                                              TipoSexo.valueOf(rsPersonalExterno.getString("sexo")),rsPersonalExterno.getString("paisprocedencia"),rsPersonalExterno.getInt("telefono"),
                                               rsPersonalExterno.getBoolean("estardentro"));
             }
         } catch (SQLException e){
@@ -84,7 +84,7 @@ public class DAOPersonalExterno extends AbstractDAO{
                 resultado = new PersonalExterno(rsPersonalExterno.getString("dni"), rsPersonalExterno.getString("id"),rsPersonalExterno.getString("contrasenha"),
                                               rsPersonalExterno.getString("correoelectronico"), rsPersonalExterno.getString("nombre"),
                                               rsPersonalExterno.getString("primerapellido"),rsPersonalExterno.getString("segundoapellido"),
-                                              TipoSexo.valueOf(rsPersonalExterno.getString("sexo")),rsPersonalExterno.getString("paisprocedencia"),rsPersonalExterno.getString("telefono"),
+                                              TipoSexo.valueOf(rsPersonalExterno.getString("sexo")),rsPersonalExterno.getString("paisprocedencia"),rsPersonalExterno.getInt("telefono"),
                                               rsPersonalExterno.getBoolean("estardentro"));
             }
         } catch (SQLException e){
@@ -170,7 +170,7 @@ public class DAOPersonalExterno extends AbstractDAO{
             stmPersonalExterno.setString(7, pe.getCorreoElectronico());
             stmPersonalExterno.setString(8, pe.getContrasenha());
             stmPersonalExterno.setString(9, pe.getPaisProcedencia());
-            stmPersonalExterno.setString(10, pe.getTelefono());
+            stmPersonalExterno.setInt(10, pe.getTelefono());
             
             String ts;
                 

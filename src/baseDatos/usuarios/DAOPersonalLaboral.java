@@ -77,7 +77,7 @@ public class DAOPersonalLaboral extends AbstractDAO{
                  resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
                                               rsPersonalLaboral.getString("correoelectronico"), rsPersonalLaboral.getString("nombre"),
                                               rsPersonalLaboral.getString("primerapellido"),rsPersonalLaboral.getString("segundoapellido"),
-                                              TipoSexo.valueOf(rsPersonalLaboral.getString("sexo")),rsPersonalLaboral.getString("paisprocedencia"),rsPersonalLaboral.getString("telefono"),
+                                              TipoSexo.valueOf(rsPersonalLaboral.getString("sexo")),rsPersonalLaboral.getString("paisprocedencia"),rsPersonalLaboral.getInt("telefono"),
                                               rsPersonalLaboral.getString("labor"),rsPersonalLaboral.getString("descripciontarea"),rsPersonalLaboral.getTimestamp("fechainicio"));
                 
             }
@@ -167,7 +167,7 @@ public class DAOPersonalLaboral extends AbstractDAO{
             stmPersonalLaboral.setString(8, pl.getCorreoElectronico());
             stmPersonalLaboral.setString(9, pl.getContrasenha());
             stmPersonalLaboral.setString(10, pl.getPaisProcedencia());
-            stmPersonalLaboral.setString(11, pl.getTelefono());
+            stmPersonalLaboral.setInt(11, pl.getTelefono());
             stmPersonalLaboral.setString(13, pl.getDni());
             
             String ts;

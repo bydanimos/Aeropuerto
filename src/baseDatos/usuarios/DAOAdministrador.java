@@ -46,7 +46,7 @@ public class DAOAdministrador extends AbstractDAO {
                 resultado = new Administrador(rsAdministrador.getString("dni"), rsAdministrador.getString("id"), rsAdministrador.getString("contrasenha"),
                         rsAdministrador.getString("correoelectronico"), rsAdministrador.getString("nombre"),
                         rsAdministrador.getString("primerapellido"), rsAdministrador.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsAdministrador.getString("sexo")), rsAdministrador.getString("paisprocedencia"), rsAdministrador.getString("telefono"),
+                        TipoSexo.valueOf(rsAdministrador.getString("sexo")), rsAdministrador.getString("paisprocedencia"), rsAdministrador.getInt("telefono"),
                         rsAdministrador.getTimestamp("fechainicio"), rsAdministrador.getString("curriculum"));
             }
         } catch (SQLException e) {
@@ -71,11 +71,10 @@ public class DAOAdministrador extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmAdministrador = con.prepareStatement("insert into administrador(usuario,fechainicio,curriculum) "
-                    + "values (?,?,?)");
+            stmAdministrador = con.prepareStatement("insert into administrador(usuario,curriculum) "
+                    + "values (?,?)");
             stmAdministrador.setString(1, ad.getDni());
-            stmAdministrador.setTimestamp(2, ad.getFechaInicio());
-            stmAdministrador.setString(3, ad.getCurriculum());
+            stmAdministrador.setString(2, ad.getCurriculum());
 
             stmAdministrador.executeUpdate();
         } catch (SQLException e) {
@@ -145,7 +144,7 @@ public class DAOAdministrador extends AbstractDAO {
             stmAdministrador.setString(7, ad.getCorreoElectronico());
             stmAdministrador.setString(8, ad.getContrasenha());
             stmAdministrador.setString(9, ad.getPaisProcedencia());
-            stmAdministrador.setString(10, ad.getTelefono());
+            stmAdministrador.setInt(10, ad.getTelefono());
             stmAdministrador.setString(12, ad.getDni());
 
             String ts;
@@ -199,7 +198,7 @@ public class DAOAdministrador extends AbstractDAO {
                 resultado = new Administrador(rsAdministrador.getString("dni"), rsAdministrador.getString("id"),rsAdministrador.getString("contrasenha"),
                                               rsAdministrador.getString("correoelectronico"), rsAdministrador.getString("nombre"),
                                               rsAdministrador.getString("primerapellido"),rsAdministrador.getString("segundoapellido"),
-                                              TipoSexo.valueOf(rsAdministrador.getString("sexo")),rsAdministrador.getString("paisprocedencia"),rsAdministrador.getString("telefono"),
+                                              TipoSexo.valueOf(rsAdministrador.getString("sexo")),rsAdministrador.getString("paisprocedencia"),rsAdministrador.getInt("telefono"),
                                               rsAdministrador.getTimestamp("fechainicio"),rsAdministrador.getString("curriculum"));
             }
         } catch (SQLException e){
