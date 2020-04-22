@@ -15,6 +15,13 @@ public class Administrador extends Usuario{
         this.curriculum = curriculum;
     }
 
+    public Administrador(String dni, String id, String contrasenha, String correoElectronico, String nombre,
+                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono){
+        super(dni, id, contrasenha, correoElectronico, nombre, apellido1, apellido2, sexo, paisProcedencia, telefono);
+        this.fechaInicio = null;
+        this.curriculum = "";
+    }
+
     public Timestamp getFechaInicio() {
         return fechaInicio;
     }

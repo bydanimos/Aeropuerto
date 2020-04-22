@@ -54,4 +54,16 @@ public class GestionUsuarios {
     boolean comprobarId(String text) {
         return this.fbd.comprobarId(text);
     }
+
+    public String getTipoUsuario(Usuario u){
+        return fbd.getTipoUsuario(u);
+    }
+    
+    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
+        this.fbd.modificarUsuarioGeneral(u,tipoAnterior,tipoNuevo);
+    }
+    
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return this.fbd.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
+    }
 }

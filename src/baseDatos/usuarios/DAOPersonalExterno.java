@@ -58,6 +58,44 @@ public class DAOPersonalExterno extends AbstractDAO{
         return resultado;
     }
     
+    public PersonalExterno getPersonalExterno(String dni){
+        PersonalExterno resultado=null;
+        Connection con;
+        PreparedStatement stmPersonalExterno=null;
+        ResultSet rsPersonalExterno;
+
+        con=this.getConexion();
+
+        
+        /*String dni, String id, String contrasenha, String correoElectronico, String nombre,
+                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
+                         java.sql.Timestamp fechaInicio, String curriculum)*/
+                         
+        try {
+            stmPersonalExterno=con.prepareStatement("select u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"+
+                                                  "u.paisprocedencia,u.telefono,u.sexo,pe.estardentro "+
+                                                  "from usuario as u, personalexterno as pe "+
+                                                  "where u.dni = pe.usuario "+
+                                                  "and u.dni = ? ");
+            stmPersonalExterno.setString(1, dni);
+            rsPersonalExterno=stmPersonalExterno.executeQuery();
+           
+            if (rsPersonalExterno.next()){
+                resultado = new PersonalExterno(rsPersonalExterno.getString("dni"), rsPersonalExterno.getString("id"),rsPersonalExterno.getString("contrasenha"),
+                                              rsPersonalExterno.getString("correoelectronico"), rsPersonalExterno.getString("nombre"),
+                                              rsPersonalExterno.getString("primerapellido"),rsPersonalExterno.getString("segundoapellido"),
+                                              TipoSexo.valueOf(rsPersonalExterno.getString("sexo")),rsPersonalExterno.getString("paisprocedencia"),rsPersonalExterno.getString("telefono"),
+                                              rsPersonalExterno.getBoolean("estardentro"));
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmPersonalExterno.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
+    
     public void insertarPersonalExterno(PersonalExterno pe){
 
         Connection con;
@@ -67,7 +105,7 @@ public class DAOPersonalExterno extends AbstractDAO{
             con=super.getConexion();
 
             try {
-                stmPersonalExterno=con.prepareStatement("insert into administrador(usuario,fechainicio,curriculum) "+
+                stmPersonalExterno=con.prepareStatement("insert into personalexterno(usuario,estardentro) "+
                                               "values (?,?)");
                 stmPersonalExterno.setString(1, pe.getDni());
                 stmPersonalExterno.setBoolean(2, pe.isEstarDentro());
@@ -143,7 +181,8 @@ public class DAOPersonalExterno extends AbstractDAO{
             }else{
                 ts = "o";
             }
-            stmPersonalExterno.setString(9, ts);
+            stmPersonalExterno.setString(11, ts);
+            stmPersonalExterno.setString(12,pe.getDni());
              
             stmPersonalExterno.executeUpdate();
 

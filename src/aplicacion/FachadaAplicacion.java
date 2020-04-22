@@ -90,6 +90,18 @@ public class FachadaAplicacion {
     public void borrarTienda(int terminal, int codigo) {
         this.cs.borrarTienda(terminal, codigo);
     }
+
+    public String getTipoUsuario(Usuario u){
+        return cu.getTipoUsuario(u);
+    }
+    
+    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
+        this.cu.modificarUsuario(u,tipoAnterior,tipoNuevo);
+    }
+    
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return this.cu.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
+    }
     
     
 }

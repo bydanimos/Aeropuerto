@@ -55,45 +55,81 @@ public class DAOPersonalLaboral extends AbstractDAO{
         return resultado;
     }
     
-    public void insertarPersonalExterno(PersonalExterno pe){
+    public PersonalLaboral getPersonalLaboral(String dni){
+        PersonalLaboral resultado=null;
+        Connection con;
+        PreparedStatement stmPersonalLaboral=null;
+        ResultSet rsPersonalLaboral;
+
+        con=this.getConexion();
+
+                    
+        try {
+            stmPersonalLaboral=con.prepareStatement("select u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"+
+                                                  "u.paisprocedencia,u.telefono,u.sexo,pl.labor,pl.descripciontarea,pl.fechainicio "+
+                                                  "from usuario as u, personallaboral as pl "+
+                                                  "where u.dni = pl.usuario "+
+                                                  "and u.dni = ? ");
+            stmPersonalLaboral.setString(1, dni);
+            rsPersonalLaboral=stmPersonalLaboral.executeQuery();
+           
+            if (rsPersonalLaboral.next()){
+                 resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
+                                              rsPersonalLaboral.getString("correoelectronico"), rsPersonalLaboral.getString("nombre"),
+                                              rsPersonalLaboral.getString("primerapellido"),rsPersonalLaboral.getString("segundoapellido"),
+                                              TipoSexo.valueOf(rsPersonalLaboral.getString("sexo")),rsPersonalLaboral.getString("paisprocedencia"),rsPersonalLaboral.getString("telefono"),
+                                              rsPersonalLaboral.getString("labor"),rsPersonalLaboral.getString("descripciontarea"),rsPersonalLaboral.getTimestamp("fechainicio"));
+                
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmPersonalLaboral.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
+    
+    public void insertarPersonalLaboral(PersonalLaboral pl){
 
         Connection con;
-            PreparedStatement stmPersonalExterno=null;
-            ResultSet rsPersonalExterno;
+            PreparedStatement stmPersonalLaboral=null;
+            ResultSet rsPersonalLaboral;
 
             con=super.getConexion();
 
             try {
-                stmPersonalExterno=con.prepareStatement("insert into administrador(usuario,fechainicio,curriculum) "+
-                                              "values (?,?)");
-                stmPersonalExterno.setString(1, pe.getDni());
-                stmPersonalExterno.setBoolean(2, pe.isEstarDentro());
+                stmPersonalLaboral=con.prepareStatement("insert into personallaboral(usuario,labor,descripciontarea) "+
+                                              "values (?,?,?)");
+                stmPersonalLaboral.setString(1, pl.getDni());
+                stmPersonalLaboral.setString(2, pl.getLabor());
+                stmPersonalLaboral.setString(3, pl.getDescripcionTarea());
                 
-                stmPersonalExterno.executeUpdate();
+                stmPersonalLaboral.executeUpdate();
             } catch (SQLException e){
               System.out.println(e.getMessage());
               this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
             }finally{
-              try {stmPersonalExterno.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+              try {stmPersonalLaboral.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
             }
     }
     
-    public void borrarPersonalExterno(String dni){
+    public void borrarPersonalLaboral(String dni){
         Connection con;
-        PreparedStatement stmPersonalExterno=null;
+        PreparedStatement stmPersonalLaboral=null;
 
         con=super.getConexion();
 
         try {
-            stmPersonalExterno=con.prepareStatement("delete from personalexterno where usuario = ?");
-            stmPersonalExterno.setString(1, dni);
-            stmPersonalExterno.executeUpdate();
+            stmPersonalLaboral=con.prepareStatement("delete from personallaboral where usuario = ?");
+            stmPersonalLaboral.setString(1, dni);
+            stmPersonalLaboral.executeUpdate();
 
         } catch (SQLException e){
           System.out.println(e.getMessage());
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         }finally{
-          try {stmPersonalExterno.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+          try {stmPersonalLaboral.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
     
