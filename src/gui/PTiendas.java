@@ -6,7 +6,6 @@
 package gui;
 
 import aplicacion.servicios.Tienda;
-import java.text.ParseException;
 
 /**
  *
@@ -16,6 +15,7 @@ public class PTiendas extends javax.swing.JPanel {
 
     private VAdministrador va;
     private boolean primNombre;
+    private boolean editarGuardar;
 
     /**
      * Creates new form PTiendas
@@ -23,9 +23,9 @@ public class PTiendas extends javax.swing.JPanel {
     public PTiendas(VAdministrador va) {
         this.va  = va;
         this.primNombre = true;
+        this.editarGuardar = false;
         initComponents();
         this.selTerminalLabel.setVisible(false);
-        this.codigoTextField.setEditable(false);
         this.borrarExiLabel.setVisible(false);
         this.anhaExitoLabel.setVisible(false);
         this.errorCodigoLabel.setVisible(false);
@@ -59,6 +59,7 @@ public class PTiendas extends javax.swing.JPanel {
         anhaExitoLabel = new javax.swing.JLabel();
         vacCamposButton = new javax.swing.JButton();
         errorCodigoLabel = new javax.swing.JLabel();
+        editarGuardarButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(813, 385));
 
@@ -100,8 +101,8 @@ public class PTiendas extends javax.swing.JPanel {
             }
         });
         tiendasTable.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tiendasTableKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tiendasTableKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tiendasTable);
@@ -140,6 +141,13 @@ public class PTiendas extends javax.swing.JPanel {
         errorCodigoLabel.setForeground(new java.awt.Color(218, 41, 41));
         errorCodigoLabel.setText("¡Introduce un número en el campo 'Código'!");
 
+        editarGuardarButton.setText("Editar");
+        editarGuardarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarGuardarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,47 +156,48 @@ public class PTiendas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(tiendasLabel)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreLabel)
-                                    .addComponent(codigoLabel))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(codigoTextField)
-                                    .addComponent(nombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-                                .addGap(92, 92, 92)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(terminalLabel)
-                                    .addComponent(tipoLabel))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tipoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(terminalComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(138, 138, 138))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(borrarButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(borrarExiLabel)
-                                .addGap(40, 40, 40)
-                                .addComponent(vacCamposButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(anhaExitoLabel)
-                                .addGap(27, 27, 27)
-                                .addComponent(anhadirButton))
+                            .addComponent(nombreLabel)
+                            .addComponent(codigoLabel))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(errorCodigoLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(selTerminalLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(buscarButton)))
-                        .addGap(58, 58, 58))))
+                                .addComponent(codigoTextField)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editarGuardarButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(terminalLabel)
+                            .addComponent(tipoLabel))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tipoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(terminalComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(138, 138, 138))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(borrarButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(borrarExiLabel)
+                        .addGap(40, 40, 40)
+                        .addComponent(vacCamposButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(anhaExitoLabel)
+                        .addGap(27, 27, 27)
+                        .addComponent(anhadirButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(errorCodigoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(selTerminalLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarButton)))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +210,8 @@ public class PTiendas extends javax.swing.JPanel {
                     .addComponent(terminalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(terminalLabel)
                     .addComponent(codigoLabel)
-                    .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarGuardarButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLabel)
@@ -255,16 +265,17 @@ public class PTiendas extends javax.swing.JPanel {
         actualizarTabla();
     }//GEN-LAST:event_tiendasTableMouseClicked
 
-    private void tiendasTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tiendasTableKeyPressed
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_UP
-                || evt.getKeyCode() == java.awt.event.KeyEvent.VK_DOWN) {
-            actualizarTabla();
-        }
-    }//GEN-LAST:event_tiendasTableKeyPressed
-
     private void vacCamposButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vacCamposButtonActionPerformed
         vaciarCampos();
     }//GEN-LAST:event_vacCamposButtonActionPerformed
+
+    private void editarGuardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarGuardarButtonActionPerformed
+        editar();
+    }//GEN-LAST:event_editarGuardarButtonActionPerformed
+
+    private void tiendasTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tiendasTableKeyReleased
+        actualizarTabla();
+    }//GEN-LAST:event_tiendasTableKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -275,6 +286,7 @@ public class PTiendas extends javax.swing.JPanel {
     private javax.swing.JButton buscarButton;
     private javax.swing.JLabel codigoLabel;
     private javax.swing.JTextField codigoTextField;
+    private javax.swing.JButton editarGuardarButton;
     private javax.swing.JLabel errorCodigoLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreLabel;
@@ -294,39 +306,39 @@ public class PTiendas extends javax.swing.JPanel {
         m = (ModeloTablaTiendas) this.tiendasTable.getModel();
         int itemSelected = this.terminalComboBox.getSelectedIndex();
         this.errorCodigoLabel.setVisible(false);
-        
-        try {
-            int codigo;
-            codigo = Integer.parseInt(this.codigoTextField.getText());
 
-            if (todas) {
-                m.setFilas(this.va.obtenerTiendas("", 0, 0));
-            } else {
+        if (todas) {
+            m.setFilas(this.va.obtenerTiendas("", 0, 0));
+        } else {
+            try {
+                int codigo;
+                codigo = Integer.parseInt(this.codigoTextField.getText());
                 if (this.primNombre) {
-                    if (itemSelected > 0) {
-                        m.setFilas(this.va.obtenerTiendas("", codigo, itemSelected));
-                        this.selTerminalLabel.setVisible(false);
-                    } else {
-                        this.selTerminalLabel.setVisible(true);
-                    }
+                    buscar(m, "", codigo, itemSelected);
                 } else {
-                    if (itemSelected > 0) {
-                        m.setFilas(this.va.obtenerTiendas(this.nombreTextField.getText(),
-                                codigo, itemSelected));
-                        this.selTerminalLabel.setVisible(false);
-                    } else {
-                        this.selTerminalLabel.setVisible(true);
-                    }
+                    buscar(m, this.nombreTextField.getText(), codigo, itemSelected);
                 }
+            } catch (NumberFormatException e) {
+                this.errorCodigoLabel.setVisible(true);
             }
+        }
+        if (m.getRowCount() > 0) {
+            this.tiendasTable.setRowSelectionInterval(0, 0);
+            actualizarTabla();
+        }
+    }
 
-            if (m.getRowCount() > 0) {
-                this.tiendasTable.setRowSelectionInterval(0, 0);
-                this.codigoTextField.setText("" + m.getValueAt(0, 1));
+    public void buscar(ModeloTablaTiendas m, String nombre, int term, int cod) {
+        if (term > 0) {
+            if (cod > 0) {
+                m.setFilas(this.va.obtenerTiendas(nombre, cod, term));
+                this.selTerminalLabel.setVisible(false);
+                this.errorCodigoLabel.setVisible(false);
+            } else {
+                this.errorCodigoLabel.setVisible(true);
             }
-        } catch (NumberFormatException e) {
-            this.errorCodigoLabel.setVisible(true);
-            System.out.println(e);
+        } else {
+            this.selTerminalLabel.setVisible(true);
         }
     }
 
@@ -375,16 +387,40 @@ public class PTiendas extends javax.swing.JPanel {
         if (row != -1) {
             this.terminalComboBox.setSelectedIndex((int) mt.getValueAt(row, 0));
             this.codigoTextField.setText("" + mt.getValueAt(row, 1));
-            this.tipoTextField.setText("" + mt.getValueAt(row, 2));
-            this.nombreTextField.setText("" + mt.getValueAt(row, 3));
+            this.nombreTextField.setText("" + mt.getValueAt(row, 2));
+            this.tipoTextField.setText("" + mt.getValueAt(row, 3));
         }
     }
 
     private void vaciarCampos() {
-        this.codigoTextField.setEditable(true);
         this.codigoTextField.setText("");
         this.nombreTextField.setText("");
         this.tipoTextField.setText("");
         this.terminalComboBox.setSelectedIndex(0);
+    }
+
+    private void editar() {
+        // EditarGuardar a false nos dice que vamos a editar los campos
+        if (!this.editarGuardar) {
+            this.codigoTextField.setEditable(false);
+            this.editarGuardarButton.setText("Guardar");
+            this.primNombre = true;
+        } else {
+            ModeloTablaTiendas m;
+            m = (ModeloTablaTiendas) this.tiendasTable.getModel();
+            int fila = this.tiendasTable.getSelectedRow();
+            int terminal = (int) m.getValueAt(fila, 0);
+            int codigo = (int) m.getValueAt(fila, 1);
+            
+            this.codigoTextField.setEditable(true);
+            this.editarGuardarButton.setText("Editar");
+            this.va.editarTienda(terminal, codigo, this.nombreTextField.getText(), 
+                    this.tipoTextField.getText());
+            m.setFilas(this.va.obtenerTiendas("", 0, 0));
+            this.tiendasTable.setRowSelectionInterval(fila, 0);
+            actualizarTabla();
+            this.primNombre = false;
+        }
+        this.editarGuardar = !this.editarGuardar;
     }
 }

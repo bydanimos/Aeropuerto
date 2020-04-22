@@ -26,58 +26,58 @@
               <Component id="tiendasLabel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="codigoLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="codigoTextField" max="32767" attributes="0"/>
-                                  <Component id="nombreTextField" pref="116" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="terminalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tipoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tipoTextField" min="-2" pref="296" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="terminalComboBox" max="32767" attributes="0"/>
-                                      <EmptySpace min="138" pref="138" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="borrarButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="borrarExiLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="vacCamposButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="anhaExitoLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="anhadirButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="codigoLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="nombreTextField" min="-2" pref="140" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="errorCodigoLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="selTerminalLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="codigoTextField" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="editarGuardarButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="terminalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tipoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tipoTextField" min="-2" pref="296" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="terminalComboBox" max="32767" attributes="0"/>
+                              <EmptySpace min="138" pref="138" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="borrarButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="borrarExiLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="vacCamposButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <Component id="anhaExitoLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="anhadirButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="errorCodigoLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="selTerminalLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,6 +93,7 @@
                   <Component id="terminalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="codigoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="codigoTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="editarGuardarButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -190,7 +191,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tiendasTableMouseClicked"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tiendasTableKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tiendasTableKeyReleased"/>
           </Events>
         </Component>
       </SubComponents>
@@ -256,6 +257,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xa1;Introduce un n&#xfa;mero en el campo &apos;C&#xf3;digo&apos;!"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="editarGuardarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarGuardarButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
