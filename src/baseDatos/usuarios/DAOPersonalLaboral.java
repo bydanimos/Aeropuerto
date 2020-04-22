@@ -152,9 +152,9 @@ public class DAOPersonalLaboral extends AbstractDAO{
                                         "    segundoapellido=?, "+
                                         "    correoelectronico=?, "+
                                         "    contrasenha=?, "+
-                                        "    paisprocedencia=? "+
+                                        "    paisprocedencia=?, "+
                                         "    telefono=?, "+
-                                        "    sexo=?, " +
+                                        "    sexo=? " +
                                         "where dni=?");
             
             stmPersonalLaboral.setString(1, pl.getLabor());
