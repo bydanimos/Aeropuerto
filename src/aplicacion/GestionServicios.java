@@ -26,4 +26,8 @@ public class GestionServicios {
     public void borrarTienda(int terminal, int codigo) {
         this.fbd.borrarTienda(terminal, codigo);
     }
+
+    public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
+        this.fbd.editarTienda(terminal, codigo, nombre, tipo);
+    }
 }

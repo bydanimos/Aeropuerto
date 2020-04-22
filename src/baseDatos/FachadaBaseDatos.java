@@ -135,6 +135,10 @@ public class FachadaBaseDatos {
     public void borrarTienda(int terminal, int codigo) {
         this.daoServicios.borrarTienda(terminal, codigo);
     }
+        
+    public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
+        this.daoServicios.editarTienda(terminal, codigo, nombre, tipo);
+    }
     
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
@@ -255,9 +259,6 @@ public class FachadaBaseDatos {
     public Libro getLibro(Integer id){
         return daoLibros.consultarLibro(id);
     }*/
-
-    
-
 
 
 }

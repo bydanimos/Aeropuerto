@@ -33,6 +33,9 @@ public class DAOServicios extends AbstractDAO {
                 + "where nombre like ? ";
         if (terminal != 0) {
             consulta += "and terminal = ? ";
+        } 
+        if (codigo != 0) {
+            consulta += "and codigo = ? ";
         }
         consulta += "order by terminal, codigo";
 
@@ -41,6 +44,9 @@ public class DAOServicios extends AbstractDAO {
             stmTiendas.setString(1, "%" + nombre + "%");
             if (terminal != 0) {
                 stmTiendas.setInt(2, terminal);
+            }
+            if (codigo != 0) {
+                stmTiendas.setInt(3, codigo);
             }
 
             rsTienda = stmTiendas.executeQuery();
@@ -189,5 +195,9 @@ public class DAOServicios extends AbstractDAO {
             }
         }
         return resultado;
+    }
+
+    void editarTienda(int terminal, int codigo, String nombre, String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
