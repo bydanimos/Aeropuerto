@@ -1,0 +1,17 @@
+delete from facturarmaleta;
+delete from maleta;
+delete from comprarbillete;
+delete from vuelo;
+delete from avion;
+delete from aerolinea;
+delete from modeloavion;
+delete from alquilar;
+delete from cochealquiler;
+delete from tiendas;
+delete from reservarparking;
+delete from parking;
+delete from personalexterno;
+delete from personallaboral;
+delete from administrador;
+delete from usuario;
+delete from terminal;
