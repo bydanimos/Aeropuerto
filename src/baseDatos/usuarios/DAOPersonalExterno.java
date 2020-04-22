@@ -156,9 +156,9 @@ public class DAOPersonalExterno extends AbstractDAO{
                                         "    segundoapellido=?, "+
                                         "    correoelectronico=?, "+
                                         "    contrasenha=?, "+
-                                        "    paisprocedencia=? "+
+                                        "    paisprocedencia=?, "+
                                         "    telefono=?, "+
-                                        "    sexo=?, " +
+                                        "    sexo=? " +
                                         "where dni=?");
             
             stmPersonalExterno.setBoolean(1, pe.isEstarDentro());
