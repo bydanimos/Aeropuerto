@@ -5,6 +5,7 @@
 
 package baseDatos;
 
+import aplicacion.aviones.Aerolinea;
 import aplicacion.usuarios.*;
 import baseDatos.usuarios.*;
 import aplicacion.servicios.*;
@@ -25,6 +26,7 @@ public class FachadaBaseDatos {
     private DAOPersonalExterno daoPersonalExterno;
     private DAOServicios daoServicios;
     private DAOVuelos daoVuelos;
+    private DAOAviones daoAviones;
 
     public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
         
@@ -57,6 +59,7 @@ public class FachadaBaseDatos {
             this.daoPersonalExterno = new DAOPersonalExterno(this.conexion, this.fa);
             this.daoServicios = new DAOServicios(this.conexion, this.fa);
             this.daoVuelos = new DAOVuelos(this.conexion, this.fa);
+            this.daoAviones = new DAOAviones(this.conexion,this.fa);
           
 
         } catch (FileNotFoundException f){
@@ -221,7 +224,6 @@ public class FachadaBaseDatos {
         return this.daoUsuarios.comprobarId(text);
     }
     
-    // -------------------------------- Tiendas --------------------------------
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         return this.daoServicios.obtenerTiendas(nombre, codigo, terminal);
     }
@@ -237,10 +239,13 @@ public class FachadaBaseDatos {
     public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         this.daoServicios.editarTienda(terminal, codigo, nombre, tipo);
     }
-    // -------------------------------------------------------------------------
     
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
+    }
+    
+    public List<Aerolinea> obtenerAerolineas(String nombre){
+        return this.daoAviones.obtenerAerolineas(nombre);
     }
     
     
