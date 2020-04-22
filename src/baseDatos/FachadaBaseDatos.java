@@ -221,6 +221,7 @@ public class FachadaBaseDatos {
         return this.daoUsuarios.comprobarId(text);
     }
     
+    // -------------------------------- Tiendas --------------------------------
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         return this.daoServicios.obtenerTiendas(nombre, codigo, terminal);
     }
@@ -236,6 +237,7 @@ public class FachadaBaseDatos {
     public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         this.daoServicios.editarTienda(terminal, codigo, nombre, tipo);
     }
+    // -------------------------------------------------------------------------
     
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
