@@ -28,12 +28,28 @@ public class FachadaAplicacion {
         this.cd = new GestionDni();
     }
 
+    //--------------------------------------------------------------------------
+    // -------------------------------- Main -----------------------------------
     public static void main(String args[]) {
         FachadaAplicacion fa;
 
         fa = new FachadaAplicacion();
         fa.iniciaInterfazUsuario();
     }
+    
+    //--------------------------------------------------------------------------
+    // ------------------------- Getters / Settets -----------------------------
+
+    public Usuario getUsuarioActual() {
+        return this.usuarioActual;
+    }
+
+    public void setUsuarioActual(Usuario usuarioActual) {
+        this.usuarioActual = usuarioActual;
+    }
+    
+    //--------------------------------------------------------------------------
+    // ------------------------- Iniciar aplicación ----------------------------
 
     public void iniciaInterfazUsuario() {
         this.fgui.iniciaVista();
@@ -46,13 +62,46 @@ public class FachadaAplicacion {
     public boolean comprobarAutentificacion(String idUsuario, String clave) {
         return this.cu.comprobarAutentificacion(idUsuario, clave);
     }
+        
+    // -------------------------------------------------------------------------
+    // ------------------------------- Vuelos ----------------------------------
+    
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+        return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
+    }
+    
+    // -------------------------------------------------------------------------
+    // ------------------------------- Tiendas ---------------------------------
 
-    public Usuario getUsuarioActual() {
-        return this.usuarioActual;
+    public void anhadirTienda(String nombre, int terminal, String tipo) {
+        this.cs.anhadirTienda(nombre, terminal, tipo);
     }
 
-    public void setUsuarioActual(Usuario usuarioActual) {
-        this.usuarioActual = usuarioActual;
+    public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
+        return this.cs.obtenerTiendas(nombre, codigo, terminal);
+    }
+
+    public void borrarTienda(int terminal, int codigo) {
+        this.cs.borrarTienda(terminal, codigo);
+    }
+
+    public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
+        this.cs.editarTienda(terminal, codigo, nombre, tipo);
+    }
+
+    // -------------------------------------------------------------------------
+    // ------------------------------- Usuarios --------------------------------
+    
+    public String getTipoUsuario(Usuario u){
+        return cu.getTipoUsuario(u);
+    }
+    
+    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
+        this.cu.modificarUsuario(u,tipoAnterior,tipoNuevo);
+    }
+    
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return this.cu.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
     }
     
     public void nuevoUsuario() {
@@ -74,34 +123,6 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.cu.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
     }
-
-    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
-        return this.cs.obtenerTiendas(nombre, terminal);
-    }
     
-    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
-        return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
-    }
-
-    public void anhadirTienda(String nombre, int terminal, String tipo) {
-        this.cs.anhadirTienda(nombre, terminal, tipo);
-    }
-
-    public void borrarTienda(int terminal, int codigo) {
-        this.cs.borrarTienda(terminal, codigo);
-    }
-
-    public String getTipoUsuario(Usuario u){
-        return cu.getTipoUsuario(u);
-    }
-    
-    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
-        this.cu.modificarUsuario(u,tipoAnterior,tipoNuevo);
-    }
-    
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.cu.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
-    }
-    
-    
+    // -------------------------------------------------------------------------
 }
