@@ -11,7 +11,7 @@ public class PersonalLaboral extends Usuario{
     private Timestamp fechaInicio;
 
     public PersonalLaboral(String dni, String id, String contrasenha, String correoElectronico, String nombre,
-                           String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
+                           String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, Integer telefono,
                            String labor, String descripcionTarea, ArrayList<Horario> historialTrabajo, Timestamp fechaInicio){
         super(dni, id, contrasenha, correoElectronico, nombre, apellido1, apellido2, sexo, paisProcedencia, telefono);
         this.labor = labor;
@@ -21,7 +21,7 @@ public class PersonalLaboral extends Usuario{
     }
     
     public PersonalLaboral(String dni, String id, String contrasenha, String correoElectronico, String nombre,
-                           String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
+                           String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, Integer telefono,
                            String labor, String descripcionTarea, Timestamp fechaInicio){
         super(dni, id, contrasenha, correoElectronico, nombre, apellido1, apellido2, sexo, paisProcedencia, telefono);
         this.labor = labor;
@@ -30,7 +30,7 @@ public class PersonalLaboral extends Usuario{
     }
     
     public PersonalLaboral(String dni, String id, String contrasenha, String correoElectronico, String nombre,
-                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono){
+                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, Integer telefono){
         super(dni, id, contrasenha, correoElectronico, nombre, apellido1, apellido2, sexo, paisProcedencia, telefono);
         this.labor = "";
         this.descripcionTarea = "";

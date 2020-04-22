@@ -11,10 +11,10 @@ public class Usuario {
     private String contrasenha;
     private TipoSexo sexo;
     private String paisProcedencia;
-    private String telefono;
+    private Integer telefono;
 
     public Usuario(String dni, String id, String contrasenha, String correoElectronico, String nombre,
-                   String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono) {
+                   String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, Integer telefono) {
         this.dni = dni;
         this.id = id;
         this.correoElectronico = correoElectronico;
@@ -99,11 +99,11 @@ public class Usuario {
         this.paisProcedencia = paisProcedencia;
     }
 
-    public String getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
 }
