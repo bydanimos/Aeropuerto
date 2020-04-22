@@ -61,6 +61,44 @@ public class DAOAdministrador extends AbstractDAO {
         }
         return resultado;
     }
+    
+    public Administrador getAdministrador(String dni){
+        Administrador resultado=null;
+        Connection con;
+        PreparedStatement stmAdministrador=null;
+        ResultSet rsAdministrador;
+
+        con=this.getConexion();
+
+        
+        /*String dni, String id, String contrasenha, String correoElectronico, String nombre,
+                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
+                         java.sql.Timestamp fechaInicio, String curriculum)*/
+                         
+        try {
+            stmAdministrador=con.prepareStatement("select u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"+
+                                                  "u.paisprocedencia,u.telefono,u.sexo,ad.fechainicio,ad.curriculum "+
+                                                  "from usuario as u, administrador as ad "+
+                                                  "where u.dni = ad.usuario "+
+                                                  "and u.dni = ? ");
+            stmAdministrador.setString(1, dni);
+            rsAdministrador=stmAdministrador.executeQuery();
+           
+            if (rsAdministrador.next()){
+                resultado = new Administrador(rsAdministrador.getString("dni"), rsAdministrador.getString("id"),rsAdministrador.getString("contrasenha"),
+                                              rsAdministrador.getString("correoelectronico"), rsAdministrador.getString("nombre"),
+                                              rsAdministrador.getString("primerapellido"),rsAdministrador.getString("segundoapellido"),
+                                              TipoSexo.valueOf(rsAdministrador.getString("sexo")),rsAdministrador.getString("paisprocedencia"),rsAdministrador.getString("telefono"),
+                                              rsAdministrador.getTimestamp("fechainicio"),rsAdministrador.getString("curriculum"));
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmAdministrador.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
 
     public void insertarAdministrador(Administrador ad) {
 
