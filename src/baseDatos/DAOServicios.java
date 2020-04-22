@@ -17,6 +17,8 @@ public class DAOServicios extends AbstractDAO {
         super.setFachadaAplicacion(fa);
     }
 
+    // ------------------------------- Tiendas ---------------------------------
+
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         List<Tienda> resultado = new ArrayList<>();
         ArrayList<Terminal> terminales = this.obtenerTerminales();
@@ -126,8 +128,40 @@ public class DAOServicios extends AbstractDAO {
             }
         }
     }
+
+    public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
+        Connection con;
+        PreparedStatement stmTiendas = null;
+
+        con = super.getConexion();
+
+        try {
+            stmTiendas = con.prepareStatement("update tiendas "
+                    + "set nombre = ?, "
+                    + "set tipoventas = ? "
+                    + "where codigo = ? and terminal = ?");
+
+            stmTiendas.setString(1, nombre);
+            stmTiendas.setString(2, tipo);
+            stmTiendas.setInt(3, codigo);
+            stmTiendas.setInt(4, terminal);
+
+            stmTiendas.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmTiendas.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
     
-    // ------------------------------ Terminales ------------------------------
+    // -------------------------------------------------------------------------
+    // ------------------------------ Terminales -------------------------------
 
     public ArrayList<Terminal> obtenerTerminales() {
         ArrayList<Terminal> resultado = new ArrayList<>();
@@ -196,8 +230,6 @@ public class DAOServicios extends AbstractDAO {
         }
         return resultado;
     }
-
-    void editarTienda(int terminal, int codigo, String nombre, String tipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    // -------------------------------------------------------------------------
 }
