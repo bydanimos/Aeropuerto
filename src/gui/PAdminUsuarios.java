@@ -622,7 +622,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         txtEditarPrimerApellido.setText(u.getApellido1());
         txtEditarSegundoApellido.setText(u.getApellido2());
         txtEditarPais.setText(u.getPaisProcedencia());
-        txtEditarTelefono.setText(u.getTelefono());
+        txtEditarTelefono.setText(u.getTelefono().toString());
         Object obj;
         if(u.getSexo() == TipoSexo.o){
             obj = comboEditarSexo.getItemAt(0);
@@ -665,7 +665,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                 ts = TipoSexo.o;
         }
         Usuario user = new Usuario(this.txtEditarDni.getText(),this.txtEditarId.getText(),this.txtEditarContrasenha.getText(),this.txtEditarEmail.getText(),this.txtEditarNombre.getText(),
-                this.txtEditarPrimerApellido.getText(),this.txtEditarSegundoApellido.getText(),ts,this.txtEditarPais.getText(),this.txtEditarTelefono.getText());
+                this.txtEditarPrimerApellido.getText(),this.txtEditarSegundoApellido.getText(),ts,this.txtEditarPais.getText(),Integer.parseInt(this.txtEditarTelefono.getText()));
         
         this.va.modificarUsuario(user,tipoAnterior,tipoNuevo);
     }

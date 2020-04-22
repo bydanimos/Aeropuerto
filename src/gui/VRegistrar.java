@@ -412,7 +412,7 @@ public class VRegistrar extends javax.swing.JFrame {
 
             usuario = new Usuario(this.dniTextField.getText(), this.idTextField.getText(), this.PasswordField.getText(),
                     this.mailTextField.getText(), this.nombreTextField.getText(), this.primApeTextField.getText(),
-                    this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), this.telefonoTextField.getText());
+                    this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), Integer.parseInt(this.telefonoTextField.getText()));
 
             if (this.fa.registrarUsuario(usuario)) {
                 this.dispose();
