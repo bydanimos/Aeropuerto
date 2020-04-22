@@ -22,6 +22,9 @@ public class PVuelos extends javax.swing.JPanel {
         initComponents();
         this.botonNuevo.setEnabled(true);
         this.botonEditar.setEnabled(false);
+        this.gestionPanel.setVisible(true);
+        this.editarNuevoPanel.setVisible(false);
+        buscarVuelos();
     }
 
     /**
@@ -33,6 +36,7 @@ public class PVuelos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gestionPanel = new javax.swing.JPanel();
         gestionVuelosLabel = new javax.swing.JLabel();
         codigoLabel = new javax.swing.JLabel();
         fechaSalidaLabel = new javax.swing.JLabel();
@@ -47,10 +51,51 @@ public class PVuelos extends javax.swing.JPanel {
         fechaSalida = new com.toedter.calendar.JDateChooser();
         fechaLlegadaLabel = new javax.swing.JLabel();
         fechaLlegada = new com.toedter.calendar.JDateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
         vuelosTable = new javax.swing.JTable();
+        editarNuevoPanel = new javax.swing.JPanel();
+        gestionVuelosEtiqueta = new javax.swing.JLabel();
+        codigoEtiqueta = new javax.swing.JLabel();
+        origenEtiqueta = new javax.swing.JLabel();
+        destinoEtiqueta = new javax.swing.JLabel();
+        salidaTeoricaEtiqueta = new javax.swing.JLabel();
+        salidaRealEtiqueta = new javax.swing.JLabel();
+        llegadaTeoricaEtiqueta = new javax.swing.JLabel();
+        llegadaRealEtiqueta = new javax.swing.JLabel();
+        precioNormalEtiqueta = new javax.swing.JLabel();
+        precioPremiumEtiqueta = new javax.swing.JLabel();
+        terminalEtiqueta = new javax.swing.JLabel();
+        puertaEmbarqueEtiqueta = new javax.swing.JLabel();
+        codigoAvionEtiqueta = new javax.swing.JLabel();
+        codigoText = new javax.swing.JTextField();
+        origenText = new javax.swing.JTextField();
+        destinoText = new javax.swing.JTextField();
+        salidaTeoricaText = new com.toedter.calendar.JDateChooser();
+        salidaRealText = new com.toedter.calendar.JDateChooser();
+        llegadaTeoricaText = new com.toedter.calendar.JDateChooser();
+        llegadaRealText = new com.toedter.calendar.JDateChooser();
+        precioNormalText = new javax.swing.JTextField();
+        precioPremiumText = new javax.swing.JTextField();
+        terminalOpciones = new javax.swing.JComboBox<>();
+        puertaEmbarqueText = new javax.swing.JTextField();
+        codigoAvionText = new javax.swing.JTextField();
+        botonGuardar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
+        mensajeObligatorios = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
+        jLabel1 = new javax.swing.JLabel();
+        avionEtiqueta = new javax.swing.JLabel();
+        aerolineaEtiqueta = new javax.swing.JLabel();
+        avionText = new javax.swing.JTextField();
+        aerolineaText = new javax.swing.JTextField();
+        botonBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaAviones = new javax.swing.JTable();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(2, 0), new java.awt.Dimension(2, 0), new java.awt.Dimension(2, 32767));
 
         setPreferredSize(new java.awt.Dimension(813, 385));
+
+        gestionPanel.setPreferredSize(new java.awt.Dimension(813, 385));
 
         gestionVuelosLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gestionVuelosLabel.setText("<html> <h1><CENTER>Gestión de vuelos</CENTER></h1> </html>");
@@ -67,6 +112,11 @@ public class PVuelos extends javax.swing.JPanel {
         });
 
         botonNuevo.setText("Nuevo");
+        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevoActionPerformed(evt);
+            }
+        });
 
         botonEditar.setText("Editar");
 
@@ -77,65 +127,62 @@ public class PVuelos extends javax.swing.JPanel {
         fechaLlegadaLabel.setText("Fecha llegada:");
 
         vuelosTable.setModel(new ModeloTablaVuelos());
-        jScrollPane1.setViewportView(vuelosTable);
+        jScrollPane.setViewportView(vuelosTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gestionVuelosLabel)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout gestionPanelLayout = new javax.swing.GroupLayout(gestionPanel);
+        gestionPanel.setLayout(gestionPanelLayout);
+        gestionPanelLayout.setHorizontalGroup(
+            gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gestionPanelLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gestionPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(32, 32, 32))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(gestionPanelLayout.createSequentialGroup()
+                        .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(gestionPanelLayout.createSequentialGroup()
                                 .addComponent(codigoLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(origenLabel))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(gestionPanelLayout.createSequentialGroup()
                                 .addComponent(fechaSalidaLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(gestionPanelLayout.createSequentialGroup()
                                 .addComponent(fechaLlegadaLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(fechaLlegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestionPanelLayout.createSequentialGroup()
                                 .addComponent(origenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
                                 .addComponent(destinoLabel)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(destinoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buscarButton))
                         .addGap(53, 53, 53))))
+            .addGroup(gestionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gestionVuelosLabel)
+                .addGap(53, 53, 53))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        gestionPanelLayout.setVerticalGroup(
+            gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gestionPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(gestionVuelosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoLabel)
                     .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(origenLabel)
@@ -143,46 +190,348 @@ public class PVuelos extends javax.swing.JPanel {
                     .addComponent(destinoLabel)
                     .addComponent(destinoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechaLlegadaLabel)
                     .addComponent(fechaLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarButton)
                     .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaSalidaLabel))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(gestionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gestionPanelLayout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(botonEditar)
                         .addGap(56, 56, 56)
                         .addComponent(botonNuevo))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(gestionPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        gestionVuelosEtiqueta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gestionVuelosEtiqueta.setText("<html> <h1><CENTER>Gestión de vuelos</CENTER></h1> </html>");
+
+        codigoEtiqueta.setText("Código*:");
+
+        origenEtiqueta.setText("Origen*:");
+
+        destinoEtiqueta.setText("Destino*:");
+
+        salidaTeoricaEtiqueta.setText("Fecha salida teórica*:");
+
+        salidaRealEtiqueta.setText("Fecha salida real:");
+
+        llegadaTeoricaEtiqueta.setText("Fecha llegada teórica*:");
+
+        llegadaRealEtiqueta.setText("Fecha llegada real:");
+
+        precioNormalEtiqueta.setText("Precio normal*:");
+
+        precioPremiumEtiqueta.setText("Precio premium:");
+
+        terminalEtiqueta.setText("Terminal*:");
+
+        puertaEmbarqueEtiqueta.setText("Puerta de embarque:");
+
+        codigoAvionEtiqueta.setText("Código del avión*:");
+
+        botonGuardar.setText("Guardar");
+
+        botonCancelar.setText("Cancelar");
+
+        mensajeObligatorios.setForeground(new java.awt.Color(255, 0, 0));
+        mensajeObligatorios.setText("¡Los campos que contienen * son obligatorios!");
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setText("<html> <CENTER>Buscar aviones</CENTER> </html>");
+        jLabel1.setToolTipText("");
+
+        avionEtiqueta.setText("Código avión:");
+
+        aerolineaEtiqueta.setText("Aerolínea:");
+
+        botonBuscar.setText("Buscar");
+
+        tablaAviones.setModel(new ModeloTablaAviones());
+        jScrollPane1.setViewportView(tablaAviones);
+
+        javax.swing.GroupLayout editarNuevoPanelLayout = new javax.swing.GroupLayout(editarNuevoPanel);
+        editarNuevoPanel.setLayout(editarNuevoPanelLayout);
+        editarNuevoPanelLayout.setHorizontalGroup(
+            editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(codigoAvionEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(codigoAvionText))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(puertaEmbarqueEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(puertaEmbarqueText))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(terminalEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(terminalOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(precioNormalEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(precioNormalText))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(llegadaRealEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(llegadaRealText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(salidaTeoricaEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(salidaTeoricaText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(destinoEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(destinoText))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(origenEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(origenText))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(codigoEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(codigoText, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(salidaRealEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(salidaRealText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(llegadaTeoricaEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(llegadaTeoricaText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addComponent(precioPremiumEtiqueta)
+                        .addGap(18, 18, 18)
+                        .addComponent(precioPremiumText)))
+                .addGap(18, 18, 18)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                                    .addComponent(botonCancelar)
+                                    .addGap(114, 114, 114)
+                                    .addComponent(botonGuardar)
+                                    .addGap(77, 77, 77))
+                                .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                    .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(avionEtiqueta)
+                                        .addComponent(aerolineaEtiqueta))
+                                    .addGap(24, 24, 24)
+                                    .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(aerolineaText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(avionText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(94, 94, 94)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                                .addComponent(botonBuscar)
+                                .addGap(60, 60, 60))))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(mensajeObligatorios)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                .addComponent(gestionVuelosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        editarNuevoPanelLayout.setVerticalGroup(
+            editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gestionVuelosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(codigoEtiqueta)
+                                    .addComponent(codigoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(origenEtiqueta)
+                                    .addComponent(origenText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(destinoEtiqueta)
+                                    .addComponent(destinoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(salidaTeoricaEtiqueta)
+                                    .addComponent(salidaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(salidaRealEtiqueta)
+                                    .addComponent(salidaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(llegadaTeoricaEtiqueta)
+                                    .addComponent(llegadaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(llegadaRealEtiqueta)
+                                    .addComponent(llegadaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(precioNormalEtiqueta)
+                                    .addComponent(precioNormalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(precioPremiumEtiqueta)
+                                    .addComponent(precioPremiumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(terminalEtiqueta)
+                                    .addComponent(terminalOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(avionEtiqueta)
+                                    .addComponent(avionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(aerolineaEtiqueta)
+                                    .addComponent(aerolineaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(botonBuscar)
+                                .addGap(23, 23, 23)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(puertaEmbarqueEtiqueta)
+                                    .addComponent(puertaEmbarqueText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(mensajeObligatorios)))
+                        .addGap(25, 25, 25)
+                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(codigoAvionEtiqueta)
+                            .addComponent(codigoAvionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonCancelar)
+                            .addComponent(botonGuardar)))
+                    .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editarNuevoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gestionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(311, 311, 311)
+                        .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(gestionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editarNuevoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-       this.buscarVuelos();
+        this.buscarVuelos();
     }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
+        this.gestionPanel.setVisible(false);
+        this.editarNuevoPanel.setVisible(true);
+    }//GEN-LAST:event_botonNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aerolineaEtiqueta;
+    private javax.swing.JTextField aerolineaText;
+    private javax.swing.JLabel avionEtiqueta;
+    private javax.swing.JTextField avionText;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonEditar;
+    private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonNuevo;
     private javax.swing.JButton buscarButton;
+    private javax.swing.JLabel codigoAvionEtiqueta;
+    private javax.swing.JTextField codigoAvionText;
+    private javax.swing.JLabel codigoEtiqueta;
     private javax.swing.JLabel codigoLabel;
+    private javax.swing.JTextField codigoText;
     private javax.swing.JTextField codigoTextField;
+    private javax.swing.JLabel destinoEtiqueta;
     private javax.swing.JLabel destinoLabel;
+    private javax.swing.JTextField destinoText;
     private javax.swing.JTextField destinoTextField;
+    private javax.swing.JPanel editarNuevoPanel;
     private com.toedter.calendar.JDateChooser fechaLlegada;
     private javax.swing.JLabel fechaLlegadaLabel;
     private com.toedter.calendar.JDateChooser fechaSalida;
     private javax.swing.JLabel fechaSalidaLabel;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.JPanel gestionPanel;
+    private javax.swing.JLabel gestionVuelosEtiqueta;
     private javax.swing.JLabel gestionVuelosLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel llegadaRealEtiqueta;
+    private com.toedter.calendar.JDateChooser llegadaRealText;
+    private javax.swing.JLabel llegadaTeoricaEtiqueta;
+    private com.toedter.calendar.JDateChooser llegadaTeoricaText;
+    private javax.swing.JLabel mensajeObligatorios;
+    private javax.swing.JLabel origenEtiqueta;
     private javax.swing.JLabel origenLabel;
+    private javax.swing.JTextField origenText;
     private javax.swing.JTextField origenTextField;
+    private javax.swing.JLabel precioNormalEtiqueta;
+    private javax.swing.JTextField precioNormalText;
+    private javax.swing.JLabel precioPremiumEtiqueta;
+    private javax.swing.JTextField precioPremiumText;
+    private javax.swing.JLabel puertaEmbarqueEtiqueta;
+    private javax.swing.JTextField puertaEmbarqueText;
+    private javax.swing.JLabel salidaRealEtiqueta;
+    private com.toedter.calendar.JDateChooser salidaRealText;
+    private javax.swing.JLabel salidaTeoricaEtiqueta;
+    private com.toedter.calendar.JDateChooser salidaTeoricaText;
+    private javax.swing.JTable tablaAviones;
+    private javax.swing.JLabel terminalEtiqueta;
+    private javax.swing.JComboBox<String> terminalOpciones;
     private javax.swing.JTable vuelosTable;
     // End of variables declaration//GEN-END:variables
     

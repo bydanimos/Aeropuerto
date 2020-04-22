@@ -23,7 +23,8 @@ public class DAOVuelos extends AbstractDAO {
 
     public java.util.List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         java.util.List<Vuelo> resultado = new java.util.ArrayList<Vuelo>();
-
+        
+        int indice = 4;
         Vuelo vueloActual;
         Terminal terminalActual;
         ModeloAvion modeloAvionActual;
@@ -46,15 +47,15 @@ public class DAOVuelos extends AbstractDAO {
                     + "numvuelo like ? "
                     + "and origen like ? "
                     + "and destino like ? ";
-            if(fechaSalida != null) consulta += "and fechasalidateorica = ? ";
-            if(fechaLlegada != null) consulta += "and fechallegadateorica = ? ";
+            if(fechaSalida != null){ consulta += "and cast(fechasalidateorica as DATE) = ? "; indice++; }
+            if(fechaLlegada != null) consulta += "and cast(fechallegadateorica as DATE) = ? ";
 
             stmVuelos = con.prepareStatement(consulta);
             stmVuelos.setString(1, "%" + codigo + "%");
             stmVuelos.setString(2, "%" + origen + "%");
             stmVuelos.setString(3, "%" + destino + "%");
-            if (fechaSalida != null) stmVuelos.setTimestamp(4, fechaSalida);
-            if (fechaLlegada != null) stmVuelos.setTimestamp(5, fechaLlegada);
+            if (fechaSalida != null) stmVuelos.setTimestamp(indice, fechaSalida);
+            if (fechaLlegada != null) stmVuelos.setTimestamp(indice, fechaLlegada);
 
             rsVuelos = stmVuelos.executeQuery();
             while (rsVuelos.next()) {
