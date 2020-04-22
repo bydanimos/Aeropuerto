@@ -192,9 +192,9 @@ public class DAOUsuarios extends AbstractDAO {
                     + "    segundoapellido=?, "
                     + "    correoelectronico=?, "
                     + "    contrasenha=crypt(?, gen_salt('md5')), "
-                    + "    paisprocedencia=? "
+                    + "    paisprocedencia=?, "
                     + "    telefono=?, "
-                    + "    sexo=?, "
+                    + "    sexo=? "
                     + "where dni=?");
 
             stmUsuario.setString(1, u.getId());
@@ -224,6 +224,7 @@ public class DAOUsuarios extends AbstractDAO {
                 }
             }
             stmUsuario.setString(9, ts);
+            stmUsuario.setString(10,u.getDni());
 
             stmUsuario.executeUpdate();
 
