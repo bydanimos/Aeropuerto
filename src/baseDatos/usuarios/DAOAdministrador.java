@@ -129,7 +129,7 @@ public class DAOAdministrador extends AbstractDAO {
                     + "    primerapellido=?, "
                     + "    segundoapellido=?, "
                     + "    correoelectronico=?, "
-                    + "    contrasenha=?, "
+                    + "    contrasenha=crypt(?, gen_salt('md5')), "
                     + "    paisprocedencia=? "
                     + "    telefono=?, "
                     + "    sexo=?, "
