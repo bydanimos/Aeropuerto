@@ -34,8 +34,8 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         switch (columnIndex){
             case 0: resultado= this.tiendas.get(rowIndex).getTerminal().getNumero(); break;
             case 1: resultado= this.tiendas.get(rowIndex).getCodigo(); break;
-            case 2: resultado= this.tiendas.get(rowIndex).getTipoVentas();break;
-            case 3: resultado= this.tiendas.get(rowIndex).getNombre(); break;
+            case 2: resultado= this.tiendas.get(rowIndex).getNombre();break;
+            case 3: resultado= this.tiendas.get(rowIndex).getTipoVentas(); break;
         }
         return resultado;
     }
@@ -75,5 +75,16 @@ public class ModeloTablaTiendas extends AbstractTableModel {
     
     public Tienda obtenerTienda(int i) {
         return this.tiendas.get(i);
+    }
+    
+    public void borrarTienda(int i){
+        Tienda e;
+        e = this.tiendas.get(i);
+        this.tiendas.remove(i);
+        fireTableDataChanged();
+    }
+    
+    public void actualizarTabla() {
+        fireTableDataChanged();
     }
 }
