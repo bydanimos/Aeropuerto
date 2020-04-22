@@ -19,18 +19,21 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
-
-public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
         
+        public class FachadaBaseDatos {
     private aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOAdministrador daoAdministradores;
     private DAOPersonalLaboral daoPersonalLaboral;
     private DAOPersonalExterno daoPersonalExterno;
-    private DAOServicios daoServicios;
     private DAOVuelos daoVuelos;
+    private DAOServicios daoServicios;
 
+public FachadaBaseDatos (aplicacion.FachadaAplicacion fa){
+Properties configuracion = new Properties();
+        this.fa = fa;
+        FileInputStream arqConfiguracion;
     try {
         arqConfiguracion = new FileInputStream("baseDatos.properties");
         configuracion.load(arqConfiguracion);
