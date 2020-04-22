@@ -296,4 +296,53 @@ public class DAOUsuarios extends AbstractDAO {
         }
         return resultado;
     }
+    
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        Usuario usuarioActual;
+        Connection con;
+        PreparedStatement stmUsuarios=null;
+        ResultSet rsUsuario;
+
+        con=this.getConexion();
+        
+        String consulta = "select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"+
+                                            "paisprocedencia,telefono,sexo "+
+                                            "from usuario "+
+                                            "where id like ? " +
+                                            "and dni like ? " +
+                                            "and nombre like ? "+
+                                            "and primerapellido like ? " +
+                                            "and segundoapellido like ? " +
+                                            "and dni in (select usuario " +
+                                                        "from comprarbillete "+
+                                                        "where pasarcontrol = true )";
+
+        try  {
+            stmUsuarios=con.prepareStatement(consulta);
+            stmUsuarios.setString(1, "%"+id+"%");
+            stmUsuarios.setString(2, "%"+dni+"%");
+            stmUsuarios.setString(3, "%"+nombre+"%");
+            stmUsuarios.setString(4, "%"+primerApellido+"%");
+            stmUsuarios.setString(5, "%"+segundoApellido+"%");
+            
+            rsUsuario=stmUsuarios.executeQuery();
+            while (rsUsuario.next()){
+             
+               usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"),rsUsuario.getString("contrasenha"),
+                                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
+                                        rsUsuario.getString("primerapellido"),rsUsuario.getString("segundoapellido"),
+                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getString("telefono"));
+
+               resultado.add(usuarioActual);
+            }
+
+        } catch (SQLException e){
+          System.out.println(e.getMessage());
+          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+          try {stmUsuarios.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
 }
