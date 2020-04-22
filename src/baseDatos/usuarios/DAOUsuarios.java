@@ -265,4 +265,35 @@ public class DAOUsuarios extends AbstractDAO {
         }
         return true;
     }
+    
+    public Usuario getUsuario(String dni){
+        Usuario resultado=null;
+        Connection con;
+        PreparedStatement stmUsuario=null;
+        ResultSet rsUsuario;
+
+        con=this.getConexion();
+
+        try {
+            stmUsuario=con.prepareStatement("select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"+
+                                            "paisprocedencia,telefono,sexo "+
+                                            "from usuario "+
+                                            "where dni = ? ");
+            stmUsuario.setString(1, dni);
+            rsUsuario=stmUsuario.executeQuery();
+           
+            if (rsUsuario.next()){
+                resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"),rsUsuario.getString("contrasenha"),
+                                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
+                                        rsUsuario.getString("primerapellido"),rsUsuario.getString("segundoapellido"),
+                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getString("telefono"));
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        }finally{
+            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        }
+        return resultado;
+    }
 }
