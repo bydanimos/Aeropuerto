@@ -1,5 +1,6 @@
 package aplicacion;
 
+import aplicacion.aviones.Aerolinea;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
@@ -121,6 +122,14 @@ public class FachadaAplicacion {
     
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.cu.obtenerUsuarios(dni,id,nombre,primerApellido,segundoApellido);
+    }
+    
+    // -------------------------------------------------------------------------
+    // ------------------------------- Aerolineas --------------------------------
+    
+    
+    public List<Aerolinea> obtenerAerolineas (String nombre){
+        return this.ca.obtenerAerolineas(nombre);
     }
     
     // -------------------------------------------------------------------------
