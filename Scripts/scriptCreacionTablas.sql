@@ -1,3 +1,5 @@
+-- Función para las contraseñas
+CREATE EXTENSION pgcrypto;
 -- función para comprobar que el dni es correcto
 create or replace function valida_dni(dni char) returns boolean as $vd$ 
 declare
