@@ -1,28 +1,28 @@
 --Insertase usuarios
 insert into usuario values (
-'48116361Q', 'eliPita', 'eliPita@gmail.com', 'eli', 'Eliseo','Pita','Vilariño','España','981666789','m'
+'48116361Q', 'eliPita', 'eliPita@gmail.com', crypt('eli', gen_salt('md5'), 'Eliseo','Pita','Vilariño','España','981666789','m'
 ); --Administrador
 insert into usuario values (
-'49204425L', 'antong', 'antong@gmail.com', 'ant', 'Anton','Gomez','Lopez','Galicia','604025148','o'
+'49204425L', 'antong', 'antong@gmail.com', crypt('ant', gen_salt('md5'), 'Anton','Gomez','Lopez','Galicia','604025148','o'
 ); --Personal Externo
 insert into usuario values (
-'12345678Z', 'crisl', 'crisl@gmail.com', 'cri', 'Cristina','Lopez','Amado','Portugal','981234666','m'
+'12345678Z', 'crisl', 'crisl@gmail.com', crypt('cri', gen_salt('md5'), 'Cristina','Lopez','Amado','Portugal','981234666','m'
 );
 insert into usuario values (
-'45678913Q', 'danim', 'danim@gmail.com', 'dan', 'Daniel','Mosteiro','Angueira','Francia','981234166','h'
+'45678913Q', 'danim', 'danim@gmail.com', crypt('dan', gen_salt('md5'), 'Daniel','Mosteiro','Angueira','Francia','981234166','h'
 ); --Personal Laboral
 
 insert into usuario values (
-'59518667A', 'fernandof', 'fernandof@gmail.com', 'fer', 'Fernando','Fraga','Bocheiras','Italia','981234610','h'
+'59518667A', 'fernandof', 'fernandof@gmail.com', crypt('fer', gen_salt('md5'), 'Fernando','Fraga','Bocheiras','Italia','981234610','h'
 );
 insert into usuario values (
-'65892114N', 'minm', 'minom@gmail.com', 'min', 'Mino','Moral','Fernández','España','900234610','h'
+'65892114N', 'minm', 'minom@gmail.com', crypt('min', gen_salt('md5'), 'Mino','Moral','Fernández','España','900234610','h'
 );
 insert into usuario values (
-'09308274J', 'franciscog', 'franciscog@gmail.com', 'fra', 'Francisco','Gómez','Álvarez','España','611234610','h'
+'09308274J', 'franciscog', 'franciscog@gmail.com', crypt('fra', gen_salt('md5'), 'Francisco','Gómez','Álvarez','España','611234610','h'
 );
 insert into usuario values (
-'60749238M', 'monican', 'mincan@gmail.com', 'mon', 'Mónica','Naranjo','de la Fuente','España','611234178','m'
+'60749238M', 'monican', 'mincan@gmail.com', crypt('mon', gen_salt('md5'), 'Mónica','Naranjo','de la Fuente','España','611234178','m'
 );
 
 --Insertase persoalExterno
