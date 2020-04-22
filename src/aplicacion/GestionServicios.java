@@ -15,8 +15,8 @@ public class GestionServicios {
         this.fbd = fbd;
     }
 
-    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
-        return this.fbd.obtenerTiendas(nombre, terminal);
+    public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
+        return this.fbd.obtenerTiendas(nombre, codigo, terminal);
     }
 
     public void anhadirTienda(String nombre, int terminal, String tipo) {

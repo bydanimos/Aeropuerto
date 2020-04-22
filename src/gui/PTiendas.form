@@ -43,32 +43,36 @@
                                   <Component id="nombreTextField" pref="116" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="selTerminalLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="terminalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tipoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tipoTextField" min="-2" pref="296" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="terminalComboBox" max="32767" attributes="0"/>
-                                              <EmptySpace min="138" pref="138" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="terminalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tipoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tipoTextField" min="-2" pref="296" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="terminalComboBox" max="32767" attributes="0"/>
+                                      <EmptySpace min="138" pref="138" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="borrarButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="borrarExiLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="vacCamposButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="anhaExitoLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="anhadirButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="errorCodigoLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="selTerminalLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
@@ -98,13 +102,19 @@
                   <Component id="tipoTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-              <Component id="selTerminalLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="selTerminalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorCodigoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="138" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="borrarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="anhadirButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="borrarExiLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="anhaExitoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="vacCamposButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -178,6 +188,10 @@
               <Connection code="new ModeloTablaTiendas()" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tiendasTableMouseClicked"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tiendasTableKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -210,6 +224,38 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anhadirButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="borrarExiLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="17" green="dc" red="21" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tienda borrada con &#xe9;xito!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="anhaExitoLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="17" green="dc" red="21" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xa1;Tienda a&#xf1;adida con &#xe9;xito!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="vacCamposButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vaciar Campos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vacCamposButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="errorCodigoLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="29" green="29" red="da" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xa1;Introduce un n&#xfa;mero en el campo &apos;C&#xf3;digo&apos;!"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -218,8 +218,8 @@ public class VAdministrador extends javax.swing.JFrame {
         ((PTiendas)this.panelActual).buscarTiendas(true);
     }
     
-    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
-        return this.fa.obtenerTiendas(nombre, terminal);
+    public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
+        return this.fa.obtenerTiendas(nombre, codigo, terminal);
     }
     
     public void pulsarVuelos() {

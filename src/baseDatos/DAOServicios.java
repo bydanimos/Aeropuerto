@@ -17,7 +17,7 @@ public class DAOServicios extends AbstractDAO {
         super.setFachadaAplicacion(fa);
     }
 
-    public List<Tienda> obtenerTiendas(String nombre, int terminal) {
+    public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         List<Tienda> resultado = new ArrayList<>();
         ArrayList<Terminal> terminales = this.obtenerTerminales();
         Tienda tiendaActual;
@@ -32,8 +32,9 @@ public class DAOServicios extends AbstractDAO {
                 + "from tiendas "
                 + "where nombre like ? ";
         if (terminal != 0) {
-            consulta += "and terminal = ?";
+            consulta += "and terminal = ? ";
         }
+        consulta += "order by terminal, codigo";
 
         try {
             stmTiendas = con.prepareStatement(consulta);
@@ -59,45 +60,6 @@ public class DAOServicios extends AbstractDAO {
         } finally {
             try {
                 stmTiendas.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
-        }
-        return resultado;
-    }
-
-    public ArrayList<Terminal> obtenerTerminales() {
-        ArrayList<Terminal> resultado = new ArrayList<>();
-        Terminal terminalActual;
-        Connection con;
-        PreparedStatement stmTerminal = null;
-        ResultSet rsTerminal;
-
-        con = this.getConexion();
-
-        String consulta = "select numero, primeraPuerta, ultimaPuerta "
-                + "from terminal "
-                + "order by numero";
-
-        try {
-            stmTerminal = con.prepareStatement(consulta);
-
-            rsTerminal = stmTerminal.executeQuery();
-            while (rsTerminal.next()) {
-
-                terminalActual = new Terminal(rsTerminal.getInt("numero"),
-                        rsTerminal.getInt("primeraPuerta"),
-                        rsTerminal.getInt("ultimaPuerta"));
-
-                resultado.add(terminalActual);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        } finally {
-            try {
-                stmTerminal.close();
             } catch (SQLException e) {
                 System.out.println("Imposible cerrar cursores");
             }
@@ -157,5 +119,75 @@ public class DAOServicios extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
+    }
+    
+    // ------------------------------ Terminales ------------------------------
+
+    public ArrayList<Terminal> obtenerTerminales() {
+        ArrayList<Terminal> resultado = new ArrayList<>();
+        Terminal terminalActual;
+        Connection con;
+        PreparedStatement stmTerminal = null;
+        ResultSet rsTerminal;
+
+        con = this.getConexion();
+
+        String consulta = "select numero, primeraPuerta, ultimaPuerta "
+                + "from terminal "
+                + "order by numero";
+
+        try {
+            stmTerminal = con.prepareStatement(consulta);
+
+            rsTerminal = stmTerminal.executeQuery();
+            while (rsTerminal.next()) {
+
+                terminalActual = new Terminal(rsTerminal.getInt("numero"),
+                        rsTerminal.getInt("primeraPuerta"),
+                        rsTerminal.getInt("ultimaPuerta"));
+
+                resultado.add(terminalActual);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmTerminal.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
+    
+    public int obtenerNumTerminales() {
+        int resultado = 0;
+        Connection con;
+        PreparedStatement stmTerminal = null;
+        ResultSet rsTerminal;
+
+        con = this.getConexion();
+
+        String consulta = "select count(numero) from terminal";
+
+        try {
+            stmTerminal = con.prepareStatement(consulta);
+
+            rsTerminal = stmTerminal.executeQuery();
+            resultado = rsTerminal.getInt(0);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmTerminal.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
     }
 }
