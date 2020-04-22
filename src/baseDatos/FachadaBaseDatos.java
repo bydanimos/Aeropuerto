@@ -110,6 +110,10 @@ public class FachadaBaseDatos {
         this.daoUsuarios.modificarUsuario(u);
     }
     
+    public Usuario getUsuario(String id){
+        return this.daoUsuarios.getUsuario(id);
+    }
+    
     public void insertarAdministrador(Administrador ad){
         this.daoAdministradores.insertarAdministrador(ad);
     }
@@ -119,7 +123,100 @@ public class FachadaBaseDatos {
     public void modificarAdministrador(Administrador ad){
         this.daoAdministradores.modificarAdministrador(ad);
     }
+    public Administrador getAdministrador(String id){
+        return this.daoAdministradores.getAdministrador(id);
+    }
     
+    
+    public void insertarPersonalLaboral(PersonalLaboral pl){
+        this.daoPersonalLaboral.insertarPersonalLaboral(pl);
+    }
+    public void borrarPersonalLaboral(String dni){
+        this.daoPersonalLaboral.borrarPersonalLaboral(dni);
+    }
+    public void modificarPersonalLaboral(PersonalLaboral pl){
+        this.daoPersonalLaboral.modificarPersonalLaboral(pl);
+    }
+    public PersonalLaboral getPersonalLaboral(String dni){
+        return this.daoPersonalLaboral.getPersonalLaboral(dni);
+    }
+    
+    
+    public void insertarPersonalExterno(PersonalExterno pe){
+        this.daoPersonalExterno.insertarPersonalExterno(pe);
+    }
+    public void borrarPersonalExterno(String dni){
+        this.daoPersonalExterno.borrarPersonalExterno(dni);
+    }
+    public void modificarPersonalExterno(PersonalExterno pe){
+        this.daoPersonalExterno.modificarPersonalExterno(pe);
+    }
+    public PersonalExterno getPersonalExterno(String id){
+        return this.daoPersonalExterno.getPersonalExterno(id);
+    }
+    
+    public String getTipoUsuario(Usuario u){
+        if(this.getAdministrador(u.getDni())!=null){
+            return "Administrador";
+        }else if(this.getPersonalExterno(u.getDni())!=null){
+            return "Personal Externo";
+        }else if(this.getPersonalLaboral(u.getDni())!=null){
+            return "Personal Laboral";
+        }else{
+            return "Usuario";
+        }
+    }
+    
+    public void modificarUsuarioGeneral(Usuario u, String tipoAnterior, String tipoNuevo){
+        if(!tipoAnterior.equals(tipoNuevo)){
+            if(!tipoAnterior.equals("Usuario")){
+                this.borrarTipo(u,tipoAnterior);
+            }
+            if(!tipoNuevo.equals("Usuario")){
+                this.insertarTipo(u,tipoNuevo);
+            }
+        }
+        this.modificarUsuario(u);
+    }
+    
+    public void borrarTipo(Usuario u, String tipoAnterior){
+        switch(tipoAnterior){
+            case "Administrador":
+                this.borrarAdministrador(u.getDni());
+                break;
+            case "Personal Laboral":
+                this.borrarPersonalLaboral(u.getDni());
+                break;
+            case "Personal Externo":
+                this.borrarPersonalExterno(u.getDni());
+                break;
+        }
+    }
+    
+    public void insertarTipo(Usuario u, String tipoNuevo){
+        switch(tipoNuevo){
+            case "Administrador":
+                Administrador adm = new Administrador(u.getDni(),u.getId(),u.getContrasenha(),u.getCorreoElectronico(),u.getNombre(),
+                u.getApellido1(),u.getApellido2(),u.getSexo(),u.getPaisProcedencia(),u.getTelefono());
+                this.insertarAdministrador(adm);
+                break;
+            case "Personal Laboral":
+                PersonalLaboral pl = new PersonalLaboral(u.getDni(),u.getId(),u.getContrasenha(),u.getCorreoElectronico(),u.getNombre(),
+                u.getApellido1(),u.getApellido2(),u.getSexo(),u.getPaisProcedencia(),u.getTelefono());
+                this.insertarPersonalLaboral(pl);
+                break;
+            case "Personal Externo":
+                PersonalExterno pe = new PersonalExterno(u.getDni(),u.getId(),u.getContrasenha(),u.getCorreoElectronico(),u.getNombre(),
+                u.getApellido1(),u.getApellido2(),u.getSexo(),u.getPaisProcedencia(),u.getTelefono());
+                this.insertarPersonalExterno(pe);
+                break;
+        }
+    }
+    
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+        return this.daoUsuarios.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
+    }
+
     public boolean comprobarId(String text) {
         return this.daoUsuarios.comprobarId(text);
     }
@@ -144,121 +241,8 @@ public class FachadaBaseDatos {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
     
-    /*public java.util.List<Libro> consultarCatalogo(Integer id, String titulo, String isbn, String autor){
-        return daoLibros.consultarCatalogo(id, titulo, isbn, autor);
-    }
-
-    public Libro consultarLibro(Integer idLibro){
-        return daoLibros.consultarLibro(idLibro);
-    }
-    public java.util.List<Ejemplar> consultarEjemplaresLibro(Integer idLibro){
-        return daoLibros.consultarEjemplaresLibro(idLibro);
-    }
-    public java.util.List<String> obtenerRestoCategorias(Integer idLibro){
-        return daoLibros.obtenerRestoCategorias(idLibro);
-    }
-    public Integer insertarLibro(Libro libro){
-       return daoLibros.insertarLibro(libro);
-    }
-    public void borrarLibro(Integer idLibro){
-        daoLibros.borrarLibro(idLibro);
-    }
-    public void modificarLibro(Libro libro){
-         daoLibros.modificarLibro(libro);
-    }
-    public void modificarCategoriasLibro(Integer idLibro, java.util.List<String> categorias){
-       daoLibros.modificarCategoriasLibro(idLibro, categorias);
-    }
-    public void insertarEjemplarLibro(Integer idLibro, Ejemplar ejemplar){
-        daoLibros.insertarEjemplarLibro(idLibro, ejemplar);
-    }
-    public void borrarEjemplaresLibro(Integer idLibro, java.util.List<Integer> numsEjemplar){
-        daoLibros.borrarEjemplaresLibro(idLibro, numsEjemplar);
-    }
-    public void modificarEjemplarLibro(Integer idLibro, Ejemplar ejemplar){
-        daoLibros.modificarEjemplarLibro(idLibro, ejemplar);
-    }
-
-    public Usuario validarUsuario(String idUsuario, String clave){
-        return daoUsuarios.validarUsuario(idUsuario, clave);
-    }
-   
-    public java.util.List<Categoria> consultarCategorias(){
-        return daoCategorias.consultarCategorias();
-    }
-
     
-    public java.util.List<Usuario> consultarRegistroUsuarios(String id, String nombre){
-        return daoUsuarios.consultarRegistroUsuarios(id,nombre);
-    }
     
-    public void nuevoUsuario(Usuario u){
-        daoUsuarios.insertarUsuario(u);
-    }
-    
-    public void borrarUsuario(String id){
-        daoUsuarios.borrarUsuario(id);
-    }
-    
-    public void modificarUsuario(Usuario u){
-        daoUsuarios.modificarUsuario(u);
-    }
-    
-    public boolean existenPrestamos(Usuario u){
-        return daoPrestamos.existenPrestamos(u);
-    }
-    
-    public Integer getCuantosPrestamosVencidos(String id){
-        return daoPrestamos.getCuantosPrestamosVencidos(id);
-    }
-    
-    public Prestamo getPrestamo(Ejemplar ej){
-        return daoPrestamos.getPrestamo(ej);
-    }
-    
-    public void anhadirCategoria(String nombre, String descripcion){
-        daoCategorias.anhadirCategoria(nombre,descripcion);
-    }
-    
-    public void borrarCategoria(String nombre){
-        daoCategorias.borrarCategoria(nombre);
-    }
-    
-    public boolean tieneLibros(String nombre){
-        return daoCategorias.tieneLibros(nombre);
-    }
-    
-    /*public boolean tienePrestamosVencidos(String id){
-        return daoPrestamos.tienePrestamosVencidos(id);
-    }
-    
-    public void realizarPrestamo(Ejemplar ejemplar, String id){
-        daoPrestamos.realizarPrestamo(ejemplar,id);
-    }
-    
-    public void devolverEjemplar(Ejemplar ej){
-        daoPrestamos.devolverEjemplar(ej);
-    }
-    
-    public boolean existeCategoria(String nombre){
-        return daoCategorias.existeCategoria(nombre);
-    }
-    
-    public void modificarCategoria(String nombre, String descripcion){
-        daoCategorias.modificarCategoria(nombre, descripcion);
-    }
-    
-    public Categoria getCategoria(String nombre){
-        return daoCategorias.getCategoria(nombre);
-    }
-    
-    public boolean existeRegistroPrestamo(Ejemplar ej){
-        return daoPrestamos.existeRegistroPrestamo(ej);
-    }
-    
-    public Libro getLibro(Integer id){
-        return daoLibros.consultarLibro(id);
-    }*/
 
 
 }
