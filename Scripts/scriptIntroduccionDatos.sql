@@ -1,6 +1,6 @@
 --Insertase usuarios
 insert into usuario values (
-'48116361Q', 'eliPita', 'eliPita@gmail.com', crypt('eli', gen_salt('md5)), 'Eliseo','Pita','Vilariño','España','981666789','m'
+'48116361Q', 'eliPita', 'eliPita@gmail.com', crypt('eli', gen_salt('md5')), 'Eliseo','Pita','Vilariño','España','981666789','m'
 ); --Administrador
 insert into usuario values (
 '49204425L', 'antong', 'antong@gmail.com', crypt('ant', gen_salt('md5')), 'Anton','Gomez','Lopez','Galicia','604025148','o'
