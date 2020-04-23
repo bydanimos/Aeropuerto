@@ -149,6 +149,10 @@ public class PPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.va.pulsarAerolineas();
     }//GEN-LAST:event_BotonAerolineasActionPerformed
+    
+    private void BotonCochesActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        this.va.pulsarCoches();
+    }  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
