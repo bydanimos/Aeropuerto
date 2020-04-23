@@ -1,6 +1,7 @@
 package aplicacion;
 
 import aplicacion.aviones.Terminal;
+import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
@@ -35,5 +36,9 @@ public class GestionServicios {
 
     public ArrayList<Terminal> obtenerTerminales() {
         return this.fbd.obtenerTerminales();
+    }
+
+    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
+        return this.fbd.obtenerCoches(matricula, numPlazas, modelo);
     }
 }

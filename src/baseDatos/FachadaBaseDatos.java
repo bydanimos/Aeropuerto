@@ -232,6 +232,7 @@ public class FachadaBaseDatos {
         return this.daoUsuarios.comprobarId(text);
     }
 
+    // -------------------------------------------------------------------------
     // -------------------------------- Tiendas --------------------------------
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         return this.daoServicios.obtenerTiendas(nombre, codigo, terminal);
@@ -268,6 +269,12 @@ public class FachadaBaseDatos {
     
     public boolean guardarVuelo(Vuelo vuelo){
         return this.daoVuelos.guardarVuelo(vuelo);
+    }
+
+    // -------------------------------------------------------------------------
+    // --------------------------------- Coches --------------------------------
+    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
+        return this.daoServicios.obtenerCoches(modelo, numPlazas, modelo);
     }
 
 }

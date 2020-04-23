@@ -3,10 +3,10 @@ package gui;
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
 import aplicacion.aviones.Terminal;
+import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -297,5 +297,10 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PCoches(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
+        ((PCoches) this.panelActual).buscarCoches();
+    }
+    
+    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
+        return this.fa.obtenerCoches(matricula, numPlazas, modelo);
     }
 }

@@ -3,6 +3,7 @@ package aplicacion;
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
 import aplicacion.aviones.Terminal;
+import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
@@ -135,11 +136,13 @@ public class FachadaAplicacion {
     }
 
     // -------------------------------------------------------------------------
-    // ------------------------------- Aerolineas --------------------------------
-    
-    
+    // ------------------------------- Aerolineas --------------------------------    
     public List<Aerolinea> obtenerAerolineas (String nombre){
         return this.ca.obtenerAerolineas(nombre);
+    }
+
+    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
+        return this.cs.obtenerCoches(matricula, numPlazas, modelo);
     }
   
 }

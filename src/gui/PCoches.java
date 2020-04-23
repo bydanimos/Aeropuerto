@@ -135,4 +135,18 @@ public class PCoches extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> numPlazasComboBox;
     private javax.swing.JLabel numPlazasLabel;
     // End of variables declaration//GEN-END:variables
+
+    public void buscarCoches() {
+        ModeloTablaCoches m;
+        m = (ModeloTablaCoches) this.cochesTable.getModel();
+        int itemSelected = this.numPlazasComboBox.getSelectedIndex();
+        String matricula = this.matriculaTextField.getText();
+        int numPlazas = this.numPlazasComboBox.getSelectedIndex();
+        String modelo = this.modeloTextField.getText();
+        
+        this.va.obtenerCoches(matricula, numPlazas, modelo);
+        if (m.getRowCount() > 0) {
+            this.cochesTable.setRowSelectionInterval(0, 0);
+        }
+    }
 }

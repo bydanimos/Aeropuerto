@@ -5,6 +5,7 @@
 package baseDatos;
 
 import aplicacion.aviones.Terminal;
+import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class DAOServicios extends AbstractDAO {
         super.setFachadaAplicacion(fa);
     }
 
+    // -------------------------------------------------------------------------
     // ------------------------------- Tiendas ---------------------------------
-
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         List<Tienda> resultado = new ArrayList<>();
         ArrayList<Terminal> terminales = this.obtenerTerminales();
@@ -162,7 +163,6 @@ public class DAOServicios extends AbstractDAO {
     
     // -------------------------------------------------------------------------
     // ------------------------------ Terminales -------------------------------
-
     public ArrayList<Terminal> obtenerTerminales() {
         ArrayList<Terminal> resultado = new ArrayList<>();
         Terminal terminalActual;
@@ -232,4 +232,47 @@ public class DAOServicios extends AbstractDAO {
     }
     
     // -------------------------------------------------------------------------
+    // --------------------------------- Coches --------------------------------
+    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
+        ArrayList<CocheAlquiler> resultado = new ArrayList<>();
+        CocheAlquiler cocheActual;
+        Connection con;
+        PreparedStatement stmCoche = null;
+        ResultSet rsCoche;
+
+        con = this.getConexion();
+
+        String consulta = "select numero, primeraPuerta, ultimaPuerta "
+                + "from terminal "
+                + "order by numero";
+
+        try {
+            stmCoche = con.prepareStatement(consulta);
+
+            rsCoche = stmCoche.executeQuery();
+            while (rsCoche.next()) {
+
+                cocheActual = new CocheAlquiler(rsCoche.getString("matricula"),
+                        rsCoche.getString("modelo"), rsCoche.getInt("caballos"),
+                        rsCoche.getFloat("preciopordia"), 
+                        rsCoche.getString("tipocombustible"), 
+                        rsCoche.getInt("numeroplazas"), 
+                        rsCoche.getInt("numeropuertas"), 
+                        rsCoche.getBoolean("retirado"));
+
+                resultado.add(cocheActual);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmCoche.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
 }
