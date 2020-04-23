@@ -72,6 +72,15 @@ public class ModeloTablaAerolineas extends AbstractTableModel{
         }
         return resultado;
     }
+    
+    @Override
+    public void setValueAt(Object v, int row, int col){
+        switch (col){
+            case 1: aerolineas.get(row).setPaisSede((String) v); break;
+            case 2: aerolineas.get(row).setPrecioBaseMaleta((Float) v);break;
+            case 3: aerolineas.get(row).setPesoBaseMaleta((Float) v);break;
+        }
+    }
 
     public void setFilas(java.util.List<Aerolinea> aerolineas){
         this.aerolineas=aerolineas;
@@ -80,5 +89,15 @@ public class ModeloTablaAerolineas extends AbstractTableModel{
 
     public Aerolinea obtenerAerolinea(int i){
         return this.aerolineas.get(i);
+    }
+    
+    public void anhadirAerolinea(Aerolinea a){
+        this.aerolineas.add(a);
+        fireTableRowsInserted(this.aerolineas.size()-1, this.aerolineas.size()-1);
+    }
+    
+    public void borrarAerolinea(int i){
+        this.aerolineas.remove(i);
+        fireTableRowsDeleted(i, i);
     }
 }
