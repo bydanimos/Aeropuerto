@@ -111,4 +111,172 @@ public class DAOAviones extends AbstractDAO {
         }
         return resultado;
     }
+   
+   public void modificarAerolinea(Aerolinea aerolinea){
+        Connection con;
+        PreparedStatement stmAerolinea = null;
+
+        con = super.getConexion();
+
+        try {
+            stmAerolinea = con.prepareStatement("update aerolinea "
+                    + "set paissede=?, "
+                    + "    pesobasemaleta=?, "
+                    + "    preciobasemaleta=? "
+                    + "where nombre=?");
+
+            stmAerolinea.setString(1, aerolinea.getPaisSede());
+            stmAerolinea.setFloat(2, aerolinea.getPesoBaseMaleta());
+            stmAerolinea.setFloat(3, aerolinea.getPrecioBaseMaleta());
+            stmAerolinea.setString(4, aerolinea.getNombre());
+
+            stmAerolinea.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmAerolinea.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+    
+    public Aerolinea getAerolinea(String nombre) {
+        Aerolinea resultado = null;
+        Connection con;
+        PreparedStatement stmAerolineas = null;
+        ResultSet rsAerolinea;
+
+        con = this.getConexion();
+
+        String consulta = "select nombre, paissede, pesobasemaleta, preciobasemaleta " +
+                "from aerolinea " +
+                "where nombre = ?";
+
+        try {
+            stmAerolineas = con.prepareStatement(consulta);
+            stmAerolineas.setString(1, nombre);
+
+            rsAerolinea = stmAerolineas.executeQuery();
+            while (rsAerolinea.next()) {
+
+                resultado = new Aerolinea(rsAerolinea.getString("nombre"),rsAerolinea.getString("paissede"),rsAerolinea.getFloat("preciobasemaleta"),rsAerolinea.getFloat("pesobasemaleta"));
+                
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmAerolineas.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
+    
+    public void anhadirAerolinea(Aerolinea aerolinea){
+        Connection con;
+        PreparedStatement stmAerolinea = null;
+        ResultSet rsAerolinea;
+
+        con = super.getConexion();
+
+        try {
+            stmAerolinea = con.prepareStatement("insert into aerolinea(nombre,paissede,preciobasemaleta,pesobasemaleta ) "
+                    + "values (?,?,?,?)");
+            stmAerolinea.setString(1, aerolinea.getNombre());
+            stmAerolinea.setString(2, aerolinea.getPaisSede());
+            stmAerolinea.setFloat(3, aerolinea.getPrecioBaseMaleta());
+            stmAerolinea.setFloat(4, aerolinea.getPesoBaseMaleta());
+            
+            stmAerolinea.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmAerolinea.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+    
+    public void eliminarAerolineas(List<Aerolinea> aerolineas) {
+        Connection con;
+        PreparedStatement stmAerolinea = null;
+        con = super.getConexion();
+
+        try {
+            for(Aerolinea a: aerolineas){
+                stmAerolinea = null;
+                stmAerolinea = con.prepareStatement("delete from aerolinea where nombre = ?");
+                stmAerolinea.setString(1, a.getNombre());
+                stmAerolinea.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmAerolinea.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+    
+    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+        boolean resultado = true;
+        
+        Connection con;
+        PreparedStatement stmAerolineas = null;
+        ResultSet rsAerolinea;
+
+        con = this.getConexion();
+
+        String consulta1 = "select * " +
+                "from vuelo " +
+                "where avion in (select codigo "+
+                                 "from avion " +
+                                 "where aerolinea = ? )";
+        String consulta2 = "select * " +
+                "from avion " +
+                "where aerolinea = ? ";
+
+        try {
+            stmAerolineas = con.prepareStatement(consulta1);
+            stmAerolineas.setString(1, aerolinea.getNombre());
+
+            rsAerolinea = stmAerolineas.executeQuery();
+            if (rsAerolinea.next()) {
+                resultado = false;
+            }else{
+                stmAerolineas = con.prepareStatement(consulta2);
+                stmAerolineas.setString(1, aerolinea.getNombre());
+
+                rsAerolinea = stmAerolineas.executeQuery();
+                if(rsAerolinea.next()){
+                    resultado = false;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmAerolineas.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+        
+    }
 }
