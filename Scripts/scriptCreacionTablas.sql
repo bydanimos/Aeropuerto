@@ -198,6 +198,7 @@ create table cocheAlquiler
     nPuertas integer not null,
     precioPorDia float not null,
     tipoCombustible varchar(15) not null,
+    retirado boolean not null,
     
     primary key(matricula)
 );
