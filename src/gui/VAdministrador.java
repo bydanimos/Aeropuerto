@@ -290,5 +290,12 @@ public class VAdministrador extends javax.swing.JFrame {
     public boolean guardarVuelo(Vuelo vuelo){
         return this.fa.guardarVuelo(vuelo);
     }
-
+    
+    // -------------------------------- Coches ---------------------------------
+    public void pulsarCoches() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PCoches(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
 }
