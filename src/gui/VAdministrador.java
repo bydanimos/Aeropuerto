@@ -75,6 +75,7 @@ public class VAdministrador extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1072, 500));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -181,6 +182,8 @@ public class VAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void adminLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabel1MouseClicked
+        this.setSize(this.getWidth(), 500);
+        
         this.panelActual.setVisible(false);
         this.panelActual = new PPrincipal(this);
         this.panelPrincipalAdministrador.add(this.panelActual);

@@ -231,7 +231,7 @@ public class PVuelos extends javax.swing.JPanel {
                     .addGroup(gestionPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         editarNuevoPanel.setPreferredSize(new java.awt.Dimension(781, 590));
@@ -484,7 +484,7 @@ public class PVuelos extends javax.swing.JPanel {
                             .addComponent(canceladoCheckbox)
                             .addComponent(botonCancelar)
                             .addComponent(botonGuardar))
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -547,6 +547,8 @@ public class PVuelos extends javax.swing.JPanel {
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
+        this.va.setSize(this.va.getWidth(), 690);
+        
         this.codigoAvionText.setEditable(false);
         this.precioPremiumText.setEditable(false);
         this.codigoText.setEditable(true);
@@ -560,6 +562,8 @@ public class PVuelos extends javax.swing.JPanel {
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.va.setSize(this.va.getWidth(), 500);
+        
         this.editarNuevoPanel.setVisible(false);
         this.gestionPanel.setVisible(true);
     }//GEN-LAST:event_botonCancelarActionPerformed
@@ -585,6 +589,8 @@ public class PVuelos extends javax.swing.JPanel {
     }//GEN-LAST:event_terminalOpcionesActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        this.va.setSize(this.va.getWidth(), 690);
+        
         this.codigoAvionText.setEditable(false);
         this.precioPremiumText.setEditable(false);
         this.codigoText.setEditable(false);
