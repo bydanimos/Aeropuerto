@@ -188,15 +188,15 @@ insert into tiendas(terminal, tipoVentas, nombre) values
 --Insertar en cochealquiler
 insert into cochealquiler values
 (
-    '8432DFG', 'Seat Ibiza', 75, 5, 5, 30, 'Gasolina'
+    '8432DFG', 'Seat Ibiza', 75, 5, 5, 30, 'Gasolina', 'false'
 );
 insert into cochealquiler values
 (
-    '9127BBN', 'Renault Clio', 72, 5, 3, 30, 'Gasolina'
+    '9127BBN', 'Renault Clio', 72, 5, 3, 30, 'Gasolina', 'false'
 );
 insert into cochealquiler values
 (
-    '7385CFT', 'Audi A3', 160, 5, 5, 30, 'Diesel'
+    '7385CFT', 'Audi A3', 160, 5, 5, 30, 'Diesel', 'false'
 );
 
 --Insertar en alquilar
