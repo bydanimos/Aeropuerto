@@ -270,6 +270,26 @@ public class FachadaBaseDatos {
     public boolean guardarVuelo(Vuelo vuelo){
         return this.daoVuelos.guardarVuelo(vuelo);
     }
+    
+    ublic void modificarAerolinea(Aerolinea aerolinea){
+        this.daoAviones.modificarAerolinea(aerolinea);
+    }
+    
+    public Aerolinea getAerolinea(String nombre){
+        return this.daoAviones.getAerolinea(nombre);
+    }
+    
+    public void anhadirAerolinea(Aerolinea aerolinea){
+        this.daoAviones.anhadirAerolinea(aerolinea);
+    }
+    
+    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+        this.daoAviones.eliminarAerolineas(aerolineas);
+    }
+    
+    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+        return this.daoAviones.esAerolineaBorrable(aerolinea);
+    }
 
     // -------------------------------------------------------------------------
     // --------------------------------- Coches --------------------------------
