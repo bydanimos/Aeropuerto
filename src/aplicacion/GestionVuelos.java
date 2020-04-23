@@ -19,4 +19,8 @@ public class GestionVuelos {
     public java.util.List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada){
         return this.fbd.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
+    
+    public boolean guardarVuelo(Vuelo vuelo){
+        return this.fbd.guardarVuelo(vuelo);
+    }
 }

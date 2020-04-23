@@ -77,6 +77,10 @@ public class FachadaAplicacion {
     public ArrayList<Terminal> obtenerTerminales() {
         return this.cs.obtenerTerminales();
     }
+    
+    public boolean guardarVuelo(Vuelo vuelo){
+        return this.cv.guardarVuelo(vuelo);
+    }
 
     // -------------------------------------------------------------------------
     // ------------------------------- Tiendas ---------------------------------

@@ -283,5 +283,9 @@ public class VAdministrador extends javax.swing.JFrame {
     public List<Aerolinea> obtenerAerolineas (String nombre){
         return this.fa.obtenerAerolineas(nombre);
     }
+    
+    public boolean guardarVuelo(Vuelo vuelo){
+        return this.fa.guardarVuelo(vuelo);
+    }
 
 }

@@ -265,5 +265,9 @@ public class FachadaBaseDatos {
     public List<Aerolinea> obtenerAerolineas(String nombre){
         return this.daoAviones.obtenerAerolineas(nombre);
     }
+    
+    public boolean guardarVuelo(Vuelo vuelo){
+        return this.daoVuelos.guardarVuelo(vuelo);
+    }
 
 }
