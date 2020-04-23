@@ -290,6 +290,25 @@ public class VAdministrador extends javax.swing.JFrame {
     public boolean guardarVuelo(Vuelo vuelo){
         return this.fa.guardarVuelo(vuelo);
     }
+    public void modificarAerolinea(Aerolinea aerolinea){
+        this.fa.modificarAerolinea(aerolinea);
+    }
+    
+    public Aerolinea getAerolinea(String nombre){
+        return this.fa.getAerolinea(nombre);
+    }
+    
+    public void anhadirAerolinea(Aerolinea aerolinea){
+        this.fa.anhadirAerolinea(aerolinea);
+    }
+    
+    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+        this.fa.eliminarAerolineas(aerolineas);
+    }
+    
+    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+        return this.fa.esAerolineaBorrable(aerolinea);
+    }
     
     // -------------------------------- Coches ---------------------------------
     public void pulsarCoches() {
