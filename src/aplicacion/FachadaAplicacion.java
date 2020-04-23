@@ -140,9 +140,25 @@ public class FachadaAplicacion {
     public List<Aerolinea> obtenerAerolineas (String nombre){
         return this.ca.obtenerAerolineas(nombre);
     }
-
-    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
-        return this.cs.obtenerCoches(matricula, numPlazas, modelo);
+    
+    public void modificarAerolinea(Aerolinea aerolinea){
+        this.ca.modificarAerolinea(aerolinea);
+    }
+    
+    public Aerolinea getAerolinea(String nombre){
+        return this.ca.getAerolinea(nombre);
+    }
+    
+    public void anhadirAerolinea(Aerolinea aerolinea){
+        this.ca.anhadirAerolinea(aerolinea);
+    }
+    
+    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+        this.ca.eliminarAerolineas(aerolineas);
+    }
+    
+    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+        return this.ca.esAerolineaBorrable(aerolinea);
     }
   
 }
