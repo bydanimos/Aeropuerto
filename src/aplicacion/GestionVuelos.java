@@ -3,13 +3,12 @@ package aplicacion;
 import aplicacion.vuelos.Vuelo;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class GestionVuelos {
 
-    FachadaGui fgui;
-    FachadaBaseDatos fbd;
+    private final FachadaGui fgui;
+    private finalFachadaBaseDatos fbd;
 
     public GestionVuelos(FachadaGui fgui, FachadaBaseDatos fbd) {
         this.fgui = fgui;
@@ -20,7 +19,7 @@ public class GestionVuelos {
         return this.fbd.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
     
-    public boolean guardarVuelo(Vuelo vuelo){
+    public boolean guardarVuelo(Vuelo vuelo) {
         return this.fbd.guardarVuelo(vuelo);
     }
 }
