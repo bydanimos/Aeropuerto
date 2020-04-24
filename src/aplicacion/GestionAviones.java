@@ -8,8 +8,8 @@ import java.util.List;
 
 public class GestionAviones {
 
-    FachadaGui fgui;
-    FachadaBaseDatos fbd;
+    private final FachadaGui fgui;
+    private final FachadaBaseDatos fbd;
 
     public GestionAviones(FachadaGui fgui, FachadaBaseDatos fbd) {
         this.fgui = fgui;
@@ -20,26 +20,26 @@ public class GestionAviones {
         return this.fbd.obtenerAviones(codigo, aerolinea, retirado);
     }
     
-    public List<Aerolinea> obtenerAerolineas(String nombre){
+    public List<Aerolinea> obtenerAerolineas(String nombre) {
         return this.fbd.obtenerAerolineas(nombre);
     }
-    public void modificarAerolinea(Aerolinea aerolinea){
+    public void modificarAerolinea(Aerolinea aerolinea) {
         this.fbd.modificarAerolinea(aerolinea);
     }
     
-    public Aerolinea getAerolinea(String nombre){
+    public Aerolinea getAerolinea(String nombre) {
         return this.fbd.getAerolinea(nombre);
     }
     
-    public void anhadirAerolinea(Aerolinea aerolinea){
+    public void anhadirAerolinea(Aerolinea aerolinea) {
         this.fbd.anhadirAerolinea(aerolinea);
     }
     
-    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+    public void eliminarAerolineas(List<Aerolinea> aerolineas) {
         this.fbd.eliminarAerolineas(aerolineas);
     }
     
-    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+    public boolean esAerolineaBorrable(Aerolinea aerolinea) {
         return this.fbd.esAerolineaBorrable(aerolinea);
     }
 }
