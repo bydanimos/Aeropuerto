@@ -1,16 +1,13 @@
 package aplicacion;
 
 import aplicacion.usuarios.*;
-import aplicacion.aviones.*;
-import aplicacion.servicios.*;
-import aplicacion.vuelos.*;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
 
 public class GestionUsuarios {
 
-    FachadaGui fgui;
-    FachadaBaseDatos fbd;
+    private final FachadaGui fgui;
+    private final FachadaBaseDatos fbd;
 
     public GestionUsuarios(FachadaGui fgui, FachadaBaseDatos fbd) {
         this.fgui = fgui;
@@ -43,15 +40,15 @@ public class GestionUsuarios {
         this.fgui.nuevoUsuario();
     }
     
-    public boolean registrarUsuario(Usuario usuario){
+    public boolean registrarUsuario(Usuario usuario) {
         return this.fbd.registrarUsuario(usuario);
     }
     
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.fbd.consultarRegistroUsuarios(id,dni,nombre,primerApellido,segundoApellido);
+        return this.fbd.consultarRegistroUsuarios(id, dni, nombre, primerApellido, segundoApellido);
     }
 
-    boolean comprobarId(String text) {
+    public boolean comprobarId(String text) {
         return this.fbd.comprobarId(text);
     }
 
@@ -59,11 +56,11 @@ public class GestionUsuarios {
         return fbd.getTipoUsuario(u);
     }
     
-    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo){
-        this.fbd.modificarUsuarioGeneral(u,tipoAnterior,tipoNuevo);
+    public void modificarUsuario(Usuario u, String tipoAnterior, String tipoNuevo) {
+        this.fbd.modificarUsuarioGeneral(u, tipoAnterior, tipoNuevo);
     }
     
     public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        return this.fbd.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
+        return this.fbd.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
 }
