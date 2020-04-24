@@ -271,7 +271,7 @@ public class FachadaBaseDatos {
         return this.daoVuelos.guardarVuelo(vuelo);
     }
     
-    ublic void modificarAerolinea(Aerolinea aerolinea){
+    public void modificarAerolinea(Aerolinea aerolinea){
         this.daoAviones.modificarAerolinea(aerolinea);
     }
     
