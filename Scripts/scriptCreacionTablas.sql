@@ -1,3 +1,20 @@
+--Función que devuelve 1 si la fecha es en primavera, 2 para verano, 3 para otoño y 4 para invierno
+create function Estacion (fecha timestamp)
+returns integer as $$
+declare mes integer; 
+		dia integer;
+begin
+mes=EXTRACT(MONTH FROM cast(fecha as date));
+dia=EXTRACT(DAY FROM cast(fecha as date));
+
+if(mes=4 or mes=5 or (mes=3 and dia>=21) or (mes=6 and dia<21)) then return 1;
+elseif (mes=7 or mes=8 or (mes=6 and dia>=21) or (mes=9 and dia<21)) then return 2;
+elseif (mes=10 or mes=11 or (mes=9 and dia>=21) or (mes=12 and dia<21)) then return 3;
+elseif (mes=1 or mes=2 or (mes=12 and dia>=21) or (mes=3 and dia<21)) then return 4;
+end if; 
+end;
+$$ language plpgsql;
+
 -- Función para las contraseñas
 CREATE EXTENSION pgcrypto;
 -- función para comprobar que el dni es correcto
@@ -198,7 +215,7 @@ create table cocheAlquiler
     nPuertas integer not null,
     precioPorDia float not null,
     tipoCombustible varchar(15) not null,
-    retirado boolean not null,
+    retirado boolean not null default false,
     
     primary key(matricula)
 );
