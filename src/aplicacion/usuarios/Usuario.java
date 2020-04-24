@@ -26,6 +26,19 @@ public class Usuario {
         this.paisProcedencia = paisProcedencia;
         this.telefono = telefono;
     }
+    
+    public Usuario(String dni, String id, String correoElectronico, String nombre,
+                   String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, Integer telefono) {
+        this.dni = dni;
+        this.id = id;
+        this.correoElectronico = correoElectronico;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.sexo = sexo;
+        this.paisProcedencia = paisProcedencia;
+        this.telefono = telefono;
+    }
 
     public String getDni() {
         return dni;
