@@ -191,7 +191,7 @@ public class DAOUsuarios extends AbstractDAO {
                     + "    primerapellido=?, "
                     + "    segundoapellido=?, "
                     + "    correoelectronico=?, "
-                    + "    contrasenha=crypt(?, gen_salt('md5')), "
+                    //+ "    contrasenha=crypt(?, gen_salt('md5')), "
                     + "    paisprocedencia=?, "
                     + "    telefono=?, "
                     + "    sexo=? "
@@ -202,9 +202,9 @@ public class DAOUsuarios extends AbstractDAO {
             stmUsuario.setString(3, u.getApellido1());
             stmUsuario.setString(4, u.getApellido2());
             stmUsuario.setString(5, u.getCorreoElectronico());
-            stmUsuario.setString(6, u.getContrasenha());
-            stmUsuario.setString(7, u.getPaisProcedencia());
-            stmUsuario.setInt(8, u.getTelefono());
+            //stmUsuario.setString(6, u.getContrasenha());
+            stmUsuario.setString(6, u.getPaisProcedencia());
+            stmUsuario.setInt(7, u.getTelefono());
 
             String ts;
 
@@ -223,8 +223,8 @@ public class DAOUsuarios extends AbstractDAO {
                         break;
                 }
             }
-            stmUsuario.setString(9, ts);
-            stmUsuario.setString(10,u.getDni());
+            stmUsuario.setString(8, ts);
+            stmUsuario.setString(9,u.getDni());
 
             stmUsuario.executeUpdate();
 
