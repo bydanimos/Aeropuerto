@@ -1,5 +1,6 @@
-
 package gui;
+
+import aplicacion.servicios.CocheAlquiler;
 
 /**
  *
@@ -8,16 +9,21 @@ package gui;
 public class PCoches extends javax.swing.JPanel {
 
     private final VAdministrador va;
+    private boolean borrarPulsado;
+    private boolean nuevoPulsado;
+
     /**
      * Creates new form PCoches
+     *
      * @param va
      */
     public PCoches(VAdministrador va) {
-        this.va = va;
+        this.va  = va;
+        this.borrarPulsado = false;
+        this.nuevoPulsado = false;
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,13 +53,41 @@ public class PCoches extends javax.swing.JPanel {
         numPlazasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "4", "5" }));
 
         cochesTable.setModel(new ModeloTablaCoches());
+        cochesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cochesTableMouseClicked(evt);
+            }
+        });
+        cochesTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cochesTableKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cochesTableKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(cochesTable);
 
         eliminarButton.setText("Eliminar");
+        eliminarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarButtonActionPerformed(evt);
+            }
+        });
 
         nuevoButton.setText("Nuevo");
+        nuevoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoButtonActionPerformed(evt);
+            }
+        });
 
         actualizarButton.setText("Actualizar");
+        actualizarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarButtonActionPerformed(evt);
+            }
+        });
 
         cochesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cochesLabel.setText("<html>\n<h1><CENTER> Coches </CENTER></h1>\n</html>");
@@ -119,6 +153,30 @@ public class PCoches extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cochesTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cochesTableKeyPressed
+        // actualizarSeleccionado();
+    }//GEN-LAST:event_cochesTableKeyPressed
+
+    private void cochesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cochesTableMouseClicked
+        actualizarSeleccionado();
+    }//GEN-LAST:event_cochesTableMouseClicked
+
+    private void cochesTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cochesTableKeyReleased
+        actualizarSeleccionado();
+    }//GEN-LAST:event_cochesTableKeyReleased
+
+    private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
+        borrarCoche();
+    }//GEN-LAST:event_eliminarButtonActionPerformed
+
+    private void actualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarButtonActionPerformed
+        actualizarTabla();
+    }//GEN-LAST:event_actualizarButtonActionPerformed
+
+    private void nuevoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoButtonActionPerformed
+        nuevoCoche();
+    }//GEN-LAST:event_nuevoButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarButton;
@@ -136,17 +194,102 @@ public class PCoches extends javax.swing.JPanel {
     private javax.swing.JLabel numPlazasLabel;
     // End of variables declaration//GEN-END:variables
 
-    public void buscarCoches() {
+    protected void buscarCoches() {
         ModeloTablaCoches m;
         m = (ModeloTablaCoches) this.cochesTable.getModel();
         int itemSelected = this.numPlazasComboBox.getSelectedIndex();
         String matricula = this.matriculaTextField.getText();
-        int numPlazas = this.numPlazasComboBox.getSelectedIndex();
         String modelo = this.modeloTextField.getText();
-        
-        this.va.obtenerCoches(matricula, numPlazas, modelo);
+        int numPlazas = this.numPlazasComboBox.getSelectedIndex();
+
+        m.setFilas(this.va.obtenerCoches(matricula, numPlazas, modelo));
         if (m.getRowCount() > 0) {
             this.cochesTable.setRowSelectionInterval(0, 0);
+            // actualizarSeleccionado();
         }
+    }
+
+    private void actualizarSeleccionado() {
+        ModeloTablaCoches m;
+        m = (ModeloTablaCoches) this.cochesTable.getModel();
+
+        int fila = this.cochesTable.getSelectedRow();
+        if (fila != -1) {
+            this.matriculaTextField.setText("" + m.getValueAt(fila, 0));
+            this.modeloTextField.setText("" + m.getValueAt(fila, 1));
+            int numCombo = seleccionarCombo((int) m.getValueAt(fila, 5));
+            this.numPlazasComboBox.setSelectedIndex(numCombo);
+        }
+    }
+
+    private int seleccionarCombo(int i) {
+        switch (i) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 4:
+                return 3;
+            case 5:
+                return 4;
+            default:
+                return 0;
+        }
+    }
+
+    private void borrarCoche() {
+        ModeloTablaCoches m;
+        m = (ModeloTablaCoches) this.cochesTable.getModel();
+
+        int fila = this.cochesTable.getSelectedRow();
+        String matricula;
+        if (fila != -1) {
+            matricula = (String) m.getValueAt(fila, 0);
+            this.va.borrarCocheAlquiler(matricula);
+        }
+        if (!this.borrarPulsado) {
+            this.borrarPulsado = true;
+        }
+    }
+
+    private void actualizarTabla() {
+        this.borrarPulsado = false;
+        this.eliminarButton.setEnabled(true);
+        this.buscarButton.setEnabled(true);
+        ModeloTablaCoches m;
+        m = (ModeloTablaCoches) this.cochesTable.getModel();
+        if (this.nuevoPulsado) {
+            int fila = m.getRowCount() - 1;
+            String matricula = "" + m.getValueAt(fila, 0);
+            String modelo = "" + m.getValueAt(fila, 1);
+            int caballos = (int) m.getValueAt(fila, 2);
+            float precio = (float) m.getValueAt(fila, 3);
+            String combustible = "" + m.getValueAt(fila, 4);
+            int nplazas = (int) m.getValueAt(fila, 5);
+            int npuertas = (int) m.getValueAt(fila, 6);
+            CocheAlquiler coche = new CocheAlquiler(matricula, modelo, caballos, 
+                    precio, combustible, nplazas, npuertas, false);
+            this.nuevoPulsado = false;
+            this.va.insertarCocheAlquiler(coche);
+        }
+        m.setFilas(this.va.obtenerCoches("", 0, ""));
+        if (m.getRowCount() > 0) {
+            this.cochesTable.setRowSelectionInterval(0, 0);
+            actualizarSeleccionado();
+        }
+    }
+
+    private void nuevoCoche() {
+        this.nuevoPulsado = true;
+        ModeloTablaCoches m;
+        this.cochesTable.addRowSelectionInterval(0, 1);
+        m = (ModeloTablaCoches) this.cochesTable.getModel();
+        CocheAlquiler co;
+        co = new CocheAlquiler(null, null, 0, 0, null, 0, 0, false);
+        m.nuevoCoche(co);
+        int fila = m.getRowCount() - 1;
+        this.cochesTable.setRowSelectionInterval(fila, fila);
+        this.eliminarButton.setEnabled(false);
+        this.buscarButton.setEnabled(false);
     }
 }

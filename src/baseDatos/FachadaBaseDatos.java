@@ -249,8 +249,9 @@ public class FachadaBaseDatos {
     public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         this.daoServicios.editarTienda(terminal, codigo, nombre, tipo);
     }
+    
     // -------------------------------------------------------------------------
-
+    // --------------------------------- Vuelos --------------------------------
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
@@ -258,19 +259,18 @@ public class FachadaBaseDatos {
     public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
         return this.daoAviones.obtenerAviones(codigo, aerolinea, retirado);
     }
-
+    
+    // -------------------------------------------------------------------------
+    // ------------------------------- Terminales ------------------------------
     public ArrayList<Terminal> obtenerTerminales() {
         return this.daoServicios.obtenerTerminales();
-    }
-    
-    public List<Aerolinea> obtenerAerolineas(String nombre){
-        return this.daoAviones.obtenerAerolineas(nombre);
     }
     
     public boolean guardarVuelo(Vuelo vuelo){
         return this.daoVuelos.guardarVuelo(vuelo);
     }
-    
+    // -------------------------------------------------------------------------
+    // ------------------------------- Aerolíneas ------------------------------
     public void modificarAerolinea(Aerolinea aerolinea){
         this.daoAviones.modificarAerolinea(aerolinea);
     }
@@ -290,11 +290,23 @@ public class FachadaBaseDatos {
     public boolean esAerolineaBorrable(Aerolinea aerolinea){
         return this.daoAviones.esAerolineaBorrable(aerolinea);
     }
+    
+    public List<Aerolinea> obtenerAerolineas(String nombre){
+        return this.daoAviones.obtenerAerolineas(nombre);
+    }
 
     // -------------------------------------------------------------------------
     // --------------------------------- Coches --------------------------------
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.daoServicios.obtenerCoches(modelo, numPlazas, modelo);
+    }
+
+    public void borrarCocheAlquiler(String matricula) {
+        this.daoServicios.borrarCocheAlquiler(matricula);
+    }
+
+    public void insertarCocheAlquiler(CocheAlquiler co) {
+        this.daoServicios.insertarCocheAlquiler(co);
     }
 
 }

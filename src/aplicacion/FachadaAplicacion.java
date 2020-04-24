@@ -161,10 +161,19 @@ public class FachadaAplicacion {
         return this.ca.esAerolineaBorrable(aerolinea);
     }
     
+    // -------------------------------------------------------------------------
     // -------------------------------- Coches ---------------------------------
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.cs.obtenerCoches(matricula, numPlazas, modelo);
     }
+    
+    public void borrarCocheAlquiler(String matricula) {
+        this.cs.borrarCocheAlquiler(matricula);
+    }
+    
+    public void insertarCocheAlquiler(CocheAlquiler co) {
+        this.cs.insertarCocheAlquiler(co);
+    }
     // -------------------------------------------------------------------------
-  
+
 }

@@ -17,11 +17,12 @@ public class VAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form VAdministrador
      */
-    private aplicacion.FachadaAplicacion fa;
-    JPanel panelActual;
+    private final aplicacion.FachadaAplicacion fa;
+    private JPanel panelActual;
 
     /**
      * Creates new form VAdministrador
+     * @param fa
      */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
@@ -204,6 +205,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel vuelosLabel;
     // End of variables declaration//GEN-END:variables
 
+    // -------------------------------------------------------------------------
     // ------------------------------- Usuarios -------------------------------
     public void pulsarUsuarios() {
         this.panelActual.setVisible(false);
@@ -229,7 +231,8 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
 
-    // ------------------------------- Tiendas -------------------------------
+    // -------------------------------------------------------------------------
+     // ------------------------------- Tiendas -------------------------------
     public void pulsarTiendas() {
         this.panelActual.setVisible(false);
         this.panelActual = new PTiendas(this);
@@ -254,6 +257,7 @@ public class VAdministrador extends javax.swing.JFrame {
         this.fa.borrarTienda(terminal, codigo);
     }
 
+    // -------------------------------------------------------------------------
     // ------------------------------- Vuelos -------------------------------
     public void pulsarVuelos() {
         this.panelActual.setVisible(false);
@@ -274,8 +278,8 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.obtenerTerminales();
     }
     
-    // ------------------------------- Aerolineas -------------------------------
-    
+    // -------------------------------------------------------------------------
+    // ------------------------------- Aerolineas ------------------------------
     public void pulsarAerolineas() {
         this.panelActual.setVisible(false);
         this.panelActual = new PAerolineas(this);
@@ -310,6 +314,7 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.esAerolineaBorrable(aerolinea);
     }
     
+    // -------------------------------------------------------------------------
     // -------------------------------- Coches ---------------------------------
     public void pulsarCoches() {
         this.panelActual.setVisible(false);
@@ -321,5 +326,13 @@ public class VAdministrador extends javax.swing.JFrame {
     
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.fa.obtenerCoches(matricula, numPlazas, modelo);
+    }
+    
+    public void borrarCocheAlquiler(String matricula) {
+        this.fa.borrarCocheAlquiler(matricula);
+    }
+    
+    public void insertarCocheAlquiler(CocheAlquiler co) {
+        this.fa.insertarCocheAlquiler(co);
     }
 }

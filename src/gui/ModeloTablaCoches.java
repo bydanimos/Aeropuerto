@@ -38,7 +38,15 @@ public class ModeloTablaCoches extends AbstractTableModel {
             case 4: resultado= this.coches.get(rowIndex).getTipoCombustible(); break;
             case 5: resultado= this.coches.get(rowIndex).getNumeroPlazas(); break;
             case 6: resultado= this.coches.get(rowIndex).getNumeroPuertas();break;
-            case 7: resultado= this.coches.get(rowIndex); break;
+            case 7: 
+                String text = "Disponible"; 
+                if (this.coches.get(rowIndex).isAlquilado()) {
+                    text = "Alquilado";
+                }
+                if (this.coches.get(rowIndex).isReservado()) {
+                    text = "Reservado";
+                }
+                resultado= text; break;
         }
         return resultado;
     }
@@ -97,5 +105,10 @@ public class ModeloTablaCoches extends AbstractTableModel {
     
     public void actualizarTabla() {
         fireTableDataChanged();
+    }
+    
+    public void nuevoCoche(CocheAlquiler co) {
+        this.coches.add(co);
+        fireTableRowsInserted(this.coches.size() - 1, this.coches.size() - 1);
     }
 }
