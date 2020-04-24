@@ -11,6 +11,7 @@ import aplicacion.aviones.ModeloAvion;
 import aplicacion.aviones.Terminal;
 import aplicacion.vuelos.Vuelo;
 import java.sql.*;
+import java.util.List;
 /**
  *
  * @author basesdatos
