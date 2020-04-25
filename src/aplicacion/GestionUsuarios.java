@@ -63,4 +63,8 @@ public class GestionUsuarios {
     public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
         return this.fbd.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
+    
+    public boolean borrarUsuario(Usuario u){
+        return this.fbd.borrarUsuario(u.getDni());
+    }
 }
