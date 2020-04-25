@@ -10,6 +10,8 @@ public class CocheAlquiler {
     private int numeroPlazas;
     private int numeroPuertas;
     private boolean retirado;
+    private boolean alquilado;
+    private boolean reservado;
 
     public CocheAlquiler(String matricula, String modelo, int caballos, float precioPorDia, String tipoCombustible, int numeroPlazas, int numeroPuertas, boolean retirado) {
         this.matricula = matricula;
@@ -20,6 +22,8 @@ public class CocheAlquiler {
         this.numeroPlazas = numeroPlazas;
         this.numeroPuertas = numeroPuertas;
         this.retirado = retirado;
+        this.alquilado = false;
+        this.reservado = false;
     }
 
     public String getMatricula() {
@@ -84,5 +88,21 @@ public class CocheAlquiler {
 
     public void setRetirado(boolean retirado) {
         this.retirado = retirado;
+    }
+    
+    public void setAlquilado(boolean alquilado) {
+        this.alquilado = alquilado;
+    }
+    
+    public boolean isAlquilado() {
+        return this.alquilado;
+    }
+    
+    public void setReservado(boolean reservado) {
+        this.reservado = reservado;
+    }
+    
+    public boolean isReservado() {
+        return this.reservado;
     }
 }
