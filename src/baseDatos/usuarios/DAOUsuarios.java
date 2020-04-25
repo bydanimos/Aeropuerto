@@ -155,17 +155,34 @@ public class DAOUsuarios extends AbstractDAO {
         return true;
     }
 
-    public void borrarUsuario(String dni) {
+    public boolean borrarUsuario(String dni) {
         Connection con;
         PreparedStatement stmUsuario = null;
+        ResultSet rsUsuario;
+        boolean resultado = false;
 
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("delete from usuario where dni = ?");
+            stmUsuario = con.prepareStatement("select * "
+                                            + "from comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p " 
+                                            + "where cb.usuario = ? "
+                                            + "or r.usuario = ? " 
+                                            + "or al.usuario = ? "
+                                            + "or p.usuario = ? ");
             stmUsuario.setString(1, dni);
-            stmUsuario.executeUpdate();
-
+            stmUsuario.setString(2, dni);
+            stmUsuario.setString(3, dni);
+            stmUsuario.setString(4, dni);
+            rsUsuario = stmUsuario.executeQuery();
+            if(!rsUsuario.next()){
+                stmUsuario = con.prepareStatement("delete from usuario where dni = ?");
+                stmUsuario.setString(1, dni);
+                stmUsuario.executeUpdate();
+                resultado = true;
+            }else{
+                resultado = false;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
@@ -176,6 +193,7 @@ public class DAOUsuarios extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
+        return resultado;
     }
 
     public void modificarUsuario(Usuario u) {
