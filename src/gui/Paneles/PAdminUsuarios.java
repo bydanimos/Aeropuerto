@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.Paneles;
+package gui;
 
-import gui.ModeloTablas.ModeloTablaControlUsuarios;
-import gui.ModeloTablas.ModeloTablaDatosUsuarios;
 import aplicacion.usuarios.*;
-import gui.VAdministrador;
 
 /**
  *
@@ -23,6 +20,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         initComponents();
         this.panelEditar.setVisible(false);
         this.errorFaltanDatos.setVisible(false);
+        this.errorNoBorrableUsuario.setVisible(false);
         //this.buscarControlUsuarios();
     }
 
@@ -77,6 +75,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         botonEditar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
+        errorNoBorrableUsuario = new javax.swing.JLabel();
         panelControlPasajeros = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtControlId = new javax.swing.JTextField();
@@ -262,6 +261,11 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         jLabel6.setText("Segundo Apellido");
 
         tablaDatosUsuarios.setModel(new ModeloTablaDatosUsuarios(this));
+        tablaDatosUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaDatosUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaDatosUsuarios);
 
         txtDni.addActionListener(new java.awt.event.ActionListener() {
@@ -278,6 +282,11 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         });
 
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -285,6 +294,9 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                 botonBuscarActionPerformed(evt);
             }
         });
+
+        errorNoBorrableUsuario.setForeground(new java.awt.Color(255, 0, 0));
+        errorNoBorrableUsuario.setText("¡El usuario seleccionado no puede ser eliminado!");
 
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
         panelDatos.setLayout(panelDatosLayout);
@@ -295,6 +307,8 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                 .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelDatosLayout.createSequentialGroup()
                         .addComponent(botonEditar)
+                        .addGap(65, 65, 65)
+                        .addComponent(errorNoBorrableUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonEliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +337,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +364,8 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonEditar)
-                    .addComponent(botonEliminar))
+                    .addComponent(botonEliminar)
+                    .addComponent(errorNoBorrableUsuario))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -510,6 +525,21 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         this.buscarControlUsuarios();
     }//GEN-LAST:event_botonControlBuscarActionPerformed2
 
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        // TODO add your handling code here:
+        this.errorNoBorrableUsuario.setVisible(false);
+        if(this.eliminarUsuario()){
+            this.buscarUsuarios();
+        }else{
+            this.errorNoBorrableUsuario.setVisible(true);
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void tablaDatosUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosUsuariosMouseClicked
+        // TODO add your handling code here:
+        this.errorNoBorrableUsuario.setVisible(false);
+    }//GEN-LAST:event_tablaDatosUsuariosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane bloqueDatosControl;
@@ -522,6 +552,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboEditarSexo;
     private javax.swing.JComboBox<String> comboEditarTipo;
     private javax.swing.JLabel errorFaltanDatos;
+    private javax.swing.JLabel errorNoBorrableUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -571,6 +602,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void buscarUsuarios(){
+        this.errorNoBorrableUsuario.setVisible(false);
         ModeloTablaDatosUsuarios m;
         m=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
         m.setFilas(this.va.obtenerUsuarios(txtDni.getText(),txtId.getText(),txtNombre.getText(),txtPrimerApellido.getText(),txtSegundoApellido.getText()));
@@ -660,5 +692,11 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         m=(ModeloTablaControlUsuarios) tablaControlUsuarios.getModel();
         m.setFilas(this.va.obtenerUsuariosControl(txtControlDni.getText(),txtControlId.getText(),txtControlNombre.getText(),txtControlPrimerApellido.getText(),txtControlSegundoApellido.getText()));
     }
+    
+    public boolean eliminarUsuario(){
+        ModeloTablaDatosUsuarios mu;
+        mu=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
+        Usuario u = mu.obtenerUsuario(tablaDatosUsuarios.getSelectedRow());
+        return this.va.borrarUsuario(u);
+    }
 }
-
