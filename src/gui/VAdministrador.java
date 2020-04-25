@@ -236,6 +236,10 @@ public class VAdministrador extends javax.swing.JFrame {
     public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         return this.fa.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
+    
+    public boolean borrarUsuario(Usuario u){
+        return this.fa.borrarUsuario(u);
+    }
 
     // -------------------------------------------------------------------------
      // ------------------------------- Tiendas -------------------------------
