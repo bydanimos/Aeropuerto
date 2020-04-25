@@ -106,8 +106,8 @@ public class FachadaBaseDatos {
         return this.daoUsuarios.insertarUsuario(u);
     }
 
-    public void borrarUsuario(String dni) {
-        this.daoUsuarios.borrarUsuario(dni);
+    public boolean borrarUsuario(String dni) {
+        return this.daoUsuarios.borrarUsuario(dni);
     }
 
     public void modificarUsuario(Usuario u) {
