@@ -134,6 +134,10 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         return this.cu.obtenerUsuarios(dni, id, nombre, primerApellido, segundoApellido);
     }
+    
+    public boolean borrarUsuario(Usuario u){
+        return this.cu.borrarUsuario(u);
+    }
 
     // -------------------------------------------------------------------------
     // ------------------------------- Aerolineas --------------------------------    
