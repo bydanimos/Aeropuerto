@@ -11,11 +11,15 @@ import java.sql.*;
 
 public class DAOUsuarios extends AbstractDAO {
 
+    // -------------------------------------------------------------------------
+    // ------------------------------ Constructor ------------------------------
     public DAOUsuarios(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
 
+    // -------------------------------------------------------------------------
+    // ------------------------------- Usuarios --------------------------------
     public Usuario validarUsuario(String idUsuario, String clave) {
         Usuario resultado = null;
         Connection con;
@@ -53,7 +57,7 @@ public class DAOUsuarios extends AbstractDAO {
     }
 
     public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
-        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
         PreparedStatement stmUsuarios = null;
@@ -103,15 +107,17 @@ public class DAOUsuarios extends AbstractDAO {
     }
 
     public boolean insertarUsuario(Usuario u) {
-
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
-
+        boolean resultado = false;
+        
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("insert into usuario(dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,paisprocedencia,telefono,sexo ) "
+            stmUsuario = con.prepareStatement("insert into usuario(dni, id, "
+                    + "correoelectronico, contrasenha, nombre, primerapellido, "
+                    + "segundoapellido, paisprocedencia, telefono, sexo) "
                     + "values (?,?,?,crypt(?, gen_salt('md5')),?,?,?,?,?,?)");
             stmUsuario.setString(1, u.getDni());
             stmUsuario.setString(2, u.getId());
@@ -140,11 +146,13 @@ public class DAOUsuarios extends AbstractDAO {
                 }
             }
             stmUsuario.setString(10, ts);
-            stmUsuario.executeUpdate();
+            // Si se completó correctamente lo indicamos
+            if (stmUsuario.executeUpdate() == 1) {
+                resultado = true;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-            return false;
         } finally {
             try {
                 stmUsuario.close();
@@ -152,7 +160,7 @@ public class DAOUsuarios extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
-        return true;
+        return resultado;
     }
 
     public boolean borrarUsuario(String dni) {
@@ -165,7 +173,7 @@ public class DAOUsuarios extends AbstractDAO {
 
         try {
             stmUsuario = con.prepareStatement("select * "
-                                            + "from comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p " 
+                       + "from comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p " 
                                             + "where cb.usuario = ? "
                                             + "or r.usuario = ? " 
                                             + "or al.usuario = ? "
@@ -262,6 +270,7 @@ public class DAOUsuarios extends AbstractDAO {
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
+        boolean resultado = false;
 
         con = super.getConexion();
 
@@ -270,11 +279,13 @@ public class DAOUsuarios extends AbstractDAO {
                     + "from usuario "
                     + "where id = ?");
             stmUsuario.setString(1, text);
-            stmUsuario.executeUpdate();
+            rsUsuario = stmUsuario.executeQuery();
+            if (rsUsuario.next()) {
+                resultado = true;
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-            return false;
         } finally {
             try {
                 stmUsuario.close();
@@ -282,7 +293,7 @@ public class DAOUsuarios extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
-        return true;
+        return resultado;
     }
     
     public Usuario getUsuario(String dni){
@@ -317,7 +328,7 @@ public class DAOUsuarios extends AbstractDAO {
     }
     
     public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
-        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
         PreparedStatement stmUsuarios=null;
