@@ -12,12 +12,16 @@ public class GestionServicios {
 
     private final FachadaGui fgui;
     private final FachadaBaseDatos fbd;
-
+    
+    //--------------------------------------------------------------------------
+    // ----------------------------- Constructor -------------------------------
     public GestionServicios(FachadaGui fgui, FachadaBaseDatos fbd) {
         this.fgui = fgui;
         this.fbd = fbd;
     }
 
+    //--------------------------------------------------------------------------
+    // ------------------------------- Tiendas ---------------------------------
     public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         return this.fbd.obtenerTiendas(nombre, codigo, terminal);
     }
@@ -34,10 +38,14 @@ public class GestionServicios {
         this.fbd.editarTienda(terminal, codigo, nombre, tipo);
     }
 
+    //--------------------------------------------------------------------------
+    // ----------------------------- Terminales --------------------------------
     public ArrayList<Terminal> obtenerTerminales() {
         return this.fbd.obtenerTerminales();
     }
 
+    //--------------------------------------------------------------------------
+    // -------------------------------- Coches -----------------------------------
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.fbd.obtenerCoches(matricula, numPlazas, modelo);
     }
