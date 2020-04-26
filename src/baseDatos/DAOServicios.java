@@ -10,11 +10,12 @@ import aplicacion.servicios.Tienda;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import java.sql.Timestamp;
 
 public class DAOServicios extends AbstractDAO {
 
+    // -------------------------------------------------------------------------
+    // ----------------------------- Constructor -------------------------------
     public DAOServicios(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
