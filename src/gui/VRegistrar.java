@@ -4,7 +4,7 @@ import aplicacion.usuarios.Usuario;
 
 public class VRegistrar extends javax.swing.JFrame {
 
-    private aplicacion.FachadaAplicacion fa;
+    private final aplicacion.FachadaAplicacion fa;
     private boolean primeraPass;
     private boolean primeraRepitPass;
 
@@ -354,6 +354,7 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel todosCamposLabel;
     // End of variables declaration//GEN-END:variables
 
+      // Función que coge del combobox el sexo introducido por el usuario
     private aplicacion.usuarios.TipoSexo getSexo() {
         switch (this.sexoComboBox.getSelectedIndex()) {
             case 1:
@@ -367,7 +368,9 @@ public class VRegistrar extends javax.swing.JFrame {
         }
     }
 
-    public void registrarUsuario() {
+    // Función encargada de comprobar que los datos introducidos por el usuario
+    // son válidos para introducirlos en la base de datos
+    private void registrarUsuario() {
         Usuario usuario;
         boolean seguir = true;
         this.dniIncorrectLabel.setVisible(false);
@@ -389,7 +392,7 @@ public class VRegistrar extends javax.swing.JFrame {
             this.contraDistintLabel.setVisible(true);
             seguir = false;
         }
-        if (!this.fa.comprobarId(this.idRepetidoLabel.getText())) {
+        if (this.fa.comprobarId(this.idRepetidoLabel.getText())) {
             this.idRepetidoLabel.setVisible(true);
             seguir = false;
         }
@@ -407,19 +410,34 @@ public class VRegistrar extends javax.swing.JFrame {
             seguir = false;
             this.todosCamposLabel.setVisible(true);
         }
+        int telefono;
+        // Nos aseguramos que sea un número lo introducido, en otro caso ponemos
+        // que el num de telf es 0, ya que no es necesario almacenarlo en la base
+        // de datos
+        try {
+            telefono = Integer.parseInt(this.telefonoTextField.getText());
+        } catch (NumberFormatException e) {
+            // seguir = false;
+            telefono = 0;
+        }
         
+        // Si se cumplieron todos los requisitos creamos el usuario
         if (seguir) {
 
-            usuario = new Usuario(this.dniTextField.getText(), this.idTextField.getText(), this.PasswordField.getText(),
-                    this.mailTextField.getText(), this.nombreTextField.getText(), this.primApeTextField.getText(),
-                    this.segunApeTextField.getText(), getSexo(), this.paisTextField.getText(), Integer.parseInt(this.telefonoTextField.getText()));
+            usuario = new Usuario(this.dniTextField.getText(), 
+                    this.idTextField.getText(), this.PasswordField.getText(),
+                    this.mailTextField.getText(), this.nombreTextField.getText(), 
+                    this.primApeTextField.getText(), this.segunApeTextField.getText(),
+                    getSexo(), this.paisTextField.getText(), telefono);
 
+            // Si el usuario se registró correctamen cerramos la ventana y le 
+            // mostramos la ventana para que se pueda loguear
             if (this.fa.registrarUsuario(usuario)) {
                 this.dispose();
+                this.fa.iniciaInterfazUsuario();
             } else {
                 this.todosCamposLabel.setVisible(true);
             }
         }
     }
-
 }
