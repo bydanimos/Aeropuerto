@@ -21,7 +21,7 @@ import java.util.Properties;
 
 public class FachadaBaseDatos {
 
-    private aplicacion.FachadaAplicacion fa;
+    private final aplicacion.FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOAdministrador daoAdministradores;
@@ -31,6 +31,8 @@ public class FachadaBaseDatos {
     private DAOVuelos daoVuelos;
     private DAOAviones daoAviones;
 
+    // -------------------------------------------------------------------------
+    // ------------------------------ Constructor ------------------------------
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
 
         Properties configuracion = new Properties();
@@ -74,28 +76,36 @@ public class FachadaBaseDatos {
         }
     }
 
+    // -------------------------------------------------------------------------
+    // --------------------------------- Usuario -------------------------------
     public Usuario validarUsuario(String idUsuario, String clave) {
         return this.daoUsuarios.validarUsuario(idUsuario, clave);
     }
 
+    public Usuario getUsuarioActual() {
+        return this.fa.getUsuarioActual();
+    }    
+    
+    public void setUsuarioActual(Usuario usuarioActual) {
+        this.fa.setUsuarioActual(usuarioActual);
+    }
+
+    // -------------------------------------------------------------------------
+    // ----------------------------- Administrador -----------------------------
     public Administrador validarAdministrador(String id, String clave) {
         return this.daoAdministradores.validarAdministrador(id, clave);
     }
 
+    // -------------------------------------------------------------------------
+    // ---------------------------- Personal Laboral ---------------------------
     public PersonalLaboral validarPersonalLaboral(String id, String clave) {
         return this.daoPersonalLaboral.validarPersonalLaboral(id, clave);
     }
 
+    // -------------------------------------------------------------------------
+    // ---------------------------- Personal Externo ---------------------------
     public PersonalExterno validarPersonalExterno(String id, String clave) {
         return this.daoPersonalExterno.validarPersonalExterno(id, clave);
-    }
-
-    public Usuario getUsuarioActual() {
-        return this.fa.getUsuarioActual();
-    }
-
-    public void setUsuarioActual(Usuario usuarioActual) {
-        this.fa.setUsuarioActual(usuarioActual);
     }
 
     public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
