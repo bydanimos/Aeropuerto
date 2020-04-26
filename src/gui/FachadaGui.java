@@ -1,17 +1,18 @@
-
 package gui;
 
-import aplicacion.*;
-
 public class FachadaGui {
-    aplicacion.FachadaAplicacion fa;
-    VAdministrador vp;
+    private final aplicacion.FachadaAplicacion fa;
+    private final VAdministrador vp;
     
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public FachadaGui(aplicacion.FachadaAplicacion fa){
-        this.fa=fa;
+        this.fa = fa;
         this.vp = new VAdministrador(fa);
     } 
     
+    // ------------------------------------------------------------------------
+    // --------------------------- VAutentificacion ---------------------------
     public void iniciaVista(){
         VAutentificacion va;
 
@@ -20,6 +21,8 @@ public class FachadaGui {
         va.setVisible(true);
     }
     
+    // ------------------------------------------------------------------------
+    // ------------------------------ Excepcion -------------------------------
     public void muestraExcepcion(String txtExcepcion){
         VAviso va;
 
@@ -27,6 +30,8 @@ public class FachadaGui {
         va.setVisible(true);
     }
 
+    // ------------------------------------------------------------------------
+    // ----------------------------- Registrarse ------------------------------
     public void nuevoUsuario() {
         VRegistrar vr;
         
