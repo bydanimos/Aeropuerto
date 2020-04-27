@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.Paneles;
 
 import aplicacion.usuarios.*;
+import gui.ModeloTablas.ModeloTablaControlUsuarios;
+import gui.ModeloTablas.ModeloTablaDatosUsuarios;
+import gui.VAdministrador;
 
 /**
  *
@@ -13,7 +16,7 @@ import aplicacion.usuarios.*;
  */
 public class PAdminUsuarios extends javax.swing.JPanel {
 
-    VAdministrador va;
+    private final VAdministrador va;
     
     public PAdminUsuarios(VAdministrador va) {
         this.va = va;
@@ -607,56 +610,56 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         m=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
         m.setFilas(this.va.obtenerUsuarios(txtDni.getText(),txtId.getText(),txtNombre.getText(),txtPrimerApellido.getText(),txtSegundoApellido.getText()));
         if (m.getRowCount() > 0) {
-            tablaDatosUsuarios.setRowSelectionInterval(0, 0);
-            botonEliminar.setEnabled(true);
-            botonEditar.setEnabled(true);
+            this.tablaDatosUsuarios.setRowSelectionInterval(0, 0);
+            this.botonEliminar.setEnabled(true);
+            this.botonEditar.setEnabled(true);
         }
         else{
-            botonEliminar.setEnabled(false);
-            botonEditar.setEnabled(true);
+            this.botonEliminar.setEnabled(false);
+            this.botonEditar.setEnabled(true);
         }
     }
     
      public void actualizarCuadrosEditar(){
         ModeloTablaDatosUsuarios mu;
-        mu=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
-        Usuario u = mu.obtenerUsuario(tablaDatosUsuarios.getSelectedRow());
-        txtEditarDni.setText(u.getDni());
-        txtEditarId.setText(u.getId());
-        txtEditarEmail.setText(u.getCorreoElectronico());
-        txtEditarNombre.setText(u.getNombre());
-        txtEditarPrimerApellido.setText(u.getApellido1());
-        txtEditarSegundoApellido.setText(u.getApellido2());
-        txtEditarPais.setText(u.getPaisProcedencia());
-        txtEditarTelefono.setText(u.getTelefono().toString());
+        mu=(ModeloTablaDatosUsuarios) this.tablaDatosUsuarios.getModel();
+        Usuario u = mu.obtenerUsuario(this.tablaDatosUsuarios.getSelectedRow());
+        this.txtEditarDni.setText(u.getDni());
+        this.txtEditarId.setText(u.getId());
+        this.txtEditarEmail.setText(u.getCorreoElectronico());
+        this.txtEditarNombre.setText(u.getNombre());
+        this.txtEditarPrimerApellido.setText(u.getApellido1());
+        this.txtEditarSegundoApellido.setText(u.getApellido2());
+        this.txtEditarPais.setText(u.getPaisProcedencia());
+        this.txtEditarTelefono.setText(u.getTelefono().toString());
         Object obj;
         if(u.getSexo() == TipoSexo.o){
-            obj = comboEditarSexo.getItemAt(0);
+            obj = this.comboEditarSexo.getItemAt(0);
         }else if(u.getSexo() == TipoSexo.h){
-            obj = comboEditarSexo.getItemAt(1);
+            obj = this.comboEditarSexo.getItemAt(1);
         }else{
-            obj = comboEditarSexo.getItemAt(2);
+            obj = this.comboEditarSexo.getItemAt(2);
         }
-        comboEditarSexo.setSelectedItem(obj);
+        this.comboEditarSexo.setSelectedItem(obj);
         
         String tipoUsuario = this.va.getTipoUsuario(u);
         if(tipoUsuario.equals("Usuario")){
-            obj = comboEditarTipo.getItemAt(0);
+            obj = this.comboEditarTipo.getItemAt(0);
         }else if(tipoUsuario.equals("Administrador")){
-            obj = comboEditarTipo.getItemAt(1);
+            obj = this.comboEditarTipo.getItemAt(1);
         }else if(tipoUsuario.equals("Personal Laboral")){
-            obj = comboEditarTipo.getItemAt(2);
+            obj = this.comboEditarTipo.getItemAt(2);
         }else{
-            obj = comboEditarTipo.getItemAt(3);
+            obj = this.comboEditarTipo.getItemAt(3);
         }
-        comboEditarTipo.setSelectedItem(obj);
-        botonEditarActualizar.setEnabled(true);
+        this.comboEditarTipo.setSelectedItem(obj);
+        this.botonEditarActualizar.setEnabled(true);
     }
      
     public void actualizarDatos(){
         ModeloTablaDatosUsuarios mu;
-        mu=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
-        Usuario u = mu.obtenerUsuario(tablaDatosUsuarios.getSelectedRow());
+        mu=(ModeloTablaDatosUsuarios) this.tablaDatosUsuarios.getModel();
+        Usuario u = mu.obtenerUsuario(this.tablaDatosUsuarios.getSelectedRow());
         String tipoAnterior = this.va.getTipoUsuario(u);
         String tipoNuevo = this.comboEditarTipo.getSelectedItem().toString();
         TipoSexo ts;

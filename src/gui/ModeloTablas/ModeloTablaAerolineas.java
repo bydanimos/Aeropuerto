@@ -6,7 +6,7 @@
 package gui.ModeloTablas;
 
 import aplicacion.aviones.Aerolinea;
-import gui.PAerolineas;
+import gui.Paneles.PAerolineas;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTablaAerolineas extends AbstractTableModel{
     private java.util.List<Aerolinea> aerolineas;
-    PAerolineas pa;
+    private final PAerolineas pa;
     
     public ModeloTablaAerolineas(PAerolineas pa){
         this.aerolineas=new java.util.ArrayList<>();
