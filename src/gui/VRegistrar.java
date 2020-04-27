@@ -61,7 +61,7 @@ public class VRegistrar extends javax.swing.JFrame {
         sexoErrorLabel = new javax.swing.JLabel();
         todosCamposLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(getDefaultCloseOperation());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -354,7 +354,7 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel todosCamposLabel;
     // End of variables declaration//GEN-END:variables
 
-      // Función que coge del combobox el sexo introducido por el usuario
+    // Función que coge del combobox el sexo introducido por el usuario
     private aplicacion.usuarios.TipoSexo getSexo() {
         switch (this.sexoComboBox.getSelectedIndex()) {
             case 1:
@@ -440,4 +440,5 @@ public class VRegistrar extends javax.swing.JFrame {
             }
         }
     }
+
 }
