@@ -5,7 +5,6 @@
  */
 package baseDatos.usuarios;
 
-import aplicacion.*;
 import aplicacion.usuarios.*;
 import baseDatos.AbstractDAO;
 import java.sql.*;
