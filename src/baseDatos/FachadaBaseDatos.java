@@ -90,6 +90,32 @@ public class FachadaBaseDatos {
         this.fa.setUsuarioActual(usuarioActual);
     }
 
+    // -------------------------------------------------------------------------
+    // ----------------------------- Administrador -----------------------------
+    public Administrador validarAdministrador(String id, String clave) {
+        return this.daoAdministradores.validarAdministrador(id, clave);
+    }
+
+    // -------------------------------------------------------------------------
+    // ---------------------------- Personal Laboral ---------------------------
+    public PersonalLaboral validarPersonalLaboral(String id, String clave) {
+        return this.daoPersonalLaboral.validarPersonalLaboral(id, clave);
+    }
+
+    // -------------------------------------------------------------------------
+    // ---------------------------- Personal Externo ---------------------------
+    public PersonalExterno validarPersonalExterno(String id, String clave) {
+        return this.daoPersonalExterno.validarPersonalExterno(id, clave);
+    }
+
+    public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
+        return this.daoUsuarios.consultarRegistroUsuarios(id, dni, nombre, ap1, ap2);
+    }
+
+    public boolean registrarUsuario(Usuario u) {
+        return this.daoUsuarios.insertarUsuario(u);
+    }
+
     public boolean borrarUsuario(String dni) {
         return this.daoUsuarios.borrarUsuario(dni);
     }
@@ -100,26 +126,6 @@ public class FachadaBaseDatos {
 
     public Usuario getUsuario(String id) {
         return this.daoUsuarios.getUsuario(id);
-    }
-    
-    // -------------------------------------------------------------------------
-    // ----------------------------- Usuario General ---------------------------
-    public void modificarUsuarioGeneral(Usuario u, String tipoAnterior, String tipoNuevo) {
-        if (!tipoAnterior.equals(tipoNuevo)) {
-            if (!tipoAnterior.equals("Usuario")) {
-                this.borrarTipo(u, tipoAnterior);
-            }
-            if (!tipoNuevo.equals("Usuario")) {
-                this.insertarTipo(u, tipoNuevo);
-            }
-        }
-        this.modificarUsuario(u);
-    }
-
-    // -------------------------------------------------------------------------
-    // ----------------------------- Administrador -----------------------------
-    public Administrador validarAdministrador(String id, String clave) {
-        return this.daoAdministradores.validarAdministrador(id, clave);
     }
 
     public void insertarAdministrador(Administrador ad) {
@@ -138,12 +144,6 @@ public class FachadaBaseDatos {
         return this.daoAdministradores.getAdministrador(id);
     }
 
-    // -------------------------------------------------------------------------
-    // ---------------------------- Personal Laboral ---------------------------
-    public PersonalLaboral validarPersonalLaboral(String id, String clave) {
-        return this.daoPersonalLaboral.validarPersonalLaboral(id, clave);
-    }
-
     public void insertarPersonalLaboral(PersonalLaboral pl) {
         this.daoPersonalLaboral.insertarPersonalLaboral(pl);
     }
@@ -158,12 +158,6 @@ public class FachadaBaseDatos {
 
     public PersonalLaboral getPersonalLaboral(String dni) {
         return this.daoPersonalLaboral.getPersonalLaboral(dni);
-    }
-
-    // -------------------------------------------------------------------------
-    // ---------------------------- Personal Externo ---------------------------
-    public PersonalExterno validarPersonalExterno(String id, String clave) {
-        return this.daoPersonalExterno.validarPersonalExterno(id, clave);
     }
 
     public void insertarPersonalExterno(PersonalExterno pe) {
@@ -182,18 +176,6 @@ public class FachadaBaseDatos {
         return this.daoPersonalExterno.getPersonalExterno(id);
     }
 
-    // -------------------------------------------------------------------------
-    // ----------------------------- Registro Usuario --------------------------
-    public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
-        return this.daoUsuarios.consultarRegistroUsuarios(id, dni, nombre, ap1, ap2);
-    }
-
-    public boolean registrarUsuario(Usuario u) {
-        return this.daoUsuarios.insertarUsuario(u);
-    }
-
-    // -------------------------------------------------------------------------
-    // ----------------------------- Tipo Usuarios -----------------------------
     public String getTipoUsuario(Usuario u) {
         if (this.getAdministrador(u.getDni()) != null) {
             return "Administrador";
@@ -204,6 +186,18 @@ public class FachadaBaseDatos {
         } else {
             return "Usuario";
         }
+    }
+
+    public void modificarUsuarioGeneral(Usuario u, String tipoAnterior, String tipoNuevo) {
+        if (!tipoAnterior.equals(tipoNuevo)) {
+            if (!tipoAnterior.equals("Usuario")) {
+                this.borrarTipo(u, tipoAnterior);
+            }
+            if (!tipoNuevo.equals("Usuario")) {
+                this.insertarTipo(u, tipoNuevo);
+            }
+        }
+        this.modificarUsuario(u);
     }
 
     public void borrarTipo(Usuario u, String tipoAnterior) {
@@ -240,8 +234,6 @@ public class FachadaBaseDatos {
         }
     }
 
-    // -------------------------------------------------------------------------
-    // ---------------------------- Control Usuarios ---------------------------
     public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         return this.daoUsuarios.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }

@@ -6,7 +6,7 @@
 package gui.ModeloTablas;
 
 import aplicacion.usuarios.*;
-import gui.Paneles.PAdminUsuarios;
+import gui.PAdminUsuarios;
 import javax.swing.table.AbstractTableModel;
 
 /**
