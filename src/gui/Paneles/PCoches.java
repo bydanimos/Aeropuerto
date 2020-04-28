@@ -12,7 +12,6 @@ public class PCoches extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private boolean borrarPulsado;
-    private boolean nuevoPulsado;
 
     /**
      * Creates new form PCoches
@@ -22,7 +21,6 @@ public class PCoches extends javax.swing.JPanel {
     public PCoches(VAdministrador va) {
         this.va  = va;
         this.borrarPulsado = false;
-        this.nuevoPulsado = false;
         initComponents();
     }
 
@@ -196,6 +194,8 @@ public class PCoches extends javax.swing.JPanel {
     private javax.swing.JLabel numPlazasLabel;
     // End of variables declaration//GEN-END:variables
 
+    // Función que busca un coche en la base de datos por matrícula, número de 
+    // plazas o modelo
     public void buscarCoches() {
         ModeloTablaCoches m;
         m = (ModeloTablaCoches) this.cochesTable.getModel();
@@ -224,6 +224,7 @@ public class PCoches extends javax.swing.JPanel {
         }
     }
 
+    // Nos devuelve el número del combo box según el número que hay en la tabla
     private int seleccionarCombo(int i) {
         switch (i) {
             case 1:
@@ -239,6 +240,7 @@ public class PCoches extends javax.swing.JPanel {
         }
     }
 
+    // Función que borra el coche seleccionado de la tabla en la base de datos
     private void borrarCoche() {
         ModeloTablaCoches m;
         m = (ModeloTablaCoches) this.cochesTable.getModel();
@@ -260,20 +262,6 @@ public class PCoches extends javax.swing.JPanel {
         this.buscarButton.setEnabled(true);
         ModeloTablaCoches m;
         m = (ModeloTablaCoches) this.cochesTable.getModel();
-        if (this.nuevoPulsado) {
-            int fila = m.getRowCount() - 1;
-            String matricula = "" + m.getValueAt(fila, 0);
-            String modelo = "" + m.getValueAt(fila, 1);
-            int caballos = (int) m.getValueAt(fila, 2);
-            float precio = (float) m.getValueAt(fila, 3);
-            String combustible = "" + m.getValueAt(fila, 4);
-            int nplazas = (int) m.getValueAt(fila, 5);
-            int npuertas = (int) m.getValueAt(fila, 6);
-            CocheAlquiler coche = new CocheAlquiler(matricula, modelo, caballos, 
-                    precio, combustible, nplazas, npuertas, false);
-            this.nuevoPulsado = false;
-            this.va.insertarCocheAlquiler(coche);
-        }
         m.setFilas(this.va.obtenerCoches("", 0, ""));
         if (m.getRowCount() > 0) {
             this.cochesTable.setRowSelectionInterval(0, 0);
@@ -282,16 +270,6 @@ public class PCoches extends javax.swing.JPanel {
     }
 
     private void nuevoCoche() {
-        this.nuevoPulsado = true;
-        ModeloTablaCoches m;
-        this.cochesTable.addRowSelectionInterval(0, 1);
-        m = (ModeloTablaCoches) this.cochesTable.getModel();
-        CocheAlquiler co;
-        co = new CocheAlquiler(null, null, 0, 0, null, 0, 0, false);
-        m.nuevoCoche(co);
-        int fila = m.getRowCount() - 1;
-        this.cochesTable.setRowSelectionInterval(fila, fila);
-        this.eliminarButton.setEnabled(false);
-        this.buscarButton.setEnabled(false);
+        this.va.pulsarNuevoCoche();
     }
 }
