@@ -13,6 +13,7 @@ import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
 import aplicacion.usuarios.Usuario;
 import aplicacion.vuelos.Vuelo;
+import gui.Paneles.PNuevoCoche;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -344,5 +345,14 @@ public class VAdministrador extends javax.swing.JFrame {
     
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.fa.insertarCocheAlquiler(co);
+    }
+    
+    // -------------------------------------------------------------------------
+    // ----------------------------- Coche Nuevo -------------------------------
+    public void pulsarNuevoCoche() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PNuevoCoche(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
     }
 }
