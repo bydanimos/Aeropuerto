@@ -365,9 +365,9 @@ public class DAOServicios extends AbstractDAO {
             stmCoche.setInt(5, coche.getNumeroPuertas());
             stmCoche.setFloat(6, coche.getPrecioPorDia());
             stmCoche.setString(7, coche.getTipoCombustible());
-            stmCoche.setBoolean(7, coche.isRetirado());
+            stmCoche.setBoolean(8, coche.isRetirado());
 
-            rsCoche = stmCoche.executeQuery();
+            stmCoche.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
