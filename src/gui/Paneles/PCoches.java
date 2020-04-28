@@ -50,7 +50,7 @@ public class PCoches extends javax.swing.JPanel {
 
         buscarButton.setText("Buscar");
 
-        numPlazasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "4", "5" }));
+        numPlazasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "4", "5", "7", "8" }));
 
         cochesTable.setModel(new ModeloTablaCoches());
         cochesTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,6 +235,10 @@ public class PCoches extends javax.swing.JPanel {
                 return 3;
             case 5:
                 return 4;
+            case 7:
+                return 5;
+            case 8:
+                return 6;
             default:
                 return 0;
         }
