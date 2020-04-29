@@ -48,6 +48,11 @@ public class PCoches extends javax.swing.JPanel {
         numPlazasLabel.setText("Núm. Plazas: ");
 
         buscarButton.setText("Buscar");
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
 
         numPlazasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1", "2", "4", "5", "7", "8" }));
 
@@ -176,6 +181,10 @@ public class PCoches extends javax.swing.JPanel {
         nuevoCoche();
     }//GEN-LAST:event_nuevoButtonActionPerformed
 
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        buscarCoches();
+    }//GEN-LAST:event_buscarButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarButton;
@@ -201,7 +210,7 @@ public class PCoches extends javax.swing.JPanel {
         int itemSelected = this.numPlazasComboBox.getSelectedIndex();
         String matricula = this.matriculaTextField.getText();
         String modelo = this.modeloTextField.getText();
-        int numPlazas = this.numPlazasComboBox.getSelectedIndex();
+        int numPlazas = this.seleccionarBuscar();
 
         m.setFilas(this.va.obtenerCoches(matricula, numPlazas, modelo));
         if (m.getRowCount() > 0) {
@@ -220,6 +229,25 @@ public class PCoches extends javax.swing.JPanel {
             this.modeloTextField.setText("" + m.getValueAt(fila, 1));
             int numCombo = seleccionarCombo((int) m.getValueAt(fila, 5));
             this.numPlazasComboBox.setSelectedIndex(numCombo);
+        }
+    }
+    
+    private int seleccionarBuscar() {
+        switch (this.numPlazasComboBox.getSelectedIndex()) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 4;
+            case 4:
+                return 5;
+            case 5:
+                return 7;
+            case 6:
+                return 8;
+            default:
+                return 0;
         }
     }
 
@@ -251,7 +279,7 @@ public class PCoches extends javax.swing.JPanel {
         int fila = this.cochesTable.getSelectedRow();
         String matricula;
         if (fila != -1) {
-            matricula = (String) m.getValueAt(fila, 0);
+            matricula = "" + m.getValueAt(fila, 0);
             this.va.borrarCocheAlquiler(matricula);
         }
         if (!this.borrarPulsado) {
