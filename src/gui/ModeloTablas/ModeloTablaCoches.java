@@ -40,11 +40,15 @@ public class ModeloTablaCoches extends AbstractTableModel {
             case 6: resultado= this.coches.get(rowIndex).getNumeroPuertas();break;
             case 7: 
                 String text = "Disponible"; 
-                if (this.coches.get(rowIndex).isAlquilado()) {
-                    text = "Alquilado";
-                }
-                if (this.coches.get(rowIndex).isReservado()) {
-                    text = "Reservado";
+                if (this.coches.get(rowIndex).isRetirado()) {
+                    text = "Retirado";
+                } else {
+                    if (this.coches.get(rowIndex).isAlquilado()) {
+                        text = "Alquilado";
+                    }
+                    if (this.coches.get(rowIndex).isReservado()) {
+                        text = "Reservado";
+                    } 
                 }
                 resultado= text; break;
         }
