@@ -316,7 +316,7 @@ public class FachadaBaseDatos {
     // -------------------------------------------------------------------------
     // --------------------------------- Coches --------------------------------
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
-        return this.daoServicios.obtenerCoches(modelo, numPlazas, modelo);
+        return this.daoServicios.obtenerCoches(matricula, numPlazas, modelo);
     }
 
     public void borrarCocheAlquiler(String matricula) {
