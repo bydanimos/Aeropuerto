@@ -333,7 +333,7 @@ public class DAOServicios extends AbstractDAO {
             stmCoche.setBoolean(1, true);
             stmCoche.setString(2, matricula);
 
-            rsCoche = stmCoche.executeQuery();
+            stmCoche.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
