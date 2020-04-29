@@ -36,31 +36,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelEditar = new javax.swing.JPanel();
-        botonEditarActualizar = new javax.swing.JButton();
-        botonEditarCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        txtEditarDni = new javax.swing.JTextField();
-        txtEditarId = new javax.swing.JTextField();
-        txtEditarEmail = new javax.swing.JTextField();
-        txtEditarPrimerApellido = new javax.swing.JTextField();
-        txtEditarNombre = new javax.swing.JTextField();
-        txtEditarSegundoApellido = new javax.swing.JTextField();
-        comboEditarTipo = new javax.swing.JComboBox<>();
-        comboEditarSexo = new javax.swing.JComboBox<>();
-        txtEditarPais = new javax.swing.JTextField();
-        txtEditarTelefono = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        errorFaltanDatos = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         bloqueDatosControl = new javax.swing.JTabbedPane();
         panelDatos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -93,165 +69,34 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         txtControlPrimerApellido = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaControlUsuarios = new javax.swing.JTable();
+        panelEditar = new javax.swing.JPanel();
+        botonEditarActualizar = new javax.swing.JButton();
+        botonEditarCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txtEditarDni = new javax.swing.JTextField();
+        txtEditarId = new javax.swing.JTextField();
+        txtEditarEmail = new javax.swing.JTextField();
+        txtEditarPrimerApellido = new javax.swing.JTextField();
+        txtEditarNombre = new javax.swing.JTextField();
+        txtEditarSegundoApellido = new javax.swing.JTextField();
+        comboEditarTipo = new javax.swing.JComboBox<>();
+        comboEditarSexo = new javax.swing.JComboBox<>();
+        txtEditarPais = new javax.swing.JTextField();
+        txtEditarTelefono = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        errorFaltanDatos = new javax.swing.JLabel();
 
-        botonEditarActualizar.setText("Actualizar");
-        botonEditarActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarActualizarActionPerformed(evt);
-            }
-        });
-
-        botonEditarCancelar.setText("Cancelar");
-        botonEditarCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarCancelarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("DNI");
-
-        jLabel7.setText("ID");
-
-        jLabel8.setText("Email");
-
-        jLabel11.setText("Nombre");
-
-        jLabel12.setText("Primer apellido");
-
-        jLabel13.setText("Segundo apellido");
-
-        jLabel14.setText("Sexo");
-
-        jLabel15.setText("Tipo");
-
-        jLabel16.setText("Pais");
-
-        jLabel17.setText("Telefono");
-
-        txtEditarDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditarDniActionPerformed(evt);
-            }
-        });
-
-        comboEditarTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario Normal", "Administrador", "Personal Laboral", "Trabajador Externo" }));
-
-        comboEditarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otro", "Hombre", "Mujer" }));
-
-        errorFaltanDatos.setForeground(new java.awt.Color(255, 0, 0));
-        errorFaltanDatos.setText("¡Se deben completar todos los campos!");
-
-        javax.swing.GroupLayout panelEditarLayout = new javax.swing.GroupLayout(panelEditar);
-        panelEditar.setLayout(panelEditarLayout);
-        panelEditarLayout.setHorizontalGroup(
-            panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelEditarLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEditarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEditarId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEditarEmail))
-                    .addGroup(panelEditarLayout.createSequentialGroup()
-                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelEditarLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(2, 2, 2)
-                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelEditarLayout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(errorFaltanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 54, Short.MAX_VALUE))
-                                    .addGroup(panelEditarLayout.createSequentialGroup()
-                                        .addComponent(comboEditarSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtEditarPais, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))))
-                            .addGroup(panelEditarLayout.createSequentialGroup()
-                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelEditarLayout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEditarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelEditarLayout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtEditarSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelEditarLayout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                                .addComponent(comboEditarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botonEditarActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelEditarLayout.createSequentialGroup()
-                                        .addComponent(botonEditarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(212, 212, 212))))
-                            .addGroup(panelEditarLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEditarPrimerApellido))
-                            .addGroup(panelEditarLayout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEditarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(33, 33, 33))
-        );
-        panelEditarLayout.setVerticalGroup(
-            panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(txtEditarDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEditarId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEditarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtEditarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtEditarPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboEditarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(txtEditarSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboEditarSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtEditarPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(txtEditarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(botonEditarActualizar)
-                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonEditarCancelar)
-                            .addComponent(errorFaltanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel23))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        jLabel21.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel21.setText("Gestión usuarios");
 
         jLabel2.setText("DNI");
 
@@ -340,7 +185,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,7 +250,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         panelControlPasajerosLayout.setHorizontalGroup(
             panelControlPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelControlPasajerosLayout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelControlPasajerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane2)
                     .addGroup(panelControlPasajerosLayout.createSequentialGroup()
@@ -457,26 +302,199 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                     .addComponent(botonControlBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bloqueDatosControl.addTab("Control de pasajeros", panelControlPasajeros);
+
+        botonEditarActualizar.setText("Actualizar");
+        botonEditarActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActualizarActionPerformed(evt);
+            }
+        });
+
+        botonEditarCancelar.setText("Cancelar");
+        botonEditarCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("DNI");
+
+        jLabel7.setText("ID");
+
+        jLabel8.setText("Email");
+
+        jLabel11.setText("Nombre");
+
+        jLabel12.setText("Primer apellido");
+
+        jLabel13.setText("Segundo apellido");
+
+        jLabel14.setText("Sexo");
+
+        jLabel15.setText("Tipo");
+
+        jLabel16.setText("Pais");
+
+        jLabel17.setText("Telefono");
+
+        txtEditarDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEditarDniActionPerformed(evt);
+            }
+        });
+
+        comboEditarTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario Normal", "Administrador", "Personal Laboral", "Trabajador Externo" }));
+
+        comboEditarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otro", "Hombre", "Mujer" }));
+
+        errorFaltanDatos.setForeground(new java.awt.Color(255, 0, 0));
+        errorFaltanDatos.setText("¡Se deben completar todos los campos!");
+
+        javax.swing.GroupLayout panelEditarLayout = new javax.swing.GroupLayout(panelEditar);
+        panelEditar.setLayout(panelEditarLayout);
+        panelEditarLayout.setHorizontalGroup(
+            panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEditarDni, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEditarId, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEditarEmail))
+                    .addGroup(panelEditarLayout.createSequentialGroup()
+                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelEditarLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(2, 2, 2)
+                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelEditarLayout.createSequentialGroup()
+                                        .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(errorFaltanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(panelEditarLayout.createSequentialGroup()
+                                        .addComponent(comboEditarSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtEditarPais))))
+                            .addGroup(panelEditarLayout.createSequentialGroup()
+                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelEditarLayout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtEditarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelEditarLayout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtEditarSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelEditarLayout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboEditarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(botonEditarActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelEditarLayout.createSequentialGroup()
+                                        .addComponent(botonEditarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(212, 212, 212))))
+                            .addGroup(panelEditarLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEditarPrimerApellido))
+                            .addGroup(panelEditarLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEditarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(33, 33, 33))
+        );
+        panelEditarLayout.setVerticalGroup(
+            panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(txtEditarDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEditarId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEditarEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtEditarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtEditarPrimerApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboEditarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(txtEditarSegundoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboEditarSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtEditarPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17)
+                    .addComponent(txtEditarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botonEditarActualizar)
+                        .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonEditarCancelar)
+                            .addComponent(errorFaltanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel23))
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bloqueDatosControl, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 48, Short.MAX_VALUE)
+                .addComponent(bloqueDatosControl, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(171, 171, 171))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(panelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 12, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 25, Short.MAX_VALUE)
+                    .addComponent(panelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bloqueDatosControl, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bloqueDatosControl, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(66, Short.MAX_VALUE)
+                    .addComponent(panelEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(29, 29, 29)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -569,6 +587,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
