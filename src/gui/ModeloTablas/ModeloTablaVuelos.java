@@ -63,8 +63,8 @@ public class ModeloTablaVuelos extends AbstractTableModel {
             case 0: clase = String.class; break;
             case 1: clase = String.class; break;
             case 2: clase = String.class; break;
-            case 3: clase = java.sql.Date.class; break;
-            case 4: clase = java.sql.Date.class; break;
+            case 3: clase = java.sql.Timestamp.class; break;
+            case 4: clase = java.sql.Timestamp.class; break;
         }
         return clase;
     }

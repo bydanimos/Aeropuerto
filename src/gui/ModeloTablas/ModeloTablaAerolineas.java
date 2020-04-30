@@ -21,6 +21,11 @@ public class ModeloTablaAerolineas extends AbstractTableModel{
         this.aerolineas=new java.util.ArrayList<>();
         this.pa = pa;
     }
+    
+    public ModeloTablaAerolineas(){
+        this.aerolineas=new java.util.ArrayList<>();
+        this.pa = null;
+    }
 
     @Override
     public int getColumnCount (){

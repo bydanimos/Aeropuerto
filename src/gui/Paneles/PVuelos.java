@@ -25,7 +25,6 @@ public class PVuelos extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private ArrayList<Terminal> terminales;
-    private HashMap<Integer, SpinnerNumberModel> modelos;
     /**
      * Creates new form PVuelos
      * @param va
@@ -40,7 +39,6 @@ public class PVuelos extends javax.swing.JPanel {
         this.mensajeObligatorios.setVisible(false);
         this.mensajePrecio.setVisible(false);
         this.mensajeFinal.setVisible(false);
-        this.modelos = new HashMap<>();
         this.obtenerTerminales();
         this.buscarVuelos();
     }
@@ -233,7 +231,7 @@ public class PVuelos extends javax.swing.JPanel {
                     .addGroup(gestionPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         editarNuevoPanel.setPreferredSize(new java.awt.Dimension(781, 590));
@@ -486,7 +484,7 @@ public class PVuelos extends javax.swing.JPanel {
                             .addComponent(canceladoCheckbox)
                             .addComponent(botonCancelar)
                             .addComponent(botonGuardar))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)

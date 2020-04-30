@@ -3,6 +3,7 @@ package gui;
 import gui.Paneles.*;
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
+import aplicacion.aviones.ModeloAvion;
 import aplicacion.aviones.Terminal;
 import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
@@ -24,6 +25,7 @@ public class VAdministrador extends javax.swing.JFrame {
 
     /**
      * Creates new form VAdministrador
+     *
      * @param fa
      */
     public VAdministrador(aplicacion.FachadaAplicacion fa) {
@@ -185,12 +187,7 @@ public class VAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void adminLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabel1MouseClicked
-        this.setSize(this.getWidth(), 500);
-        
-        this.panelActual.setVisible(false);
-        this.panelActual = new PPrincipal(this);
-        this.panelPrincipalAdministrador.add(this.panelActual);
-        this.panelActual.setVisible(true);
+        this.volver();
     }//GEN-LAST:event_adminLabel1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -206,6 +203,15 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel serviciosLabel;
     private javax.swing.JLabel vuelosLabel;
     // End of variables declaration//GEN-END:variables
+
+    public void volver() {
+        this.setSize(this.getWidth(), 500);
+
+        this.panelActual.setVisible(false);
+        this.panelActual = new PPrincipal(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
 
     // -------------------------------------------------------------------------
     // ------------------------------- Usuarios -------------------------------
@@ -232,13 +238,13 @@ public class VAdministrador extends javax.swing.JFrame {
     public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         return this.fa.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
-    
-    public boolean borrarUsuario(Usuario u){
+
+    public boolean borrarUsuario(Usuario u) {
         return this.fa.borrarUsuario(u);
     }
 
     // -------------------------------------------------------------------------
-     // ------------------------------- Tiendas -------------------------------
+    // ------------------------------- Tiendas -------------------------------
     public void pulsarTiendas() {
         this.panelActual.setVisible(false);
         this.panelActual = new PTiendas(this);
@@ -276,14 +282,10 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
 
-    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
-        return this.fa.obtenerAviones(codigo, aerolinea, retirado);
-    }
-
     public ArrayList<Terminal> obtenerTerminales() {
         return this.fa.obtenerTerminales();
     }
-    
+
     // -------------------------------------------------------------------------
     // ------------------------------- Aerolineas ------------------------------
     public void pulsarAerolineas() {
@@ -292,34 +294,35 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
     }
-    
-    public List<Aerolinea> obtenerAerolineas (String nombre){
+
+    public List<Aerolinea> obtenerAerolineas(String nombre) {
         return this.fa.obtenerAerolineas(nombre);
     }
-    
-    public boolean guardarVuelo(Vuelo vuelo){
+
+    public boolean guardarVuelo(Vuelo vuelo) {
         return this.fa.guardarVuelo(vuelo);
     }
-    public void modificarAerolinea(Aerolinea aerolinea){
+
+    public void modificarAerolinea(Aerolinea aerolinea) {
         this.fa.modificarAerolinea(aerolinea);
     }
-    
-    public Aerolinea getAerolinea(String nombre){
+
+    public Aerolinea getAerolinea(String nombre) {
         return this.fa.getAerolinea(nombre);
     }
-    
-    public void anhadirAerolinea(Aerolinea aerolinea){
+
+    public void anhadirAerolinea(Aerolinea aerolinea) {
         this.fa.anhadirAerolinea(aerolinea);
     }
-    
-    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+
+    public void eliminarAerolineas(List<Aerolinea> aerolineas) {
         this.fa.eliminarAerolineas(aerolineas);
     }
-    
-    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+
+    public boolean esAerolineaBorrable(Aerolinea aerolinea) {
         return this.fa.esAerolineaBorrable(aerolinea);
     }
-    
+
     // -------------------------------------------------------------------------
     // -------------------------------- Coches ---------------------------------
     public void pulsarCoches() {
@@ -329,19 +332,19 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual.setVisible(true);
         ((PCoches) this.panelActual).buscarCoches();
     }
-    
+
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.fa.obtenerCoches(matricula, numPlazas, modelo);
     }
-    
+
     public void borrarCocheAlquiler(String matricula) {
         this.fa.borrarCocheAlquiler(matricula);
     }
-    
+
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.fa.insertarCocheAlquiler(co);
     }
-    
+
     // -------------------------------------------------------------------------
     // ----------------------------- Coche Nuevo -------------------------------
     public void pulsarNuevoCoche() {
@@ -350,7 +353,7 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
     }
-    
+
     // -------------------------------------------------------------------------
     // --------------------------- Personal Laboral ----------------------------
     public void pulsarPersonalLaboral() {
@@ -358,5 +361,52 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PPersonalLaboral(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
+    }
+
+    // -------------------------------------------------------------------------
+    // ------------------------------- Aviones ---------------------------------
+    public void pulsarAviones() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PAviones(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
+
+    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
+        return this.fa.obtenerAviones(codigo, aerolinea, retirado);
+    }
+
+    public boolean actualizarAviones(List<Avion> aviones) {
+        return this.fa.actualizarAviones(aviones);
+    }
+
+    public void pulsarAñadirAvion() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PNuevoAvion(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
+
+    public List<ModeloAvion> obtenerModelosAvion(String nombre) {
+        return this.fa.obtenerModelosAvion(nombre);
+    }
+
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+        return this.fa.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
+    }
+
+    public void pulsarVerModelos() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PModelosAvion(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
+
+    public void borrarModeloAvion(ModeloAvion modeloAvion) {
+        this.fa.borrarModeloAvion(modeloAvion);
+    }
+
+    public boolean actualizarModelosAvion(List<ModeloAvion> modelosAvion) {
+        return this.fa.actualizarModelosAvion(modelosAvion);
     }
 }

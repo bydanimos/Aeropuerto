@@ -132,11 +132,11 @@ public class PPrincipal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonAvionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAvionesActionPerformed
-        // TODO add your handling code here:
+        this.va.pulsarAviones();
     }//GEN-LAST:event_BotonAvionesActionPerformed
 
     private void BotonPersonalLaboralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPersonalLaboralActionPerformed
-        this.va.pulsarPersonalLaboral();
+        // TODO add your handling code here:
     }//GEN-LAST:event_BotonPersonalLaboralActionPerformed
 
     private void BotonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonUsuariosActionPerformed

@@ -2,6 +2,7 @@ package aplicacion;
 
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
+import aplicacion.aviones.ModeloAvion;
 import aplicacion.aviones.Terminal;
 import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
@@ -70,16 +71,12 @@ public class FachadaAplicacion {
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
-    
-    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
-        return this.ca.obtenerAviones(codigo, aerolinea, retirado);
-    }
 
     public ArrayList<Terminal> obtenerTerminales() {
         return this.cs.obtenerTerminales();
     }
-    
-    public boolean guardarVuelo(Vuelo vuelo){
+
+    public boolean guardarVuelo(Vuelo vuelo) {
         return this.cv.guardarVuelo(vuelo);
     }
 
@@ -134,50 +131,75 @@ public class FachadaAplicacion {
     public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         return this.cu.obtenerUsuarios(dni, id, nombre, primerApellido, segundoApellido);
     }
-    
-    public boolean borrarUsuario(Usuario u){
+
+    public boolean borrarUsuario(Usuario u) {
         return this.cu.borrarUsuario(u);
     }
 
     // -------------------------------------------------------------------------
     // ------------------------------- Aerolineas --------------------------------    
-    public List<Aerolinea> obtenerAerolineas (String nombre){
+    public List<Aerolinea> obtenerAerolineas(String nombre) {
         return this.ca.obtenerAerolineas(nombre);
     }
-    
-    public void modificarAerolinea(Aerolinea aerolinea){
+
+    public void modificarAerolinea(Aerolinea aerolinea) {
         this.ca.modificarAerolinea(aerolinea);
     }
-    
-    public Aerolinea getAerolinea(String nombre){
+
+    public Aerolinea getAerolinea(String nombre) {
         return this.ca.getAerolinea(nombre);
     }
-    
-    public void anhadirAerolinea(Aerolinea aerolinea){
+
+    public void anhadirAerolinea(Aerolinea aerolinea) {
         this.ca.anhadirAerolinea(aerolinea);
     }
-    
-    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+
+    public void eliminarAerolineas(List<Aerolinea> aerolineas) {
         this.ca.eliminarAerolineas(aerolineas);
     }
-    
-    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+
+    public boolean esAerolineaBorrable(Aerolinea aerolinea) {
         return this.ca.esAerolineaBorrable(aerolinea);
     }
-    
+
     // -------------------------------------------------------------------------
     // -------------------------------- Coches ---------------------------------
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.cs.obtenerCoches(matricula, numPlazas, modelo);
     }
-    
+
     public void borrarCocheAlquiler(String matricula) {
         this.cs.borrarCocheAlquiler(matricula);
     }
-    
+
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.cs.insertarCocheAlquiler(co);
     }
     // -------------------------------------------------------------------------
+    // -------------------------------- Aviones --------------------------------
+
+    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
+        return this.ca.obtenerAviones(codigo, aerolinea, retirado);
+    }
+
+    public boolean actualizarAviones(List<Avion> aviones) {
+        return this.ca.actualizarAviones(aviones);
+    }
+
+    public List<ModeloAvion> obtenerModelosAvion(String nombre) {
+        return this.ca.obtenerModelosAvion(nombre);
+    }
+
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+        return this.ca.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
+    }
+
+    public void borrarModeloAvion(ModeloAvion modeloAvion) {
+        this.ca.borrarModeloAvion(modeloAvion);
+    }
+
+    public boolean actualizarModelosAvion(List<ModeloAvion> modelosAvion) {
+        return this.ca.actualizarModelosAvion(modelosAvion);
+    }
 
 }

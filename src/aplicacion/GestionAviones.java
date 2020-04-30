@@ -2,6 +2,7 @@ package aplicacion;
 
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
+import aplicacion.aviones.ModeloAvion;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
 import java.util.List;
@@ -41,5 +42,34 @@ public class GestionAviones {
     
     public boolean esAerolineaBorrable(Aerolinea aerolinea) {
         return this.fbd.esAerolineaBorrable(aerolinea);
+    }
+    
+    public boolean actualizarAviones(List<Avion> aviones) {
+        for (Avion avion : aviones) {
+            if(!this.fbd.actualizarAvion(avion))
+                return false;
+        }
+        return true;
+    }
+    
+    public boolean actualizarModelosAvion(List<ModeloAvion> modelosAvion) {
+        for(ModeloAvion modelo : modelosAvion){
+            if(!this.fbd.actualizarModeloAvion(modelo)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public List<ModeloAvion> obtenerModelosAvion(String nombre) {
+        return this.fbd.obtenerModelosAvion(nombre);
+    }
+    
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion){
+        return this.fbd.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
+    }
+    
+    public void borrarModeloAvion(ModeloAvion modeloAvion){
+        this.fbd.borrarModeloAvion(modeloAvion);
     }
 }

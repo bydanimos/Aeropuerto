@@ -6,6 +6,7 @@ package baseDatos;
 
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
+import aplicacion.aviones.ModeloAvion;
 import aplicacion.aviones.Terminal;
 import aplicacion.usuarios.*;
 import baseDatos.usuarios.*;
@@ -84,8 +85,8 @@ public class FachadaBaseDatos {
 
     public Usuario getUsuarioActual() {
         return this.fa.getUsuarioActual();
-    }    
-    
+    }
+
     public void setUsuarioActual(Usuario usuarioActual) {
         this.fa.setUsuarioActual(usuarioActual);
     }
@@ -101,7 +102,7 @@ public class FachadaBaseDatos {
     public Usuario getUsuario(String id) {
         return this.daoUsuarios.getUsuario(id);
     }
-    
+
     // -------------------------------------------------------------------------
     // ----------------------------- Usuario General ---------------------------
     public void modificarUsuarioGeneral(Usuario u, String tipoAnterior, String tipoNuevo) {
@@ -267,49 +268,46 @@ public class FachadaBaseDatos {
     public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         this.daoServicios.editarTienda(terminal, codigo, nombre, tipo);
     }
-    
+
     // -------------------------------------------------------------------------
     // --------------------------------- Vuelos --------------------------------
     public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
 
-    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
-        return this.daoAviones.obtenerAviones(codigo, aerolinea, retirado);
-    }
-    
     // -------------------------------------------------------------------------
     // ------------------------------- Terminales ------------------------------
     public ArrayList<Terminal> obtenerTerminales() {
         return this.daoServicios.obtenerTerminales();
     }
-    
-    public boolean guardarVuelo(Vuelo vuelo){
+
+    public boolean guardarVuelo(Vuelo vuelo) {
         return this.daoVuelos.guardarVuelo(vuelo);
     }
+
     // -------------------------------------------------------------------------
     // ------------------------------- Aerolíneas ------------------------------
-    public void modificarAerolinea(Aerolinea aerolinea){
+    public void modificarAerolinea(Aerolinea aerolinea) {
         this.daoAviones.modificarAerolinea(aerolinea);
     }
-    
-    public Aerolinea getAerolinea(String nombre){
+
+    public Aerolinea getAerolinea(String nombre) {
         return this.daoAviones.getAerolinea(nombre);
     }
-    
-    public void anhadirAerolinea(Aerolinea aerolinea){
+
+    public void anhadirAerolinea(Aerolinea aerolinea) {
         this.daoAviones.anhadirAerolinea(aerolinea);
     }
-    
-    public void eliminarAerolineas(List<Aerolinea> aerolineas){
+
+    public void eliminarAerolineas(List<Aerolinea> aerolineas) {
         this.daoAviones.eliminarAerolineas(aerolineas);
     }
-    
-    public boolean esAerolineaBorrable(Aerolinea aerolinea){
+
+    public boolean esAerolineaBorrable(Aerolinea aerolinea) {
         return this.daoAviones.esAerolineaBorrable(aerolinea);
     }
-    
-    public List<Aerolinea> obtenerAerolineas(String nombre){
+
+    public List<Aerolinea> obtenerAerolineas(String nombre) {
         return this.daoAviones.obtenerAerolineas(nombre);
     }
 
@@ -325,6 +323,32 @@ public class FachadaBaseDatos {
 
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.daoServicios.insertarCocheAlquiler(co);
+    }
+
+    // -------------------------------------------------------------------------
+    // --------------------------------- Aviones -------------------------------
+    public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
+        return this.daoAviones.obtenerAviones(codigo, aerolinea, retirado);
+    }
+
+    public boolean actualizarAvion(Avion avion) {
+        return this.daoAviones.actualizarAvion(avion);
+    }
+
+    public List<ModeloAvion> obtenerModelosAvion(String nombre) {
+        return this.daoAviones.obtenerModelosAvion(nombre);
+    }
+
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+        return this.daoAviones.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
+    }
+
+    public void borrarModeloAvion(ModeloAvion modeloAvion) {
+        this.daoAviones.borrarModeloAvion(modeloAvion);
+    }
+
+    public boolean actualizarModeloAvion(ModeloAvion modeloAvion) {
+        return this.daoAviones.actualizarModeloAvion(modeloAvion);
     }
 
 }

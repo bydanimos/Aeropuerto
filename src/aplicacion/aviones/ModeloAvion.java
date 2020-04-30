@@ -3,17 +3,45 @@ package aplicacion.aviones;
 public class ModeloAvion {
 
     private String nombre;
-    private int capacidadNormal;
-    private int capacidadPremium;
-    private float consumo;
+    private Integer capacidadNormal;
+    private Integer capacidadPremium;
+    private Float consumo;
     private String empresaFabricante;
+    private boolean eliminable;
 
+    public ModeloAvion() {
+        this.nombre = null;
+        this.capacidadNormal = -1;
+        this.capacidadPremium = -1;
+        this.consumo = -1.0f;
+        this.empresaFabricante = null;
+        this.eliminable = true;
+    }
+    
     public ModeloAvion(String nombre, int capacidadNormal, int capacidadPremium, float consumo, String empresaFabricante) {
         this.nombre = nombre;
         this.capacidadNormal = capacidadNormal;
         this.capacidadPremium = capacidadPremium;
         this.consumo = consumo;
         this.empresaFabricante = empresaFabricante;
+        this.eliminable = false;
+    }
+    
+    public ModeloAvion(String nombre, int capacidadNormal, int capacidadPremium, float consumo, String empresaFabricante, boolean eliminable) {
+        this.nombre = nombre;
+        this.capacidadNormal = capacidadNormal;
+        this.capacidadPremium = capacidadPremium;
+        this.consumo = consumo;
+        this.empresaFabricante = empresaFabricante;
+        this.eliminable = eliminable;
+    }
+
+    public boolean isEliminable() {
+        return eliminable;
+    }
+
+    public void setEliminable(boolean eliminable) {
+        this.eliminable = eliminable;
     }
 
     public String getNombre() {
