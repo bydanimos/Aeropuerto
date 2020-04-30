@@ -207,7 +207,6 @@ public class PCoches extends javax.swing.JPanel {
     public void buscarCoches() {
         ModeloTablaCoches m;
         m = (ModeloTablaCoches) this.cochesTable.getModel();
-        int itemSelected = this.numPlazasComboBox.getSelectedIndex();
         String matricula = this.matriculaTextField.getText();
         String modelo = this.modeloTextField.getText();
         int numPlazas = this.seleccionarBuscar();
