@@ -355,4 +355,13 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
     }
+    
+    // -------------------------------------------------------------------------
+    // --------------------------- Personal Laboral ----------------------------
+    public void pulsarPersonalLaboral() {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PPersonalLaboral(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
 }
