@@ -136,7 +136,7 @@ public class PPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_BotonAvionesActionPerformed
 
     private void BotonPersonalLaboralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPersonalLaboralActionPerformed
-        // TODO add your handling code here:
+        this.va.pulsarPersonalLaboral();
     }//GEN-LAST:event_BotonPersonalLaboralActionPerformed
 
     private void BotonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonUsuariosActionPerformed
