@@ -1,11 +1,6 @@
 package gui;
 
-import gui.Paneles.PVuelos;
-import gui.Paneles.PTiendas;
-import gui.Paneles.PPrincipal;
-import gui.Paneles.PCoches;
-import gui.Paneles.PAerolineas;
-import gui.Paneles.PAdminUsuarios;
+import gui.Paneles.*;
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
 import aplicacion.aviones.Terminal;
