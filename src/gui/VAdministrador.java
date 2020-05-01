@@ -363,6 +363,16 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual = new PPersonalLaboral(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
+        ((PPersonalLaboral) this.panelActual).buscar();
+    }
+    
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, 
+            String nombre, String ape1, String ape2, boolean servicio) {
+        return this.fa.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
+    }
+    
+    public void modificarPersonalLaboral(PersonalLaboral pl) {
+        
     }
 
     // -------------------------------------------------------------------------
