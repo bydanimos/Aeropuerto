@@ -9,6 +9,8 @@ import aplicacion.aviones.*;
 import aplicacion.aviones.Terminal;
 import aplicacion.vuelos.Vuelo;
 import java.sql.*;
+import aplicacion.usuarios.TipoSexo;
+import aplicacion.vuelos.TipoAsiento;
 
 /**
  *
