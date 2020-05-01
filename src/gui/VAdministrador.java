@@ -14,6 +14,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import aplicacion.usuarios.TipoSexo;
+import aplicacion.vuelos.TipoAsiento;
 
 public class VAdministrador extends javax.swing.JFrame {
 
