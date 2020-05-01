@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.Paneles;
 
 import gui.VAdministrador;
@@ -141,7 +137,7 @@ public class PPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_BotonAvionesActionPerformed
 
     private void BotonPersonalLaboralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPersonalLaboralActionPerformed
-        // TODO add your handling code here:
+        this.va.pulsarPersonalLaboral();
     }//GEN-LAST:event_BotonPersonalLaboralActionPerformed
 
     private void BotonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonUsuariosActionPerformed
