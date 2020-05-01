@@ -21,9 +21,10 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
         this.va = va;
         this.pl = pl;
         initComponents();
-        this.nombreTextField.setText(this.pl.getNombre() + 
-                this.pl.getApellido1() + this.pl.getApellido2());
+        this.nombreTextField.setText(this.pl.getNombre() + " " +
+                this.pl.getApellido1() + " " + this.pl.getApellido2());
         this.nombreTextField.setEditable(false);
+        this.guardadoCorrecLabel.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +41,7 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
         descrTextArea = new javax.swing.JTextArea();
         volverButton = new javax.swing.JButton();
         guardarButton = new javax.swing.JButton();
+        guardadoCorrecLabel = new javax.swing.JLabel();
 
         persLaboralLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         persLaboralLabel.setText("<html> <h1> Personal Laboral </h1> </html>");
@@ -68,6 +70,9 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
             }
         });
 
+        guardadoCorrecLabel.setForeground(new java.awt.Color(26, 221, 21));
+        guardadoCorrecLabel.setText("¡Guardado con éxito!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +87,8 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(volverButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(guardadoCorrecLabel)
+                        .addGap(18, 18, 18)
                         .addComponent(guardarButton))
                     .addComponent(jScrollPane1)
                     .addComponent(descripcionLabel)
@@ -113,7 +120,8 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(volverButton)
-                    .addComponent(guardarButton))
+                    .addComponent(guardarButton)
+                    .addComponent(guardadoCorrecLabel))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +138,7 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descrTextArea;
     private javax.swing.JLabel descripcionLabel;
+    private javax.swing.JLabel guardadoCorrecLabel;
     private javax.swing.JButton guardarButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel laborLabel;
@@ -147,7 +156,12 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
     private void guardar() {
         if (!this.laborTextField.getText().equals(this.pl.getLabor()) || 
             !this.descrTextArea.getText().equals(this.pl.getDescripcionTarea())) {
-            this.va.modificarPersonalLaboral(this.pl);
+            this.pl.setLabor(this.laborTextField.getText());
+            this.pl.setDescripcionTarea(this.descrTextArea.getText());
+            this.va.modLaborDescripPersonalLaboral(this.pl);
+            this.guardadoCorrecLabel.setVisible(true);
+        } else {
+            this.guardadoCorrecLabel.setVisible(false);
         }
         
     }

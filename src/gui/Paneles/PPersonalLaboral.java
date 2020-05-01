@@ -1,6 +1,7 @@
 
 package gui.Paneles;
 
+import aplicacion.usuarios.PersonalLaboral;
 import gui.ModeloTablas.ModeloTablaPersonalLaboral;
 import gui.VAdministrador;
 
@@ -19,6 +20,7 @@ public class PPersonalLaboral extends javax.swing.JPanel {
     public PPersonalLaboral(VAdministrador va) {
         this.va = va;
         initComponents();
+        this.servicioCheckBox.setSelected(true);
     }
 
     
@@ -115,19 +117,18 @@ public class PPersonalLaboral extends javax.swing.JPanel {
                                             .addComponent(primerApeTextField)
                                             .addComponent(dniTextField))
                                         .addGap(51, 51, 51)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nombreLabel)
+                                            .addComponent(segunApellidoLabel)
+                                            .addComponent(servicioCheckBox))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(servicioCheckBox)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(152, 152, 152)
                                                 .addComponent(buscarButton))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(nombreLabel)
-                                                    .addComponent(segunApellidoLabel))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(segunApeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                                    .addComponent(nombreTextField))))))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(segunApeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                                .addComponent(nombreTextField)))))
                                 .addGap(60, 60, 60))))))
         );
         layout.setVerticalGroup(
@@ -154,10 +155,10 @@ public class PPersonalLaboral extends javax.swing.JPanel {
                     .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarButton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(editarButton)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,7 +167,7 @@ public class PPersonalLaboral extends javax.swing.JPanel {
     }//GEN-LAST:event_servicioCheckBoxActionPerformed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        this.buscar();
+        this.buscar(false);
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
@@ -198,16 +199,25 @@ public class PPersonalLaboral extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void buscar() {
-        String dni = this.dniTextField.getText();
-        String id = this.idTextField.getText();
-        String nombre = this.nombreTextField.getText();
-        String ape1 = this.primerApeTextField.getText();
-        String ape2 = this.segunApeTextField.getText();
-        boolean servicio = this.servicioCheckBox.isSelected();
-        
+        this.buscar(true);
+    }
+    
+    private void buscar(boolean fuera) {
         this.mp = (ModeloTablaPersonalLaboral) this.personalTable.getModel();
+        if (!fuera) {
+            String dni = this.dniTextField.getText();
+            String id = this.idTextField.getText();
+            String nombre = this.nombreTextField.getText();
+            String ape1 = this.primerApeTextField.getText();
+            String ape2 = this.segunApeTextField.getText();
+            boolean servicio = this.servicioCheckBox.isSelected();
         
-        this.mp.setFilas(this.va.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio));
+            this.mp.setFilas(this.va.obtenerPersonalLaboral(dni, id, nombre, 
+                    ape1, ape2, servicio));
+        } else {
+            this.mp.setFilas(this.va.obtenerPersonalLaboral("", "", "", "", "", true));
+        }
+        
         if (this.mp.getRowCount() > 0) {
             this.personalTable.setRowSelectionInterval(0, 0);
             this.editarButton.setEnabled(true);
@@ -218,7 +228,9 @@ public class PPersonalLaboral extends javax.swing.JPanel {
     }
 
     private void verTarea() {
-        
+        int select = this.personalTable.getSelectedRow();
+        PersonalLaboral pl = this.mp.obtenerPersonalLaboral(select);
+        this.va.pulsarVerTarea(pl);
     }
 
     private void mirarSeleccionado() {
