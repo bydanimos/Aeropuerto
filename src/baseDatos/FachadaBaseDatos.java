@@ -164,6 +164,17 @@ public class FachadaBaseDatos {
     }
 
     // -------------------------------------------------------------------------
+    // ------------------------ Panel Personal Laboral -------------------------
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, 
+            String ape1, String ape2, boolean servicio) {
+        return this.daoPersonalLaboral.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
+    }
+
+    public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
+        this.daoPersonalLaboral.modLaborDescripPersonalLaboral(pl);
+    }
+
+    // -------------------------------------------------------------------------
     // ---------------------------- Personal Externo ---------------------------
     public PersonalExterno validarPersonalExterno(String id, String clave) {
         return this.daoPersonalExterno.validarPersonalExterno(id, clave);
