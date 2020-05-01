@@ -23,6 +23,8 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
         initComponents();
         this.nombreTextField.setText(this.pl.getNombre() + " " +
                 this.pl.getApellido1() + " " + this.pl.getApellido2());
+        this.descrTextArea.setText(this.pl.getDescripcionTarea());
+        this.laborTextField.setText(this.pl.getLabor());
         this.nombreTextField.setEditable(false);
         this.guardadoCorrecLabel.setVisible(false);
     }
