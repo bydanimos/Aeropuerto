@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import aplicacion.usuarios.TipoSexo;
+import aplicacion.usuarios.PersonalLaboral;
 import aplicacion.vuelos.TipoAsiento;
 
 public class FachadaAplicacion {
