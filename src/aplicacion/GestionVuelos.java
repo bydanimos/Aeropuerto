@@ -4,6 +4,10 @@ import aplicacion.vuelos.Vuelo;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
 import java.sql.Timestamp;
+import aplicacion.usuarios.TipoSexo;
+import aplicacion.vuelos.TipoAsiento;
+import java.util.List;
+import aplicacion.aviones.Aerolinea;
 
 public class GestionVuelos {
 
