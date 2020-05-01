@@ -1,6 +1,7 @@
 package gui;
 
 import gui.Paneles.*;
+import gui.Paneles.PAdminUsuarios;
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
 import aplicacion.aviones.ModeloAvion;
