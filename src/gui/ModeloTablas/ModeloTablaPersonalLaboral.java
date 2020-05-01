@@ -41,8 +41,17 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
             case 2: resultado= this.usuarios.get(rowIndex).getApellido1();break;
             case 3: resultado= this.usuarios.get(rowIndex).getApellido2(); break;
             case 4: resultado= this.usuarios.get(rowIndex).getLabor(); break;
-            case 5: resultado= this.usuarios.get(rowIndex); break; // de servicio
-            case 6: resultado= this.usuarios.get(rowIndex); break; // fecha entrada
+            case 5: if (this.usuarios.get(rowIndex).isDeServicio())
+                        resultado = "Sí";
+                    else resultado = "No"; break; 
+            case 6: 
+                String aux;
+                if (this.usuarios.get(rowIndex).isDeServicio()) {
+                    aux = "" + this.usuarios.get(rowIndex).getFechaEntrada();
+                    aux = aux.split(" ")[1];
+                    aux = aux.substring(0,8) ;
+                    resultado = aux;
+                } else resultado = "-- -- --"; break; 
         }
         return resultado;
     }
@@ -58,7 +67,7 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
             case 3: nombre= "Apellido 2"; break;
             case 4: nombre= "Labor"; break;
             case 5: nombre= "De servicio"; break;
-            case 6: nombre= "Fecha Entrada"; break;
+            case 6: nombre= "Hora Entrada"; break;
         }
         return nombre;
     }
@@ -86,5 +95,9 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
             this.usuarios = usuarios;
             fireTableDataChanged();
         }
+    }
+    
+    public PersonalLaboral obtenerPersonalLaboral(int i) {
+        return this.usuarios.get(i);
     }
 }
