@@ -24,7 +24,7 @@ public class DAOVuelos extends AbstractDAO {
     public java.util.List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         java.util.List<Vuelo> resultado = new java.util.ArrayList<Vuelo>();
 
-        int indice = 4;
+        int a = 0,b=0;
         Vuelo vueloActual;
         Terminal terminalActual;
         ModeloAvion modeloAvionActual;
@@ -49,10 +49,11 @@ public class DAOVuelos extends AbstractDAO {
                     + "and destino like ? ";
             if (fechaSalida != null) {
                 consulta += "and cast(fechasalidateorica as DATE) = ? ";
-                indice++;
+                a ++;
             }
             if (fechaLlegada != null) {
                 consulta += "and cast(fechallegadateorica as DATE) = ? ";
+                b++;
             }
 
             stmVuelos = con.prepareStatement(consulta);
@@ -60,10 +61,10 @@ public class DAOVuelos extends AbstractDAO {
             stmVuelos.setString(2, "%" + origen + "%");
             stmVuelos.setString(3, "%" + destino + "%");
             if (fechaSalida != null) {
-                stmVuelos.setTimestamp(indice, fechaSalida);
+                stmVuelos.setTimestamp(3+a, fechaSalida);
             }
             if (fechaLlegada != null) {
-                stmVuelos.setTimestamp(indice, fechaLlegada);
+                stmVuelos.setTimestamp(3+a+b, fechaLlegada);
             }
 
             rsVuelos = stmVuelos.executeQuery();
@@ -174,4 +175,193 @@ public class DAOVuelos extends AbstractDAO {
         }
         return true;
     }
+    
+    //---------------------------------Estadísticas Vuelos------------------
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+        Aerolinea resultado = null;
+
+        Connection con;
+        PreparedStatement stmAerolinea = null;
+        ResultSet rsAerolinea;
+
+        con = this.getConexion();
+
+        try {
+            String consulta = "select nombre, paissede, preciobasemaleta, pesobasemaleta " +
+                    "from aerolinea " +
+                    "where nombre in (Select aerolinea "+
+                                     "from avion " +
+                                     "where codigo in (Select avion "+
+                                                      "from vuelo " +
+                                                      "where numvuelo = ? )) ";
+            
+
+            stmAerolinea = con.prepareStatement(consulta);
+            stmAerolinea.setString(1, vuelo.getNumeroVuelo());
+            
+
+            rsAerolinea = stmAerolinea.executeQuery();
+            if (rsAerolinea.next()) {
+                resultado = new Aerolinea(rsAerolinea.getString("nombre"),rsAerolinea.getString("paissede"),rsAerolinea.getFloat("preciobasemaleta"),rsAerolinea.getFloat("pesobasemaleta"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmAerolinea.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
+    
+    
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+        Integer resultado = 0;
+        Connection con;
+        PreparedStatement stmNum = null;
+        ResultSet rsNum;
+        String sexo;
+
+        con = this.getConexion();
+
+        try {
+            String consulta = "select count(*) as num " +
+                    "from comprarbillete " +
+                    "where vuelo = ? " +
+                    "and usuario in (Select dni "+
+                                    "from usuario "+
+                                    "where sexo = ? )";
+            
+            
+            if(TipoSexo.h.equals(ts)){
+                sexo = "h";
+            }else if(TipoSexo.m.equals(ts)){
+                sexo = "m";
+            }else{
+                sexo = "o";
+            }
+
+            stmNum = con.prepareStatement(consulta);
+            stmNum.setString(1, vuelo.getNumeroVuelo());
+            stmNum.setString(2, sexo);
+            
+
+            rsNum = stmNum.executeQuery();
+            if(rsNum.next()){
+                resultado = rsNum.getInt("num");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmNum.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
+    
+    
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+        Integer resultado = 0;
+        Connection con;
+        PreparedStatement stmNum = null;
+        ResultSet rsNum;
+        String tipoAsiento;
+
+        con = this.getConexion();
+
+        try {
+            String consulta = "select count(*) as num " +
+                    "from comprarbillete " +
+                    "where vuelo = ? " +
+                    "and tipoasiento = ? ";
+            
+            
+            if(TipoAsiento.Normal.equals(ta)){
+                tipoAsiento = "normal";
+            }else{
+                tipoAsiento = "premium";
+            }
+
+            stmNum = con.prepareStatement(consulta);
+            stmNum.setString(1, vuelo.getNumeroVuelo());
+            stmNum.setString(2, tipoAsiento);
+            
+
+            rsNum = stmNum.executeQuery();
+            if(rsNum.next()){
+                resultado = rsNum.getInt("num");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmNum.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
+    
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+        String resultado = "";
+        Connection con;
+        PreparedStatement stmNum = null;
+        ResultSet rsNum;
+
+        con = this.getConexion();
+
+        try {
+            String consulta = "select paisprocedencia "+
+                              "from usuario "+
+                              "where dni in (select usuario "+
+                                            "from comprarbillete "+
+                                            "where vuelo = ?) " +
+                              "group by paisprocedencia "+ 
+                              "having count(*) >= all (select count(*) "+
+                                                      "from usuario "+
+                                                      "where dni in (select usuario "+
+                                                                    "from comprarbillete "+
+                                                                    "where vuelo = ?) "+
+                                                      "group by paisprocedencia)";
+            
+
+            stmNum = con.prepareStatement(consulta);
+            stmNum.setString(1, vuelo.getNumeroVuelo());
+            stmNum.setString(2, vuelo.getNumeroVuelo());
+            
+
+            rsNum = stmNum.executeQuery();
+            if(rsNum.next()){
+                resultado = rsNum.getString("paisprocedencia");
+                while(rsNum.next()){
+                    resultado+="/" + rsNum.getString("paisprocedencia");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmNum.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }   
+    
+    
+    //----------------------------------------------------------------------
 }
