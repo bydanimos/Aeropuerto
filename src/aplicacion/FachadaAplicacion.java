@@ -11,6 +11,8 @@ import aplicacion.vuelos.Vuelo;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import aplicacion.usuarios.TipoSexo;
+import aplicacion.vuelos.TipoAsiento;
 
 public class FachadaAplicacion {
 
