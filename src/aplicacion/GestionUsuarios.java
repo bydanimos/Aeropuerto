@@ -75,4 +75,14 @@ public class GestionUsuarios {
     public boolean borrarUsuario(Usuario u){
         return this.fbd.borrarUsuario(u.getDni());
     }
+
+    // -------------------------------------------------------------------------
+    // ---------------------------- Personal Laboral ---------------------------
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, String ape1, String ape2, boolean servicio) {
+        return this.fbd.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
+    }
+
+    public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
+        this.fbd.modLaborDescripPersonalLaboral(pl);
+    }
 }
