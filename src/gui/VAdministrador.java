@@ -422,8 +422,8 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.actualizarModelosAvion(modelosAvion);
     }
     
-    //---------------------------------Estadísticas Vuelos------------------
-    
+    // -------------------------------------------------------------------------
+    // ------------------------- Estadísticas Vuelos ---------------------------
     public void pulsarEstadisticas(){
         this.panelActual.setVisible(false);
         this.panelActual = new PEstadisticas(this);
