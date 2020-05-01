@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package baseDatos;
 
 import aplicacion.aviones.Aerolinea;
@@ -159,6 +156,11 @@ public class FachadaBaseDatos {
 
     public PersonalLaboral getPersonalLaboral(String dni) {
         return this.daoPersonalLaboral.getPersonalLaboral(dni);
+    }
+    
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, 
+            String nombre, String ape1, String ape2, boolean servicio) {
+        return this.daoPersonalLaboral.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
     }
 
     // -------------------------------------------------------------------------
@@ -351,7 +353,8 @@ public class FachadaBaseDatos {
         return this.daoAviones.actualizarModeloAvion(modeloAvion);
     }
     
-    //---------------------------------Estadísticas Vuelos------------------
+    // -------------------------------------------------------------------------
+    // --------------------------- Estadisticas Vuelos --------------------------
     public Aerolinea getAerolineaVuelo(Vuelo vuelo){
         return this.daoVuelos.getAerolineaVuelo(vuelo);
     }
