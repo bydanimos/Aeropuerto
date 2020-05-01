@@ -201,5 +201,25 @@ public class FachadaAplicacion {
     public boolean actualizarModelosAvion(List<ModeloAvion> modelosAvion) {
         return this.ca.actualizarModelosAvion(modelosAvion);
     }
+    
+    //---------------------------------Estadísticas Vuelos------------------
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+        return this.cv.getAerolineaVuelo(vuelo);
+    }
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+        return this.cv.getNacionalidadMayoritariaVuelo(vuelo);
+    }
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+        return this.cv.getNTipoVuelo(vuelo,ta);
+    }
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+        return this.cv.getNSexoVuelo(vuelo,ts);
+    } 
+    
+    public List<Vuelo> obtenerVuelos(String origen,String destino, Timestamp tSalida){
+        return this.cv.obtenerVuelos(origen, destino,tSalida);
+    }
+    //----------------------------------------------------------------------
+
 
 }
