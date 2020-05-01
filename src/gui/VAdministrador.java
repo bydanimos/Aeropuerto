@@ -409,4 +409,31 @@ public class VAdministrador extends javax.swing.JFrame {
     public boolean actualizarModelosAvion(List<ModeloAvion> modelosAvion) {
         return this.fa.actualizarModelosAvion(modelosAvion);
     }
+    
+    //---------------------------------Estadísticas Vuelos------------------
+    
+    public void pulsarEstadisticas(){
+        this.panelActual.setVisible(false);
+        this.panelActual = new PEstadisticas(this);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
+    }
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+        return this.fa.getAerolineaVuelo(vuelo);
+    }
+    
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+        return this.fa.getNacionalidadMayoritariaVuelo(vuelo);
+    }
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+        return this.fa.getNTipoVuelo(vuelo,ta);
+    }
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+        return this.fa.getNSexoVuelo(vuelo,ts);
+    } 
+    
+    public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida){
+        return this.fa.obtenerVuelos(origen, destino,tSalida);
+    }
+    //----------------------------------------------------------------------
 }
