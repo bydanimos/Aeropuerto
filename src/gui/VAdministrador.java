@@ -371,8 +371,15 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
     }
     
-    public void modificarPersonalLaboral(PersonalLaboral pl) {
-        
+    public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
+        this.fa.modLaborDescripPersonalLaboral(pl);
+    }
+    
+    public void pulsarVerTarea(PersonalLaboral pl) {
+        this.panelActual.setVisible(false);
+        this.panelActual = new PModificarPersonalLaboral(this, pl);
+        this.panelPrincipalAdministrador.add(this.panelActual);
+        this.panelActual.setVisible(true);
     }
 
     // -------------------------------------------------------------------------
