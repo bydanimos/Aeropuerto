@@ -1,5 +1,5 @@
-
 package baseDatos.usuarios;
+
 import aplicacion.FachadaAplicacion;
 import aplicacion.usuarios.*;
 import baseDatos.AbstractDAO;
@@ -12,14 +12,14 @@ import java.util.List;
  * @author ruben
  */
 public class DAOPersonalLaboral extends AbstractDAO {
-    
+
     // -------------------------------------------------------------------------
     // ----------------------------- Constructor -------------------------------
-    public DAOPersonalLaboral (Connection conexion, FachadaAplicacion fa) {
+    public DAOPersonalLaboral(Connection conexion, FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
-    
+
     // -------------------------------------------------------------------------
     // ------------------------------ Validacion -------------------------------
     public PersonalLaboral validarPersonalLaboral(String id, String clave) {
@@ -31,21 +31,20 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
         con = this.getConexion();
 
-                    
         try {
             consulta = "select u.dni, u.id, u.correoelectronico, u.contrasenha,"
-                    + "u.nombre, u.primerapellido, u.segundoapellido," +
-                       "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
-                    + "pl.descripciontarea,pl.fechainicio " +
-                       "from usuario as u, personallaboral as pl " +
-                       "where u.dni = pe.usuario " +
-                       "and u.id = ? and u.contrasenha = ? ";
+                    + "u.nombre, u.primerapellido, u.segundoapellido,"
+                    + "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
+                    + "pl.descripciontarea,pl.fechainicio "
+                    + "from usuario as u, personallaboral as pl "
+                    + "where u.dni = pe.usuario "
+                    + "and u.id = ? and u.contrasenha = ? ";
             stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, id);
             stmPersonalLaboral.setString(2, clave);
             rsPersonalLaboral = stmPersonalLaboral.executeQuery();
-           
-            if (rsPersonalLaboral.next()){
+
+            if (rsPersonalLaboral.next()) {
                 /* resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), 
                                 rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
                                 rsPersonalLaboral.getString("correoelectronico"), 
@@ -58,21 +57,21 @@ public class DAOPersonalLaboral extends AbstractDAO {
                                 rsPersonalLaboral.getString("labor"),
                                 rsPersonalLaboral.getString("descripciontarea"),
                                 rsPersonalLaboral.getTimestamp("fechainicio"));
-                */
+                 */
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally {
+        } finally {
             try {
                 stmPersonalLaboral.close();
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 System.out.println("Imposible cerrar cursores");
             }
         }
         return resultado;
     }
-    
+
     // -------------------------------------------------------------------------
     // ------------------------------- Getter ----------------------------------
     public PersonalLaboral getPersonalLaboral(String dni) {
@@ -84,7 +83,6 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
         con = this.getConexion();
 
-                    
         try {
             consulta = "select u.dni, u.id, u.correoelectronico, u.contrasenha,"
                     + "u.nombre, u.primerapellido, u.segundoapellido, "
@@ -92,11 +90,11 @@ public class DAOPersonalLaboral extends AbstractDAO {
                     + "pl.descripciontarea, pl.fechainicio "
                     + "from usuario as u, personallaboral as pl "
                     + "where u.dni = pl.usuario and u.dni = ? ";
-            stmPersonalLaboral=con.prepareStatement(consulta);
+            stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, dni);
-            rsPersonalLaboral=stmPersonalLaboral.executeQuery();
-           
-            if (rsPersonalLaboral.next()){
+            rsPersonalLaboral = stmPersonalLaboral.executeQuery();
+
+            if (rsPersonalLaboral.next()) {
                 String id = rsPersonalLaboral.getString("id");
                 String password = rsPersonalLaboral.getString("contrasenha");
                 String email = rsPersonalLaboral.getString("correoelectronico");
@@ -106,17 +104,17 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 TipoSexo sexo = TipoSexo.valueOf(rsPersonalLaboral.getString("sexo"));
                 String pais = rsPersonalLaboral.getString("paisprocedencia");
                 int telefono = rsPersonalLaboral.getInt("telefono");
-                String labor =  rsPersonalLaboral.getString("labor");
+                String labor = rsPersonalLaboral.getString("labor");
                 String tarea = rsPersonalLaboral.getString("descripciontarea");
-                
-                resultado = new PersonalLaboral(dni, id, password, email, 
-                        nombre, ape1, ape2, sexo, pais, telefono, labor, 
+
+                resultado = new PersonalLaboral(dni, id, password, email,
+                        nombre, ape1, ape2, sexo, pais, telefono, labor,
                         tarea, rsPersonalLaboral.getTimestamp("fechainicio"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally {
+        } finally {
             try {
                 stmPersonalLaboral.close();
             } catch (SQLException e) {
@@ -125,10 +123,10 @@ public class DAOPersonalLaboral extends AbstractDAO {
         }
         return resultado;
     }
-    
-    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, 
+
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id,
             String nombre, String ape1, String ape2, boolean servicio) {
-        
+
         List<PersonalLaboral> resultado = new ArrayList<>();
         PersonalLaboral perLabActual;
         Connection con;
@@ -137,18 +135,18 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select u.dni, u.id, u.correoelectronico, u.contrasenha,"
-                + "u.nombre, u.primerapellido, u.segundoapellido, "
+        String consulta = "select u.dni, u.id, u.correoelectronico, "
+                + "u.contrasenha, u.nombre, u.primerapellido, u.segundoapellido, "
                 + "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
-                + "pl.descripciontarea, pl.fechainicio "
-                + "from usuario as u, personallaboral as pl "
+                + "pl.descripciontarea, pl.fechainicio, h.fechaentrada, h.fechasalida "
+                + "from usuario as u, personallaboral as pl, historialtrabajo as h "
                 + "where u.dni = pl.usuario and u.dni like ? and u.id like ? "
-                + "u.nombre like ? and u.primerapellido like ? and "
+                + "and u.nombre like ? and u.primerapellido like ? and "
                 + "u.segundoapellido like ? ";
         if (servicio) {
-            consulta += "and h.fechasalida is null";
+            consulta += "and h.fechasalida is null ";
         } else {
-            consulta += "and h.fechasalida is not null";
+            consulta += "and h.fechasalida is not null ";
         }
         try {
             stmPerLab = con.prepareStatement(consulta);
@@ -162,19 +160,20 @@ public class DAOPersonalLaboral extends AbstractDAO {
             while (rsPerLab.next()) {
                 perLabActual = new PersonalLaboral(rsPerLab.getString("dni"),
                         rsPerLab.getString("id"), rsPerLab.getString("contrasenha"),
-                        rsPerLab.getString("correoelectronico"), 
-                        rsPerLab.getString("nombre"), 
+                        rsPerLab.getString("correoelectronico"),
+                        rsPerLab.getString("nombre"),
                         rsPerLab.getString("primerapellido"),
                         rsPerLab.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsPerLab.getString("sexo")), 
+                        TipoSexo.valueOf(rsPerLab.getString("sexo")),
                         rsPerLab.getString("paisprocedencia"),
-                        rsPerLab.getInt("telefono"), rsPerLab.getString("labor"), 
+                        rsPerLab.getInt("telefono"), rsPerLab.getString("labor"),
                         rsPerLab.getString("descripciontarea"),
                         rsPerLab.getTimestamp("fechainicio"));
-
+                
+                perLabActual.setDeServicio(servicio);
+                perLabActual.setFechaEntrada(rsPerLab.getTimestamp("fechaentrada"));
                 resultado.add(perLabActual);
             }
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
@@ -187,39 +186,39 @@ public class DAOPersonalLaboral extends AbstractDAO {
         }
         return resultado;
     }
-    
+
     // -------------------------------------------------------------------------
     // ------------------------------ Inserción --------------------------------
     public void insertarPersonalLaboral(PersonalLaboral pl) {
 
         Connection con;
-            PreparedStatement stmPersonalLaboral = null;
-            ResultSet rsPersonalLaboral;
-            String consulta;
+        PreparedStatement stmPersonalLaboral = null;
+        ResultSet rsPersonalLaboral;
+        String consulta;
 
-            con = super.getConexion();
+        con = super.getConexion();
 
+        try {
+            consulta = "insert into personallaboral(usuario,labor,descripciontarea) "
+                    + "values (?, ?, ?)";
+            stmPersonalLaboral = con.prepareStatement(consulta);
+            stmPersonalLaboral.setString(1, pl.getDni());
+            stmPersonalLaboral.setString(2, pl.getLabor());
+            stmPersonalLaboral.setString(3, pl.getDescripcionTarea());
+
+            stmPersonalLaboral.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
             try {
-                consulta = "insert into personallaboral(usuario,labor,descripciontarea) "+
-                           "values (?, ?, ?)";
-                stmPersonalLaboral = con.prepareStatement(consulta);
-                stmPersonalLaboral.setString(1, pl.getDni());
-                stmPersonalLaboral.setString(2, pl.getLabor());
-                stmPersonalLaboral.setString(3, pl.getDescripcionTarea());
-                
-                stmPersonalLaboral.executeUpdate();
+                stmPersonalLaboral.close();
             } catch (SQLException e) {
-              System.out.println(e.getMessage());
-              this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-            }finally {
-                try {
-                    stmPersonalLaboral.close();
-                } catch (SQLException e) {
-                    System.out.println("Imposible cerrar cursores");
-                }
+                System.out.println("Imposible cerrar cursores");
             }
+        }
     }
-    
+
     // -------------------------------------------------------------------------
     // -------------------------------- Delete ---------------------------------
     public void borrarPersonalLaboral(String dni) {
@@ -235,10 +234,10 @@ public class DAOPersonalLaboral extends AbstractDAO {
             stmPersonalLaboral.setString(1, dni);
             stmPersonalLaboral.executeUpdate();
 
-        } catch (SQLException e){
-          System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally {
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
             try {
                 stmPersonalLaboral.close();
             } catch (SQLException e) {
@@ -246,31 +245,31 @@ public class DAOPersonalLaboral extends AbstractDAO {
             }
         }
     }
-    
+
     // -------------------------------------------------------------------------
-    // ------------------------------- Modificar ---------------------------------
+    // ------------------------------ Modificar --------------------------------
     public void modificarPersonalLaboral(PersonalLaboral pl) {
         Connection con;
-        PreparedStatement stmPersonalLaboral=null;
+        PreparedStatement stmPersonalLaboral = null;
 
         con = super.getConexion();
 
         try {
-            stmPersonalLaboral= con.prepareStatement("update personallaboral " +
-                                        "set labor = ?, descripcionTarea = ? " +
-                                        "where dni = ? " +
-                                        "update usuario " +
-                                        "set id = ?, " +
-                                        "    nombre = ?, " +
-                                        "    primerapellido = ?, " +
-                                        "    segundoapellido = ?, " +
-                                        "    correoelectronico = ?, " +
-                                        "    contrasenha = ?, " +
-                                        "    paisprocedencia = ?, " +
-                                        "    telefono = ?, " +
-                                        "    sexo = ? " +
-                                        "where dni = ?");
-            
+            stmPersonalLaboral = con.prepareStatement("update personallaboral "
+                    + "set labor = ?, descripcionTarea = ? "
+                    + "where dni = ? "
+                    + "update usuario; " // comprobar funcionamiento
+                    + "set id = ?, "
+                    + "    nombre = ?, "
+                    + "    primerapellido = ?, "
+                    + "    segundoapellido = ?, "
+                    + "    correoelectronico = ?, "
+                    + "    contrasenha = ?, "
+                    + "    paisprocedencia = ?, "
+                    + "    telefono = ?, "
+                    + "    sexo = ? "
+                    + "where dni = ?");
+
             stmPersonalLaboral.setString(1, pl.getLabor());
             stmPersonalLaboral.setString(2, pl.getDescripcionTarea());
             stmPersonalLaboral.setString(3, pl.getDni());
@@ -283,30 +282,63 @@ public class DAOPersonalLaboral extends AbstractDAO {
             stmPersonalLaboral.setString(10, pl.getPaisProcedencia());
             stmPersonalLaboral.setInt(11, pl.getTelefono());
             stmPersonalLaboral.setString(13, pl.getDni());
-            
+
             String ts;
-                
-            if(null == pl.getSexo()) {
+            if (null == pl.getSexo()) {
                 ts = "o";
-            } else switch (pl.getSexo()) {
-                case h:
-                    ts = "h";
-                    break;
-                case m:
-                    ts = "m";
-                    break;
-                default:
-                    ts = "o";
-                    break;
+            } else {
+                switch (pl.getSexo()) {
+                    case h:
+                        ts = "h";
+                        break;
+                    case m:
+                        ts = "m";
+                        break;
+                    default:
+                        ts = "o";
+                        break;
+                }
             }
             stmPersonalLaboral.setString(12, ts);
-             
-            stmPersonalLaboral.executeUpdate();
 
+            stmPersonalLaboral.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally {
+        } finally {
+            try {
+                stmPersonalLaboral.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+    }
+    
+    public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
+        Connection con;
+        PreparedStatement stmPersonalLaboral = null;
+        String consulta;
+        
+        con = super.getConexion();
+        
+        try {
+            consulta = "update personallaboral "
+                    + "set labor = ?, descripcionTarea = ? "
+                    + "where usuario in (select dni " 
+                    + "from usuario "
+                    + "where dni = ?) ";
+            
+            stmPersonalLaboral = con.prepareStatement(consulta);
+
+            stmPersonalLaboral.setString(1, pl.getLabor());
+            stmPersonalLaboral.setString(2, pl.getDescripcionTarea());
+            stmPersonalLaboral.setString(3, pl.getDni());
+            
+            stmPersonalLaboral.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
             try {
                 stmPersonalLaboral.close();
             } catch (SQLException e) {
