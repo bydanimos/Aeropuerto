@@ -88,6 +88,11 @@ public class PPrincipal extends javax.swing.JPanel {
         });
 
         BotonEstadisticas.setText("Estadísticas");
+        BotonEstadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEstadisticasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -160,6 +165,10 @@ public class PPrincipal extends javax.swing.JPanel {
     private void BotonCochesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCochesActionPerformed
         this.va.pulsarCoches();
     }//GEN-LAST:event_BotonCochesActionPerformed
+    private void BotonEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEstadisticasActionPerformed
+        this.va.pulsarEstadisticas();
+    }//GEN-LAST:event_BotonEstadisticasActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
