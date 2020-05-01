@@ -7,7 +7,7 @@ import aplicacion.aviones.ModeloAvion;
 import aplicacion.aviones.Terminal;
 import aplicacion.servicios.CocheAlquiler;
 import aplicacion.servicios.Tienda;
-import aplicacion.usuarios.Usuario;
+import aplicacion.usuarios.*;
 import aplicacion.vuelos.Vuelo;
 import gui.Paneles.PNuevoCoche;
 import java.sql.Timestamp;
