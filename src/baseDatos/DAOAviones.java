@@ -1,24 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package baseDatos;
 
-import aplicacion.*;
 import aplicacion.aviones.Aerolinea;
 import aplicacion.aviones.Avion;
 import aplicacion.aviones.ModeloAvion;
-import aplicacion.aviones.Terminal;
-import aplicacion.vuelos.Vuelo;
 import java.sql.*;
 import java.util.List;
 
-/**
- *
- * @author basesdatos
- */
 public class DAOAviones extends AbstractDAO {
 
+    // -------------------------------------------------------------------------
+    // ----------------------------- Constructor -------------------------------
     public DAOAviones(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
@@ -82,7 +74,7 @@ public class DAOAviones extends AbstractDAO {
     }
 
     public java.util.List<Aerolinea> obtenerAerolineas(String nombre) {
-        java.util.List<Aerolinea> resultado = new java.util.ArrayList<Aerolinea>();
+        java.util.List<Aerolinea> resultado = new java.util.ArrayList<>();
         Aerolinea aerolineaActual;
         Connection con;
         PreparedStatement stmAerolineas = null;
@@ -101,7 +93,9 @@ public class DAOAviones extends AbstractDAO {
             rsAerolinea = stmAerolineas.executeQuery();
             while (rsAerolinea.next()) {
 
-                aerolineaActual = new Aerolinea(rsAerolinea.getString("nombre"), rsAerolinea.getString("paissede"), rsAerolinea.getFloat("pesobasemaleta"), rsAerolinea.getFloat("preciobasemaleta"));
+                aerolineaActual = new Aerolinea(rsAerolinea.getString("nombre"), 
+                        rsAerolinea.getString("paissede"), rsAerolinea.getFloat("pesobasemaleta"), 
+                        rsAerolinea.getFloat("preciobasemaleta"));
                 resultado.add(aerolineaActual);
             }
 
@@ -169,7 +163,9 @@ public class DAOAviones extends AbstractDAO {
             rsAerolinea = stmAerolineas.executeQuery();
             while (rsAerolinea.next()) {
 
-                resultado = new Aerolinea(rsAerolinea.getString("nombre"), rsAerolinea.getString("paissede"), rsAerolinea.getFloat("preciobasemaleta"), rsAerolinea.getFloat("pesobasemaleta"));
+                resultado = new Aerolinea(rsAerolinea.getString("nombre"),
+                        rsAerolinea.getString("paissede"), rsAerolinea.getFloat("preciobasemaleta"),
+                        rsAerolinea.getFloat("pesobasemaleta"));
 
             }
 
@@ -356,8 +352,10 @@ public class DAOAviones extends AbstractDAO {
             rsModelos = stmModelos.executeQuery();
             while (rsModelos.next()) {
 
-                modeloAvionActual = new ModeloAvion(rsModelos.getString("nombre"), rsModelos.getInt("capacidadnormal"), rsModelos.getInt("capacidadpremium"),
-                        rsModelos.getFloat("consumo"), rsModelos.getString("empresafabricante"), rsModelos.getBoolean("eliminable"));
+                modeloAvionActual = new ModeloAvion(rsModelos.getString("nombre"),
+                        rsModelos.getInt("capacidadnormal"), rsModelos.getInt("capacidadpremium"),
+                        rsModelos.getFloat("consumo"), rsModelos.getString("empresafabricante"),
+                        rsModelos.getBoolean("eliminable"));
                 resultado.add(modeloAvionActual);
             }
 
@@ -466,7 +464,7 @@ public class DAOAviones extends AbstractDAO {
             }
         }
     }
-    
+
     public boolean actualizarModeloAvion(ModeloAvion modeloAvion) {
         boolean update = false;
         boolean resultado = false;
@@ -504,7 +502,9 @@ public class DAOAviones extends AbstractDAO {
                 stmModelo.setInt(3, modeloAvion.getCapacidadPremium());
                 stmModelo.setFloat(4, modeloAvion.getConsumo());
                 stmModelo.setString(5, modeloAvion.getEmpresaFabricante());
-                if(update) stmModelo.setString(6, modeloAvion.getNombre());
+                if (update) {
+                    stmModelo.setString(6, modeloAvion.getNombre());
+                }
                 stmModelo.executeUpdate();
                 resultado = true;
             } catch (SQLException e) {
