@@ -9,7 +9,7 @@ import gui.VAdministrador;
  */
 public class PPrincipal extends javax.swing.JPanel {
 
-    VAdministrador va;
+    private final VAdministrador va;
     
     public PPrincipal(VAdministrador va) {
         this.va = va;
