@@ -3,6 +3,7 @@ package aplicacion;
 import aplicacion.usuarios.*;
 import gui.FachadaGui;
 import baseDatos.FachadaBaseDatos;
+import java.util.List;
 
 public class GestionUsuarios {
 
