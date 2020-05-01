@@ -157,11 +157,6 @@ public class FachadaBaseDatos {
     public PersonalLaboral getPersonalLaboral(String dni) {
         return this.daoPersonalLaboral.getPersonalLaboral(dni);
     }
-    
-    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, 
-            String nombre, String ape1, String ape2, boolean servicio) {
-        return this.daoPersonalLaboral.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
-    }
 
     // -------------------------------------------------------------------------
     // ------------------------ Panel Personal Laboral -------------------------
