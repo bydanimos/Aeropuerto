@@ -23,44 +23,52 @@
                       <Component id="persLaboralLabel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" pref="726" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="idLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="primerApellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="idTextField" pref="210" max="32767" attributes="0"/>
-                                  <Component id="primerApeTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="dniTextField" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="editarButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="servicioCheckBox" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jScrollPane1" pref="726" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="segunApellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="idLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="primerApellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="dniLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="segunApeTextField" pref="210" max="32767" attributes="0"/>
-                                          <Component id="nombreTextField" max="32767" attributes="0"/>
+                                          <Component id="idTextField" pref="210" max="32767" attributes="0"/>
+                                          <Component id="primerApeTextField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="dniTextField" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="servicioCheckBox" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="segunApellidoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="segunApeTextField" pref="210" max="32767" attributes="0"/>
+                                                  <Component id="nombreTextField" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -94,7 +102,9 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="138" max="-2" attributes="0"/>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="editarButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -139,6 +149,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="nombreLabel">
       <Properties>
@@ -164,8 +177,19 @@
               <Connection code="new ModeloTablaPersonalLaboral()" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="personalTableMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="editarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar / Ver Tarea"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
