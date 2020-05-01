@@ -204,7 +204,18 @@ public class FachadaAplicacion {
         return this.ca.actualizarModelosAvion(modelosAvion);
     }
     
-    //---------------------------------Estadísticas Vuelos------------------
+    // -------------------------------------------------------------------------
+    // ---------------------------- Personal Laboral ---------------------------
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, String ape1, String ape2, boolean servicio) {
+        return this.cu.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
+    }
+
+    public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
+        this.cu.modLaborDescripPersonalLaboral(pl);
+    }
+    
+    // -------------------------------------------------------------------------
+    // ------------------------ Estadisticas Aerolineas ------------------------
     public Aerolinea getAerolineaVuelo(Vuelo vuelo){
         return this.cv.getAerolineaVuelo(vuelo);
     }
