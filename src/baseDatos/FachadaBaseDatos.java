@@ -350,5 +350,25 @@ public class FachadaBaseDatos {
     public boolean actualizarModeloAvion(ModeloAvion modeloAvion) {
         return this.daoAviones.actualizarModeloAvion(modeloAvion);
     }
+    
+    //---------------------------------Estadísticas Vuelos------------------
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+        return this.daoVuelos.getAerolineaVuelo(vuelo);
+    }
+    
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+        return this.daoVuelos.getNacionalidadMayoritariaVuelo(vuelo);
+    }
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+        return this.daoVuelos.getNTipoVuelo(vuelo,ta);
+    }
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+        return this.daoVuelos.getNSexoVuelo(vuelo,ts);
+    }
+    
+    public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida){
+        return this.daoVuelos.obtenerVuelos("",origen, destino,tSalida,null);
+    }
+    //--------------------------------------------------------------------
 
 }
