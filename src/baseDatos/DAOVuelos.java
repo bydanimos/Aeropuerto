@@ -356,7 +356,8 @@ public class DAOVuelos extends AbstractDAO {
         return resultado;
     }
 
-    //----------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    // ----------------------- Estadísticas Usuarios ---------------------------
     public float calcularEstSexo(TipoSexo sexo) {
         float resultado = 0.0f;
 
