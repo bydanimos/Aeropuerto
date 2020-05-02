@@ -9,8 +9,13 @@ public class PersonalLaboral extends Usuario {
     private String descripcionTarea;
     private ArrayList<Horario> historialTrabajo;
     private Timestamp fechaInicio;
+    // Información Personal Laboral
     private boolean deServicio;
     private Timestamp fechaEntrada;
+    // Estadisticas trabajadores
+    private int horasSemana;
+    private int horasMes;
+    private int horasAnho;
 
     // -------------------------------------------------------------------------
     // ---------------------------- Constructores ------------------------------
@@ -77,6 +82,18 @@ public class PersonalLaboral extends Usuario {
     public void setFechaEntrada(Timestamp fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
+    
+    public void setHorasSemana(int horas) {
+        this.horasSemana = horas;
+    }
+    
+    public void setHorasMes(int horas) {
+        this.horasMes = horas;
+    }
+    
+    public void setHorasAnho(int horas) {
+        this.horasAnho = horas;
+    }
 
     // -------------------------------------------------------------------------
     // ------------------------------- Getters ---------------------------------
@@ -102,5 +119,17 @@ public class PersonalLaboral extends Usuario {
     
     public Timestamp getFechaEntrada() {
         return this.fechaEntrada;
+    }
+    
+    public int getHorasSemana() {
+        return this.horasSemana;
+    }
+    
+    public int getHorasMes() {
+        return this.horasMes;
+    }
+    
+    public int getHorasAnho() {
+        return this.horasAnho;
     }
 }
