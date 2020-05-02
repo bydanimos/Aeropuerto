@@ -33,14 +33,14 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Object resultado=null;
+        Object resultado = null;
 
         switch (columnIndex){
-            case 0: resultado= this.usuarios.get(rowIndex).getDni(); break;
-            case 1: resultado= this.usuarios.get(rowIndex).getNombre(); break;
-            case 2: resultado= this.usuarios.get(rowIndex).getApellido1();break;
-            case 3: resultado= this.usuarios.get(rowIndex).getApellido2(); break;
-            case 4: resultado= this.usuarios.get(rowIndex).getLabor(); break;
+            case 0: resultado = this.usuarios.get(rowIndex).getDni(); break;
+            case 1: resultado = this.usuarios.get(rowIndex).getNombre(); break;
+            case 2: resultado = this.usuarios.get(rowIndex).getApellido1();break;
+            case 3: resultado = this.usuarios.get(rowIndex).getApellido2(); break;
+            case 4: resultado = this.usuarios.get(rowIndex).getLabor(); break;
             case 5: if (this.usuarios.get(rowIndex).isDeServicio())
                         resultado = "Sí";
                     else resultado = "No"; break; 
@@ -61,13 +61,13 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
         String nombre = null;
 
         switch (col){
-            case 0: nombre= "DNI"; break;
-            case 1: nombre= "Nombre"; break;
-            case 2: nombre= "Apellido 1"; break;
-            case 3: nombre= "Apellido 2"; break;
-            case 4: nombre= "Labor"; break;
-            case 5: nombre= "De servicio"; break;
-            case 6: nombre= "Hora Entrada"; break;
+            case 0: nombre = "DNI"; break;
+            case 1: nombre = "Nombre"; break;
+            case 2: nombre = "Apellido 1"; break;
+            case 3: nombre = "Apellido 2"; break;
+            case 4: nombre = "Labor"; break;
+            case 5: nombre = "De servicio"; break;
+            case 6: nombre = "Hora Entrada"; break;
         }
         return nombre;
     }
@@ -90,7 +90,7 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
     
     // -------------------------------------------------------------------------
     // ------------------------------ Funciones --------------------------------
-    public void setFilas(java.util.List<PersonalLaboral> usuarios) {
+    public void setFilas(List<PersonalLaboral> usuarios) {
         if (usuarios != null ) {
             this.usuarios = usuarios;
             fireTableDataChanged();
