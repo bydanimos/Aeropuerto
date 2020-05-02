@@ -233,7 +233,37 @@ public class FachadaAplicacion {
     public List<Vuelo> obtenerVuelos(String origen,String destino, Timestamp tSalida){
         return this.cv.obtenerVuelos(origen, destino,tSalida);
     }
-    //----------------------------------------------------------------------
+    
+    
+    //--------------------------------------------------------------------------
+    // ----------------------- Estadísticas Usuarios ---------------------------
+    public List<String> calcularEstNacionalidades(){
+        return this.cu.calcularEstNacionalidades();
+    }
+    
+    public float calcularEstSexo(TipoSexo sexo){
+        return this.cu.calcularEstSexo(sexo);
+    }
+    
+    public float calcularEstBillete(String tipo){
+        return this.cu.calcularEstBillete(tipo);
+    }
+    
+    public float calcularEstCoche(){
+        return this.cu.calcularEstCoche();
+    }
+    
+    public float calcularEstAcompanhante(){
+        return this.cu.calcularEstAcompanhante();
+    }
+    
+    public float calcularEstMaletas(){
+        return this.cu.calcularEstMaletas();
+    }
+    
+    public float calcularEstMediaMaletas(){
+        return this.cu.calcularEstMediaMaletas();
+    }
 
 
 }

@@ -86,4 +86,34 @@ public class GestionUsuarios {
     public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
         this.fbd.modLaborDescripPersonalLaboral(pl);
     }
+    
+    //--------------------------------------------------------------------------
+    // ----------------------- Estadísticas Usuarios ---------------------------
+    public List<String> calcularEstNacionalidades(){
+        return this.fbd.calcularEstNacionalidades();
+    }
+    
+    public float calcularEstSexo(TipoSexo sexo){
+        return this.fbd.calcularEstSexo(sexo);
+    }
+    
+    public float calcularEstBillete(String tipo){
+        return this.fbd.calcularEstBillete(tipo);
+    }
+    
+    public float calcularEstCoche(){
+        return this.fbd.calcularEstCoche();
+    }
+    
+    public float calcularEstAcompanhante(){
+        return this.fbd.calcularEstAcompanhante();
+    }
+    
+    public float calcularEstMaletas(){
+        return this.fbd.calcularEstMaletas();
+    }
+    
+    public float calcularEstMediaMaletas(){
+        return this.fbd.calcularEstMediaMaletas();
+    }
 }

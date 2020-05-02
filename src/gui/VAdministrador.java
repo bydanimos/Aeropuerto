@@ -451,5 +451,34 @@ public class VAdministrador extends javax.swing.JFrame {
     public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida){
         return this.fa.obtenerVuelos(origen, destino,tSalida);
     }
-    //----------------------------------------------------------------------
+    
+    //--------------------------------------------------------------------------
+    // ----------------------- Estadísticas Usuarios ---------------------------
+    public List<String> calcularEstNacionalidades(){
+        return this.fa.calcularEstNacionalidades();
+    }
+    
+    public float calcularEstSexo(TipoSexo sexo){
+        return this.fa.calcularEstSexo(sexo);
+    }
+    
+    public float calcularEstBillete(String tipo){
+        return this.fa.calcularEstBillete(tipo);
+    }
+    
+    public float calcularEstCoche(){
+        return this.fa.calcularEstCoche();
+    }
+    
+    public float calcularEstAcompanhante(){
+        return this.fa.calcularEstAcompanhante();
+    }
+    
+    public float calcularEstMaletas(){
+        return this.fa.calcularEstMaletas();
+    }
+    
+    public float calcularEstMediaMaletas(){
+        return this.fa.calcularEstMediaMaletas();
+    }
 }

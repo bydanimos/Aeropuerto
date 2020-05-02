@@ -168,6 +168,205 @@
             </Component>
           </SubComponents>
         </Container>
+        <Container class="javax.swing.JPanel" name="panelEstadisticasUsuarios">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[787, 325]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Usuarios">
+                <Property name="tabTitle" type="java.lang.String" value="Usuarios"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="mujeresLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="hombresLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="normalLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="premiumLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="premiumText" alignment="0" pref="125" max="32767" attributes="0"/>
+                                  <Component id="normalText" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="hombresText" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="mujeresText" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="nacionalidadLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="nacionalidad3Text" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Component id="nacionalidad2Text" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Component id="nacionalidad1Text" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="acompanhanteLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="maletasFacturadasLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                              <Component id="acompanhanteText" min="-2" pref="139" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="maletasFacturadasText" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="cocheLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="cochesText" min="-2" pref="139" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="maletaLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="maletaText" min="-2" pref="139" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nacionalidadLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nacionalidad1Text" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nacionalidad2Text" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="nacionalidad3Text" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="hombresLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cocheLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hombresText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cochesText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="mujeresLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="acompanhanteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mujeresText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="acompanhanteText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="maletaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maletaText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="normalText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="normalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="maletasFacturadasLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maletasFacturadasText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="premiumText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="premiumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="nacionalidadLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nacionalidades mayoritarias:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="nacionalidad1Text">
+            </Component>
+            <Component class="javax.swing.JTextField" name="nacionalidad2Text">
+            </Component>
+            <Component class="javax.swing.JTextField" name="nacionalidad3Text">
+            </Component>
+            <Component class="javax.swing.JLabel" name="hombresLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros hombres:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="mujeresLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros mujeres:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="normalLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros normal:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="premiumLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros premium:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="cocheLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros que reservan coche:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="acompanhanteLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros que contratan acompa&#xf1;ante:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="maletaLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pasajeros que facturan maleta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="maletasFacturadasLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Media de maletas/pasajero:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="hombresText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="mujeresText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="normalText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="premiumText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="cochesText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="acompanhanteText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="maletaText">
+            </Component>
+            <Component class="javax.swing.JTextField" name="maletasFacturadasText">
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel21">

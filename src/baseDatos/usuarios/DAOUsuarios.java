@@ -7,7 +7,8 @@ package baseDatos.usuarios;
 import baseDatos.*;
 import aplicacion.usuarios.*;
 import java.sql.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class DAOUsuarios extends AbstractDAO {
 
@@ -111,7 +112,7 @@ public class DAOUsuarios extends AbstractDAO {
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
         boolean resultado = false;
-        
+
         con = super.getConexion();
 
         try {
@@ -173,22 +174,22 @@ public class DAOUsuarios extends AbstractDAO {
 
         try {
             stmUsuario = con.prepareStatement("select * "
-                       + "from comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p " 
-                                            + "where cb.usuario = ? "
-                                            + "or r.usuario = ? " 
-                                            + "or al.usuario = ? "
-                                            + "or p.usuario = ? ");
+                    + "from comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p "
+                    + "where cb.usuario = ? "
+                    + "or r.usuario = ? "
+                    + "or al.usuario = ? "
+                    + "or p.usuario = ? ");
             stmUsuario.setString(1, dni);
             stmUsuario.setString(2, dni);
             stmUsuario.setString(3, dni);
             stmUsuario.setString(4, dni);
             rsUsuario = stmUsuario.executeQuery();
-            if(!rsUsuario.next()){
+            if (!rsUsuario.next()) {
                 stmUsuario = con.prepareStatement("delete from usuario where dni = ?");
                 stmUsuario.setString(1, dni);
                 stmUsuario.executeUpdate();
                 resultado = true;
-            }else{
+            } else {
                 resultado = false;
             }
         } catch (SQLException e) {
@@ -250,7 +251,7 @@ public class DAOUsuarios extends AbstractDAO {
                 }
             }
             stmUsuario.setString(8, ts);
-            stmUsuario.setString(9,u.getDni());
+            stmUsuario.setString(9, u.getDni());
 
             stmUsuario.executeUpdate();
 
@@ -295,84 +296,134 @@ public class DAOUsuarios extends AbstractDAO {
         }
         return resultado;
     }
-    
-    public Usuario getUsuario(String dni){
-        Usuario resultado=null;
+
+    public Usuario getUsuario(String dni) {
+        Usuario resultado = null;
         Connection con;
-        PreparedStatement stmUsuario=null;
+        PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
 
-        con=this.getConexion();
+        con = this.getConexion();
 
         try {
-            stmUsuario=con.prepareStatement("select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"+
-                                            "paisprocedencia,telefono,sexo "+
-                                            "from usuario "+
-                                            "where dni = ? ");
+            stmUsuario = con.prepareStatement("select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
+                    + "paisprocedencia,telefono,sexo "
+                    + "from usuario "
+                    + "where dni = ? ");
             stmUsuario.setString(1, dni);
-            rsUsuario=stmUsuario.executeQuery();
-           
-            if (rsUsuario.next()){
-                resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"),rsUsuario.getString("contrasenha"),
-                                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
-                                        rsUsuario.getString("primerapellido"),rsUsuario.getString("segundoapellido"),
-                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getInt("telefono"));
+            rsUsuario = stmUsuario.executeQuery();
+
+            if (rsUsuario.next()) {
+                resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
+                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
+                        rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
+                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
-            try {stmUsuario.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        } finally {
+            try {
+                stmUsuario.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
         }
         return resultado;
     }
-    
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
-        PreparedStatement stmUsuarios=null;
+        PreparedStatement stmUsuarios = null;
         ResultSet rsUsuario;
 
-        con=this.getConexion();
-        
-        String consulta = "select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"+
-                                            "paisprocedencia,telefono,sexo "+
-                                            "from usuario "+
-                                            "where id like ? " +
-                                            "and dni like ? " +
-                                            "and nombre like ? "+
-                                            "and primerapellido like ? " +
-                                            "and segundoapellido like ? " +
-                                            "and dni in (select usuario " +
-                                                        "from comprarbillete "+
-                                                        "where pasarcontrol = true )";
+        con = this.getConexion();
 
-        try  {
-            stmUsuarios=con.prepareStatement(consulta);
-            stmUsuarios.setString(1, "%"+id+"%");
-            stmUsuarios.setString(2, "%"+dni+"%");
-            stmUsuarios.setString(3, "%"+nombre+"%");
-            stmUsuarios.setString(4, "%"+primerApellido+"%");
-            stmUsuarios.setString(5, "%"+segundoApellido+"%");
-            
-            rsUsuario=stmUsuarios.executeQuery();
-            while (rsUsuario.next()){
-             
-               usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"),rsUsuario.getString("contrasenha"),
-                                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
-                                        rsUsuario.getString("primerapellido"),rsUsuario.getString("segundoapellido"),
-                                        TipoSexo.valueOf(rsUsuario.getString("sexo")),rsUsuario.getString("paisprocedencia"),rsUsuario.getInt("telefono"));
+        String consulta = "select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
+                + "paisprocedencia,telefono,sexo "
+                + "from usuario "
+                + "where id like ? "
+                + "and dni like ? "
+                + "and nombre like ? "
+                + "and primerapellido like ? "
+                + "and segundoapellido like ? "
+                + "and dni in (select usuario "
+                + "from comprarbillete "
+                + "where pasarcontrol = true )";
 
-               resultado.add(usuarioActual);
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+            stmUsuarios.setString(1, "%" + id + "%");
+            stmUsuarios.setString(2, "%" + dni + "%");
+            stmUsuarios.setString(3, "%" + nombre + "%");
+            stmUsuarios.setString(4, "%" + primerApellido + "%");
+            stmUsuarios.setString(5, "%" + segundoApellido + "%");
+
+            rsUsuario = stmUsuarios.executeQuery();
+            while (rsUsuario.next()) {
+
+                usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
+                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
+                        rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
+                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
+
+                resultado.add(usuarioActual);
             }
 
-        } catch (SQLException e){
-          System.out.println(e.getMessage());
-          this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
-          try {stmUsuarios.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
         }
+        return resultado;
+    }
+
+    //--------------------------------------------------------------------------
+    // ----------------------- Estadísticas Usuarios ---------------------------
+    public List<String> calcularEstNacionalidades() {
+        List<String> resultado = new ArrayList<>();
+
+        String nacionalidadActual;
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        con = this.getConexion();
+
+        String consulta = "select count(*) as numero, paisprocedencia\n"
+                + "from usuario\n"
+                + "group by paisprocedencia\n"
+                + "order by numero DESC";
+
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+
+            rsUsuario = stmUsuarios.executeQuery();
+            while (rsUsuario.next()) {
+
+                nacionalidadActual = rsUsuario.getString("paisprocedencia");
+
+                resultado.add(nacionalidadActual);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
         return resultado;
     }
 }

@@ -26,7 +26,7 @@ public class DAOVuelos extends AbstractDAO {
     public java.util.List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
         java.util.List<Vuelo> resultado = new java.util.ArrayList<Vuelo>();
 
-        int a = 0,b=0;
+        int a = 0, b = 0;
         Vuelo vueloActual;
         Terminal terminalActual;
         ModeloAvion modeloAvionActual;
@@ -51,7 +51,7 @@ public class DAOVuelos extends AbstractDAO {
                     + "and destino like ? ";
             if (fechaSalida != null) {
                 consulta += "and cast(fechasalidateorica as DATE) = ? ";
-                a ++;
+                a++;
             }
             if (fechaLlegada != null) {
                 consulta += "and cast(fechallegadateorica as DATE) = ? ";
@@ -63,10 +63,10 @@ public class DAOVuelos extends AbstractDAO {
             stmVuelos.setString(2, "%" + origen + "%");
             stmVuelos.setString(3, "%" + destino + "%");
             if (fechaSalida != null) {
-                stmVuelos.setTimestamp(3+a, fechaSalida);
+                stmVuelos.setTimestamp(3 + a, fechaSalida);
             }
             if (fechaLlegada != null) {
-                stmVuelos.setTimestamp(3+a+b, fechaLlegada);
+                stmVuelos.setTimestamp(3 + a + b, fechaLlegada);
             }
 
             rsVuelos = stmVuelos.executeQuery();
@@ -151,7 +151,9 @@ public class DAOVuelos extends AbstractDAO {
                 stmVuelo.setBoolean(10, vuelo.isCancelado());
                 stmVuelo.setInt(11, vuelo.getTerminal().getNumero());
                 stmVuelo.setString(12, vuelo.getAvion().getCodigo());
-                if(update) stmVuelo.setString(13, vuelo.getNumeroVuelo());
+                if (update) {
+                    stmVuelo.setString(13, vuelo.getNumeroVuelo());
+                }
                 stmVuelo.executeUpdate();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
@@ -177,9 +179,9 @@ public class DAOVuelos extends AbstractDAO {
         }
         return true;
     }
-    
+
     //---------------------------------Estadísticas Vuelos------------------
-    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo) {
         Aerolinea resultado = null;
 
         Connection con;
@@ -189,22 +191,20 @@ public class DAOVuelos extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            String consulta = "select nombre, paissede, preciobasemaleta, pesobasemaleta " +
-                    "from aerolinea " +
-                    "where nombre in (Select aerolinea "+
-                                     "from avion " +
-                                     "where codigo in (Select avion "+
-                                                      "from vuelo " +
-                                                      "where numvuelo = ? )) ";
-            
+            String consulta = "select nombre, paissede, preciobasemaleta, pesobasemaleta "
+                    + "from aerolinea "
+                    + "where nombre in (Select aerolinea "
+                    + "from avion "
+                    + "where codigo in (Select avion "
+                    + "from vuelo "
+                    + "where numvuelo = ? )) ";
 
             stmAerolinea = con.prepareStatement(consulta);
             stmAerolinea.setString(1, vuelo.getNumeroVuelo());
-            
 
             rsAerolinea = stmAerolinea.executeQuery();
             if (rsAerolinea.next()) {
-                resultado = new Aerolinea(rsAerolinea.getString("nombre"),rsAerolinea.getString("paissede"),rsAerolinea.getFloat("preciobasemaleta"),rsAerolinea.getFloat("pesobasemaleta"));
+                resultado = new Aerolinea(rsAerolinea.getString("nombre"), rsAerolinea.getString("paissede"), rsAerolinea.getFloat("preciobasemaleta"), rsAerolinea.getFloat("pesobasemaleta"));
             }
 
         } catch (SQLException e) {
@@ -219,9 +219,8 @@ public class DAOVuelos extends AbstractDAO {
         }
         return resultado;
     }
-    
-    
-    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts) {
         Integer resultado = 0;
         Connection con;
         PreparedStatement stmNum = null;
@@ -231,29 +230,27 @@ public class DAOVuelos extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            String consulta = "select count(*) as num " +
-                    "from comprarbillete " +
-                    "where vuelo = ? " +
-                    "and usuario in (Select dni "+
-                                    "from usuario "+
-                                    "where sexo = ? )";
-            
-            
-            if(TipoSexo.h.equals(ts)){
+            String consulta = "select count(*) as num "
+                    + "from comprarbillete "
+                    + "where vuelo = ? "
+                    + "and usuario in (Select dni "
+                    + "from usuario "
+                    + "where sexo = ? )";
+
+            if (TipoSexo.h.equals(ts)) {
                 sexo = "h";
-            }else if(TipoSexo.m.equals(ts)){
+            } else if (TipoSexo.m.equals(ts)) {
                 sexo = "m";
-            }else{
+            } else {
                 sexo = "o";
             }
 
             stmNum = con.prepareStatement(consulta);
             stmNum.setString(1, vuelo.getNumeroVuelo());
             stmNum.setString(2, sexo);
-            
 
             rsNum = stmNum.executeQuery();
-            if(rsNum.next()){
+            if (rsNum.next()) {
                 resultado = rsNum.getInt("num");
             }
 
@@ -269,9 +266,8 @@ public class DAOVuelos extends AbstractDAO {
         }
         return resultado;
     }
-    
-    
-    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+
+    public Integer getNTipoVuelo(Vuelo vuelo, TipoAsiento ta) {
         Integer resultado = 0;
         Connection con;
         PreparedStatement stmNum = null;
@@ -281,25 +277,23 @@ public class DAOVuelos extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            String consulta = "select count(*) as num " +
-                    "from comprarbillete " +
-                    "where vuelo = ? " +
-                    "and tipoasiento = ? ";
-            
-            
-            if(TipoAsiento.Normal.equals(ta)){
+            String consulta = "select count(*) as num "
+                    + "from comprarbillete "
+                    + "where vuelo = ? "
+                    + "and tipoasiento = ? ";
+
+            if (TipoAsiento.Normal.equals(ta)) {
                 tipoAsiento = "normal";
-            }else{
+            } else {
                 tipoAsiento = "premium";
             }
 
             stmNum = con.prepareStatement(consulta);
             stmNum.setString(1, vuelo.getNumeroVuelo());
             stmNum.setString(2, tipoAsiento);
-            
 
             rsNum = stmNum.executeQuery();
-            if(rsNum.next()){
+            if (rsNum.next()) {
                 resultado = rsNum.getInt("num");
             }
         } catch (SQLException e) {
@@ -314,8 +308,8 @@ public class DAOVuelos extends AbstractDAO {
         }
         return resultado;
     }
-    
-    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo) {
         String resultado = "";
         Connection con;
         PreparedStatement stmNum = null;
@@ -324,30 +318,28 @@ public class DAOVuelos extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            String consulta = "select paisprocedencia "+
-                              "from usuario "+
-                              "where dni in (select usuario "+
-                                            "from comprarbillete "+
-                                            "where vuelo = ?) " +
-                              "group by paisprocedencia "+ 
-                              "having count(*) >= all (select count(*) "+
-                                                      "from usuario "+
-                                                      "where dni in (select usuario "+
-                                                                    "from comprarbillete "+
-                                                                    "where vuelo = ?) "+
-                                                      "group by paisprocedencia)";
-            
+            String consulta = "select paisprocedencia "
+                    + "from usuario "
+                    + "where dni in (select usuario "
+                    + "from comprarbillete "
+                    + "where vuelo = ?) "
+                    + "group by paisprocedencia "
+                    + "having count(*) >= all (select count(*) "
+                    + "from usuario "
+                    + "where dni in (select usuario "
+                    + "from comprarbillete "
+                    + "where vuelo = ?) "
+                    + "group by paisprocedencia)";
 
             stmNum = con.prepareStatement(consulta);
             stmNum.setString(1, vuelo.getNumeroVuelo());
             stmNum.setString(2, vuelo.getNumeroVuelo());
-            
 
             rsNum = stmNum.executeQuery();
-            if(rsNum.next()){
+            if (rsNum.next()) {
                 resultado = rsNum.getString("paisprocedencia");
-                while(rsNum.next()){
-                    resultado+="/" + rsNum.getString("paisprocedencia");
+                while (rsNum.next()) {
+                    resultado += "/" + rsNum.getString("paisprocedencia");
                 }
             }
 
@@ -362,8 +354,225 @@ public class DAOVuelos extends AbstractDAO {
             }
         }
         return resultado;
-    }   
-    
-    
+    }
+
     //----------------------------------------------------------------------
+    public float calcularEstSexo(TipoSexo sexo) {
+        float resultado = 0.0f;
+
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        con = this.getConexion();
+
+        String consulta = "select ((cast(count(*) as float) * 100) / (select count(*) "
+                + "                                                   from comprarbillete)) as porcentaje "
+                + "from vuelo as v, usuario as u, comprarbillete as b "
+                + "where b.vuelo = v.numvuelo and b.usuario = u.dni "
+                + "	and u.sexo = ?";
+
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+            stmUsuarios.setString(1, sexo.toString());
+
+            rsUsuario = stmUsuarios.executeQuery();
+            if (rsUsuario.next()) {
+                resultado = rsUsuario.getFloat("porcentaje");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
+        return resultado;
+    }
+
+    public float calcularEstBillete(String tipo) {
+        float resultado = 0.0f;
+
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        if (tipo.equals("normal") || tipo.equals("premium")) {
+            con = this.getConexion();
+
+            String consulta = "select ((cast(count(*) as float) * 100) / (select count(*) "
+                    + "                                         from comprarbillete)) as porcentaje "
+                    + "from comprarbillete "
+                    + "where tipoasiento = ?";
+
+            try {
+                stmUsuarios = con.prepareStatement(consulta);
+                stmUsuarios.setString(1, tipo);
+
+                rsUsuario = stmUsuarios.executeQuery();
+                if (rsUsuario.next()) {
+                    resultado = rsUsuario.getFloat("porcentaje");
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+            } finally {
+                try {
+                    stmUsuarios.close();
+                } catch (SQLException e) {
+                    System.out.println("Imposible cerrar cursores");
+                }
+            }
+        }
+
+        return resultado;
+    }
+
+    public float calcularEstCoche() {
+        float resultado = 0.0f;
+
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        con = this.getConexion();
+
+        String consulta = "select ((cast(count(*) as float) * 100) / (select count(*) "
+                + "                                                 from comprarbillete)) as porcentaje "
+                + "from comprarbillete as b, reservar as r "
+                + "where b.usuario = r.usuario";
+
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+
+            rsUsuario = stmUsuarios.executeQuery();
+            if (rsUsuario.next()) {
+                resultado = rsUsuario.getFloat("porcentaje");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
+        return resultado;
+    }
+
+    public float calcularEstAcompanhante() {
+        float resultado = 0.0f;
+
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        con = this.getConexion();
+
+        String consulta = "select ((cast(count(*) as float) * 100) / (select count(*) "
+                + "                                                 from comprarbillete)) as porcentaje "
+                + "from comprarbillete "
+                + "where teneracompanhante = true";
+
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+
+            rsUsuario = stmUsuarios.executeQuery();
+            if (rsUsuario.next()) {
+                resultado = rsUsuario.getFloat("porcentaje");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
+        return resultado;
+    }
+
+    public float calcularEstMaletas() {
+        float resultado = 0.0f;
+
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        con = this.getConexion();
+
+        String consulta = "select ((cast(count(distinct(usuario, vuelo)) as float) * 100) / (select count(*) "
+                + "                                                                         from comprarbillete)) as porcentaje "
+                + "from facturarmaleta";
+
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+
+            rsUsuario = stmUsuarios.executeQuery();
+            if (rsUsuario.next()) {
+                resultado = rsUsuario.getFloat("porcentaje");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
+        return resultado;
+    }
+
+    public float calcularEstMediaMaletas() {
+        float resultado = 0.0f;
+
+        Connection con;
+        PreparedStatement stmUsuarios = null;
+        ResultSet rsUsuario;
+
+        con = this.getConexion();
+
+        String consulta = "select (cast(count(*) as float)/ (select count(*) "
+                + "                                         from comprarbillete)) as media "
+                + "from facturarmaleta";
+
+        try {
+            stmUsuarios = con.prepareStatement(consulta);
+
+            rsUsuario = stmUsuarios.executeQuery();
+            if (rsUsuario.next()) {
+                resultado = rsUsuario.getFloat("media");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmUsuarios.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
+        return resultado;
+    }
 }

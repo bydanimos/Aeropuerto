@@ -378,6 +378,36 @@ public class FachadaBaseDatos {
     public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida){
         return this.daoVuelos.obtenerVuelos("",origen, destino,tSalida,null);
     }
-    //--------------------------------------------------------------------
+    
+    
+    //--------------------------------------------------------------------------
+    // ----------------------- Estadísticas Usuarios ---------------------------
+    public List<String> calcularEstNacionalidades(){
+        return this.daoUsuarios.calcularEstNacionalidades();
+    }
+    
+    public float calcularEstSexo(TipoSexo sexo){
+        return this.daoVuelos.calcularEstSexo(sexo);
+    }
+    
+    public float calcularEstBillete(String tipo){
+        return this.daoVuelos.calcularEstBillete(tipo);
+    }
+    
+    public float calcularEstCoche(){
+        return this.daoVuelos.calcularEstCoche();
+    }
+    
+    public float calcularEstAcompanhante(){
+        return this.daoVuelos.calcularEstAcompanhante();
+    }
+    
+    public float calcularEstMaletas(){
+        return this.daoVuelos.calcularEstMaletas();
+    }
+    
+    public float calcularEstMediaMaletas(){
+        return this.daoVuelos.calcularEstMediaMaletas();
+    }
 
 }
