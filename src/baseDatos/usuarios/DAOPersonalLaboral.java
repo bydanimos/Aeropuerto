@@ -46,7 +46,8 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
             if (rsPersonalLaboral.next()) {
                 /* resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), 
-                                rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
+                                rsPersonalLaboral.getString("id"),
+                                rsPersonalLaboral.getString("contrasenha"),
                                 rsPersonalLaboral.getString("correoelectronico"), 
                                 rsPersonalLaboral.getString("nombre"),
                                 rsPersonalLaboral.getString("primerapellido"),
@@ -132,10 +133,11 @@ public class DAOPersonalLaboral extends AbstractDAO {
         Connection con;
         PreparedStatement stmPerLab = null;
         ResultSet rsPerLab;
+        String dniTabla;
 
         con = this.getConexion();
 
-        String consulta = "select u.dni, u.id, u.correoelectronico, "
+        String consulta = "select distinct(u.dni), u.id, u.correoelectronico, "
                 + "u.contrasenha, u.nombre, u.primerapellido, u.segundoapellido, "
                 + "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
                 + "pl.descripciontarea, pl.fechainicio, h.fechaentrada, h.fechasalida "
@@ -148,6 +150,8 @@ public class DAOPersonalLaboral extends AbstractDAO {
         } else {
             consulta += "and h.fechasalida is not null ";
         }
+        consulta += "group by h.personallaboral, pl.labor, pl.descripciontarea, "
+                + "pl.fechainicio, h.fechaentrada, h.fechasalida, u.dni";
         try {
             stmPerLab = con.prepareStatement(consulta);
             stmPerLab.setString(1, "%" + dni + "%");
@@ -158,7 +162,8 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
             rsPerLab = stmPerLab.executeQuery();
             while (rsPerLab.next()) {
-                perLabActual = new PersonalLaboral(rsPerLab.getString("dni"),
+                dniTabla = rsPerLab.getString("dni");
+                perLabActual = new PersonalLaboral(dniTabla,
                         rsPerLab.getString("id"), rsPerLab.getString("contrasenha"),
                         rsPerLab.getString("correoelectronico"),
                         rsPerLab.getString("nombre"),
@@ -169,9 +174,12 @@ public class DAOPersonalLaboral extends AbstractDAO {
                         rsPerLab.getInt("telefono"), rsPerLab.getString("labor"),
                         rsPerLab.getString("descripciontarea"),
                         rsPerLab.getTimestamp("fechainicio"));
-                
+
                 perLabActual.setDeServicio(servicio);
                 perLabActual.setFechaEntrada(rsPerLab.getTimestamp("fechaentrada"));
+                perLabActual.setHorasSemana(this.horasTrabajadasEnDias(dniTabla, 7));
+                perLabActual.setHorasMes(this.horasTrabajadasEnDias(dniTabla, 30));
+                perLabActual.setHorasAnho(this.horasTrabajadasEnDias(dniTabla, 365));
                 resultado.add(perLabActual);
             }
         } catch (SQLException e) {
@@ -313,27 +321,27 @@ public class DAOPersonalLaboral extends AbstractDAO {
             }
         }
     }
-    
+
     public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
         String consulta;
-        
+
         con = super.getConexion();
-        
+
         try {
             consulta = "update personallaboral "
                     + "set labor = ?, descripcionTarea = ? "
-                    + "where usuario in (select dni " 
+                    + "where usuario in (select dni "
                     + "from usuario "
                     + "where dni = ?) ";
-            
+
             stmPersonalLaboral = con.prepareStatement(consulta);
 
             stmPersonalLaboral.setString(1, pl.getLabor());
             stmPersonalLaboral.setString(2, pl.getDescripcionTarea());
             stmPersonalLaboral.setString(3, pl.getDni());
-            
+
             stmPersonalLaboral.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -345,5 +353,118 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
+    }
+
+    // -------------------------------------------------------------------------
+    // ---------------------- Estadísticas Trabajadores ------------------------
+    public String trabajadorSemana(int dias) {
+        String resultado = null;
+        Connection con;
+        PreparedStatement stmPersonalLaboral = null;
+        ResultSet rsPersonalLaboral;
+        String consulta;
+
+        con = this.getConexion();
+
+        try {
+            consulta = "select sum(h.fechasalida - h.fechaentrada) as num, u.nombre, "
+                    + "u.primerapellido, u.segundoapellido, u.dni "
+                    + "from usuario as u, personallaboral as pl, historialtrabajo as h "
+                    + "where u.dni = pl.usuario and u.dni = h.personallaboral "
+                    + "and h.fechasalida is not null and h.fechaentrada "
+                    + "BETWEEN current_timestamp::timestamp - ";
+            switch (dias) {
+                case 7: consulta += "'7 days'::interval AND "; break;
+                case 30: consulta += "'30 days'::interval AND "; break;
+                case 365: consulta += "'365 days'::interval AND "; break;
+                default: break;
+            }    
+            consulta += "current_timestamp::timestamp "
+                    + "group by u.dni, u.nombre, u.primerapellido, u.segundoapellido "
+                    + "having sum(h.fechasalida - h.fechaentrada) >= all("
+                    + "             select sum(h.fechasalida - h.fechaentrada) "
+                    + "        	    from usuario as us, personallaboral as pl, "
+                    + "             historialtrabajo as h "
+                    + "        	    where us.dni = pl.usuario and us.dni = h.personallaboral "
+                    + "		    and h.fechasalida is not null and h.fechaentrada "
+                    + "             BETWEEN current_timestamp::timestamp - ";
+            switch (dias) {
+                case 7: consulta += "'7 days'::interval AND "; break;
+                case 30: consulta += "'30 days'::interval AND "; break;
+                case 365: consulta += "'365 days'::interval AND "; break;
+                default: break;
+            } 
+            consulta += "             current_timestamp::timestamp)";
+            stmPersonalLaboral = con.prepareStatement(consulta);
+            rsPersonalLaboral = stmPersonalLaboral.executeQuery();
+
+            if (rsPersonalLaboral.next()) {
+                resultado = rsPersonalLaboral.getString("nombre") + " "
+                        + rsPersonalLaboral.getString("primerapellido") + " "
+                        + rsPersonalLaboral.getString("segundoapellido");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmPersonalLaboral.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+    }
+
+    public String trabajadorMes() {
+        return this.trabajadorSemana(30);
+    }
+
+    public String trabajadorAnho() {
+        return this.trabajadorSemana(365);
+    }
+    
+    private String horasTrabajadasEnDias(String dni, int dias) {
+        String resultado = null;
+        Connection con;
+        PreparedStatement stmPersonalLaboral = null;
+        ResultSet rsPersonalLaboral;
+        String consulta;
+
+        con = this.getConexion();
+
+        try {
+            consulta = "select sum(h.fechasalida - h.fechaentrada) as num "
+                    + "from usuario as u, personallaboral as pl, "
+                    + "historialtrabajo as h "
+                    + "where u.dni = pl.usuario and u.dni = h.personallaboral "
+                    + "and h.fechasalida is not null and u.dni = ? and "
+                    + "h.fechaentrada BETWEEN "
+                    + "current_timestamp::timestamp - ";
+            switch (dias) {
+                case 7: consulta += "'7 days'::interval AND "; break;
+                case 30: consulta += "'30 days'::interval AND "; break;
+                case 365: consulta += "'365 days'::interval AND "; break;
+                default: break;
+            }
+            consulta += "current_timestamp::timestamp";
+            stmPersonalLaboral = con.prepareStatement(consulta);
+            stmPersonalLaboral.setString(1, dni);
+            rsPersonalLaboral = stmPersonalLaboral.executeQuery();
+
+            if (rsPersonalLaboral.next()) {
+                resultado = "" + rsPersonalLaboral.getObject(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmPersonalLaboral.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
     }
 }
