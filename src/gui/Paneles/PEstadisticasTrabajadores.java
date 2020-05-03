@@ -21,6 +21,7 @@ public class PEstadisticasTrabajadores extends javax.swing.JPanel {
         this.trabSemWinLabel.setText(this.va.trabajadorSemana());
         this.trabMesWinLabel.setText(this.va.trabajadorMes());
         this.trabAnhoWinLabel.setText(this.va.trabajadorAnho());
+        this.buscar(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -203,14 +204,16 @@ public class PEstadisticasTrabajadores extends javax.swing.JPanel {
             String ape2 = this.segunApeTextField.getText();
         
             mp.setFilas(this.va.obtenerPersonalLaboral(dni, "", nombre, 
-                    ape1, ape2, true && false));
+                    ape1, ape2, true));
+            mp.anhadirFilas(this.va.obtenerPersonalLaboral(dni, "", nombre, 
+                    ape1, ape2, false));
         } else {
             mp.setFilas(this.va.obtenerPersonalLaboral("", "", "", "", "", true));
+            mp.anhadirFilas(this.va.obtenerPersonalLaboral("", "", "", "", "", false));
         }
         
         if (mp.getRowCount() > 0) {
             this.statWorkersTable.setRowSelectionInterval(0, 0);
-            // actualizarSeleccionado();
         }
     }
 }
