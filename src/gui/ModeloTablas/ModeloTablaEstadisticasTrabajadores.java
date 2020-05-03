@@ -88,6 +88,13 @@ public class ModeloTablaEstadisticasTrabajadores extends AbstractTableModel {
         }
     }
     
+    public void anhadirFilas(List<PersonalLaboral> usuarios) {
+        if (usuarios != null ) {
+            this.usuarios.addAll(usuarios);
+            fireTableDataChanged();
+        }
+    } 
+    
     public PersonalLaboral obtenerUsuario(int i) {
         if (i > 0 && i < this.usuarios.size()) {
             return this.usuarios.get(i);
