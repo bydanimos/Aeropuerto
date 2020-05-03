@@ -213,7 +213,7 @@ public class VAdministrador extends javax.swing.JFrame {
     }
 
     // -------------------------------------------------------------------------
-    // ------------------------------- Usuarios -------------------------------
+    // ------------------------------- Usuarios --------------------------------
     public void pulsarUsuarios() {
         this.panelActual.setVisible(false);
         this.panelActual = new PAdminUsuarios(this);
@@ -222,7 +222,8 @@ public class VAdministrador extends javax.swing.JFrame {
         ((PAdminUsuarios) this.panelActual).buscarUsuarios();
     }
 
-    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, 
+                                                   String primerApellido, String segundoApellido) {
         return this.fa.obtenerUsuarios(dni, id, nombre, primerApellido, segundoApellido);
     }
 
@@ -234,7 +235,9 @@ public class VAdministrador extends javax.swing.JFrame {
         this.fa.modificarUsuario(u, tipoAnterior, tipoNuevo);
     }
 
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, 
+                                                          String nombre, String primerApellido, 
+                                                          String segundoApellido) {
         return this.fa.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
 
@@ -243,7 +246,7 @@ public class VAdministrador extends javax.swing.JFrame {
     }
 
     // -------------------------------------------------------------------------
-    // ------------------------------- Tiendas -------------------------------
+    // -------------------------------- Tiendas --------------------------------
     public void pulsarTiendas() {
         this.panelActual.setVisible(false);
         this.panelActual = new PTiendas(this);
@@ -277,7 +280,8 @@ public class VAdministrador extends javax.swing.JFrame {
         this.panelActual.setVisible(true);
     }
 
-    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, 
+                                     Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.fa.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
 
@@ -454,31 +458,45 @@ public class VAdministrador extends javax.swing.JFrame {
     
     //--------------------------------------------------------------------------
     // ----------------------- Estadísticas Usuarios ---------------------------
-    public List<String> calcularEstNacionalidades(){
+    public List<String> calcularEstNacionalidades() {
         return this.fa.calcularEstNacionalidades();
     }
     
-    public float calcularEstSexo(TipoSexo sexo){
+    public float calcularEstSexo(TipoSexo sexo) {
         return this.fa.calcularEstSexo(sexo);
     }
     
-    public float calcularEstBillete(String tipo){
+    public float calcularEstBillete(String tipo) {
         return this.fa.calcularEstBillete(tipo);
     }
     
-    public float calcularEstCoche(){
+    public float calcularEstCoche() {
         return this.fa.calcularEstCoche();
     }
     
-    public float calcularEstAcompanhante(){
+    public float calcularEstAcompanhante() {
         return this.fa.calcularEstAcompanhante();
     }
     
-    public float calcularEstMaletas(){
+    public float calcularEstMaletas() {
         return this.fa.calcularEstMaletas();
     }
     
-    public float calcularEstMediaMaletas(){
+    public float calcularEstMediaMaletas() {
         return this.fa.calcularEstMediaMaletas();
+    }
+    
+    // -------------------------------------------------------------------------
+    // ---------------------- Estadísticas Trabajadores ------------------------
+    public String trabajadorSemana() {
+        return this.fa.trabajadorSemana();
+    }
+
+    public String trabajadorMes() {
+        return this.fa.trabajadorMes();
+    }
+
+    public String trabajadorAnho() {
+        return this.fa.trabajadorAnho();
     }
 }
