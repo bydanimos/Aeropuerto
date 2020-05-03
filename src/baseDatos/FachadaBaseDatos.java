@@ -193,7 +193,9 @@ public class FachadaBaseDatos {
 
     // -------------------------------------------------------------------------
     // ----------------------------- Registro Usuario --------------------------
-    public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
+    public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, 
+                                                             String nombre, String ap1, 
+                                                             String ap2) {
         return this.daoUsuarios.consultarRegistroUsuarios(id, dni, nombre, ap1, ap2);
     }
 
@@ -232,18 +234,29 @@ public class FachadaBaseDatos {
     public void insertarTipo(Usuario u, String tipoNuevo) {
         switch (tipoNuevo) {
             case "Administrador":
-                Administrador adm = new Administrador(u.getDni(), u.getId(), u.getContrasenha(), u.getCorreoElectronico(), u.getNombre(),
-                        u.getApellido1(), u.getApellido2(), u.getSexo(), u.getPaisProcedencia(), u.getTelefono());
+                Administrador adm;
+                adm = new Administrador(u.getDni(), u.getId(), u.getContrasenha(), 
+                                        u.getCorreoElectronico(), u.getNombre(),
+                                        u.getApellido1(), u.getApellido2(), u.getSexo(), 
+                                        u.getPaisProcedencia(), u.getTelefono());
                 this.insertarAdministrador(adm);
                 break;
             case "Personal Laboral":
-                PersonalLaboral pl = new PersonalLaboral(u.getDni(), u.getId(), u.getContrasenha(), u.getCorreoElectronico(), u.getNombre(),
-                        u.getApellido1(), u.getApellido2(), u.getSexo(), u.getPaisProcedencia(), u.getTelefono());
+                PersonalLaboral pl;
+                pl = new PersonalLaboral(u.getDni(), u.getId(), u.getContrasenha(), 
+                                         u.getCorreoElectronico(), u.getNombre(),
+                                         u.getApellido1(), u.getApellido2(), 
+                                         u.getSexo(), u.getPaisProcedencia(), 
+                                         u.getTelefono());
                 this.insertarPersonalLaboral(pl);
                 break;
             case "Personal Externo":
-                PersonalExterno pe = new PersonalExterno(u.getDni(), u.getId(), u.getContrasenha(), u.getCorreoElectronico(), u.getNombre(),
-                        u.getApellido1(), u.getApellido2(), u.getSexo(), u.getPaisProcedencia(), u.getTelefono());
+                PersonalExterno pe;
+                pe = new PersonalExterno(u.getDni(), u.getId(), u.getContrasenha(), 
+                                         u.getCorreoElectronico(), u.getNombre(),
+                                         u.getApellido1(), u.getApellido2(), 
+                                         u.getSexo(), u.getPaisProcedencia(), 
+                                         u.getTelefono());
                 this.insertarPersonalExterno(pe);
                 break;
         }
@@ -251,7 +264,9 @@ public class FachadaBaseDatos {
 
     // -------------------------------------------------------------------------
     // ---------------------------- Control Usuarios ---------------------------
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, 
+                                                          String nombre, String primerApellido, 
+                                                          String segundoApellido) {
         return this.daoUsuarios.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
 
@@ -279,7 +294,8 @@ public class FachadaBaseDatos {
 
     // -------------------------------------------------------------------------
     // --------------------------------- Vuelos --------------------------------
-    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, 
+                                     Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.daoVuelos.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
 
@@ -347,7 +363,8 @@ public class FachadaBaseDatos {
         return this.daoAviones.obtenerModelosAvion(nombre);
     }
 
-    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion,
+                               int anhoFabricacion) {
         return this.daoAviones.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
     }
 
@@ -409,5 +426,20 @@ public class FachadaBaseDatos {
     public float calcularEstMediaMaletas(){
         return this.daoVuelos.calcularEstMediaMaletas();
     }
+    
+    // -------------------------------------------------------------------------
+    // ---------------------- Estadísticas Trabajadores ------------------------
+    public String trabajadorSemana() {
+        return this.daoPersonalLaboral.trabajadorSemana(7);
+    }
+
+    public String trabajadorMes() {
+        return this.daoPersonalLaboral.trabajadorMes();
+    }
+
+    public String trabajadorAnho() {
+        return this.daoPersonalLaboral.trabajadorAnho();
+    }
+    // -------------------------------------------------------------------------
 
 }
