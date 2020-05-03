@@ -57,7 +57,8 @@ public class GestionUsuarios {
     
     // ------------------------------------------------------------------------
     // ------------------------------ Usuarios --------------------------------
-    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, 
+                                                   String primerApellido, String segundoApellido){
         return this.fbd.consultarRegistroUsuarios(id,dni,nombre,primerApellido,segundoApellido);
     }
 
@@ -69,7 +70,9 @@ public class GestionUsuarios {
         this.fbd.modificarUsuarioGeneral(u,tipoAnterior,tipoNuevo);
     }
     
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido){
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, 
+                                                          String nombre, String primerApellido, 
+                                                          String segundoApellido){
         return this.fbd.obtenerUsuariosControl(dni,id,nombre,primerApellido,segundoApellido);
     }
     
@@ -79,7 +82,8 @@ public class GestionUsuarios {
 
     // -------------------------------------------------------------------------
     // ---------------------------- Personal Laboral ---------------------------
-    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, String ape1, String ape2, boolean servicio) {
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, 
+                                                        String ape1, String ape2, boolean servicio) {
         return this.fbd.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
     }
 
@@ -89,31 +93,45 @@ public class GestionUsuarios {
     
     //--------------------------------------------------------------------------
     // ----------------------- Estadísticas Usuarios ---------------------------
-    public List<String> calcularEstNacionalidades(){
+    public List<String> calcularEstNacionalidades() {
         return this.fbd.calcularEstNacionalidades();
     }
     
-    public float calcularEstSexo(TipoSexo sexo){
+    public float calcularEstSexo(TipoSexo sexo) {
         return this.fbd.calcularEstSexo(sexo);
     }
     
-    public float calcularEstBillete(String tipo){
+    public float calcularEstBillete(String tipo) {
         return this.fbd.calcularEstBillete(tipo);
     }
     
-    public float calcularEstCoche(){
+    public float calcularEstCoche() {
         return this.fbd.calcularEstCoche();
     }
     
-    public float calcularEstAcompanhante(){
+    public float calcularEstAcompanhante() {
         return this.fbd.calcularEstAcompanhante();
     }
     
-    public float calcularEstMaletas(){
+    public float calcularEstMaletas() {
         return this.fbd.calcularEstMaletas();
     }
     
-    public float calcularEstMediaMaletas(){
+    public float calcularEstMediaMaletas() {
         return this.fbd.calcularEstMediaMaletas();
+    }
+    
+    // -------------------------------------------------------------------------
+    // ---------------------- Estadísticas Trabajadores ------------------------
+    public String trabajadorSemana() {
+        return this.fbd.trabajadorSemana();
+    }
+
+    public String trabajadorMes() {
+        return this.fbd.trabajadorMes();
+    }
+
+    public String trabajadorAnho() {
+        return this.fbd.trabajadorAnho();
     }
 }
