@@ -13,9 +13,9 @@ public class PersonalLaboral extends Usuario {
     private boolean deServicio;
     private Timestamp fechaEntrada;
     // Estadisticas trabajadores
-    private int horasSemana;
-    private int horasMes;
-    private int horasAnho;
+    private String horasSemana;
+    private String horasMes;
+    private String horasAnho;
 
     // -------------------------------------------------------------------------
     // ---------------------------- Constructores ------------------------------
@@ -83,15 +83,15 @@ public class PersonalLaboral extends Usuario {
         this.fechaEntrada = fechaEntrada;
     }
     
-    public void setHorasSemana(int horas) {
+    public void setHorasSemana(String horas) {
         this.horasSemana = horas;
     }
     
-    public void setHorasMes(int horas) {
+    public void setHorasMes(String horas) {
         this.horasMes = horas;
     }
     
-    public void setHorasAnho(int horas) {
+    public void setHorasAnho(String horas) {
         this.horasAnho = horas;
     }
 
@@ -121,15 +121,15 @@ public class PersonalLaboral extends Usuario {
         return this.fechaEntrada;
     }
     
-    public int getHorasSemana() {
+    public String getHorasSemana() {
         return this.horasSemana;
     }
     
-    public int getHorasMes() {
+    public String getHorasMes() {
         return this.horasMes;
     }
     
-    public int getHorasAnho() {
+    public String getHorasAnho() {
         return this.horasAnho;
     }
 }
