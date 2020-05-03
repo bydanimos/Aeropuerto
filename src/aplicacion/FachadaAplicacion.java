@@ -26,6 +26,8 @@ public class FachadaAplicacion {
     private final GestionDni cd;
     private Usuario usuarioActual;
 
+    // -------------------------------------------------------------------------
+    // ------------------------------ Constructor ------------------------------
     public FachadaAplicacion() {
         this.fgui = new gui.FachadaGui(this);
         this.fbd = new baseDatos.FachadaBaseDatos(this);
@@ -71,7 +73,8 @@ public class FachadaAplicacion {
 
     // -------------------------------------------------------------------------
     // ------------------------------- Vuelos ----------------------------------
-    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino, Timestamp fechaSalida, Timestamp fechaLlegada) {
+    public List<Vuelo> obtenerVuelos(String codigo, String origen, String destino,
+                                     Timestamp fechaSalida, Timestamp fechaLlegada) {
         return this.cv.obtenerVuelos(codigo, origen, destino, fechaSalida, fechaLlegada);
     }
 
@@ -111,7 +114,8 @@ public class FachadaAplicacion {
         this.cu.modificarUsuario(u, tipoAnterior, tipoNuevo);
     }
 
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre,
+                                                          String primerApellido, String segundoApellido) {
         return this.cu.obtenerUsuariosControl(dni, id, nombre, primerApellido, segundoApellido);
     }
 
@@ -131,7 +135,8 @@ public class FachadaAplicacion {
         return this.cd.dniCorrecto(dni);
     }
 
-    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public java.util.List<Usuario> obtenerUsuarios(String dni, String id, String nombre,
+                                                   String primerApellido, String segundoApellido) {
         return this.cu.obtenerUsuarios(dni, id, nombre, primerApellido, segundoApellido);
     }
 
@@ -139,7 +144,7 @@ public class FachadaAplicacion {
         return this.cu.borrarUsuario(u);
     }
 
-    // -------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------
     // ------------------------------- Aerolineas --------------------------------    
     public List<Aerolinea> obtenerAerolineas(String nombre) {
         return this.ca.obtenerAerolineas(nombre);
@@ -193,7 +198,8 @@ public class FachadaAplicacion {
         return this.ca.obtenerModelosAvion(nombre);
     }
 
-    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea,
+                               ModeloAvion modeloAvion, int anhoFabricacion) {
         return this.ca.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
     }
 
@@ -207,7 +213,8 @@ public class FachadaAplicacion {
     
     // -------------------------------------------------------------------------
     // ---------------------------- Personal Laboral ---------------------------
-    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, String ape1, String ape2, boolean servicio) {
+    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre,
+                                                        String ape1, String ape2, boolean servicio) {
         return this.cu.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
     }
 
@@ -217,53 +224,66 @@ public class FachadaAplicacion {
     
     // -------------------------------------------------------------------------
     // ------------------------ Estadisticas Aerolineas ------------------------
-    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo) {
         return this.cv.getAerolineaVuelo(vuelo);
     }
-    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo) {
         return this.cv.getNacionalidadMayoritariaVuelo(vuelo);
     }
-    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta) {
         return this.cv.getNTipoVuelo(vuelo,ta);
     }
-    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts) {
         return this.cv.getNSexoVuelo(vuelo,ts);
     } 
     
-    public List<Vuelo> obtenerVuelos(String origen,String destino, Timestamp tSalida){
+    public List<Vuelo> obtenerVuelos(String origen,String destino, Timestamp tSalida) {
         return this.cv.obtenerVuelos(origen, destino,tSalida);
     }
     
     
     //--------------------------------------------------------------------------
     // ----------------------- Estadísticas Usuarios ---------------------------
-    public List<String> calcularEstNacionalidades(){
+    public List<String> calcularEstNacionalidades() {
         return this.cu.calcularEstNacionalidades();
     }
     
-    public float calcularEstSexo(TipoSexo sexo){
+    public float calcularEstSexo(TipoSexo sexo) {
         return this.cu.calcularEstSexo(sexo);
     }
     
-    public float calcularEstBillete(String tipo){
+    public float calcularEstBillete(String tipo) {
         return this.cu.calcularEstBillete(tipo);
     }
     
-    public float calcularEstCoche(){
+    public float calcularEstCoche() {
         return this.cu.calcularEstCoche();
     }
     
-    public float calcularEstAcompanhante(){
+    public float calcularEstAcompanhante() {
         return this.cu.calcularEstAcompanhante();
     }
     
-    public float calcularEstMaletas(){
+    public float calcularEstMaletas() {
         return this.cu.calcularEstMaletas();
     }
     
-    public float calcularEstMediaMaletas(){
+    public float calcularEstMediaMaletas() {
         return this.cu.calcularEstMediaMaletas();
     }
+   
+    // -------------------------------------------------------------------------
+    // ---------------------- Estadísticas Trabajadores ------------------------
+    public String trabajadorSemana() {
+        return this.cu.trabajadorSemana();
+    }
 
+    public String trabajadorMes() {
+        return this.cu.trabajadorMes();
+    }
 
+    public String trabajadorAnho() {
+        return this.cu.trabajadorAnho();
+    }
+    // -------------------------------------------------------------------------
 }
