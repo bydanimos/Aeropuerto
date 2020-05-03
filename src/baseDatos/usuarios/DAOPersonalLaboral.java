@@ -7,10 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ruben
- */
 public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
@@ -32,13 +28,13 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            consulta = "select u.dni, u.id, u.correoelectronico, u.contrasenha,"
-                    + "u.nombre, u.primerapellido, u.segundoapellido,"
-                    + "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
-                    + "pl.descripciontarea,pl.fechainicio "
-                    + "from usuario as u, personallaboral as pl "
-                    + "where u.dni = pe.usuario "
-                    + "and u.id = ? and u.contrasenha = ? ";
+            consulta = "SELECT u.dni, u.id, u.correoelectronico, u.contrasenha,"
+                    + "        u.nombre, u.primerapellido, u.segundoapellido,"
+                    + "        u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
+                    + "        pl.descripciontarea,pl.fechainicio "
+                    + "FROM usuario as u, personallaboral as pl "
+                    + "WHERE u.dni = pe.usuario "
+                    + "      AND u.id = ? AND u.contrasenha = ? ";
             stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, id);
             stmPersonalLaboral.setString(2, clave);
@@ -46,8 +42,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
             if (rsPersonalLaboral.next()) {
                 /* resultado = new PersonalLaboral(rsPersonalLaboral.getString("dni"), 
-                                rsPersonalLaboral.getString("id"),
-                                rsPersonalLaboral.getString("contrasenha"),
+                                rsPersonalLaboral.getString("id"),rsPersonalLaboral.getString("contrasenha"),
                                 rsPersonalLaboral.getString("correoelectronico"), 
                                 rsPersonalLaboral.getString("nombre"),
                                 rsPersonalLaboral.getString("primerapellido"),
@@ -85,12 +80,12 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            consulta = "select u.dni, u.id, u.correoelectronico, u.contrasenha,"
-                    + "u.nombre, u.primerapellido, u.segundoapellido, "
-                    + "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
-                    + "pl.descripciontarea, pl.fechainicio "
-                    + "from usuario as u, personallaboral as pl "
-                    + "where u.dni = pl.usuario and u.dni = ? ";
+            consulta = "SELECT u.dni, u.id, u.correoelectronico, u.contrasenha,"
+                    + "        u.nombre, u.primerapellido, u.segundoapellido, "
+                    + "        u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
+                    + "        pl.descripciontarea, pl.fechainicio "
+                    + "FROM usuario AS u, personallaboral AS pl "
+                    + "WHERE u.dni = pl.usuario AND u.dni = ? ";
             stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, dni);
             rsPersonalLaboral = stmPersonalLaboral.executeQuery();
@@ -137,21 +132,27 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select distinct(u.dni), u.id, u.correoelectronico, "
-                + "u.contrasenha, u.nombre, u.primerapellido, u.segundoapellido, "
-                + "u.paisprocedencia, u.telefono, u.sexo, pl.labor, "
-                + "pl.descripciontarea, pl.fechainicio, h.fechaentrada, h.fechasalida "
-                + "from usuario as u, personallaboral as pl, historialtrabajo as h "
-                + "where u.dni = pl.usuario and u.dni like ? and u.id like ? "
-                + "and u.nombre like ? and u.primerapellido like ? and "
-                + "u.segundoapellido like ? ";
+        String consulta;
+        consulta = "SELECT DISTINCT(u.dni), u.id, u.correoelectronico, "
+                + "        u.contrasenha, u.nombre, u.primerapellido, "
+                + "        u.segundoapellido, u.paisprocedencia, u.telefono, "
+                + "        u.sexo, pl.labor, pl.descripciontarea, pl.fechainicio,"
+                + "        h.fechaentrada, h.fechasalida "
+                + "FROM usuario AS u, personallaboral AS pl, historialtrabajo AS h "
+                + "WHERE u.dni = h.personallaboral AND u.dni = pl.usuario AND "
+                + "      u.dni LIKE ? AND u.id LIKE ? AND u.nombre LIKE ? AND "
+                + "      u.primerapellido LIKE ? AND u.segundoapellido LIKE ? ";
         if (servicio) {
-            consulta += "and h.fechasalida is null ";
+            consulta += "AND h.fechasalida IS NULL ";
         } else {
-            consulta += "and h.fechasalida is not null ";
+            consulta += "AND h.fechasalida IS NOT NULL ";
         }
-        consulta += "group by h.personallaboral, pl.labor, pl.descripciontarea, "
-                + "pl.fechainicio, h.fechaentrada, h.fechasalida, u.dni";
+        consulta += "AND NOT EXISTS ( "
+                + "SELECT * "
+                + "FROM historialtrabajo AS h2, usuario AS u2 "
+                + "WHERE h2.fechaentrada > h.fechaentrada AND u.dni = u2.dni "
+                + "      AND u2.dni = h2.personallaboral AND h2.fechasalida IS NULL)";
+        
         try {
             stmPerLab = con.prepareStatement(consulta);
             stmPerLab.setString(1, "%" + dni + "%");
@@ -207,8 +208,8 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            consulta = "insert into personallaboral(usuario,labor,descripciontarea) "
-                    + "values (?, ?, ?)";
+            consulta = "INSERT INTo personallaboral(usuario,labor,descripciontarea) "
+                    + "VALUES (?, ?, ?)";
             stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, pl.getDni());
             stmPersonalLaboral.setString(2, pl.getLabor());
@@ -237,7 +238,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            consulta = "delete from personallaboral where usuario = ?";
+            consulta = "DELETE FROM personallaboral WHERE usuario = ?";
             stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, dni);
             stmPersonalLaboral.executeUpdate();
@@ -330,11 +331,11 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            consulta = "update personallaboral "
-                    + "set labor = ?, descripcionTarea = ? "
-                    + "where usuario in (select dni "
-                    + "from usuario "
-                    + "where dni = ?) ";
+            consulta = "UPDATE personallaboral "
+                    + "SET labor = ?, descripcionTarea = ? "
+                    + "WHERE usuario in (SELECT dni "
+                    + "                  FROM usuario "
+                    + "                  WHERE dni = ?) ";
 
             stmPersonalLaboral = con.prepareStatement(consulta);
 
@@ -367,12 +368,14 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            consulta = "select sum(h.fechasalida - h.fechaentrada) as num, u.nombre, "
-                    + "u.primerapellido, u.segundoapellido, u.dni "
-                    + "from usuario as u, personallaboral as pl, historialtrabajo as h "
-                    + "where u.dni = pl.usuario and u.dni = h.personallaboral "
-                    + "and h.fechasalida is not null and h.fechaentrada "
-                    + "BETWEEN current_timestamp::timestamp - ";
+            consulta = "SELECT SUM(h.fechasalida - h.fechaentrada) AS num, "
+                    + "        u.nombre, u.primerapellido, u.segundoapellido, "
+                    + "        u.dni "
+                    + "FROM usuario AS u, personallaboral AS pl, "
+                    + "     historialtrabajo AS h "
+                    + "WHERE u.dni = pl.usuario AND u.dni = h.personallaboral "
+                    + "      AND h.fechasalida IS NOT NULL AND h.fechaentrada "
+                    + "      BETWEEN current_timestamp::timestamp - ";
             switch (dias) {
                 case 7: consulta += "'7 days'::interval AND "; break;
                 case 30: consulta += "'30 days'::interval AND "; break;
@@ -380,13 +383,16 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 default: break;
             }    
             consulta += "current_timestamp::timestamp "
-                    + "group by u.dni, u.nombre, u.primerapellido, u.segundoapellido "
-                    + "having sum(h.fechasalida - h.fechaentrada) >= all("
-                    + "             select sum(h.fechasalida - h.fechaentrada) "
-                    + "        	    from usuario as us, personallaboral as pl, "
-                    + "             historialtrabajo as h "
-                    + "        	    where us.dni = pl.usuario and us.dni = h.personallaboral "
-                    + "		    and h.fechasalida is not null and h.fechaentrada "
+                    + "GROUP BY u.dni, u.nombre, u.primerapellido, "
+                    + "         u.segundoapellido "
+                    + "HAVING SUM(h.fechasalida - h.fechaentrada) >= ALL("
+                    + "             SELECT SUM(h.fechasalida - h.fechaentrada) "
+                    + "        	    FROM usuario AS us, personallaboral AS pl, "
+                    + "                  historialtrabajo as h "
+                    + "        	    WHERE us.dni = pl.usuario AND "
+                    + "                   us.dni = h.personallaboral AND"
+                    + "		          h.fechasalida IS NOT NULL AND "
+                    + "                   h.fechaentrada "
                     + "             BETWEEN current_timestamp::timestamp - ";
             switch (dias) {
                 case 7: consulta += "'7 days'::interval AND "; break;
@@ -434,17 +440,16 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            consulta = "select sum(h.fechasalida - h.fechaentrada) as num "
-                    + "from usuario as u, personallaboral as pl, "
-                    + "historialtrabajo as h "
-                    + "where u.dni = pl.usuario and u.dni = h.personallaboral "
-                    + "and h.fechasalida is not null and u.dni = ? and "
-                    + "h.fechaentrada BETWEEN "
-                    + "current_timestamp::timestamp - ";
+            consulta = "SELECT SUM(h.fechasalida - h.fechaentrada) AS num "
+                    + "FROM usuario AS u, personallaboral AS pl, "
+                    + "     historialtrabajo AS h "
+                    + "WHERE u.dni = pl.usuario AND u.dni = h.personallaboral "
+                    + "      AND h.fechasalida IS NOT NULL and u.dni = ? AND "
+                    + "      h.fechaentrada BETWEEN current_timestamp::timestamp";
             switch (dias) {
-                case 7: consulta += "'7 days'::interval AND "; break;
-                case 30: consulta += "'30 days'::interval AND "; break;
-                case 365: consulta += "'365 days'::interval AND "; break;
+                case 7: consulta += " - '7 days'::interval AND "; break;
+                case 30: consulta += " - '30 days'::interval AND "; break;
+                case 365: consulta += " - '365 days'::interval AND "; break;
                 default: break;
             }
             consulta += "current_timestamp::timestamp";
