@@ -382,25 +382,11 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 case 365: consulta += "'365 days'::interval AND "; break;
                 default: break;
             }    
-            consulta += "current_timestamp::timestamp "
+            consulta += " current_timestamp::timestamp "
                     + "GROUP BY u.dni, u.nombre, u.primerapellido, "
                     + "         u.segundoapellido "
-                    + "HAVING SUM(h.fechasalida - h.fechaentrada) >= ALL("
-                    + "             SELECT SUM(h.fechasalida - h.fechaentrada) "
-                    + "        	    FROM usuario AS us, personallaboral AS pl, "
-                    + "                  historialtrabajo as h "
-                    + "        	    WHERE us.dni = pl.usuario AND "
-                    + "                   us.dni = h.personallaboral AND"
-                    + "		          h.fechasalida IS NOT NULL AND "
-                    + "                   h.fechaentrada "
-                    + "             BETWEEN current_timestamp::timestamp - ";
-            switch (dias) {
-                case 7: consulta += "'7 days'::interval AND "; break;
-                case 30: consulta += "'30 days'::interval AND "; break;
-                case 365: consulta += "'365 days'::interval AND "; break;
-                default: break;
-            } 
-            consulta += "             current_timestamp::timestamp)";
+                    + "HAVING SUM(h.fechasalida - h.fechaentrada) IS NOT NULL "
+                    + "ORDER BY num DESC";
             stmPersonalLaboral = con.prepareStatement(consulta);
             rsPersonalLaboral = stmPersonalLaboral.executeQuery();
 
@@ -452,7 +438,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 case 365: consulta += " - '365 days'::interval AND "; break;
                 default: break;
             }
-            consulta += "current_timestamp::timestamp";
+            consulta += " current_timestamp::timestamp";
             stmPersonalLaboral = con.prepareStatement(consulta);
             stmPersonalLaboral.setString(1, dni);
             rsPersonalLaboral = stmPersonalLaboral.executeQuery();
