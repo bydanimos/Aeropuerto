@@ -335,14 +335,14 @@ public class PEstadisticas extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelStatWorkersLayout.createSequentialGroup()
-                                .addComponent(trabSemWinLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panelStatWorkersLayout.createSequentialGroup()
                                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(trabMesWinLabel)
                                     .addComponent(trabAnhoWinLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscarButton)))))
+                                .addComponent(buscarButton))
+                            .addGroup(panelStatWorkersLayout.createSequentialGroup()
+                                .addComponent(trabSemWinLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(37, 37, 37))
         );
         panelStatWorkersLayout.setVerticalGroup(
