@@ -462,7 +462,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="comboEditarTipo" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="comboEditarTipo" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -631,10 +631,13 @@
                 <StringItem index="0" value="Usuario Normal"/>
                 <StringItem index="1" value="Administrador"/>
                 <StringItem index="2" value="Personal Laboral"/>
-                <StringItem index="3" value="Trabajador Externo"/>
+                <StringItem index="3" value="Personal Externo"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboEditarTipoActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
