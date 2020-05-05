@@ -25,3 +25,4 @@ drop function valida_dni(dni char);
 drop sequence seq_id_maleta;
 drop function comprobarPlazaParking;
 drop function Estacion;
+drop EXTENSION pgcrypto;
