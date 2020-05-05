@@ -262,7 +262,53 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="destinoEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="origenEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="origenText" max="32767" attributes="0"/>
+                                      <Component id="destinoText" max="32767" attributes="0"/>
+                                      <Component id="codigoText" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="precioNormalEtiqueta" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="precioPremiumEtiqueta" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="terminalEtiqueta" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="terminalOpciones" max="32767" attributes="0"/>
+                                      <Component id="precioNormalText" max="32767" attributes="0"/>
+                                      <Component id="precioPremiumText" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="puertaEmbarqueEtiqueta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="puertaEmbarqueText" min="-2" pref="58" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="codigoAvionEtiqueta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="canceladoCheckbox" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoAvionText" min="-2" pref="117" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="salidaTeoricaEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -272,55 +318,25 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="llegadaRealText" pref="103" max="32767" attributes="0"/>
-                              <Component id="llegadaTeoricaText" max="32767" attributes="0"/>
-                              <Component id="salidaRealText" max="32767" attributes="0"/>
-                              <Component id="salidaTeoricaText" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="destinoEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="origenEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="codigoEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="origenText" max="32767" attributes="0"/>
-                              <Component id="destinoText" max="32767" attributes="0"/>
-                              <Component id="codigoText" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="precioNormalEtiqueta" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="precioPremiumEtiqueta" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="terminalEtiqueta" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                                  <Component id="salidaRealText" min="-2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="terminalOpciones" max="32767" attributes="0"/>
-                              <Component id="precioNormalText" max="32767" attributes="0"/>
-                              <Component id="precioPremiumText" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="puertaEmbarqueEtiqueta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="puertaEmbarqueText" min="-2" pref="58" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="codigoAvionEtiqueta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="canceladoCheckbox" min="-2" max="-2" attributes="0"/>
-                              <Component id="codigoAvionText" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="llegadaTeoricaText" min="-2" max="-2" attributes="0"/>
+                                      <Component id="salidaTeoricaText" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="llegadaRealText" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="filler1" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -408,26 +424,26 @@
                                       <Component id="destinoText" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="salidaTeoricaEtiqueta" min="-2" max="-2" attributes="0"/>
-                                      <Component id="salidaTeoricaText" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="salidaTeoricaEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="salidaTeoricaText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="salidaRealEtiqueta" min="-2" max="-2" attributes="0"/>
-                                      <Component id="salidaRealText" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="salidaRealEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="salidaRealText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="llegadaTeoricaEtiqueta" min="-2" max="-2" attributes="0"/>
-                                      <Component id="llegadaTeoricaText" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="llegadaTeoricaEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="llegadaTeoricaText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="llegadaRealEtiqueta" min="-2" max="-2" attributes="0"/>
-                                      <Component id="llegadaRealText" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="llegadaRealEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="llegadaRealText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="precioNormalText" min="-2" max="-2" attributes="0"/>
                                       <Component id="precioNormalEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -462,7 +478,7 @@
                               <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace pref="7" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -573,14 +589,6 @@
         <Component class="javax.swing.JTextField" name="origenText">
         </Component>
         <Component class="javax.swing.JTextField" name="destinoText">
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="salidaTeoricaText">
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="salidaRealText">
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="llegadaTeoricaText">
-        </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="llegadaRealText">
         </Component>
         <Component class="javax.swing.JTextField" name="precioNormalText">
           <Events>
@@ -724,6 +732,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#xa1;Se ha producido un error guardando el vuelo!"/>
           </Properties>
+        </Component>
+        <Component class="com.toedter.calendar.JSpinnerDateEditor" name="salidaTeoricaText">
+        </Component>
+        <Component class="com.toedter.calendar.JSpinnerDateEditor" name="salidaRealText">
+        </Component>
+        <Component class="com.toedter.calendar.JSpinnerDateEditor" name="llegadaTeoricaText">
+        </Component>
+        <Component class="com.toedter.calendar.JSpinnerDateEditor" name="llegadaRealText">
         </Component>
       </SubComponents>
     </Container>

@@ -12,7 +12,9 @@ import aplicacion.aviones.Terminal;
 import aplicacion.vuelos.Vuelo;
 import gui.VAdministrador;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.SpinnerNumberModel;
@@ -25,12 +27,14 @@ public class PVuelos extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private ArrayList<Terminal> terminales;
+
     /**
      * Creates new form PVuelos
+     *
      * @param va
      */
     public PVuelos(VAdministrador va) {
-        this.va = va;
+        this.va  = va;
         initComponents();
         this.botonNuevo.setEnabled(true);
         this.botonEditar.setEnabled(false);
@@ -86,10 +90,6 @@ public class PVuelos extends javax.swing.JPanel {
         codigoText = new javax.swing.JTextField();
         origenText = new javax.swing.JTextField();
         destinoText = new javax.swing.JTextField();
-        salidaTeoricaText = new com.toedter.calendar.JDateChooser();
-        salidaRealText = new com.toedter.calendar.JDateChooser();
-        llegadaTeoricaText = new com.toedter.calendar.JDateChooser();
-        llegadaRealText = new com.toedter.calendar.JDateChooser();
         precioNormalText = new javax.swing.JTextField();
         precioPremiumText = new javax.swing.JTextField();
         terminalOpciones = new javax.swing.JComboBox<>();
@@ -111,6 +111,10 @@ public class PVuelos extends javax.swing.JPanel {
         puertaEmbarqueText = new javax.swing.JTextField();
         canceladoCheckbox = new javax.swing.JCheckBox();
         mensajeFinal = new javax.swing.JLabel();
+        salidaTeoricaText = new com.toedter.calendar.JSpinnerDateEditor();
+        salidaRealText = new com.toedter.calendar.JSpinnerDateEditor();
+        llegadaTeoricaText = new com.toedter.calendar.JSpinnerDateEditor();
+        llegadaRealText = new com.toedter.calendar.JSpinnerDateEditor();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(2, 0), new java.awt.Dimension(2, 0), new java.awt.Dimension(2, 32767));
 
         setPreferredSize(new java.awt.Dimension(813, 590));
@@ -331,7 +335,41 @@ public class PVuelos extends javax.swing.JPanel {
             editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(destinoEtiqueta)
+                                    .addComponent(origenEtiqueta)
+                                    .addComponent(codigoEtiqueta))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(origenText)
+                                    .addComponent(destinoText)
+                                    .addComponent(codigoText)))
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(precioNormalEtiqueta)
+                                    .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(precioPremiumEtiqueta, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(terminalEtiqueta)))
+                                .addGap(18, 18, 18)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(terminalOpciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(precioNormalText)
+                                    .addComponent(precioPremiumText)))
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addComponent(puertaEmbarqueEtiqueta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(puertaEmbarqueText, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                                .addComponent(codigoAvionEtiqueta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(canceladoCheckbox)
+                                    .addComponent(codigoAvionText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                         .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(salidaTeoricaEtiqueta)
@@ -340,42 +378,18 @@ public class PVuelos extends javax.swing.JPanel {
                             .addComponent(llegadaRealEtiqueta))
                         .addGap(18, 18, 18)
                         .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(llegadaRealText, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                            .addComponent(llegadaTeoricaText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(salidaRealText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(salidaTeoricaText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
-                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(destinoEtiqueta)
-                            .addComponent(origenEtiqueta)
-                            .addComponent(codigoEtiqueta))
-                        .addGap(18, 18, 18)
-                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(origenText)
-                            .addComponent(destinoText)
-                            .addComponent(codigoText)))
-                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
-                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(precioNormalEtiqueta)
-                            .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(precioPremiumEtiqueta, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(terminalEtiqueta)))
-                        .addGap(18, 18, 18)
-                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(terminalOpciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(precioNormalText)
-                            .addComponent(precioPremiumText)))
-                    .addGroup(editarNuevoPanelLayout.createSequentialGroup()
-                        .addComponent(puertaEmbarqueEtiqueta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(puertaEmbarqueText, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
-                        .addComponent(codigoAvionEtiqueta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(canceladoCheckbox)
-                            .addComponent(codigoAvionText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(0, 3, Short.MAX_VALUE)
+                                .addComponent(salidaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(llegadaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(salidaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(llegadaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,22 +456,22 @@ public class PVuelos extends javax.swing.JPanel {
                                     .addComponent(destinoEtiqueta)
                                     .addComponent(destinoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(salidaTeoricaEtiqueta)
                                     .addComponent(salidaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(salidaRealEtiqueta)
                                     .addComponent(salidaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(llegadaTeoricaEtiqueta)
                                     .addComponent(llegadaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(llegadaRealEtiqueta)
                                     .addComponent(llegadaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addGap(23, 23, 23)
                                 .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(precioNormalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(precioNormalEtiqueta))
@@ -484,7 +498,7 @@ public class PVuelos extends javax.swing.JPanel {
                             .addComponent(canceladoCheckbox)
                             .addComponent(botonCancelar)
                             .addComponent(botonGuardar))
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(7, Short.MAX_VALUE))
                     .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -548,7 +562,7 @@ public class PVuelos extends javax.swing.JPanel {
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         this.va.setSize(this.va.getWidth(), 690);
-        
+
         this.codigoAvionText.setEditable(false);
         this.precioPremiumText.setEditable(false);
         this.codigoText.setEditable(true);
@@ -556,14 +570,15 @@ public class PVuelos extends javax.swing.JPanel {
         this.destinoText.setEditable(true);
         this.salidaTeoricaText.setEnabled(true);
         this.llegadaTeoricaText.setEnabled(true);
-        
+
         this.gestionPanel.setVisible(false);
         this.editarNuevoPanel.setVisible(true);
+        this.vaciarCampos();
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         this.va.setSize(this.va.getWidth(), 500);
-        
+
         this.editarNuevoPanel.setVisible(false);
         this.gestionPanel.setVisible(true);
     }//GEN-LAST:event_botonCancelarActionPerformed
@@ -590,7 +605,7 @@ public class PVuelos extends javax.swing.JPanel {
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         this.va.setSize(this.va.getWidth(), 690);
-        
+
         this.codigoAvionText.setEditable(false);
         this.precioPremiumText.setEditable(false);
         this.codigoText.setEditable(false);
@@ -598,7 +613,7 @@ public class PVuelos extends javax.swing.JPanel {
         this.destinoText.setEditable(false);
         this.salidaTeoricaText.setEnabled(false);
         this.llegadaTeoricaText.setEnabled(false);
-        
+
         this.gestionPanel.setVisible(false);
         this.editarNuevoPanel.setVisible(true);
         this.rellenarCuadrosEditar();
@@ -642,9 +657,9 @@ public class PVuelos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel llegadaRealEtiqueta;
-    private com.toedter.calendar.JDateChooser llegadaRealText;
+    private com.toedter.calendar.JSpinnerDateEditor llegadaRealText;
     private javax.swing.JLabel llegadaTeoricaEtiqueta;
-    private com.toedter.calendar.JDateChooser llegadaTeoricaText;
+    private com.toedter.calendar.JSpinnerDateEditor llegadaTeoricaText;
     private javax.swing.JLabel mensajeFinal;
     private javax.swing.JLabel mensajeObligatorios;
     private javax.swing.JLabel mensajePrecio;
@@ -659,170 +674,176 @@ public class PVuelos extends javax.swing.JPanel {
     private javax.swing.JLabel puertaEmbarqueEtiqueta;
     private javax.swing.JTextField puertaEmbarqueText;
     private javax.swing.JLabel salidaRealEtiqueta;
-    private com.toedter.calendar.JDateChooser salidaRealText;
+    private com.toedter.calendar.JSpinnerDateEditor salidaRealText;
     private javax.swing.JLabel salidaTeoricaEtiqueta;
-    private com.toedter.calendar.JDateChooser salidaTeoricaText;
+    private com.toedter.calendar.JSpinnerDateEditor salidaTeoricaText;
     private javax.swing.JTable tablaAviones;
     private javax.swing.JLabel terminalEtiqueta;
     private javax.swing.JComboBox<String> terminalOpciones;
     private javax.swing.JTable vuelosTable;
     // End of variables declaration//GEN-END:variables
-    
+
     public void buscarVuelos() {
         ModeloTablaVuelos m;
         m = (ModeloTablaVuelos) this.vuelosTable.getModel();
-        
+
         Timestamp fSalida = null, fLlegada = null;
-        if (this.fechaSalida.getDate() != null){
+        if (this.fechaSalida.getDate() != null) {
             fSalida = new java.sql.Timestamp(this.fechaSalida.getDate().getTime());
         }
-        if (this.fechaLlegada.getDate() != null){
+        if (this.fechaLlegada.getDate() != null) {
             fLlegada = new java.sql.Timestamp(this.fechaLlegada.getDate().getTime());
         }
-        
-        m.setFilas(this.va.obtenerVuelos(this.codigoTextField.getText(), 
-                this.origenTextField.getText(), this.destinoTextField.getText(), 
+
+        m.setFilas(this.va.obtenerVuelos(this.codigoTextField.getText(),
+                this.origenTextField.getText(), this.destinoTextField.getText(),
                 fSalida, fLlegada));
         if (m.getRowCount() > 0) {
             this.vuelosTable.setRowSelectionInterval(0, 0);
             this.botonEditar.setEnabled(true);
-        }
-        else{
+        } else {
             this.botonEditar.setEnabled(false);
         }
     }
-    
-    public boolean comprobarCampos(){
+
+    public boolean comprobarCampos() {
         this.mensajePrecio.setVisible(false);
         this.mensajeObligatorios.setVisible(false);
-        if(this.codigoText.getText().equals("") || this.origenText.getText().equals("") 
-                || this.destinoText.getText().equals("") ||
-                 (this.salidaTeoricaText.getDate() == null) || 
-                (this.llegadaTeoricaText.getDate() == null) || this.precioNormalText.getText().equals("") ||
-                 (this.terminalOpciones.getSelectedIndex() == 0) || this.codigoAvionText.getText().equals("")){
+        Date aux = new Date();
+        if (this.codigoText.getText().equals("") || this.origenText.getText().equals("")
+                || this.destinoText.getText().equals("")
+                || (this.salidaTeoricaText.getDate().getTime() <= aux.getTime())
+                || (this.llegadaTeoricaText.getDate().getTime() <= aux.getTime()) || this.precioNormalText.getText().equals("")
+                || (this.terminalOpciones.getSelectedIndex() == 0) || this.codigoAvionText.getText().equals("")) {
             this.mensajeObligatorios.setVisible(true);
             return false;
-        } else{
+        } else {
             this.mensajeObligatorios.setVisible(false);
-            if(!this.puertaEmbarqueText.getText().equals("")){
-                try{
+            if (!this.puertaEmbarqueText.getText().equals("")) {
+                try {
                     int puerta = Integer.parseInt(this.puertaEmbarqueText.getText());
                     Terminal terminal = this.terminales.get(this.terminalOpciones.getSelectedIndex() - 1);
-                    if((puerta < terminal.getPrimeraPuerta()) || (puerta > terminal.getUltimaPuerta())){
+                    if ((puerta < terminal.getPrimeraPuerta()) || (puerta > terminal.getUltimaPuerta())) {
                         this.mensajePrecio.setText("¡La puerta introducida no es correcta!");
                         this.mensajePrecio.setVisible(true);
                         return false;
                     }
-                } catch (Exception exc){
+                } catch (Exception exc) {
                     this.mensajePrecio.setText("¡La puerta introducida no es correcta!");
                     this.mensajePrecio.setVisible(true);
                     return false;
                 }
+            } else {
+                this.mensajePrecio.setText("¡La puerta introducida no es correcta!");
+                this.mensajePrecio.setVisible(true);
+                return false;
             }
             return this.calcularPrecioPremium();
         }
     }
-    
+
     public void buscarAviones() {
         ModeloTablaAviones m;
         m = (ModeloTablaAviones) this.tablaAviones.getModel();
-        
+
         m.setFilas(this.va.obtenerAviones(this.avionText.getText(), this.aerolineaText.getText(), 0));
 //        if (m.getRowCount() > 0) {
 //            this.tablaAviones.setRowSelectionInterval(0, 0);
 //            codigoAvionText.setText(m.obtenerAvion(this.tablaAviones.getSelectedRow()).getCodigo());
 //        }
     }
-    
-    public void rellenarCodigoAvion(){
+
+    public void rellenarCodigoAvion() {
         ModeloTablaAviones m = (ModeloTablaAviones) this.tablaAviones.getModel();
         this.codigoAvionText.setText(m.obtenerAvion(this.tablaAviones.getSelectedRow()).getCodigo());
     }
-    
-    public boolean calcularPrecioPremium(){
+
+    public boolean calcularPrecioPremium() {
         this.mensajePrecio.setVisible(false);
-        try{
+        try {
             float precioNormal = Float.parseFloat(this.precioNormalText.getText());
             this.precioPremiumText.setText((precioNormal * 1.3) + "");
             return true;
-        } catch (Exception exc){
+        } catch (Exception exc) {
             this.mensajePrecio.setText("¡El precio introducido no es correcto!");
             this.mensajePrecio.setVisible(true);
             return false;
         }
     }
-    
-    public void obtenerTerminales(){
+
+    public void obtenerTerminales() {
         this.terminales = this.va.obtenerTerminales();
         this.terminales.forEach((terminal) -> {
             this.terminalOpciones.addItem(terminal.getNumero() + "");
         });
     }
-    
-    public void fijarPuertas(){
+
+    public void fijarPuertas() {
         int item = this.terminalOpciones.getSelectedIndex();
-        if(item == 0){
+        if (item == 0) {
             this.puertaEmbarqueEtiqueta.setText("Puerta de embarque:");
-        } else{
+        } else {
             Terminal terminal = this.terminales.get(item - 1);
             this.puertaEmbarqueEtiqueta.setText("Puerta de embarque (" + terminal.getPrimeraPuerta() + "-" + terminal.getUltimaPuerta() + "):");
         }
     }
-    
-    public Avion buscarAvion(String codigoAvion){
+
+    public Avion buscarAvion(String codigoAvion) {
         ModeloTablaAviones m = (ModeloTablaAviones) this.tablaAviones.getModel();
         Avion avionAux;
-        for (int i = 0; i < m.getRowCount(); i++){
+        for (int i = 0; i < m.getRowCount(); i++) {
             avionAux = m.obtenerAvion(i);
-            if(avionAux.getCodigo().equals(codigoAvion)){
+            if (avionAux.getCodigo().equals(codigoAvion)) {
                 return avionAux;
             }
         }
         return null;
     }
-    
-    public void guardarVuelo(){
+
+    public void guardarVuelo() {
         this.mensajeFinal.setVisible(false);
-        if(this.comprobarCampos()){
+        if (this.comprobarCampos()) {
+            Date aux = new Date();
             Avion avion = this.buscarAvion(this.codigoAvionText.getText());
             int puertaEmbarque = 0;
             Timestamp fSalidaR = null, fLlegadaR = null;
             Timestamp fSalidaT = new Timestamp(this.salidaTeoricaText.getDate().getTime());
             Timestamp fLlegadaT = new Timestamp(this.llegadaTeoricaText.getDate().getTime());
-            if(this.salidaRealText.getDate() != null){ 
+            if (this.salidaRealText.getDate().getTime() > aux.getTime()) {
                 fSalidaR = new Timestamp(this.salidaRealText.getDate().getTime());
-            } else{
+            } else {
                 fSalidaR = fSalidaT;
             }
-            if(this.llegadaRealText.getDate() != null){
+            if (this.llegadaRealText.getDate().getTime() > aux.getTime()) {
                 fLlegadaR = new Timestamp(this.llegadaRealText.getDate().getTime());
-            }else{
+            } else {
                 fLlegadaR = fLlegadaT;
             }
-            if (!this.puertaEmbarqueText.getText().equals("")) puertaEmbarque = 
-                    Integer.parseInt(this.puertaEmbarqueText.getText()); //esta excepcion ya se comprueba arriba
-            
+            if (!this.puertaEmbarqueText.getText().equals("")) {
+                puertaEmbarque
+                        = Integer.parseInt(this.puertaEmbarqueText.getText()); //esta excepcion ya se comprueba arriba
+            }
             Terminal terminal = this.terminales.get(this.terminalOpciones.getSelectedIndex() - 1);
-            Vuelo vuelo = new Vuelo(terminal, avion, this.codigoAvionText.getText(), 
-                    this.destinoText.getText(), this.origenText.getText(), 
-                    fSalidaT, fSalidaR, fLlegadaT, fLlegadaR, 
-                    Float.parseFloat(this.precioNormalText.getText()), 
+            Vuelo vuelo = new Vuelo(terminal, avion, this.codigoAvionText.getText(),
+                    this.destinoText.getText(), this.origenText.getText(),
+                    fSalidaT, fSalidaR, fLlegadaT, fLlegadaR,
+                    Float.parseFloat(this.precioNormalText.getText()),
                     puertaEmbarque, this.canceladoCheckbox.isSelected());
-           
-            if(this.va.guardarVuelo(vuelo)){
+
+            if (this.va.guardarVuelo(vuelo)) {
                 this.editarNuevoPanel.setVisible(false);
                 this.gestionPanel.setVisible(true);
                 this.buscarVuelos();
-            } else{
+            } else {
                 this.mensajeFinal.setVisible(false);
             }
         }
     }
-    
-    public void rellenarCuadrosEditar(){
+
+    public void rellenarCuadrosEditar() {
         ModeloTablaVuelos m = (ModeloTablaVuelos) this.vuelosTable.getModel();
         Vuelo vuelo = m.obtenerVuelo(this.vuelosTable.getSelectedRow());
-        
+
         this.codigoText.setText(vuelo.getNumeroVuelo());
         this.origenText.setText(vuelo.getOrigen());
         this.destinoText.setText(vuelo.getDestino());
@@ -838,5 +859,21 @@ public class PVuelos extends javax.swing.JPanel {
         this.canceladoCheckbox.setSelected(vuelo.isCancelado());
         this.buscarAviones();
     }
-}
 
+    public void vaciarCampos() {
+        this.codigoText.setText("");
+        this.origenText.setText("");
+        this.destinoText.setText("");
+        this.salidaTeoricaText.setDate(new Date());
+        this.salidaRealText.setDate(new Date());
+        this.llegadaTeoricaText.setDate(new Date());
+        this.llegadaRealText.setDate(new Date());
+        this.precioNormalText.setText("");
+        this.precioPremiumText.setText("");
+        this.terminalOpciones.setSelectedIndex(0);
+        this.puertaEmbarqueText.setText("");
+        this.codigoAvionText.setText("");
+        this.canceladoCheckbox.setSelected(false);
+        this.buscarAviones();
+    }
+}
