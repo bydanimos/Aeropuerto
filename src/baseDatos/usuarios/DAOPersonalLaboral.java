@@ -153,6 +153,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 + "WHERE h2.fechaentrada > h.fechaentrada AND u.dni = u2.dni "
                 + "      AND u2.dni = h2.personallaboral)";
         
+        
         try {
             stmPerLab = con.prepareStatement(consulta);
             stmPerLab.setString(1, "%" + dni + "%");
@@ -426,7 +427,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            consulta = "SELECT SUM(h.fechasalida - h.fechaentrada) AS num "
+            consulta = "SELECT cast(SUM(h.fechasalida - h.fechaentrada) as varchar(20)) AS num "
                     + "FROM usuario AS u, personallaboral AS pl, "
                     + "     historialtrabajo AS h "
                     + "WHERE u.dni = pl.usuario AND u.dni = h.personallaboral "
@@ -444,7 +445,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
             rsPersonalLaboral = stmPersonalLaboral.executeQuery();
 
             if (rsPersonalLaboral.next()) {
-                resultado = "" + rsPersonalLaboral.getObject(1);
+                resultado = rsPersonalLaboral.getString("num");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -41,12 +41,9 @@ public class ModeloTablaEstadisticasTrabajadores extends AbstractTableModel {
             case 1: resultado = this.usuarios.get(rowIndex).getNombre(); break;
             case 2: resultado = this.usuarios.get(rowIndex).getApellido1();break;
             case 3: resultado = this.usuarios.get(rowIndex).getApellido2(); break;
-            case 4: horas = this.usuarios.get(rowIndex).getHorasSemana();
-                    resultado = horas.split("mons")[0]; break;
-            case 5: horas = this.usuarios.get(rowIndex).getHorasMes();
-                    resultado = horas.split("mons")[0]; break; 
-            case 6: horas = this.usuarios.get(rowIndex).getHorasAnho();
-                    resultado = horas.split("years")[0]; break;
+            case 4: resultado = this.usuarios.get(rowIndex).getHorasSemana(); break;
+            case 5: resultado = this.usuarios.get(rowIndex).getHorasMes(); break;
+            case 6: resultado = this.usuarios.get(rowIndex).getHorasAnho(); break;
         }
         return resultado;
     }
