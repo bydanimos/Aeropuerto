@@ -175,7 +175,7 @@ create table reservarParking
     matricula char(7) not null,
     
 	check(comprobarPlazaParking(terminal, piso, numPlaza)),
-    primary key (usuario, terminal, piso, numPlaza, fechaEntrada),
+    primary key (terminal, piso, numPlaza, fechaEntrada),
     foreign key (usuario) references usuario(dni)
     	on delete cascade on update cascade,
     foreign key (terminal, piso) references parking (terminal, piso)
@@ -256,7 +256,7 @@ create table reservar
 
 create table modeloAvion
 (
-    nombre varchar(20) primary key,
+    nombre varchar(30) primary key,
     capacidadNormal integer not null,
     capacidadPremium integer not null,
     consumo float not null,
@@ -275,7 +275,7 @@ create table aerolinea
 create table avion
 (
     codigo char(5) primary key,  
-    modeloAvion varchar(20) not null,
+    modeloAvion varchar(30) not null,
     aerolinea varchar(25) not null,
     anhoFabricacion int not null,
     retirado boolean not null default false,
@@ -385,6 +385,7 @@ create table comprarBillete
     numMaletasReserva integer not null default 0,
     tenerAcompanhante boolean not null default false,
     pasarControl boolean not null default false,
+    preciobillete float not null,
     
     unique(vuelo,numAsiento),
     check(tipoAsiento='premium' or tipoAsiento='normal'),
@@ -408,14 +409,12 @@ create table Maleta
 
 create table facturarMaleta
 (
-	maleta integer,
+    idmaleta integer default nextval('seq_id_maleta') not null primary key,
     usuario char(9),
     vuelo char(5),
+    peso float not null,
     fecha timestamp not null default CURRENT_TIMESTAMP,
-    
-    primary key (maleta, usuario, vuelo),
-    foreign key (maleta) references maleta(id)
-    	on delete restrict on update cascade,
+
     foreign key (usuario,vuelo) references comprarBillete(usuario,vuelo)
     	on delete cascade on update cascade
 

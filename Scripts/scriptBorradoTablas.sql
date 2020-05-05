@@ -24,4 +24,4 @@ drop function controla_secuencias_terminal;
 drop function valida_dni(dni char);
 drop sequence seq_id_maleta;
 drop function comprobarPlazaParking;
-drop extension pgcrypto;
+drop function Estacion;

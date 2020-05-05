@@ -1,5 +1,4 @@
 delete from facturarmaleta;
-delete from maleta;
 delete from comprarbillete;
 delete from vuelo;
 delete from avion;
