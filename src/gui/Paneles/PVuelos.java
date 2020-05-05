@@ -329,6 +329,18 @@ public class PVuelos extends javax.swing.JPanel {
         mensajeFinal.setForeground(new java.awt.Color(255, 0, 0));
         mensajeFinal.setText("¡Se ha producido un error guardando el vuelo!");
 
+        salidaTeoricaText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salidaTeoricaTextMouseClicked(evt);
+            }
+        });
+
+        llegadaTeoricaText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                llegadaTeoricaTextMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout editarNuevoPanelLayout = new javax.swing.GroupLayout(editarNuevoPanel);
         editarNuevoPanel.setLayout(editarNuevoPanelLayout);
         editarNuevoPanelLayout.setHorizontalGroup(
@@ -378,17 +390,16 @@ public class PVuelos extends javax.swing.JPanel {
                             .addComponent(llegadaRealEtiqueta))
                         .addGap(18, 18, 18)
                         .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
-                                .addGap(0, 3, Short.MAX_VALUE)
-                                .addComponent(salidaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                                 .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(llegadaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(salidaTeoricaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 3, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(llegadaRealText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(salidaRealText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(llegadaRealText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -618,6 +629,14 @@ public class PVuelos extends javax.swing.JPanel {
         this.editarNuevoPanel.setVisible(true);
         this.rellenarCuadrosEditar();
     }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void llegadaTeoricaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_llegadaTeoricaTextMouseClicked
+        this.salidaTeoricaText.setDate(this.salidaRealText.getDate());
+    }//GEN-LAST:event_llegadaTeoricaTextMouseClicked
+
+    private void salidaTeoricaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salidaTeoricaTextMouseClicked
+        this.salidaRealText.setDate(this.salidaTeoricaText.getDate());
+    }//GEN-LAST:event_salidaTeoricaTextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -865,8 +884,10 @@ public class PVuelos extends javax.swing.JPanel {
         this.origenText.setText("");
         this.destinoText.setText("");
         this.salidaTeoricaText.setDate(new Date());
+        //this.salidaRealText.setEnabled(false);
         this.salidaRealText.setDate(new Date());
         this.llegadaTeoricaText.setDate(new Date());
+        this.llegadaRealText.setEnabled(false);
         this.llegadaRealText.setDate(new Date());
         this.precioNormalText.setText("");
         this.precioPremiumText.setText("");
