@@ -22,8 +22,8 @@ public class PEstadisticas extends javax.swing.JPanel {
         this.setSize(this.va.getWidth() + 160, this.va.getHeight() + 40);
         this.panelEstadisticasVuelos.setVisible(true);
         this.buscarVuelos();
-        this.calcularEstadisticas();
-        this.buscar(true);
+        this.buscarUsuarios();
+        this.buscarTrabajadores(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -63,7 +63,6 @@ public class PEstadisticas extends javax.swing.JPanel {
         maletaText = new javax.swing.JTextField();
         maletasFacturadasText = new javax.swing.JTextField();
         panelStatWorkers = new javax.swing.JPanel();
-        estatLabel = new javax.swing.JLabel();
         nombreLabel = new javax.swing.JLabel();
         nombreTextField = new javax.swing.JTextField();
         primerApeLabel = new javax.swing.JLabel();
@@ -275,9 +274,6 @@ public class PEstadisticas extends javax.swing.JPanel {
             }
         });
 
-        estatLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        estatLabel.setText("<html><h1>Estadísticas Trabajadores </h1></html>");
-
         nombreLabel.setText("Nombre: ");
 
         primerApeLabel.setText("Apellido 1: ");
@@ -312,14 +308,10 @@ public class PEstadisticas extends javax.swing.JPanel {
         panelStatWorkers.setLayout(panelStatWorkersLayout);
         panelStatWorkersLayout.setHorizontalGroup(
             panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatWorkersLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(estatLabel)
-                .addContainerGap())
             .addGroup(panelStatWorkersLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatWorkersLayout.createSequentialGroup()
                         .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreLabel)
@@ -345,51 +337,46 @@ public class PEstadisticas extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelStatWorkersLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(buscarButton))
-                            .addGroup(panelStatWorkersLayout.createSequentialGroup()
                                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(trabSemWinLabel)
-                                    .addComponent(trabMesWinLabel)
-                                    .addComponent(trabAnhoWinLabel))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(trabMesWinLabel))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelStatWorkersLayout.createSequentialGroup()
+                                .addComponent(trabAnhoWinLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buscarButton)))))
                 .addGap(37, 37, 37))
         );
         panelStatWorkersLayout.setVerticalGroup(
             panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelStatWorkersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(estatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLabel)
                     .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(primerApeLabel)
                     .addComponent(primerApeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dniLabel)
                     .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(segunApeLabel)
                     .addComponent(segunApeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(trabSemanaLabel)
                     .addComponent(trabSemWinLabel))
-                .addGap(8, 8, 8)
-                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscarButton)
-                    .addGroup(panelStatWorkersLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(trabMesLabel)
-                            .addComponent(trabMesWinLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(trabAnhoLabel)
-                            .addComponent(trabAnhoWinLabel))))
+                .addGap(12, 12, 12)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trabMesLabel)
+                    .addComponent(trabMesWinLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trabAnhoLabel)
+                    .addComponent(trabAnhoWinLabel)
+                    .addComponent(buscarButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -417,7 +404,7 @@ public class PEstadisticas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -433,11 +420,11 @@ public class PEstadisticas extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDestinoVuelosActionPerformed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        this.buscar(false);
+        this.buscarTrabajadores(false);
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void panelStatWorkersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelStatWorkersMouseClicked
-        this.buscar(true);
+        this.buscarTrabajadores(true);
     }//GEN-LAST:event_panelStatWorkersMouseClicked
 
 
@@ -451,7 +438,6 @@ public class PEstadisticas extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateSalidaVuelos;
     private javax.swing.JLabel dniLabel;
     private javax.swing.JTextField dniTextField;
-    private javax.swing.JLabel estatLabel;
     private javax.swing.JLabel hombresLabel;
     private javax.swing.JTextField hombresText;
     private javax.swing.JLabel jLabel1;
@@ -523,7 +509,7 @@ public class PEstadisticas extends javax.swing.JPanel {
         return this.va.getNSexoVuelo(vuelo,ts);
     }
     
-    public void calcularEstadisticas() {
+    public void buscarUsuarios() {
         float resultado;
         this.nacionalidad1Text.setEditable(false);
         this.nacionalidad2Text.setEditable(false);
@@ -581,7 +567,10 @@ public class PEstadisticas extends javax.swing.JPanel {
         this.maletasFacturadasText.setText(resultado + " maletas");   
     }
 
-    private void buscar(boolean fuera) {
+    private void buscarTrabajadores(boolean fuera) {
+        this.trabSemWinLabel.setText(this.va.trabajadorSemana());
+        this.trabMesWinLabel.setText(this.va.trabajadorMes());
+        this.trabAnhoWinLabel.setText(this.va.trabajadorAnho());
         ModeloTablaEstadisticasTrabajadores mp;
         mp = (ModeloTablaEstadisticasTrabajadores) this.statWorkersTable.getModel();
         if (!fuera) {
