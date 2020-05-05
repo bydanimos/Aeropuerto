@@ -24,6 +24,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         this.panelEditar.setVisible(false);
         this.errorFaltanDatos.setVisible(false);
         this.errorNoBorrableUsuario.setVisible(false);
+        this.txtEditarDni.setEnabled(false);
         //this.buscarControlUsuarios();
     }
 
@@ -347,7 +348,12 @@ public class PAdminUsuarios extends javax.swing.JPanel {
             }
         });
 
-        comboEditarTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario Normal", "Administrador", "Personal Laboral", "Trabajador Externo" }));
+        comboEditarTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario Normal", "Administrador", "Personal Laboral", "Personal Externo" }));
+        comboEditarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEditarTipoActionPerformed(evt);
+            }
+        });
 
         comboEditarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otro", "Hombre", "Mujer" }));
 
@@ -406,7 +412,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                             .addGroup(panelEditarLayout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(comboEditarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboEditarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(panelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -529,6 +535,9 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         this.errorFaltanDatos.setVisible(false);
         if(this.datosCompletos()){
                 this.actualizarDatos();
+                this.panelEditar.setVisible(false);
+                this.bloqueDatosControl.setVisible(true);
+                this.buscarUsuarios();
         }else{
             this.errorFaltanDatos.setVisible(true);
         }
@@ -560,6 +569,10 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.errorNoBorrableUsuario.setVisible(false);
     }//GEN-LAST:event_tablaDatosUsuariosMouseClicked
+
+    private void comboEditarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEditarTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEditarTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -683,10 +696,10 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         String tipoNuevo = this.comboEditarTipo.getSelectedItem().toString();
         TipoSexo ts;
         switch((String)this.comboEditarSexo.getSelectedItem()){
-            case "h":
+            case "Hombre":
                 ts = TipoSexo.h;
                 break;
-            case "m":
+            case "Mujer":
                 ts = TipoSexo.m;
                 break;
             default:
