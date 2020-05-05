@@ -45,6 +45,7 @@ insert into historialtrabajo(personalLaboral)
 
 --Insertase administrador
 insert into administrador(usuario, curriculum) values('48116361Q', '- Son un inutil.');
+insert into administrador(usuario, curriculum) values('12726187B', '- Super User.');
 insert into administrador(usuario, curriculum) values('49204425L', '- Trabellei na NASA durante 3 anos, pero deixeino porque eran uns incompetentes.');
 
 --Insertase terminal
