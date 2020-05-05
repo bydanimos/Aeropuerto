@@ -151,7 +151,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
                 + "SELECT * "
                 + "FROM historialtrabajo AS h2, usuario AS u2 "
                 + "WHERE h2.fechaentrada > h.fechaentrada AND u.dni = u2.dni "
-                + "      AND u2.dni = h2.personallaboral AND h2.fechasalida IS NULL)";
+                + "      AND u2.dni = h2.personallaboral)";
         
         try {
             stmPerLab = con.prepareStatement(consulta);
