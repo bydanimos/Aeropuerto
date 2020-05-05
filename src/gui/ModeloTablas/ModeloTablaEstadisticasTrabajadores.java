@@ -34,15 +34,19 @@ public class ModeloTablaEstadisticasTrabajadores extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Object resultado = null;
+        String horas;
 
         switch (columnIndex){
             case 0: resultado = this.usuarios.get(rowIndex).getDni(); break;
             case 1: resultado = this.usuarios.get(rowIndex).getNombre(); break;
             case 2: resultado = this.usuarios.get(rowIndex).getApellido1();break;
             case 3: resultado = this.usuarios.get(rowIndex).getApellido2(); break;
-            case 4: resultado = this.usuarios.get(rowIndex).getHorasSemana(); break;
-            case 5: resultado = this.usuarios.get(rowIndex).getHorasMes(); break; 
-            case 6: resultado = this.usuarios.get(rowIndex).getHorasAnho(); break; 
+            case 4: horas = this.usuarios.get(rowIndex).getHorasSemana();
+                    resultado = horas.split("mons")[1]; break;
+            case 5: horas = this.usuarios.get(rowIndex).getHorasMes();
+                    resultado = horas.split("mons")[1]; break; 
+            case 6: horas = this.usuarios.get(rowIndex).getHorasAnho();
+                    resultado = horas.split("years")[1]; break;
         }
         return resultado;
     }
