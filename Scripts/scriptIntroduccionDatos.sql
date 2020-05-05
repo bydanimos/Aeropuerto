@@ -38,10 +38,10 @@ insert into personallaboral(usuario, labor, descripcionTarea)
 	values('49204425L', 'controlador', 'controla los accesos de los pasajeros');
 
 --Insertase historial de Traballo
-insert into historialtrabajo(personalLaboral)
-	values('45678913Q');
-insert into historialtrabajo(personalLaboral)
-	values('49204425L');
+insert into historialtrabajo(personalLaboral, fechaentrada, fechasalida)
+	values('45678913Q', current_timestamp::timestamp - '5 hours'::interval, current_timestamp);
+insert into historialtrabajo(personalLaboral, fechaentrada, fechasalida)
+	values('49204425L', current_timestamp::timestamp - '7 hours'::interval, current_timestamp);
 
 --Insertase administrador
 insert into administrador(usuario, curriculum) values('48116361Q', '- Son un inutil.');
