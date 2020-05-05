@@ -329,18 +329,6 @@ public class PVuelos extends javax.swing.JPanel {
         mensajeFinal.setForeground(new java.awt.Color(255, 0, 0));
         mensajeFinal.setText("¡Se ha producido un error guardando el vuelo!");
 
-        salidaTeoricaText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                salidaTeoricaTextMouseClicked(evt);
-            }
-        });
-
-        llegadaTeoricaText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                llegadaTeoricaTextMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout editarNuevoPanelLayout = new javax.swing.GroupLayout(editarNuevoPanel);
         editarNuevoPanel.setLayout(editarNuevoPanelLayout);
         editarNuevoPanelLayout.setHorizontalGroup(
@@ -629,14 +617,6 @@ public class PVuelos extends javax.swing.JPanel {
         this.editarNuevoPanel.setVisible(true);
         this.rellenarCuadrosEditar();
     }//GEN-LAST:event_botonEditarActionPerformed
-
-    private void llegadaTeoricaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_llegadaTeoricaTextMouseClicked
-        this.salidaTeoricaText.setDate(this.salidaRealText.getDate());
-    }//GEN-LAST:event_llegadaTeoricaTextMouseClicked
-
-    private void salidaTeoricaTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salidaTeoricaTextMouseClicked
-        this.salidaRealText.setDate(this.salidaTeoricaText.getDate());
-    }//GEN-LAST:event_salidaTeoricaTextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

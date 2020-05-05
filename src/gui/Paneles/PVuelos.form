@@ -733,16 +733,10 @@
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JSpinnerDateEditor" name="salidaTeoricaText">
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="salidaTeoricaTextMouseClicked"/>
-          </Events>
         </Component>
         <Component class="com.toedter.calendar.JSpinnerDateEditor" name="salidaRealText">
         </Component>
         <Component class="com.toedter.calendar.JSpinnerDateEditor" name="llegadaTeoricaText">
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="llegadaTeoricaTextMouseClicked"/>
-          </Events>
         </Component>
         <Component class="com.toedter.calendar.JSpinnerDateEditor" name="llegadaRealText">
         </Component>
