@@ -61,7 +61,7 @@ public class PEstadisticas extends javax.swing.JPanel {
         acompanhanteText = new javax.swing.JTextField();
         maletaText = new javax.swing.JTextField();
         maletasFacturadasText = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        panelStatWorkers = new javax.swing.JPanel();
         estatLabel = new javax.swing.JLabel();
         nombreLabel = new javax.swing.JLabel();
         nombreTextField = new javax.swing.JTextField();
@@ -268,6 +268,12 @@ public class PEstadisticas extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Usuarios", panelEstadisticasUsuarios);
 
+        panelStatWorkers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelStatWorkersMouseClicked(evt);
+            }
+        });
+
         estatLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         estatLabel.setText("<html><h1>Estadísticas Trabajadores </h1></html>");
 
@@ -301,66 +307,66 @@ public class PEstadisticas extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelStatWorkersLayout = new javax.swing.GroupLayout(panelStatWorkers);
+        panelStatWorkers.setLayout(panelStatWorkersLayout);
+        panelStatWorkersLayout.setHorizontalGroup(
+            panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatWorkersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(estatLabel)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(panelStatWorkersLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatWorkersLayout.createSequentialGroup()
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreLabel)
                             .addComponent(dniLabel))
                         .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                             .addComponent(dniTextField))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(primerApeLabel)
                             .addComponent(segunApeLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(primerApeTextField)
                             .addComponent(segunApeTextField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelStatWorkersLayout.createSequentialGroup()
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(trabAnhoLabel)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(trabSemanaLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(trabMesLabel)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelStatWorkersLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(buscarButton))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelStatWorkersLayout.createSequentialGroup()
+                                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(trabSemWinLabel)
                                     .addComponent(trabMesWinLabel)
                                     .addComponent(trabAnhoWinLabel))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(37, 37, 37))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelStatWorkersLayout.setVerticalGroup(
+            panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelStatWorkersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(estatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLabel)
                     .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(primerApeLabel)
                     .addComponent(primerApeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dniLabel)
                     .addComponent(dniTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(segunApeLabel)
@@ -368,25 +374,25 @@ public class PEstadisticas extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(trabSemanaLabel)
                     .addComponent(trabSemWinLabel))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buscarButton)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(panelStatWorkersLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(trabMesLabel)
                             .addComponent(trabMesWinLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(trabAnhoLabel)
                             .addComponent(trabAnhoWinLabel))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Trabajadores", jPanel1);
+        jTabbedPane1.addTab("Trabajadores", panelStatWorkers);
 
         jLabel21.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -429,6 +435,10 @@ public class PEstadisticas extends javax.swing.JPanel {
         this.buscar(false);
     }//GEN-LAST:event_buscarButtonActionPerformed
 
+    private void panelStatWorkersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelStatWorkersMouseClicked
+        this.buscar(true);
+    }//GEN-LAST:event_panelStatWorkersMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acompanhanteLabel;
@@ -447,7 +457,6 @@ public class PEstadisticas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -467,6 +476,7 @@ public class PEstadisticas extends javax.swing.JPanel {
     private javax.swing.JTextField normalText;
     private javax.swing.JPanel panelEstadisticasUsuarios;
     private javax.swing.JPanel panelEstadisticasVuelos;
+    private javax.swing.JPanel panelStatWorkers;
     private javax.swing.JLabel premiumLabel;
     private javax.swing.JTextField premiumText;
     private javax.swing.JLabel primerApeLabel;
