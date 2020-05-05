@@ -17,9 +17,7 @@ public class PEstadisticas extends javax.swing.JPanel {
     
     public PEstadisticas(VAdministrador va) {
         this.va = va;
-        this.va.setSize(this.va.getWidth() + 160, this.va.getHeight() + 40);
         initComponents();
-        this.setSize(this.va.getWidth() + 160, this.va.getHeight() + 40);
         this.panelEstadisticasVuelos.setVisible(true);
         this.buscarVuelos();
         this.buscarUsuarios();
@@ -330,19 +328,19 @@ public class PEstadisticas extends javax.swing.JPanel {
                             .addComponent(segunApeTextField)))
                     .addGroup(panelStatWorkersLayout.createSequentialGroup()
                         .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(trabAnhoLabel)
-                            .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(trabSemanaLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(trabSemanaLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(trabAnhoLabel)
                                 .addComponent(trabMesLabel)))
                         .addGap(18, 18, 18)
                         .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelStatWorkersLayout.createSequentialGroup()
-                                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(trabSemWinLabel)
-                                    .addComponent(trabMesWinLabel))
+                                .addComponent(trabSemWinLabel)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelStatWorkersLayout.createSequentialGroup()
-                                .addComponent(trabAnhoWinLabel)
+                                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(trabMesWinLabel)
+                                    .addComponent(trabAnhoWinLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscarButton)))))
                 .addGap(37, 37, 37))
@@ -368,16 +366,21 @@ public class PEstadisticas extends javax.swing.JPanel {
                 .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(trabSemanaLabel)
                     .addComponent(trabSemWinLabel))
-                .addGap(12, 12, 12)
-                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(trabMesLabel)
-                    .addComponent(trabMesWinLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(trabAnhoLabel)
-                    .addComponent(trabAnhoWinLabel)
-                    .addComponent(buscarButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelStatWorkersLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(trabMesLabel)
+                            .addComponent(trabMesWinLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelStatWorkersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(trabAnhoWinLabel)
+                            .addComponent(trabAnhoLabel))
+                        .addContainerGap(10, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatWorkersLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buscarButton)
+                        .addGap(19, 19, 19))))
         );
 
         jTabbedPane1.addTab("Trabajadores", panelStatWorkers);
@@ -404,8 +407,8 @@ public class PEstadisticas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Vuelos");
