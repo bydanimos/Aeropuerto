@@ -3,6 +3,9 @@ insert into usuario values (
 '48116361Q', 'eliPita', 'eliPita@gmail.com', crypt('eli', gen_salt('md5')), 'Eliseo','Pita','Vilariño','Noruega','981666789','m'
 ); --Administrador
 insert into usuario values (
+'12726187B', 'Username', 'username@gmail.com', crypt('Password', gen_salt('md5')), 'Super','user','user','Noruega','981666789','m'
+); --Administrador
+insert into usuario values (
 '49204425L', 'antong', 'antong@gmail.com', crypt('ant', gen_salt('md5')), 'Anton','Gomez','Lopez','Galicia','604025148','o'
 );--Personal Laboral
 insert into usuario values (
