@@ -316,9 +316,9 @@ public class PTiendas extends javax.swing.JPanel {
                 int codigo;
                 codigo = Integer.parseInt(this.codigoTextField.getText());
                 if (this.primNombre) {
-                    buscar(m, "", codigo, itemSelected);
+                    buscar(m, "", itemSelected, codigo);
                 } else {
-                    buscar(m, this.nombreTextField.getText(), codigo, itemSelected);
+                    buscar(m, this.nombreTextField.getText(), itemSelected, codigo);
                 }
             } catch (NumberFormatException e) {
                 this.errorCodigoLabel.setVisible(true);
@@ -330,7 +330,7 @@ public class PTiendas extends javax.swing.JPanel {
         }
     }
 
-    public void buscar(ModeloTablaTiendas m, String nombre, int term, int cod) {
+    private void buscar(ModeloTablaTiendas m, String nombre, int term, int cod) {
         if (term > 0) {
             if (cod > 0) {
                 m.setFilas(this.va.obtenerTiendas(nombre, cod, term));
