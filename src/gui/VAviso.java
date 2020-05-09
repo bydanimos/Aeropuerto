@@ -1,5 +1,5 @@
-package gui;
 
+package gui;
 
 public class VAviso extends javax.swing.JDialog {
 
@@ -71,6 +71,8 @@ public class VAviso extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // -------------------------------------------------------------------------
+    // -------------------------------- Eventos --------------------------------
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
