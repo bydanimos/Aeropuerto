@@ -6,29 +6,31 @@ import aplicacion.servicios.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author dani
- */
-public class ModeloTablaTiendas extends AbstractTableModel {
+
+public final class ModeloTablaTiendas extends AbstractTableModel {
+    
     private List<Tienda> tiendas;
     
-    public ModeloTablaTiendas() {
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public final ModeloTablaTiendas() {
         this.tiendas = new ArrayList<>();
     }
     
+    // ------------------------------------------------------------------------
+    // ------------------------------ Overrides -------------------------------
     @Override
-    public int getRowCount() {
+    public final int getRowCount() {
         return this.tiendas.size();
     }
 
     @Override
-    public int getColumnCount() {
+    public final int getColumnCount() {
         return 4;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public final Object getValueAt(int rowIndex, int columnIndex) {
         Object resultado=null;
 
         switch (columnIndex){
@@ -41,7 +43,7 @@ public class ModeloTablaTiendas extends AbstractTableModel {
     }
     
     @Override
-    public String getColumnName(int col) {
+    public final String getColumnName(int col) {
         String nombre = null;
 
         switch (col){
@@ -54,7 +56,7 @@ public class ModeloTablaTiendas extends AbstractTableModel {
     }
     
     @Override
-    public Class getColumnClass(int col) {
+    public final Class getColumnClass(int col) {
         Class clase = null;
 
         switch (col){
@@ -66,25 +68,27 @@ public class ModeloTablaTiendas extends AbstractTableModel {
         return clase;
     }
     
-    public void setFilas(java.util.List<Tienda> tiendas) {
+    // ------------------------------------------------------------------------
+    // ------------------------------- Funciones --------------------------------
+    public final void setFilas(java.util.List<Tienda> tiendas) {
         if (tiendas != null ) {
             this.tiendas = tiendas;
             fireTableDataChanged();
         }
     }
     
-    public Tienda obtenerTienda(int i) {
+    public final Tienda obtenerTienda(int i) {
         return this.tiendas.get(i);
     }
     
-    public void borrarTienda(int i){
+    public final void borrarTienda(int i){
         Tienda e;
         e = this.tiendas.get(i);
         this.tiendas.remove(i);
         fireTableDataChanged();
     }
     
-    public void actualizarTabla() {
+    public final void actualizarTabla() {
         fireTableDataChanged();
     }
 }
