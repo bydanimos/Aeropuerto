@@ -48,8 +48,10 @@ public class DAOServicios extends AbstractDAO {
             if (terminal != 0) {
                 stmTiendas.setInt(2, terminal);
             }
-            if (codigo != 0) {
+            if (terminal != 0 && codigo != 0) {
                 stmTiendas.setInt(3, codigo);
+            } else if (terminal == 0 && codigo != 0) {
+                stmTiendas.setInt(2, codigo);
             }
 
             rsTienda = stmTiendas.executeQuery();

@@ -296,6 +296,7 @@ public class PTiendas extends javax.swing.JPanel {
         ModeloTablaTiendas m;
         m = (ModeloTablaTiendas) this.tiendasTable.getModel();
         int itemSelected = this.terminalComboBox.getSelectedIndex();
+        System.out.println(itemSelected);
         this.errorCodigoLabel.setVisible(false);
 
         if (todas) {
@@ -303,7 +304,11 @@ public class PTiendas extends javax.swing.JPanel {
         } else {
             try {
                 int codigo;
-                codigo = Integer.parseInt(this.codigoTextField.getText());
+                try {
+                    codigo = Integer.parseInt(this.codigoTextField.getText());
+                } catch (NumberFormatException e) {
+                    codigo = 0;
+                }
                 if (this.primNombre) {
                     buscar(m, "", itemSelected, codigo);
                 } else {
@@ -320,17 +325,17 @@ public class PTiendas extends javax.swing.JPanel {
     }
 
     private void buscar(ModeloTablaTiendas m, String nombre, int term, int cod) {
-        if (term > 0) {
-            if (cod > 0) {
+        //if (term > 0) {
+            //if (cod > 0) {
                 m.setFilas(this.va.obtenerTiendas(nombre, cod, term));
                 this.selTerminalLabel.setVisible(false);
                 this.errorCodigoLabel.setVisible(false);
-            } else {
-                this.errorCodigoLabel.setVisible(true);
-            }
-        } else {
+            //} else {
+            //    this.errorCodigoLabel.setVisible(true);
+            //}
+        /*} else {
             this.selTerminalLabel.setVisible(true);
-        }
+        }*/
     }
 
     private void anhadir() {
@@ -344,7 +349,7 @@ public class PTiendas extends javax.swing.JPanel {
                             this.terminalComboBox.getSelectedIndex(),
                             this.tipoTextField.getText());
                     this.anhaExitoLabel.setVisible(true);
-                    mt.actualizarTabla();
+                    this.buscarTiendas(true);
                 }
             }
         }
