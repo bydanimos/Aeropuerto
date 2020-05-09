@@ -18,7 +18,7 @@ public final class ModeloTablaAviones2 extends AbstractTableModel {
     }
     
     // ------------------------------------------------------------------------
-    // ------------------------------ Overrides -------------------------------
+    // -------------------------- Overrides Getters ---------------------------
     @Override
     public final int getRowCount() {
         return this.aviones.size();
@@ -90,6 +90,8 @@ public final class ModeloTablaAviones2 extends AbstractTableModel {
         return clase;
     }
     
+    // ------------------------------------------------------------------------
+    // -------------------------- Overrides Setters ---------------------------
     @Override
     public final void setValueAt(Object v, int row, int col) {
         switch (col) {
