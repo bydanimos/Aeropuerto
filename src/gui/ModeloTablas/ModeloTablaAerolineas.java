@@ -23,7 +23,7 @@ public final class ModeloTablaAerolineas extends AbstractTableModel {
     }
 
     // ------------------------------------------------------------------------
-    // ------------------------------ Overrides -------------------------------
+    // -------------------------- Overrides Getters ---------------------------
     @Override
     public final int getColumnCount () {
         return 4;
@@ -78,6 +78,8 @@ public final class ModeloTablaAerolineas extends AbstractTableModel {
         return resultado;
     }
     
+    // ------------------------------------------------------------------------
+    // -------------------------- Overrides Setters ---------------------------
     @Override
     public final void setValueAt(Object v, int row, int col) {
         switch (col){
