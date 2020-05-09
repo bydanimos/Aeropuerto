@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.ModeloTablas;
 
 import aplicacion.aviones.Aerolinea;
@@ -13,31 +9,33 @@ import gui.Paneles.PAerolineas;
 import gui.Paneles.PEstadisticas;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author ruben
- */
-public class ModeloTablaEstadisticasVuelos extends AbstractTableModel{
-    private java.util.List<Vuelo> vuelos;
-    private PEstadisticas pe;
+
+public final class ModeloTablaEstadisticasVuelos extends AbstractTableModel {
     
+    private java.util.List<Vuelo> vuelos;
+    private final PEstadisticas pe;
+    
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public ModeloTablaEstadisticasVuelos(PEstadisticas pe){
         this.vuelos=new java.util.ArrayList<>();
         this.pe = pe;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------ Overrides -------------------------------
     @Override
-    public int getColumnCount (){
+    public final int getColumnCount (){
         return 10;
     }
 
     @Override
-    public int getRowCount(){
+    public final int getRowCount(){
         return this.vuelos.size();
     }
 
     @Override
-    public String getColumnName(int col){
+    public final String getColumnName(int col){
         String nombre="";
 
         switch (col){
@@ -57,7 +55,7 @@ public class ModeloTablaEstadisticasVuelos extends AbstractTableModel{
     }
 
     @Override
-    public Class getColumnClass(int col){
+    public final Class getColumnClass(int col){
         Class clase=null;
 
         switch (col){
@@ -76,12 +74,12 @@ public class ModeloTablaEstadisticasVuelos extends AbstractTableModel{
     }
 
     @Override
-    public boolean isCellEditable(int row, int col){
+    public final boolean isCellEditable(int row, int col){
         return false;
     }
 
     @Override
-    public Object getValueAt(int row, int col){
+    public final Object getValueAt(int row, int col){
         Object resultado=null;
 
         switch (col){
@@ -100,7 +98,9 @@ public class ModeloTablaEstadisticasVuelos extends AbstractTableModel{
         return resultado;
     }
     
-    public void setFilas(java.util.List<Vuelo> vuelos){
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
+    public final void setFilas(java.util.List<Vuelo> vuelos){
         this.vuelos = vuelos;
         fireTableDataChanged();
     }
