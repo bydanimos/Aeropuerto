@@ -234,35 +234,6 @@ public final class DAOServicios extends AbstractDAO {
     }
 
     // -------------------------------------------------------------------------
-    // --------------------------------- Fechas --------------------------------
-    public final Timestamp timestampActual() {
-        Timestamp resultado = null;
-        Connection con;
-        PreparedStatement stmFecha = null;
-        ResultSet rsFecha;
-
-        con = this.getConexion();
-
-        String consulta = "SELECT current_timestamp";
-
-        try {
-            stmFecha = con.prepareStatement(consulta);
-            rsFecha = stmFecha.executeQuery();
-            resultado = rsFecha.getTimestamp(1);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        } finally {
-            try {
-                stmFecha.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
-        }
-        return resultado;
-    }
-
-    // -------------------------------------------------------------------------
     // --------------------------------- Coches --------------------------------
     public final ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         ArrayList<CocheAlquiler> resultado = new ArrayList<>();
