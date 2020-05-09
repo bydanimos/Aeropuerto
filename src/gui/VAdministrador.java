@@ -33,6 +33,7 @@ public class VAdministrador extends javax.swing.JFrame {
         this.fa = fa;
         this.panelActual = new PPrincipal(this);
         initComponents();
+        this.setSize(this.getWidth(), 500);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
     }

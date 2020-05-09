@@ -9,6 +9,7 @@ public class Avion {
     private String codigo;
     private int anhoFabricacion;
     private boolean retirado;
+    private boolean retirable;
 
     public Avion(ModeloAvion modeloAvion, Aerolinea aerolinea, String codigo, int anhoFabricacion, boolean retirado) {
         this.modeloAvion = modeloAvion;
@@ -16,6 +17,16 @@ public class Avion {
         this.codigo = codigo;
         this.anhoFabricacion = anhoFabricacion;
         this.retirado = retirado;
+        this.retirable = false;
+    }
+    
+    public Avion(ModeloAvion modeloAvion, Aerolinea aerolinea, String codigo, int anhoFabricacion, boolean retirado, boolean retirable) {
+        this.modeloAvion = modeloAvion;
+        this.aerolinea = aerolinea;
+        this.codigo = codigo;
+        this.anhoFabricacion = anhoFabricacion;
+        this.retirado = retirado;
+        this.retirable = retirable;
     }
 
     public ModeloAvion getModeloAvion() {
@@ -57,4 +68,13 @@ public class Avion {
     public void setRetirado(boolean retirado) {
         this.retirado = retirado;
     }
+
+    public boolean isRetirable() {
+        return retirable;
+    }
+
+    public void setRetirable(boolean retirable) {
+        this.retirable = retirable;
+    }
+    
 }

@@ -1,4 +1,3 @@
-
 package baseDatos;
 
 import aplicacion.aviones.Aerolinea;
@@ -22,10 +21,13 @@ public class DAOAviones extends AbstractDAO {
         ModeloAvion modeloAvionActual;
         Aerolinea aerolineaActual;
         Avion avionActual;
+        boolean retirable = false;
 
         Connection con;
         PreparedStatement stmAviones = null;
         ResultSet rsAviones;
+        PreparedStatement stmVuelos = null;
+        ResultSet rsVuelos;
 
         con = this.getConexion();
 
@@ -50,12 +52,40 @@ public class DAOAviones extends AbstractDAO {
 
             rsAviones = stmAviones.executeQuery();
             while (rsAviones.next()) {
+
+                try {
+                    consulta = "select v.numvuelo "
+                            + "from avion as a, vuelo as v "
+                            + "where a.codigo = v.avion "
+                            + "	and v.fechasalidateorica >= now() "
+                            + "	and a.codigo = ?";
+                    stmVuelos = con.prepareStatement(consulta);
+                    stmVuelos.setString(1, rsAviones.getString("codigo"));
+
+                    rsVuelos = stmVuelos.executeQuery();
+                    if (rsVuelos.next()) {
+                        retirable = false;
+                    } else{
+                        retirable = true;
+                    }
+
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                    this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+                } finally {
+                    try {
+                        stmVuelos.close();
+                    } catch (SQLException e) {
+                        System.out.println("Imposible cerrar cursores");
+                    }
+                }
+
                 modeloAvionActual = new ModeloAvion(rsAviones.getString("modeloavion"), rsAviones.getInt("capacidadnormal"),
                         rsAviones.getInt("capacidadpremium"), rsAviones.getFloat("consumo"), rsAviones.getString("empresafabricante"));
                 aerolineaActual = new Aerolinea(rsAviones.getString("nombre"), rsAviones.getString("paissede"),
                         rsAviones.getFloat("preciobasemaleta"), rsAviones.getFloat("pesobasemaleta"));
                 avionActual = new Avion(modeloAvionActual, aerolineaActual, rsAviones.getString("codigo"),
-                        rsAviones.getInt("anhofabricacion"), rsAviones.getBoolean("retirado"));
+                        rsAviones.getInt("anhofabricacion"), rsAviones.getBoolean("retirado"), retirable);
 
                 resultado.add(avionActual);
             }
@@ -93,8 +123,8 @@ public class DAOAviones extends AbstractDAO {
             rsAerolinea = stmAerolineas.executeQuery();
             while (rsAerolinea.next()) {
 
-                aerolineaActual = new Aerolinea(rsAerolinea.getString("nombre"), 
-                        rsAerolinea.getString("paissede"), rsAerolinea.getFloat("pesobasemaleta"), 
+                aerolineaActual = new Aerolinea(rsAerolinea.getString("nombre"),
+                        rsAerolinea.getString("paissede"), rsAerolinea.getFloat("pesobasemaleta"),
                         rsAerolinea.getFloat("preciobasemaleta"));
                 resultado.add(aerolineaActual);
             }

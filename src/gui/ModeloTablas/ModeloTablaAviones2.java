@@ -33,7 +33,8 @@ public class ModeloTablaAviones2 extends AbstractTableModel {
     
     @Override
     public boolean isCellEditable(int row, int col){
-        if(col == 2 || col == 8) return true;
+        if(col == 2) return true;
+        if(col == 8 && this.aviones.get(row).isRetirable()) return true;
         return false;
     }
 
