@@ -73,7 +73,7 @@ public class PNuevoCoche extends javax.swing.JPanel {
             }
         });
 
-        guardarCambiosButton.setText("Guardar Cambios");
+        guardarCambiosButton.setText("Guardar");
         guardarCambiosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarCambiosButtonActionPerformed(evt);
