@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOPersonalLaboral extends AbstractDAO {
+public final class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ----------------------------- Constructor -------------------------------
@@ -18,7 +18,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------ Validacion -------------------------------
-    public PersonalLaboral validarPersonalLaboral(String id, String clave) {
+    public final PersonalLaboral validarPersonalLaboral(String id, String clave) {
         PersonalLaboral resultado = null;
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
@@ -70,7 +70,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------- Getter ----------------------------------
-    public PersonalLaboral getPersonalLaboral(String dni) {
+    public final PersonalLaboral getPersonalLaboral(String dni) {
         PersonalLaboral resultado = null;
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
@@ -120,7 +120,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
         return resultado;
     }
 
-    public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id,
+    public final List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id,
             String nombre, String ape1, String ape2, boolean servicio) {
 
         List<PersonalLaboral> resultado = new ArrayList<>();
@@ -199,7 +199,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------ Inserción --------------------------------
-    public void insertarPersonalLaboral(PersonalLaboral pl) {
+    public final void insertarPersonalLaboral(PersonalLaboral pl) {
 
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
@@ -231,7 +231,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // -------------------------------- Delete ---------------------------------
-    public void borrarPersonalLaboral(String dni) {
+    public final void borrarPersonalLaboral(String dni) {
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
         String consulta;
@@ -258,7 +258,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------ Modificar --------------------------------
-    public void modificarPersonalLaboral(PersonalLaboral pl) {
+    public final void modificarPersonalLaboral(PersonalLaboral pl) {
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
 
@@ -324,7 +324,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
         }
     }
 
-    public void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
+    public final void modLaborDescripPersonalLaboral(PersonalLaboral pl) {
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
         String consulta;
@@ -359,7 +359,7 @@ public class DAOPersonalLaboral extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ---------------------- Estadísticas Trabajadores ------------------------
-    public String trabajadorSemana(int dias) {
+    public final String trabajadorSemana(int dias) {
         String resultado = null;
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
@@ -409,15 +409,15 @@ public class DAOPersonalLaboral extends AbstractDAO {
         return resultado;
     }
 
-    public String trabajadorMes() {
+    public final String trabajadorMes() {
         return this.trabajadorSemana(30);
     }
 
-    public String trabajadorAnho() {
+    public final String trabajadorAnho() {
         return this.trabajadorSemana(365);
     }
     
-    private String horasTrabajadasEnDias(String dni, int dias) {
+    private final String horasTrabajadasEnDias(String dni, int dias) {
         String resultado = null;
         Connection con;
         PreparedStatement stmPersonalLaboral = null;
