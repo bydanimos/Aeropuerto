@@ -81,11 +81,6 @@ public class VAutentificacion extends javax.swing.JDialog {
         });
 
         PasswordField.setText("Password");
-        PasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordFieldActionPerformed(evt);
-            }
-        });
         PasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PasswordFieldKeyPressed(evt);
