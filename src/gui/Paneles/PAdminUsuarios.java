@@ -112,19 +112,8 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaDatosUsuarios);
 
-        txtDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDniActionPerformed(evt);
-            }
-        });
-
         botonEditar.setText("Editar");
-        botonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarActionPerformed(evt);
-            }
-        });
-
+   
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +223,6 @@ public class PAdminUsuarios extends javax.swing.JPanel {
 
         txtControlDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtControlDniActionPerformed(evt);
             }
         });
 
@@ -339,14 +327,12 @@ public class PAdminUsuarios extends javax.swing.JPanel {
 
         txtEditarDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditarDniActionPerformed(evt);
             }
         });
 
         comboEditarTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario Normal", "Administrador", "Personal Laboral", "Personal Externo" }));
         comboEditarTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboEditarTipoActionPerformed(evt);
             }
         });
 
@@ -706,7 +692,7 @@ public class PAdminUsuarios extends javax.swing.JPanel {
                  this.txtEditarSegundoApellido.getText().equals("") || this.txtEditarNombre.getText().equals(""));
     }
     
-    private String getTipoUsuario(Usuario u) {
+    public String getTipoUsuario(Usuario u) {
         return this.va.getTipoUsuario(u);
     }
     

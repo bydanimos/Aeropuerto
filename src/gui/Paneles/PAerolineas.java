@@ -161,7 +161,6 @@ public class PAerolineas extends javax.swing.JPanel {
 
         txtEditarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditarNombreActionPerformed(evt);
             }
         });
 
