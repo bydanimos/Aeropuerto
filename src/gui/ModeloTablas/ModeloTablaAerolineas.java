@@ -1,57 +1,54 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.ModeloTablas;
 
 import aplicacion.aviones.Aerolinea;
 import gui.Paneles.PAerolineas;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author ruben
- */
-public class ModeloTablaAerolineas extends AbstractTableModel{
+public final class ModeloTablaAerolineas extends AbstractTableModel {
+    
     private java.util.List<Aerolinea> aerolineas;
     private final PAerolineas pa;
     
-    public ModeloTablaAerolineas(PAerolineas pa){
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public ModeloTablaAerolineas(PAerolineas pa) {
         this.aerolineas=new java.util.ArrayList<>();
         this.pa = pa;
     }
     
-    public ModeloTablaAerolineas(){
-        this.aerolineas=new java.util.ArrayList<>();
+    public ModeloTablaAerolineas() {
+        this.aerolineas = new java.util.ArrayList<>();
         this.pa = null;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------ Overrides -------------------------------
     @Override
-    public int getColumnCount (){
+    public final int getColumnCount () {
         return 4;
     }
 
     @Override
-    public int getRowCount(){
+    public final int getRowCount() {
         return this.aerolineas.size();
     }
 
     @Override
-    public String getColumnName(int col){
-        String nombre="";
+    public final String getColumnName(int col) {
+        String nombre = "";
 
         switch (col){
-            case 0: nombre= "Nombre"; break;
-            case 1: nombre= "Pais"; break;
-            case 2: nombre= "Precio Maleta"; break;
-            case 3: nombre= "Peso Maleta"; break;
+            case 0: nombre = "Nombre"; break;
+            case 1: nombre = "Pais"; break;
+            case 2: nombre = "Precio Maleta"; break;
+            case 3: nombre = "Peso Maleta"; break;
         }
         return nombre;
     }
 
     @Override
-    public Class getColumnClass(int col){
+    public final Class getColumnClass(int col) {
         Class clase=null;
 
         switch (col){
@@ -64,12 +61,12 @@ public class ModeloTablaAerolineas extends AbstractTableModel{
     }
 
     @Override
-    public boolean isCellEditable(int row, int col){
+    public final boolean isCellEditable(int row, int col) {
         return col > 0;
     }
 
     @Override
-    public Object getValueAt(int row, int col){
+    public final Object getValueAt(int row, int col) {
         Object resultado=null;
 
         switch (col){
@@ -82,7 +79,7 @@ public class ModeloTablaAerolineas extends AbstractTableModel{
     }
     
     @Override
-    public void setValueAt(Object v, int row, int col){
+    public final void setValueAt(Object v, int row, int col) {
         switch (col){
             case 1: this.aerolineas.get(row).setPaisSede((String) v); break;
             case 2: this.aerolineas.get(row).setPrecioBaseMaleta((Float) v);break;
@@ -90,21 +87,23 @@ public class ModeloTablaAerolineas extends AbstractTableModel{
         }
     }
 
-    public void setFilas(java.util.List<Aerolinea> aerolineas){
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
+    public final void setFilas(java.util.List<Aerolinea> aerolineas) {
         this.aerolineas = aerolineas;
         fireTableDataChanged();
     }
 
-    public Aerolinea obtenerAerolinea(int i){
+    public final Aerolinea obtenerAerolinea(int i) {
         return this.aerolineas.get(i);
     }
     
-    public void anhadirAerolinea(Aerolinea a){
+    public final void anhadirAerolinea(Aerolinea a) {
         this.aerolineas.add(a);
         fireTableRowsInserted(this.aerolineas.size()-1, this.aerolineas.size()-1);
     }
     
-    public void borrarAerolinea(int i){
+    public final void borrarAerolinea(int i) {
         this.aerolineas.remove(i);
         fireTableRowsDeleted(i, i);
     }
