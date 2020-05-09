@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.Paneles;
 
 import aplicacion.usuarios.*;
@@ -10,14 +6,13 @@ import gui.ModeloTablas.ModeloTablaControlUsuarios;
 import gui.ModeloTablas.ModeloTablaDatosUsuarios;
 import gui.VAdministrador;
 
-/**
- *
- * @author ruben
- */
+
 public class PAdminUsuarios extends javax.swing.JPanel {
 
     private final VAdministrador va;
     
+    // -------------------------------------------------------------------------
+    // ------------------------------ Constructor ------------------------------
     public PAdminUsuarios(VAdministrador va) {
         this.va = va;
         initComponents();
@@ -504,28 +499,19 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDniActionPerformed
-
+    // -------------------------------------------------------------------------
+    // ------------------------------- Eventos ---------------------------------
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        // TODO add your handling code here:
-        buscarUsuarios();
+        this.buscarUsuarios();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
         this.bloqueDatosControl.setVisible(false);
         this.panelEditar.setVisible(true);
-        actualizarCuadrosEditar();
+        this.actualizarCuadrosEditar();
     }//GEN-LAST:event_botonEditarActionPerformed
 
-    private void txtEditarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditarDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEditarDniActionPerformed
-
     private void botonEditarCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarCancelarActionPerformed
-        // TODO add your handling code here:
         this.panelEditar.setVisible(false);
         this.bloqueDatosControl.setVisible(true);
         this.buscarUsuarios();
@@ -533,12 +519,12 @@ public class PAdminUsuarios extends javax.swing.JPanel {
 
     private void botonEditarActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActualizarActionPerformed
         this.errorFaltanDatos.setVisible(false);
-        if(this.datosCompletos()){
+        if (this.datosCompletos()) {
                 this.actualizarDatos();
                 this.panelEditar.setVisible(false);
                 this.bloqueDatosControl.setVisible(true);
                 this.buscarUsuarios();
-        }else{
+        } else {
             this.errorFaltanDatos.setVisible(true);
         }
     }//GEN-LAST:event_botonEditarActualizarActionPerformed
@@ -547,33 +533,22 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         
     }//GEN-LAST:event_botonBuscar1ActionPerformed
 
-    private void txtControlDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtControlDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtControlDniActionPerformed
-
     private void botonControlBuscarActionPerformed2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonControlBuscarActionPerformed2
         this.buscarControlUsuarios();
     }//GEN-LAST:event_botonControlBuscarActionPerformed2
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
         this.errorNoBorrableUsuario.setVisible(false);
-        if(this.eliminarUsuario()){
+        if (this.eliminarUsuario()) {
             this.buscarUsuarios();
-        }else{
+        } else {
             this.errorNoBorrableUsuario.setVisible(true);
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void tablaDatosUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosUsuariosMouseClicked
-        // TODO add your handling code here:
         this.errorNoBorrableUsuario.setVisible(false);
     }//GEN-LAST:event_tablaDatosUsuariosMouseClicked
-
-    private void comboEditarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEditarTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboEditarTipoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane bloqueDatosControl;
@@ -636,25 +611,28 @@ public class PAdminUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField txtSegundoApellido;
     // End of variables declaration//GEN-END:variables
 
-    public void buscarUsuarios(){
+    // -------------------------------------------------------------------------
+    // ------------------------------- Funciones -------------------------------
+    public void buscarUsuarios() {
         this.errorNoBorrableUsuario.setVisible(false);
         ModeloTablaDatosUsuarios m;
-        m=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
-        m.setFilas(this.va.obtenerUsuarios(txtDni.getText(),txtId.getText(),txtNombre.getText(),txtPrimerApellido.getText(),txtSegundoApellido.getText()));
+        m = (ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
+        m.setFilas(this.va.obtenerUsuarios(txtDni.getText(), txtId.getText(), 
+                                           txtNombre.getText(),txtPrimerApellido.getText(),
+                                           txtSegundoApellido.getText()));
         if (m.getRowCount() > 0) {
             this.tablaDatosUsuarios.setRowSelectionInterval(0, 0);
             this.botonEliminar.setEnabled(true);
             this.botonEditar.setEnabled(true);
-        }
-        else{
+        } else {
             this.botonEliminar.setEnabled(false);
             this.botonEditar.setEnabled(true);
         }
     }
     
-     public void actualizarCuadrosEditar(){
+    private void actualizarCuadrosEditar() {
         ModeloTablaDatosUsuarios mu;
-        mu=(ModeloTablaDatosUsuarios) this.tablaDatosUsuarios.getModel();
+        mu = (ModeloTablaDatosUsuarios) this.tablaDatosUsuarios.getModel();
         Usuario u = mu.obtenerUsuario(this.tablaDatosUsuarios.getSelectedRow());
         this.txtEditarDni.setText(u.getDni());
         this.txtEditarId.setText(u.getId());
@@ -665,37 +643,37 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         this.txtEditarPais.setText(u.getPaisProcedencia());
         this.txtEditarTelefono.setText(u.getTelefono().toString());
         Object obj;
-        if(u.getSexo() == TipoSexo.o){
+        if (u.getSexo() == TipoSexo.o) {
             obj = this.comboEditarSexo.getItemAt(0);
-        }else if(u.getSexo() == TipoSexo.h){
+        } else if (u.getSexo() == TipoSexo.h) {
             obj = this.comboEditarSexo.getItemAt(1);
-        }else{
+        } else {
             obj = this.comboEditarSexo.getItemAt(2);
         }
         this.comboEditarSexo.setSelectedItem(obj);
         
         String tipoUsuario = this.va.getTipoUsuario(u);
-        if(tipoUsuario.equals("Usuario")){
+        if (tipoUsuario.equals("Usuario")) {
             obj = this.comboEditarTipo.getItemAt(0);
-        }else if(tipoUsuario.equals("Administrador")){
+        } else if (tipoUsuario.equals("Administrador")) {
             obj = this.comboEditarTipo.getItemAt(1);
-        }else if(tipoUsuario.equals("Personal Laboral")){
+        } else if (tipoUsuario.equals("Personal Laboral")) {
             obj = this.comboEditarTipo.getItemAt(2);
-        }else{
+        } else {
             obj = this.comboEditarTipo.getItemAt(3);
         }
         this.comboEditarTipo.setSelectedItem(obj);
         this.botonEditarActualizar.setEnabled(true);
     }
      
-    public void actualizarDatos(){
+    private void actualizarDatos() {
         ModeloTablaDatosUsuarios mu;
-        mu=(ModeloTablaDatosUsuarios) this.tablaDatosUsuarios.getModel();
+        mu = (ModeloTablaDatosUsuarios) this.tablaDatosUsuarios.getModel();
         Usuario u = mu.obtenerUsuario(this.tablaDatosUsuarios.getSelectedRow());
         String tipoAnterior = this.va.getTipoUsuario(u);
         String tipoNuevo = this.comboEditarTipo.getSelectedItem().toString();
         TipoSexo ts;
-        switch((String)this.comboEditarSexo.getSelectedItem()){
+        switch ((String)this.comboEditarSexo.getSelectedItem()) {
             case "Hombre":
                 ts = TipoSexo.h;
                 break;
@@ -705,32 +683,44 @@ public class PAdminUsuarios extends javax.swing.JPanel {
             default:
                 ts = TipoSexo.o;
         }
-        Usuario user = new Usuario(this.txtEditarDni.getText(),this.txtEditarId.getText(),this.txtEditarEmail.getText(),this.txtEditarNombre.getText(),
-                this.txtEditarPrimerApellido.getText(),this.txtEditarSegundoApellido.getText(),ts,this.txtEditarPais.getText(),Integer.parseInt(this.txtEditarTelefono.getText()));
+        int telefono;
+        try {
+            telefono = Integer.parseInt(this.txtEditarTelefono.getText());
+        } catch (NumberFormatException e) {
+            telefono = 0;
+        }
+        Usuario user;
+        user = new Usuario(this.txtEditarDni.getText(), this.txtEditarId.getText(),
+                           this.txtEditarEmail.getText(), this.txtEditarNombre.getText(),
+                           this.txtEditarPrimerApellido.getText(), 
+                           this.txtEditarSegundoApellido.getText(), ts, 
+                           this.txtEditarPais.getText(), telefono);
         
         this.va.modificarUsuario(user,tipoAnterior,tipoNuevo);
     }
     
-    
-    public Boolean datosCompletos(){
-        return !(this.txtEditarDni.getText().equals("") || this.txtEditarId.getText().equals("") || this.txtEditarEmail.getText().equals("") || 
-                 this.txtEditarPais.getText().equals("") || this.txtEditarTelefono.getText().equals("") || this.txtEditarPrimerApellido.getText().equals("") ||
-                this.txtEditarSegundoApellido.getText().equals("") || this.txtEditarNombre.getText().equals(""));
+    private Boolean datosCompletos() {
+        return !(this.txtEditarDni.getText().equals("") || this.txtEditarId.getText().equals("") ||
+                 this.txtEditarEmail.getText().equals("") || this.txtEditarPais.getText().equals("") ||
+                 this.txtEditarTelefono.getText().equals("") || this.txtEditarPrimerApellido.getText().equals("") ||
+                 this.txtEditarSegundoApellido.getText().equals("") || this.txtEditarNombre.getText().equals(""));
     }
     
-    public String getTipoUsuario(Usuario u){
+    private String getTipoUsuario(Usuario u) {
         return this.va.getTipoUsuario(u);
     }
     
-    public void buscarControlUsuarios(){
+    private void buscarControlUsuarios() {
         ModeloTablaControlUsuarios m;
-        m=(ModeloTablaControlUsuarios) tablaControlUsuarios.getModel();
-        m.setFilas(this.va.obtenerUsuariosControl(txtControlDni.getText(),txtControlId.getText(),txtControlNombre.getText(),txtControlPrimerApellido.getText(),txtControlSegundoApellido.getText()));
+        m = (ModeloTablaControlUsuarios) tablaControlUsuarios.getModel();
+        m.setFilas(this.va.obtenerUsuariosControl(txtControlDni.getText(), txtControlId.getText(),
+                                                  txtControlNombre.getText(), txtControlPrimerApellido.getText(),
+                                                  txtControlSegundoApellido.getText()));
     }
     
-    public boolean eliminarUsuario(){
+    private boolean eliminarUsuario() {
         ModeloTablaDatosUsuarios mu;
-        mu=(ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
+        mu = (ModeloTablaDatosUsuarios) tablaDatosUsuarios.getModel();
         Usuario u = mu.obtenerUsuario(tablaDatosUsuarios.getSelectedRow());
         return this.va.borrarUsuario(u);
     }
