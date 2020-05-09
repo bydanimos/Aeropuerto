@@ -14,6 +14,8 @@ En caso de erro añadir el ejecutable de la misma manera que se añade el gestor
 
 Una vez añadido ya está listo para ser utilizado.
 
-Hemos experimentado un error con el tamaño del panel en la ventana de estadísticas, este error no se 
-nos manifiesta en macOS, pero sí en algunas ocaciones en Linux, tanto en la versión 18.04 LTS como la
-20.04 LTS, ambas distribuciones son de Ubuntu.
+
+
+Decir también que hemos experimentado un error con el tamaño del panel en la ventana de estadísticas, este error no se 
+nos manifiesta en macOS, pero sí en algunas ocaciones en Ubuntu, tanto en la versión 18.04 LTS como la
+20.04 LTS, aunque no siempre.
