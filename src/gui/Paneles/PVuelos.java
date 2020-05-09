@@ -430,10 +430,11 @@ public class PVuelos extends javax.swing.JPanel {
                     .addGroup(editarNuevoPanelLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(mensajePrecio)))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(editarNuevoPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editarNuevoPanelLayout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(gestionVuelosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         editarNuevoPanelLayout.setVerticalGroup(
             editarNuevoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
