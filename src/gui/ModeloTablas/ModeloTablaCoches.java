@@ -5,29 +5,31 @@ import aplicacion.servicios.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author dani
- */
-public class ModeloTablaCoches extends AbstractTableModel {
+
+public final class ModeloTablaCoches extends AbstractTableModel {
+    
     private List<CocheAlquiler> coches;
     
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public ModeloTablaCoches() {
         this.coches = new ArrayList<>();
     }
     
+    // ------------------------------------------------------------------------
+    // -------------------------- Overrides Getters ---------------------------
     @Override
-    public int getRowCount() {
+    public final int getRowCount() {
         return this.coches.size();
     }
 
     @Override
-    public int getColumnCount() {
+    public final int getColumnCount() {
         return 8;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public final Object getValueAt(int rowIndex, int columnIndex) {
         Object resultado=null;
 
         switch (columnIndex){
@@ -56,7 +58,7 @@ public class ModeloTablaCoches extends AbstractTableModel {
     }
     
     @Override
-    public String getColumnName(int col) {
+    public final String getColumnName(int col) {
         String nombre = null;
 
         switch (col){
@@ -73,7 +75,7 @@ public class ModeloTablaCoches extends AbstractTableModel {
     }
     
     @Override
-    public Class getColumnClass(int col) {
+    public final Class getColumnClass(int col) {
         Class clase = null;
 
         switch (col){
@@ -89,29 +91,31 @@ public class ModeloTablaCoches extends AbstractTableModel {
         return clase;
     }
     
-    public void setFilas(java.util.List<CocheAlquiler> coches) {
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
+    public final void setFilas(java.util.List<CocheAlquiler> coches) {
         if (coches != null ) {
             this.coches = coches;
             fireTableDataChanged();
         }
     }
     
-    public CocheAlquiler obtenerCoche(int i) {
+    public final CocheAlquiler obtenerCoche(int i) {
         return this.coches.get(i);
     }
     
-    public void borrarCoche(int i){
+    public final void borrarCoche(int i){
         CocheAlquiler e;
         e = this.coches.get(i);
         this.coches.remove(i);
         fireTableDataChanged();
     }
     
-    public void actualizarTabla() {
+    public final void actualizarTabla() {
         fireTableDataChanged();
     }
     
-    public void nuevoCoche(CocheAlquiler co) {
+    public final void nuevoCoche(CocheAlquiler co) {
         this.coches.add(co);
         fireTableRowsInserted(this.coches.size() - 1, this.coches.size() - 1);
     }
