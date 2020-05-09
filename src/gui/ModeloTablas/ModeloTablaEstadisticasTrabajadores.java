@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author dani
- */
+
 public class ModeloTablaEstadisticasTrabajadores extends AbstractTableModel {
+    
     private List<PersonalLaboral> usuarios;
     
     // -------------------------------------------------------------------------
