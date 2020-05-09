@@ -8,6 +8,8 @@ public class VRegistrar extends javax.swing.JFrame {
     private boolean primeraPass;
     private boolean primeraRepitPass;
 
+    // -------------------------------------------------------------------------
+    // ------------------------------ Constructor ------------------------------
     public VRegistrar(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
         initComponents();
@@ -278,6 +280,8 @@ public class VRegistrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // -------------------------------------------------------------------------
+    // ------------------------------- Eventos ---------------------------------
     private void registrarseButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registrarseButtonKeyPressed
         registrarUsuario();
     }//GEN-LAST:event_registrarseButtonKeyPressed
@@ -354,6 +358,8 @@ public class VRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel todosCamposLabel;
     // End of variables declaration//GEN-END:variables
 
+    // -------------------------------------------------------------------------
+    // ------------------------------- Funciones -------------------------------
     // Función que coge del combobox el sexo introducido por el usuario
     private aplicacion.usuarios.TipoSexo getSexo() {
         switch (this.sexoComboBox.getSelectedIndex()) {
