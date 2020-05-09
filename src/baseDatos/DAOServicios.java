@@ -32,7 +32,7 @@ public class DAOServicios extends AbstractDAO {
         con = this.getConexion();
 
         String consulta = "SELECT terminal, codigo, tipoventas, nombre "
-                        + "FROM tiendas "
+                        + "FROM tienda "
                         + "WHERE nombre LIKE ? ";
         if (terminal != 0) {
             consulta += "AND terminal = ? ";
@@ -40,7 +40,7 @@ public class DAOServicios extends AbstractDAO {
         if (codigo != 0) {
             consulta += "AND codigo = ? ";
         }
-        consulta += "order by terminal, codigo";
+        consulta += "ORDER BY terminal, codigo";
 
         try {
             stmTiendas = con.prepareStatement(consulta);
@@ -84,7 +84,7 @@ public class DAOServicios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            String consulta = "INSERT INTO tiendas(terminal, tipoventas, nombre) "
+            String consulta = "INSERT INTO tienda(terminal, tipoventas, nombre) "
                             + "       VALUES (?, ?, ?)";
             stmTienda = con.prepareStatement(consulta);
 
@@ -112,7 +112,7 @@ public class DAOServicios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmTienda = con.prepareStatement("DELETE FROM tiendas "
+            stmTienda = con.prepareStatement("DELETE FROM tienda "
                                            + "WHERE terminal = ? AND codigo = ?");
             stmTienda.setInt(1, terminal);
             stmTienda.setInt(2, codigo);
@@ -137,7 +137,7 @@ public class DAOServicios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmTiendas = con.prepareStatement("UPDATE tiendas "
+            stmTiendas = con.prepareStatement("UPDATE tienda "
                                             + "SET nombre = ?, "
                                             + "    tipoventas = ? "
                                             + "WHERE codigo = ? AND terminal = ?");
