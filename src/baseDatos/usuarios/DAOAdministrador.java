@@ -1,24 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package baseDatos.usuarios;
 
 import aplicacion.usuarios.*;
 import baseDatos.AbstractDAO;
 import java.sql.*;
 
-/**
- *
- * @author ruben
- */
 public class DAOAdministrador extends AbstractDAO {
+    /*
+    -------------------------------Constructor-------------------------------------
+    */
 
     public DAOAdministrador(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }
+    
+    /*
+    -------------------------------Métodos-------------------------------------
+    */
 
     public Administrador validarAdministrador(String id, String clave) {
         Administrador resultado = null;
@@ -28,15 +27,12 @@ public class DAOAdministrador extends AbstractDAO {
 
         con = this.getConexion();
 
-        /*String dni, String id, String contrasenha, String correoElectronico, String nombre,
-                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
-                         java.sql.Timestamp fechaInicio, String curriculum)*/
         try {
-            stmAdministrador = con.prepareStatement("select u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"
+            stmAdministrador = con.prepareStatement("SELECT u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"
                     + "u.paisprocedencia,u.telefono,u.sexo,ad.fechainicio,ad.curriculum "
-                    + "from usuario as u, administrador as ad "
-                    + "where u.dni = ad.usuario "
-                    + "and u.id = ? and u.contrasenha = crypt(?, contrasenha) ");
+                    + "FROM usuario as u, administrador as ad "
+                    + "WHERE u.dni = ad.usuario "
+                    + "AND u.id = ? AND u.contrasenha = crypt(?, contrasenha) ");
             stmAdministrador.setString(1, id);
             stmAdministrador.setString(2, clave);
             rsAdministrador = stmAdministrador.executeQuery();
@@ -70,7 +66,7 @@ public class DAOAdministrador extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmAdministrador = con.prepareStatement("insert into administrador(usuario,curriculum) "
+            stmAdministrador = con.prepareStatement("INSERT INTO administrador(usuario,curriculum) "
                     + "values (?,?)");
             stmAdministrador.setString(1, ad.getDni());
             stmAdministrador.setString(2, ad.getCurriculum());
@@ -95,7 +91,7 @@ public class DAOAdministrador extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmAdministrador = con.prepareStatement("delete from administrador where usuario = ?");
+            stmAdministrador = con.prepareStatement("DEELETE from administrador WHERE usuario = ?");
             stmAdministrador.setString(1, dni);
             stmAdministrador.executeUpdate();
 
@@ -118,11 +114,11 @@ public class DAOAdministrador extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmAdministrador = con.prepareStatement("update administrador "
-                    + "set curriculum=? "
-                    + "where dni=? "
-                    + "update usuario "
-                    + "set id=?, "
+            stmAdministrador = con.prepareStatement("UPDATE administrador "
+                    + "SET curriculum=? "
+                    + "WHERE dni=? "
+                    + "UPDATE usuario "
+                    + "SET id=?, "
                     + "    nombre=?, "
                     + "    primerapellido=?, "
                     + "    segundoapellido=?, "
@@ -131,7 +127,7 @@ public class DAOAdministrador extends AbstractDAO {
                     + "    paisprocedencia=?, "
                     + "    telefono=?, "
                     + "    sexo=? "
-                    + "where dni=?");
+                    + "WHERE dni=?");
 
             stmAdministrador.setString(1, ad.getCurriculum());
             stmAdministrador.setString(2, ad.getDni());
@@ -178,18 +174,13 @@ public class DAOAdministrador extends AbstractDAO {
         ResultSet rsAdministrador;
 
         con=this.getConexion();
-
-        
-        /*String dni, String id, String contrasenha, String correoElectronico, String nombre,
-                        String apellido1, String apellido2, TipoSexo sexo, String paisProcedencia, String telefono,
-                         java.sql.Timestamp fechaInicio, String curriculum)*/
-                         
+                    
         try {
-            stmAdministrador=con.prepareStatement("select u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"+
+            stmAdministrador=con.prepareStatement("SELECT u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"+
                                                   "u.paisprocedencia,u.telefono,u.sexo,ad.fechainicio,ad.curriculum "+
-                                                  "from usuario as u, administrador as ad "+
-                                                  "where u.dni = ad.usuario "+
-                                                  "and u.dni = ? ");
+                                                  "FROM usuario as u, administrador as ad "+
+                                                  "WHERE u.dni = ad.usuario "+
+                                                  "AND u.dni = ? ");
             stmAdministrador.setString(1, dni);
             rsAdministrador=stmAdministrador.executeQuery();
            

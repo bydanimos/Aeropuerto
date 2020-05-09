@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package baseDatos.usuarios;
 
 import baseDatos.*;
@@ -30,10 +27,10 @@ public class DAOUsuarios extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
+            stmUsuario = con.prepareStatement("SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
                     + "paisprocedencia,telefono,sexo "
-                    + "from usuario "
-                    + "where id = ? and contrasenha = crypt(?, contrasenha)");
+                    + "FROM usuario "
+                    + "WHERE id = ? AND contrasenha = crypt(?, contrasenha)");
             stmUsuario.setString(1, idUsuario);
             stmUsuario.setString(2, clave);
             rsUsuario = stmUsuario.executeQuery();
@@ -66,14 +63,14 @@ public class DAOUsuarios extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
+        String consulta = "SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
                 + "paisprocedencia,telefono,sexo "
-                + "from usuario "
-                + "where id like ? "
-                + "and dni like ? "
-                + "and nombre like ? "
-                + "and primerapellido like ? "
-                + "and segundoapellido like ? ";
+                + "FROM usuario "
+                + "WHERE id like ? "
+                + "AND dni like ? "
+                + "AND nombre like ? "
+                + "AND primerapellido like ? "
+                + "AND segundoapellido like ? ";
 
         try {
             stmUsuarios = con.prepareStatement(consulta);
@@ -116,7 +113,7 @@ public class DAOUsuarios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("insert into usuario(dni, id, "
+            stmUsuario = con.prepareStatement("INSERT INTO usuario(dni, id, "
                     + "correoelectronico, contrasenha, nombre, primerapellido, "
                     + "segundoapellido, paisprocedencia, telefono, sexo) "
                     + "values (?,?,?,crypt(?, gen_salt('md5')),?,?,?,?,?,?)");
@@ -173,12 +170,12 @@ public class DAOUsuarios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("select * "
-                    + "from comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p "
-                    + "where cb.usuario = ? "
-                    + "or r.usuario = ? "
-                    + "or al.usuario = ? "
-                    + "or p.usuario = ? ");
+            stmUsuario = con.prepareStatement("SELECT * "
+                    + "FROM comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p "
+                    + "WHERE cb.usuario = ? "
+                    + "OR r.usuario = ? "
+                    + "OR al.usuario = ? "
+                    + "OR p.usuario = ? ");
             stmUsuario.setString(1, dni);
             stmUsuario.setString(2, dni);
             stmUsuario.setString(3, dni);
@@ -212,8 +209,8 @@ public class DAOUsuarios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("update usuario "
-                    + "set id=?, "
+            stmUsuario = con.prepareStatement("UPDATE usuario "
+                    + "SET id=?, "
                     + "    nombre=?, "
                     + "    primerapellido=?, "
                     + "    segundoapellido=?, "
@@ -222,7 +219,7 @@ public class DAOUsuarios extends AbstractDAO {
                     + "    paisprocedencia=?, "
                     + "    telefono=?, "
                     + "    sexo=? "
-                    + "where dni=?");
+                    + "WHERE dni=?");
 
             stmUsuario.setString(1, u.getId());
             stmUsuario.setString(2, u.getNombre());
@@ -276,9 +273,9 @@ public class DAOUsuarios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("select * "
-                    + "from usuario "
-                    + "where id = ?");
+            stmUsuario = con.prepareStatement("SELECT * "
+                    + "FROM usuario "
+                    + "WHERE id = ?");
             stmUsuario.setString(1, text);
             rsUsuario = stmUsuario.executeQuery();
             if (rsUsuario.next()) {
@@ -306,10 +303,10 @@ public class DAOUsuarios extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
+            stmUsuario = con.prepareStatement("SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
                     + "paisprocedencia,telefono,sexo "
-                    + "from usuario "
-                    + "where dni = ? ");
+                    + "FROM usuario "
+                    + "WHERE dni = ? ");
             stmUsuario.setString(1, dni);
             rsUsuario = stmUsuario.executeQuery();
 
@@ -341,17 +338,17 @@ public class DAOUsuarios extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
+        String consulta = "SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
                 + "paisprocedencia,telefono,sexo "
-                + "from usuario "
-                + "where id like ? "
-                + "and dni like ? "
-                + "and nombre like ? "
-                + "and primerapellido like ? "
-                + "and segundoapellido like ? "
-                + "and dni in (select usuario "
-                + "from comprarbillete "
-                + "where pasarcontrol = true )";
+                + "FROM usuario "
+                + "WHERE id like ? "
+                + "AND dni like ? "
+                + "AND nombre like ? "
+                + "AND primerapellido like ? "
+                + "AND segundoapellido like ? "
+                + "AND dni in (select usuario "
+                + "FROM comprarbillete "
+                + "WHERE pasarcontrol = true )";
 
         try {
             stmUsuarios = con.prepareStatement(consulta);
@@ -397,10 +394,10 @@ public class DAOUsuarios extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select count(*) as numero, paisprocedencia\n"
-                + "from usuario\n"
-                + "group by paisprocedencia\n"
-                + "order by numero DESC";
+        String consulta = "SELECT count(*) as numero, paisprocedencia\n"
+                + "FROM usuario\n"
+                + "GROUP BY paisprocedencia\n"
+                + "ORDER BY numero DESC";
 
         try {
             stmUsuarios = con.prepareStatement(consulta);
