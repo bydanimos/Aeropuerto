@@ -6,7 +6,7 @@ delete from aerolinea;
 delete from modeloavion;
 delete from alquilar;
 delete from cochealquiler;
-delete from tiendas;
+delete from tienda;
 delete from reservarparking;
 delete from parking;
 delete from personalexterno;
