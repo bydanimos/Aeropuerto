@@ -16,6 +16,6 @@ Una vez añadido ya está listo para ser utilizado.
 
 
 
-Decir también que hemos experimentado un error con el tamaño del panel en la ventana de estadísticas, este error no se 
-nos manifiesta en macOS, pero sí en algunas ocaciones en Ubuntu, tanto en la versión 18.04 LTS como la
-20.04 LTS, aunque no siempre.
+Decir también que hemos experimentado un error con el tamaño del panel en la ventana de estadísticas, 
+este error no se nos manifiesta en macOS, pero sí en algunas ocaciones en Ubuntu, tanto en la versión
+18.04 LTS como la 20.04 LTS, aunque no siempre.
