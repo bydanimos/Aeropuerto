@@ -6,7 +6,7 @@ import aplicacion.aviones.ModeloAvion;
 import java.sql.*;
 import java.util.List;
 
-public class DAOAviones extends AbstractDAO {
+public final class DAOAviones extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ----------------------------- Constructor -------------------------------
