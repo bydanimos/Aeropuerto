@@ -21,7 +21,6 @@ public class PTiendas extends javax.swing.JPanel {
         this.primNombre = true;
         this.editarGuardar = false;
         initComponents();
-        this.selTerminalLabel.setVisible(false);
         this.borrarExiLabel.setVisible(false);
         this.anhaExitoLabel.setVisible(false);
         this.errorCodigoLabel.setVisible(false);
@@ -37,7 +36,6 @@ public class PTiendas extends javax.swing.JPanel {
         nombreTextField = new javax.swing.JTextField();
         terminalComboBox = new javax.swing.JComboBox<>();
         buscarButton = new javax.swing.JButton();
-        selTerminalLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tiendasTable = new javax.swing.JTable();
         codigoLabel = new javax.swing.JLabel();
@@ -81,9 +79,6 @@ public class PTiendas extends javax.swing.JPanel {
                 buscarButtonActionPerformed(evt);
             }
         });
-
-        selTerminalLabel.setForeground(new java.awt.Color(234, 45, 45));
-        selTerminalLabel.setText("¡Seleccione un número de Terminal!");
 
         tiendasTable.setModel(new ModeloTablaTiendas());
         tiendasTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,15 +173,13 @@ public class PTiendas extends javax.swing.JPanel {
                         .addComponent(borrarExiLabel)
                         .addGap(40, 40, 40)
                         .addComponent(vacCamposButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(anhaExitoLabel)
                         .addGap(27, 27, 27)
                         .addComponent(anhadirButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(errorCodigoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selTerminalLabel)
-                        .addGap(18, 18, 18)
                         .addComponent(buscarButton)))
                 .addGap(58, 58, 58))
         );
@@ -210,9 +203,7 @@ public class PTiendas extends javax.swing.JPanel {
                     .addComponent(tipoLabel)
                     .addComponent(tipoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selTerminalLabel)
-                    .addComponent(errorCodigoLabel))
+                .addComponent(errorCodigoLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -282,7 +273,6 @@ public class PTiendas extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombreTextField;
-    private javax.swing.JLabel selTerminalLabel;
     private javax.swing.JComboBox<String> terminalComboBox;
     private javax.swing.JLabel terminalLabel;
     private javax.swing.JLabel tiendasLabel;
@@ -296,18 +286,20 @@ public class PTiendas extends javax.swing.JPanel {
         ModeloTablaTiendas m;
         m = (ModeloTablaTiendas) this.tiendasTable.getModel();
         int itemSelected = this.terminalComboBox.getSelectedIndex();
-        System.out.println(itemSelected);
-        this.errorCodigoLabel.setVisible(false);
+                    this.errorCodigoLabel.setVisible(false);
 
         if (todas) {
             m.setFilas(this.va.obtenerTiendas("", 0, 0));
         } else {
             try {
-                int codigo;
-                try {
-                    codigo = Integer.parseInt(this.codigoTextField.getText());
-                } catch (NumberFormatException e) {
-                    codigo = 0;
+                int codigo = 0;
+                if (!this.codigoTextField.getText().equals("")) {
+                    try {
+                        codigo = Integer.parseInt(this.codigoTextField.getText());
+                    } catch (NumberFormatException e) {
+                        this.errorCodigoLabel.setVisible(true);
+                        codigo = -1;
+                    }
                 }
                 if (this.primNombre) {
                     buscar(m, "", itemSelected, codigo);
@@ -325,17 +317,15 @@ public class PTiendas extends javax.swing.JPanel {
     }
 
     private void buscar(ModeloTablaTiendas m, String nombre, int term, int cod) {
-        //if (term > 0) {
-            //if (cod > 0) {
+        if (term > 0) {
+            if (cod >= 0) {
                 m.setFilas(this.va.obtenerTiendas(nombre, cod, term));
-                this.selTerminalLabel.setVisible(false);
-                this.errorCodigoLabel.setVisible(false);
-            //} else {
-            //    this.errorCodigoLabel.setVisible(true);
-            //}
-        /*} else {
-            this.selTerminalLabel.setVisible(true);
-        }*/
+            }
+        } else {
+            if (cod >= 0) {
+                m.setFilas(this.va.obtenerTiendas(nombre, cod, 0));
+            } 
+        }
     }
 
     private void anhadir() {
@@ -373,8 +363,8 @@ public class PTiendas extends javax.swing.JPanel {
 
     private void actualizarTabla() {
         this.borrarExiLabel.setVisible(false);
-        this.errorCodigoLabel.setVisible(false);
         this.anhaExitoLabel.setVisible(false);
+        // this.errorCodigoLabel.setVisible(false);
         ModeloTablaTiendas mt;
         Tienda tienda;
         int row = this.tiendasTable.getSelectedRow();
