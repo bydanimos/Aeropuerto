@@ -8,6 +8,8 @@ public class VAutentificacion extends javax.swing.JDialog {
     private boolean primeraUser;
     private boolean primeraPass;
 
+    // -------------------------------------------------------------------------
+    // ------------------------------ Constructor ------------------------------
     public VAutentificacion(java.awt.Frame parent, boolean modal, FachadaAplicacion fa) {
         super(parent, modal);
         this.fa = fa;
@@ -149,6 +151,8 @@ public class VAutentificacion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // -------------------------------------------------------------------------
+    // -------------------------------- Eventos --------------------------------
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formWindowOpened
@@ -193,10 +197,6 @@ public class VAutentificacion extends javax.swing.JDialog {
         this.registrar();
     }//GEN-LAST:event_registrarseLabelMouseClicked
 
-    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordFieldActionPerformed
-
     private void accederButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederButtonActionPerformed
         this.acceder();
     }//GEN-LAST:event_accederButtonActionPerformed
@@ -211,6 +211,8 @@ public class VAutentificacion extends javax.swing.JDialog {
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 
+    // -------------------------------------------------------------------------
+    // ------------------------------- Funciones -------------------------------
     private void acceder() {
         if (this.fa.comprobarAutentificacion(this.usernameTextField.getText(), 
                 this.PasswordField.getText())) {
