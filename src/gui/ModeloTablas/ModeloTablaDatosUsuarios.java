@@ -1,39 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.ModeloTablas;
 
 import aplicacion.usuarios.*;
 import gui.Paneles.PAdminUsuarios;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author ruben
- */
-public class ModeloTablaDatosUsuarios extends AbstractTableModel{
+
+public final class ModeloTablaDatosUsuarios extends AbstractTableModel {
+    
     private java.util.List<Usuario> usuarios;
     private final PAdminUsuarios pa;
     
-    public ModeloTablaDatosUsuarios(PAdminUsuarios pa){
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public final ModeloTablaDatosUsuarios(PAdminUsuarios pa) {
         this.usuarios=new java.util.ArrayList<>();
         this.pa = pa;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------ Overrides -------------------------------
     @Override
-    public int getColumnCount (){
+    public final int getColumnCount (){
         return 6;
     }
 
     @Override
-    public int getRowCount(){
+    public final int getRowCount(){
         return this.usuarios.size();
     }
 
     @Override
-    public String getColumnName(int col){
+    public final String getColumnName(int col){
         String nombre = "";
 
         switch (col){
@@ -48,7 +46,7 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
     }
 
     @Override
-    public Class getColumnClass(int col){
+    public final Class getColumnClass(int col){
         Class clase=null;
 
         switch (col){
@@ -63,12 +61,12 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
     }
 
     @Override
-    public boolean isCellEditable(int row, int col){
+    public final boolean isCellEditable(int row, int col){
         return false;
     }
 
     @Override
-    public Object getValueAt(int row, int col){
+    public final Object getValueAt(int row, int col){
         Object resultado=null;
 
         switch (col){
@@ -82,12 +80,14 @@ public class ModeloTablaDatosUsuarios extends AbstractTableModel{
         return resultado;
     }
 
-    public void setFilas(java.util.List<Usuario> usuarios){
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
+    public final void setFilas(java.util.List<Usuario> usuarios){
         this.usuarios = usuarios;
         fireTableDataChanged();
     }
 
-    public Usuario obtenerUsuario(int i){
+    public final Usuario obtenerUsuario(int i){
         return this.usuarios.get(i);
     }
 }
