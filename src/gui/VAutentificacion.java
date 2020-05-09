@@ -185,12 +185,12 @@ public class VAutentificacion extends javax.swing.JDialog {
             this.primeraPass = false;
         }
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            acceder();
+            this.acceder();
         }
     }//GEN-LAST:event_PasswordFieldKeyPressed
 
     private void registrarseLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarseLabelMouseClicked
-        registrar();
+        this.registrar();
     }//GEN-LAST:event_registrarseLabelMouseClicked
 
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
@@ -198,7 +198,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_PasswordFieldActionPerformed
 
     private void accederButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accederButtonActionPerformed
-        acceder();
+        this.acceder();
     }//GEN-LAST:event_accederButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
