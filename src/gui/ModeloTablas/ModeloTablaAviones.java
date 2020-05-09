@@ -6,29 +6,31 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author david
- */
-public class ModeloTablaAviones extends AbstractTableModel {
+
+public final class ModeloTablaAviones extends AbstractTableModel {
+    
     private List<Avion> aviones;
     
+    // -------------------------------------------------------------------------
+    // ----------------------------- Constructor -------------------------------
     public ModeloTablaAviones() {
         this.aviones = new ArrayList<>();
     }
     
+    // ------------------------------------------------------------------------
+    // ------------------------------ Overrides -------------------------------
     @Override
-    public int getRowCount() {
+    public final int getRowCount() {
         return this.aviones.size();
     }
 
     @Override
-    public int getColumnCount() {
+    public final int getColumnCount() {
         return 4;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public final Object getValueAt(int rowIndex, int columnIndex) {
         Object resultado=null;
 
         switch (columnIndex){
@@ -41,7 +43,7 @@ public class ModeloTablaAviones extends AbstractTableModel {
     }
     
     @Override
-    public String getColumnName(int col) {
+    public final String getColumnName(int col) {
         String nombre = null;
 
         switch (col){
@@ -54,7 +56,7 @@ public class ModeloTablaAviones extends AbstractTableModel {
     }
     
     @Override
-    public Class getColumnClass(int col) {
+    public final Class getColumnClass(int col) {
         Class clase = null;
 
         switch (col){
@@ -66,14 +68,16 @@ public class ModeloTablaAviones extends AbstractTableModel {
         return clase;
     }
     
-    public void setFilas(java.util.List<Avion> aviones) {
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
+    public final void setFilas(java.util.List<Avion> aviones) {
         if (aviones != null ) {
             this.aviones = aviones;
             fireTableDataChanged();
         }
     }
     
-    public Avion obtenerAvion(int i) {
+    public final Avion obtenerAvion(int i) {
         return this.aviones.get(i);
     }
 }
