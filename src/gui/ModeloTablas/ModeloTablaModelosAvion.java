@@ -1,25 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.ModeloTablas;
 
 import aplicacion.aviones.ModeloAvion;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author david
- */
-public class ModeloTablaModelosAvion extends AbstractTableModel{
+
+public class ModeloTablaModelosAvion extends AbstractTableModel {
+    
     private java.util.List<ModeloAvion> modelos;
     
-    public ModeloTablaModelosAvion(){
-        this.modelos=new java.util.ArrayList<>();
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public ModeloTablaModelosAvion() {
+        this.modelos = new java.util.ArrayList<>();
     }
 
+    // ------------------------------------------------------------------------
+    // -------------------------- Overrides Getters ---------------------------
     @Override
     public int getColumnCount (){
         return 5;
@@ -81,39 +79,9 @@ public class ModeloTablaModelosAvion extends AbstractTableModel{
         }
         return resultado;
     }
-
-    public void setFilas(java.util.List<ModeloAvion> modelos){
-        this.modelos = modelos;
-        fireTableDataChanged();
-    }
-
-    public ModeloAvion obtenerModeloAvion(int i){
-        return this.modelos.get(i);
-    }
     
-    public void anhadirModeloAvion(ModeloAvion ma){
-        this.modelos.add(ma);
-        fireTableRowsInserted(this.modelos.size()-1, this.modelos.size()-1);
-    }
-    
-    public void borrarModeloAvion(int i){
-        this.modelos.remove(i);
-        fireTableRowsDeleted(i, i);
-    }
-    
-    public void nuevoModelo() {
-        this.modelos.add(new ModeloAvion());
-        fireTableRowsInserted(this.modelos.size() - 1, this.modelos.size() - 1);
-    }
-
-    public List<ModeloAvion> getModelos() {
-        return modelos;
-    }
-
-    public void setModelos(List<ModeloAvion> modelos) {
-        this.modelos = modelos;
-    }
-    
+    // ------------------------------------------------------------------------
+    // -------------------------- Overrides Setters ---------------------------
     @Override
     public void setValueAt(Object v, int row, int col){
         switch (col){
@@ -124,6 +92,42 @@ public class ModeloTablaModelosAvion extends AbstractTableModel{
             case 4: this.modelos.get(row).setEmpresaFabricante((String) v);break;
         }
     }
+
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setFilas(java.util.List<ModeloAvion> modelos){
+        this.modelos = modelos;
+        fireTableDataChanged();
+    }
     
+    public void setModelos(List<ModeloAvion> modelos) {
+        this.modelos = modelos;
+    } 
     
+    public void anhadirModeloAvion(ModeloAvion ma){
+        this.modelos.add(ma);
+        fireTableRowsInserted(this.modelos.size()-1, this.modelos.size()-1);
+    }
+    
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
+    public ModeloAvion obtenerModeloAvion(int i){
+        return this.modelos.get(i);
+    }
+       
+    public List<ModeloAvion> getModelos() {
+        return modelos;
+    }
+    
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
+    public void borrarModeloAvion(int i){
+        this.modelos.remove(i);
+        fireTableRowsDeleted(i, i);
+    }
+    
+    public void nuevoModelo() {
+        this.modelos.add(new ModeloAvion());
+        fireTableRowsInserted(this.modelos.size() - 1, this.modelos.size() - 1);
+    }
 }
