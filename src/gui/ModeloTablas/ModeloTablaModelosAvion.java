@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 
-public class ModeloTablaModelosAvion extends AbstractTableModel {
+public final class ModeloTablaModelosAvion extends AbstractTableModel {
     
     private java.util.List<ModeloAvion> modelos;
     
@@ -19,17 +19,17 @@ public class ModeloTablaModelosAvion extends AbstractTableModel {
     // ------------------------------------------------------------------------
     // -------------------------- Overrides Getters ---------------------------
     @Override
-    public int getColumnCount (){
+    public final int getColumnCount (){
         return 5;
     }
 
     @Override
-    public int getRowCount(){
+    public final int getRowCount(){
         return this.modelos.size();
     }
 
     @Override
-    public String getColumnName(int col){
+    public final String getColumnName(int col){
         String nombre="";
 
         switch (col){
@@ -43,7 +43,7 @@ public class ModeloTablaModelosAvion extends AbstractTableModel {
     }
 
     @Override
-    public Class getColumnClass(int col){
+    public final Class getColumnClass(int col){
         Class clase=null;
 
         switch (col){
@@ -57,7 +57,7 @@ public class ModeloTablaModelosAvion extends AbstractTableModel {
     }
 
     @Override
-    public boolean isCellEditable(int row, int col){
+    public final boolean isCellEditable(int row, int col){
         if(col != 0)
             return true;
         if(col == 0 && this.modelos.get(row).getNombre() == null){
@@ -67,7 +67,7 @@ public class ModeloTablaModelosAvion extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int row, int col){
+    public final Object getValueAt(int row, int col){
         Object resultado=null;
 
         switch (col){
@@ -83,7 +83,7 @@ public class ModeloTablaModelosAvion extends AbstractTableModel {
     // ------------------------------------------------------------------------
     // -------------------------- Overrides Setters ---------------------------
     @Override
-    public void setValueAt(Object v, int row, int col){
+    public final void setValueAt(Object v, int row, int col){
         switch (col){
             case 0: this.modelos.get(row).setNombre((String) v); break;
             case 1: this.modelos.get(row).setCapacidadNormal((Integer) v); break;
@@ -95,38 +95,38 @@ public class ModeloTablaModelosAvion extends AbstractTableModel {
 
     // ------------------------------------------------------------------------
     // ------------------------------- Setters --------------------------------
-    public void setFilas(java.util.List<ModeloAvion> modelos){
+    public final void setFilas(java.util.List<ModeloAvion> modelos){
         this.modelos = modelos;
         fireTableDataChanged();
     }
     
-    public void setModelos(List<ModeloAvion> modelos) {
+    public final void setModelos(List<ModeloAvion> modelos) {
         this.modelos = modelos;
     } 
     
-    public void anhadirModeloAvion(ModeloAvion ma){
+    public final void anhadirModeloAvion(ModeloAvion ma){
         this.modelos.add(ma);
         fireTableRowsInserted(this.modelos.size()-1, this.modelos.size()-1);
     }
     
     // ------------------------------------------------------------------------
     // ------------------------------- Getters --------------------------------
-    public ModeloAvion obtenerModeloAvion(int i){
+    public final ModeloAvion obtenerModeloAvion(int i){
         return this.modelos.get(i);
     }
        
-    public List<ModeloAvion> getModelos() {
+    public final List<ModeloAvion> getModelos() {
         return modelos;
     }
     
     // ------------------------------------------------------------------------
     // ------------------------------ Funciones -------------------------------
-    public void borrarModeloAvion(int i){
+    public final void borrarModeloAvion(int i){
         this.modelos.remove(i);
         fireTableRowsDeleted(i, i);
     }
     
-    public void nuevoModelo() {
+    public final void nuevoModelo() {
         this.modelos.add(new ModeloAvion());
         fireTableRowsInserted(this.modelos.size() - 1, this.modelos.size() - 1);
     }
