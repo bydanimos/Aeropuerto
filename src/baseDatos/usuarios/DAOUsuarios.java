@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOUsuarios extends AbstractDAO {
+public final class DAOUsuarios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------ Constructor ------------------------------
@@ -18,7 +18,7 @@ public class DAOUsuarios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------- Usuarios --------------------------------
-    public Usuario validarUsuario(String idUsuario, String clave) {
+    public final Usuario validarUsuario(String idUsuario, String clave) {
         Usuario resultado = null;
         Connection con;
         PreparedStatement stmUsuario = null;
@@ -54,7 +54,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
+    public final java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
         java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
@@ -104,7 +104,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public boolean insertarUsuario(Usuario u) {
+    public final boolean insertarUsuario(Usuario u) {
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
@@ -161,7 +161,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public boolean borrarUsuario(String dni) {
+    public final boolean borrarUsuario(String dni) {
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
@@ -202,7 +202,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public void modificarUsuario(Usuario u) {
+    public final void modificarUsuario(Usuario u) {
         Connection con;
         PreparedStatement stmUsuario = null;
 
@@ -264,7 +264,7 @@ public class DAOUsuarios extends AbstractDAO {
         }
     }
 
-    public boolean comprobarId(String text) {
+    public final boolean comprobarId(String text) {
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
@@ -294,7 +294,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public Usuario getUsuario(String dni) {
+    public final Usuario getUsuario(String dni) {
         Usuario resultado = null;
         Connection con;
         PreparedStatement stmUsuario = null;
@@ -329,7 +329,7 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public final java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
         java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
@@ -384,7 +384,7 @@ public class DAOUsuarios extends AbstractDAO {
 
     //--------------------------------------------------------------------------
     // ----------------------- Estadísticas Usuarios ---------------------------
-    public List<String> calcularEstNacionalidades() {
+    public final List<String> calcularEstNacionalidades() {
         List<String> resultado = new ArrayList<>();
 
         String nacionalidadActual;

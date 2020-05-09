@@ -5,7 +5,7 @@ import aplicacion.usuarios.*;
 import baseDatos.AbstractDAO;
 import java.sql.*;
 
-public class DAOAdministrador extends AbstractDAO {
+public final class DAOAdministrador extends AbstractDAO {
     /*
     -------------------------------Constructor-------------------------------------
     */
@@ -19,7 +19,7 @@ public class DAOAdministrador extends AbstractDAO {
     -------------------------------Métodos-------------------------------------
     */
 
-    public Administrador validarAdministrador(String id, String clave) {
+    public final Administrador validarAdministrador(String id, String clave) {
         Administrador resultado = null;
         Connection con;
         PreparedStatement stmAdministrador = null;
@@ -57,7 +57,7 @@ public class DAOAdministrador extends AbstractDAO {
         return resultado;
     }
 
-    public void insertarAdministrador(Administrador ad) {
+    public final void insertarAdministrador(Administrador ad) {
 
         Connection con;
         PreparedStatement stmAdministrador = null;
@@ -84,7 +84,7 @@ public class DAOAdministrador extends AbstractDAO {
         }
     }
 
-    public void borrarAdministrador(String dni) {
+    public final void borrarAdministrador(String dni) {
         Connection con;
         PreparedStatement stmAdministrador = null;
 
@@ -107,7 +107,7 @@ public class DAOAdministrador extends AbstractDAO {
         }
     }
 
-    public void modificarAdministrador(Administrador ad) {
+    public final void modificarAdministrador(Administrador ad) {
         Connection con;
         PreparedStatement stmAdministrador = null;
 
@@ -167,7 +167,7 @@ public class DAOAdministrador extends AbstractDAO {
         }
     }
     
-    public Administrador getAdministrador(String dni){
+    public final Administrador getAdministrador(String dni){
         Administrador resultado=null;
         Connection con;
         PreparedStatement stmAdministrador=null;

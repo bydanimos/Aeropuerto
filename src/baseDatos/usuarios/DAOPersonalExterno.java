@@ -5,7 +5,7 @@ import aplicacion.usuarios.*;
 import baseDatos.AbstractDAO;
 import java.sql.*;
 
-public class DAOPersonalExterno extends AbstractDAO{
+public final class DAOPersonalExterno extends AbstractDAO{
     /*
     -------------------------------Constructor-------------------------------------
     */
@@ -16,7 +16,7 @@ public class DAOPersonalExterno extends AbstractDAO{
     /*
     -------------------------------Métodos-------------------------------------
     */
-    public PersonalExterno validarPersonalExterno(String id, String clave){
+    public final PersonalExterno validarPersonalExterno(String id, String clave){
         PersonalExterno resultado=null;
         Connection con;
         PreparedStatement stmPersonalExterno=null;
@@ -52,7 +52,7 @@ public class DAOPersonalExterno extends AbstractDAO{
         return resultado;
     }
     
-    public PersonalExterno getPersonalExterno(String dni){
+    public final PersonalExterno getPersonalExterno(String dni){
         PersonalExterno resultado=null;
         Connection con;
         PreparedStatement stmPersonalExterno=null;
@@ -85,7 +85,7 @@ public class DAOPersonalExterno extends AbstractDAO{
         return resultado;
     }
     
-    public void insertarPersonalExterno(PersonalExterno pe){
+    public final void insertarPersonalExterno(PersonalExterno pe){
 
         Connection con;
             PreparedStatement stmPersonalExterno=null;
@@ -108,7 +108,7 @@ public class DAOPersonalExterno extends AbstractDAO{
             }
     }
     
-    public void borrarPersonalExterno(String dni){
+    public final void borrarPersonalExterno(String dni){
         Connection con;
         PreparedStatement stmPersonalExterno=null;
 
@@ -127,7 +127,7 @@ public class DAOPersonalExterno extends AbstractDAO{
         }
     }
     
-    public void modificarPersonalExterno(PersonalExterno pe){
+    public final void modificarPersonalExterno(PersonalExterno pe){
         Connection con;
         PreparedStatement stmPersonalExterno=null;
 
