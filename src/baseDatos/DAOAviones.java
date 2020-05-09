@@ -15,7 +15,9 @@ public class DAOAviones extends AbstractDAO {
         super.setFachadaAplicacion(fa);
     }
 
-    public java.util.List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
+    // -------------------------------------------------------------------------
+    // ------------------------------ Funciones --------------------------------
+    public final java.util.List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
         java.util.List<Avion> resultado = new java.util.ArrayList<>();
 
         ModeloAvion modeloAvionActual;
@@ -32,17 +34,17 @@ public class DAOAviones extends AbstractDAO {
         con = this.getConexion();
 
         try {
-            String consulta = "select * "
-                    + "from avion as a, aerolinea as ae, modeloavion as ma "
-                    + "where a.modeloavion = ma.nombre and "
-                    + "a.aerolinea = ae.nombre and "
-                    + "a.codigo like ? and "
-                    + "a.aerolinea like ? ";
+            String consulta;
+            consulta = "SELECT * "
+                     + "FROM avion AS a, aerolinea AS ae, modeloavion AS ma "
+                     + "WHERE a.modeloavion = ma.nombre AND "
+                     + "      a.aerolinea = ae.nombre AND "
+                     + "      a.codigo like ? AND a.aerolinea like ? ";
             if (retirado == 0) {
-                consulta += "and retirado = false";
+                consulta += "AND retirado = false";
             }
             if (retirado == 1) {
-                consulta += "and retirado = true";
+                consulta += "AND retirado = true";
             }
             //si se le pasa cualquier otro valor, los muestra todos
 
@@ -54,11 +56,11 @@ public class DAOAviones extends AbstractDAO {
             while (rsAviones.next()) {
 
                 try {
-                    consulta = "select v.numvuelo "
-                            + "from avion as a, vuelo as v "
-                            + "where a.codigo = v.avion "
-                            + "	and v.fechasalidateorica >= now() "
-                            + "	and a.codigo = ?";
+                    consulta = "SELECT v.numvuelo "
+                            + "FROM avion AS a, vuelo AS v "
+                            + "WHERE a.codigo = v.avion "
+                            + "	     AND v.fechasalidateorica >= NOW() "
+                            + "	     AND a.codigo = ?";
                     stmVuelos = con.prepareStatement(consulta);
                     stmVuelos.setString(1, rsAviones.getString("codigo"));
 
@@ -80,12 +82,17 @@ public class DAOAviones extends AbstractDAO {
                     }
                 }
 
-                modeloAvionActual = new ModeloAvion(rsAviones.getString("modeloavion"), rsAviones.getInt("capacidadnormal"),
-                        rsAviones.getInt("capacidadpremium"), rsAviones.getFloat("consumo"), rsAviones.getString("empresafabricante"));
+                modeloAvionActual = new ModeloAvion(rsAviones.getString("modeloavion"), 
+                                                    rsAviones.getInt("capacidadnormal"),
+                                                    rsAviones.getInt("capacidadpremium"), 
+                                                    rsAviones.getFloat("consumo"), 
+                                                    rsAviones.getString("empresafabricante"));
                 aerolineaActual = new Aerolinea(rsAviones.getString("nombre"), rsAviones.getString("paissede"),
-                        rsAviones.getFloat("preciobasemaleta"), rsAviones.getFloat("pesobasemaleta"));
+                                                rsAviones.getFloat("preciobasemaleta"), 
+                                                rsAviones.getFloat("pesobasemaleta"));
                 avionActual = new Avion(modeloAvionActual, aerolineaActual, rsAviones.getString("codigo"),
-                        rsAviones.getInt("anhofabricacion"), rsAviones.getBoolean("retirado"), retirable);
+                                        rsAviones.getInt("anhofabricacion"), rsAviones.getBoolean("retirado"), 
+                                        retirable);
 
                 resultado.add(avionActual);
             }
@@ -103,7 +110,7 @@ public class DAOAviones extends AbstractDAO {
         return resultado;
     }
 
-    public java.util.List<Aerolinea> obtenerAerolineas(String nombre) {
+    public final java.util.List<Aerolinea> obtenerAerolineas(String nombre) {
         java.util.List<Aerolinea> resultado = new java.util.ArrayList<>();
         Aerolinea aerolineaActual;
         Connection con;
@@ -112,9 +119,9 @@ public class DAOAviones extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select nombre, paissede, pesobasemaleta, preciobasemaleta "
-                + "from aerolinea "
-                + "where nombre like ?";
+        String consulta = "SELECT nombre, paissede, pesobasemaleta, preciobasemaleta "
+                        + "FROM aerolinea "
+                        + "WHERE nombre like ?";
 
         try {
             stmAerolineas = con.prepareStatement(consulta);
@@ -149,11 +156,10 @@ public class DAOAviones extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmAerolinea = con.prepareStatement("update aerolinea "
-                    + "set paissede=?, "
-                    + "    pesobasemaleta=?, "
+            stmAerolinea = con.prepareStatement("UPDATE aerolinea "
+                    + "SET paissede=?, pesobasemaleta=?, "
                     + "    preciobasemaleta=? "
-                    + "where nombre=?");
+                    + "WHERE nombre=?");
 
             stmAerolinea.setString(1, aerolinea.getPaisSede());
             stmAerolinea.setFloat(2, aerolinea.getPesoBaseMaleta());
@@ -174,7 +180,7 @@ public class DAOAviones extends AbstractDAO {
         }
     }
 
-    public Aerolinea getAerolinea(String nombre) {
+    public final Aerolinea getAerolinea(String nombre) {
         Aerolinea resultado = null;
         Connection con;
         PreparedStatement stmAerolineas = null;
@@ -182,9 +188,9 @@ public class DAOAviones extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "select nombre, paissede, pesobasemaleta, preciobasemaleta "
-                + "from aerolinea "
-                + "where nombre = ?";
+        String consulta = "SELECT nombre, paissede, pesobasemaleta, preciobasemaleta "
+                        + "FROM aerolinea "
+                        + "WHERE nombre = ?";
 
         try {
             stmAerolineas = con.prepareStatement(consulta);
@@ -212,7 +218,7 @@ public class DAOAviones extends AbstractDAO {
         return resultado;
     }
 
-    public void anhadirAerolinea(Aerolinea aerolinea) {
+    public final void anhadirAerolinea(Aerolinea aerolinea) {
         Connection con;
         PreparedStatement stmAerolinea = null;
         ResultSet rsAerolinea;
@@ -220,8 +226,8 @@ public class DAOAviones extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmAerolinea = con.prepareStatement("insert into aerolinea(nombre,paissede,preciobasemaleta,pesobasemaleta ) "
-                    + "values (?,?,?,?)");
+            stmAerolinea = con.prepareStatement("INSERT INTO aerolinea(nombre,paissede,preciobasemaleta,pesobasemaleta ) "
+                    + "VALUES (?,?,?,?)");
             stmAerolinea.setString(1, aerolinea.getNombre());
             stmAerolinea.setString(2, aerolinea.getPaisSede());
             stmAerolinea.setFloat(3, aerolinea.getPrecioBaseMaleta());
@@ -240,7 +246,7 @@ public class DAOAviones extends AbstractDAO {
         }
     }
 
-    public void eliminarAerolineas(List<Aerolinea> aerolineas) {
+    public final void eliminarAerolineas(List<Aerolinea> aerolineas) {
         Connection con;
         PreparedStatement stmAerolinea = null;
         con = super.getConexion();
@@ -248,7 +254,7 @@ public class DAOAviones extends AbstractDAO {
         try {
             for (Aerolinea a : aerolineas) {
                 stmAerolinea = null;
-                stmAerolinea = con.prepareStatement("delete from aerolinea where nombre = ?");
+                stmAerolinea = con.prepareStatement("DELETE FROM aerolinea WHERE nombre = ?");
                 stmAerolinea.setString(1, a.getNombre());
                 stmAerolinea.executeUpdate();
             }
@@ -264,7 +270,7 @@ public class DAOAviones extends AbstractDAO {
         }
     }
 
-    public boolean esAerolineaBorrable(Aerolinea aerolinea) {
+    public final boolean esAerolineaBorrable(Aerolinea aerolinea) {
         boolean resultado = true;
 
         Connection con;
@@ -273,14 +279,14 @@ public class DAOAviones extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta1 = "select * "
-                + "from vuelo "
-                + "where avion in (select codigo "
-                + "from avion "
-                + "where aerolinea = ? )";
-        String consulta2 = "select * "
-                + "from avion "
-                + "where aerolinea = ? ";
+        String consulta1 = "SELECT * "
+                         + "FROM vuelo "
+                         + "WHERE avion IN (select codigo "
+                         + "FROM avion "
+                         + "WHERE aerolinea = ? )";
+        String consulta2 = "SELECT * "
+                         + "FROM avion "
+                         + "WHERE aerolinea = ? ";
 
         try {
             stmAerolineas = con.prepareStatement(consulta1);
@@ -312,7 +318,7 @@ public class DAOAviones extends AbstractDAO {
 
     }
 
-    public boolean actualizarAvion(Avion avion) {
+    public final boolean actualizarAvion(Avion avion) {
         boolean resultado = false;
         Connection con;
         PreparedStatement stmAvion = null;
@@ -322,12 +328,10 @@ public class DAOAviones extends AbstractDAO {
             con = super.getConexion();
 
             try {
-                stmAvion = con.prepareStatement("update avion "
-                        + "set aerolinea=?, "
-                        + "modeloavion=?, "
-                        + "anhofabricacion=?, "
-                        + "retirado=? "
-                        + "where codigo=?");
+                stmAvion = con.prepareStatement("UPDATE avion "
+                                              + "SET aerolinea=?, modeloavion=?, "
+                                              + "    anhofabricacion=?, retirado=? "
+                                              + "WHERE codigo=?");
 
                 stmAvion.setString(1, avion.getAerolinea().getNombre());
                 stmAvion.setString(2, avion.getModeloAvion().getNombre());
@@ -353,7 +357,7 @@ public class DAOAviones extends AbstractDAO {
         return resultado;
     }
 
-    public java.util.List<ModeloAvion> obtenerModelosAvion(String nombre) {
+    public final java.util.List<ModeloAvion> obtenerModelosAvion(String nombre) {
         java.util.List<ModeloAvion> resultado = new java.util.ArrayList<>();
         ModeloAvion modeloAvionActual;
         Connection con;
@@ -362,17 +366,17 @@ public class DAOAviones extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "(select ma.*, false as eliminable "
-                + "from modeloavion as ma, avion as a "
-                + "where ma.nombre = a.modeloavion "
-                + "and ma.nombre like ?"
-                + "group by ma.nombre) "
-                + "union "
-                + "(select ma.*, true as eliminable "
-                + "from modeloavion as ma left join avion as a "
-                + "on ma.nombre = a.modeloavion "
-                + "where a.modeloavion is null "
-                + "and ma.nombre like ?)";
+        String consulta;
+        consulta = "(SELECT ma.*, false AS eliminable "
+                 + "FROM modeloavion AS ma, avion AS a "
+                 + "where ma.nombre = a.modeloavion AND ma.nombre like ?"
+                 + "GROUP BY ma.nombre) "
+                 + "UNION "
+                 + "(SELECT ma.*, true AS eliminable "
+                 + "FROM modeloavion AS ma LEFT JOIN avion AS a "
+                 + "                       ON ma.nombre = a.modeloavion "
+                 + "                       WHERE a.modeloavion is null "
+                 + "                             AND ma.nombre LIKE ?)";
 
         try {
             stmModelos = con.prepareStatement(consulta);
@@ -402,12 +406,14 @@ public class DAOAviones extends AbstractDAO {
         return resultado;
     }
 
-    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+    public final boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, 
+                                     int anhoFabricacion) {
         boolean resultado = false;
         Connection con;
         PreparedStatement stmAvion = null;
         PreparedStatement stmAux = null;
         ResultSet rsAux = null;
+        String consulta;
 
         con = super.getConexion();
 
@@ -418,8 +424,9 @@ public class DAOAviones extends AbstractDAO {
             rsAux = stmAux.executeQuery();
             if (!rsAux.next()) {
                 try {
-                    stmAvion = con.prepareStatement("insert into avion(codigo, modeloavion,aerolinea,anhofabricacion,retirado ) "
-                            + "values (?,?,?,?,?)");
+                    consulta = "INSERT INTO avion(codigo, modeloavion,aerolinea,anhofabricacion,retirado ) "
+                             + "VALUES (?,?,?,?,?)";
+                    stmAvion = con.prepareStatement(consulta);
                     stmAvion.setString(1, codigo);
                     stmAvion.setString(2, modeloAvion.getNombre());
                     stmAvion.setString(3, aerolinea.getNombre());
@@ -453,18 +460,20 @@ public class DAOAviones extends AbstractDAO {
         return resultado;
     }
 
-    public void borrarModeloAvion(ModeloAvion modeloAvion) {
+    public final void borrarModeloAvion(ModeloAvion modeloAvion) {
         Connection con;
         PreparedStatement stmModelo = null;
         PreparedStatement stmAux = null;
         ResultSet rsAux = null;
+        String consulta;
         con = super.getConexion();
 
         try {
-            stmAux = con.prepareStatement("select * "
-                    + "from modeloavion as ma, avion as a "
-                    + "where ma.nombre = a.modeloavion "
-                    + "and ma.nombre like ?");
+            consulta = "SELECT * "
+                     + "FROM modeloavion AS ma, avion AS a "
+                     + "WHERE ma.nombre = a.modeloavion "
+                     + "      AND ma.nombre LIKE ?";
+            stmAux = con.prepareStatement(consulta);
             stmAux.setString(1, modeloAvion.getNombre());
             rsAux = stmAux.executeQuery();
             if (!rsAux.next()) {
@@ -495,7 +504,7 @@ public class DAOAviones extends AbstractDAO {
         }
     }
 
-    public boolean actualizarModeloAvion(ModeloAvion modeloAvion) {
+    public final boolean actualizarModeloAvion(ModeloAvion modeloAvion) {
         boolean update = false;
         boolean resultado = false;
 
@@ -507,18 +516,16 @@ public class DAOAviones extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            String consulta = "select * from modeloavion where nombre = ?";
+            String consulta = "SELECT * FROM modeloavion WHERE nombre = ?";
             stmExiste = con.prepareStatement(consulta);
             stmExiste.setString(1, modeloAvion.getNombre());
             rsExiste = stmExiste.executeQuery();
             if (rsExiste.next()) {
-                consulta = "update modeloavion "
-                        + "set nombre = ?, "
-                        + "    capacidadnormal = ?, "
-                        + "    capacidadpremium = ?, "
-                        + "    consumo = ?, "
-                        + "    empresafabricante = ? "
-                        + "where nombre = ?";
+                consulta = "UPDATE modeloavion "
+                         + "SET nombre = ?, capacidadnormal = ?, "
+                         + "    capacidadpremium = ?, consumo = ?, "
+                         + "    empresafabricante = ? "
+                         + "WHERE nombre = ?";
                 update = true;
             } else {
                 consulta = "insert into modeloavion "
