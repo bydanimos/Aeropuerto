@@ -112,18 +112,8 @@ public class PAdminUsuarios extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaDatosUsuarios);
 
-        txtDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDniActionPerformed(evt);
-            }
-        });
-
         botonEditar.setText("Editar");
-        botonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            }
-        });
-
+   
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
