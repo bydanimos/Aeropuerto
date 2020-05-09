@@ -6,29 +6,31 @@ import aplicacion.vuelos.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author david
- */
+
 public class ModeloTablaVuelos extends AbstractTableModel {
+    
     private List<Vuelo> vuelos;
     
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public ModeloTablaVuelos() {
         this.vuelos = new ArrayList<>();
     }
     
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     @Override
-    public int getRowCount() {
+    public final int getRowCount() {
         return this.vuelos.size();
     }
 
     @Override
-    public int getColumnCount() {
+    public final int getColumnCount() {
         return 5;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public final Object getValueAt(int rowIndex, int columnIndex) {
         Object resultado=null;
 
         switch (columnIndex){
@@ -42,7 +44,7 @@ public class ModeloTablaVuelos extends AbstractTableModel {
     }
     
     @Override
-    public String getColumnName(int col) {
+    public final String getColumnName(int col) {
         String nombre = null;
 
         switch (col){
@@ -56,7 +58,7 @@ public class ModeloTablaVuelos extends AbstractTableModel {
     }
     
     @Override
-    public Class getColumnClass(int col) {
+    public final Class getColumnClass(int col) {
         Class clase = null;
 
         switch (col){
@@ -69,14 +71,16 @@ public class ModeloTablaVuelos extends AbstractTableModel {
         return clase;
     }
     
-    public void setFilas(java.util.List<Vuelo> vuelos) {
+    // ------------------------------------------------------------------------
+    // ------------------------------- Funciones --------------------------------
+    public final void setFilas(java.util.List<Vuelo> vuelos) {
         if (vuelos != null ) {
             this.vuelos = vuelos;
             fireTableDataChanged();
         }
     }
     
-    public Vuelo obtenerVuelo(int i) {
+    public final Vuelo obtenerVuelo(int i) {
         return this.vuelos.get(i);
     }
 }
