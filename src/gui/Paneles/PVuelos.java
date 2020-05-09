@@ -830,6 +830,7 @@ public class PVuelos extends javax.swing.JPanel {
                     puertaEmbarque, this.canceladoCheckbox.isSelected());
 
             if (this.va.guardarVuelo(vuelo)) {
+                this.va.setSize(this.va.getWidth(), 500);
                 this.editarNuevoPanel.setVisible(false);
                 this.gestionPanel.setVisible(true);
                 this.buscarVuelos();
@@ -864,7 +865,7 @@ public class PVuelos extends javax.swing.JPanel {
         this.origenText.setText("");
         this.destinoText.setText("");
         this.salidaTeoricaText.setDate(new Date());
-        //this.salidaRealText.setEnabled(false);
+        this.salidaRealText.setEnabled(false);
         this.salidaRealText.setDate(new Date());
         this.llegadaTeoricaText.setDate(new Date());
         this.llegadaRealText.setEnabled(false);
