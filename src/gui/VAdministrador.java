@@ -21,9 +21,6 @@ import aplicacion.vuelos.TipoAsiento;
 
 public class VAdministrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VAdministrador
-     */
     private final aplicacion.FachadaAplicacion fa;
     private JPanel panelActual;
 
@@ -180,6 +177,8 @@ public class VAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // -------------------------------------------------------------------------
+    // -------------------------------- Eventos --------------------------------
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.setLocationRelativeTo(null);
     }//GEN-LAST:event_formWindowOpened
@@ -202,6 +201,8 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel vuelosLabel;
     // End of variables declaration//GEN-END:variables
 
+    // -------------------------------------------------------------------------
+    // ------------------------------ Funciones --------------------------------
     public void volver() {
         this.setSize(this.getWidth(), 500);
 
@@ -410,7 +411,8 @@ public class VAdministrador extends javax.swing.JFrame {
         return this.fa.obtenerModelosAvion(nombre);
     }
 
-    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion) {
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, 
+                               int anhoFabricacion) {
         return this.fa.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
     }
 
@@ -431,27 +433,30 @@ public class VAdministrador extends javax.swing.JFrame {
     
     // -------------------------------------------------------------------------
     // ------------------------- Estadísticas Vuelos ---------------------------
-    public void pulsarEstadisticas(){
+    public void pulsarEstadisticas() {
         this.panelActual.setVisible(false);
         this.panelActual = new PEstadisticas(this);
         this.panelPrincipalAdministrador.add(this.panelActual);
         this.panelActual.setVisible(true);
     }
-    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+    
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo) {
         return this.fa.getAerolineaVuelo(vuelo);
     }
     
-    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo) {
         return this.fa.getNacionalidadMayoritariaVuelo(vuelo);
     }
-    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+    
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta) {
         return this.fa.getNTipoVuelo(vuelo,ta);
     }
-    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+    
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts) {
         return this.fa.getNSexoVuelo(vuelo,ts);
     } 
     
-    public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida){
+    public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida) {
         return this.fa.obtenerVuelos(origen, destino,tSalida);
     }
     
