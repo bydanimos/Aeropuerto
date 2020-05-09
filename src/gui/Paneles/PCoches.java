@@ -72,7 +72,7 @@ public class PCoches extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(cochesTable);
 
-        eliminarButton.setText("Eliminar");
+        eliminarButton.setText("Retirar");
         eliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarButtonActionPerformed(evt);
@@ -128,7 +128,7 @@ public class PCoches extends javax.swing.JPanel {
                                 .addComponent(buscarButton)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(cochesLabel))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package baseDatos;
 
 import aplicacion.aviones.Terminal;
@@ -35,7 +32,7 @@ public class DAOServicios extends AbstractDAO {
         con = this.getConexion();
 
         String consulta = "SELECT terminal, codigo, tipoventas, nombre "
-                        + "FROM tiendas "
+                        + "FROM tienda "
                         + "WHERE nombre LIKE ? ";
         if (terminal != 0) {
             consulta += "AND terminal = ? ";
@@ -43,7 +40,7 @@ public class DAOServicios extends AbstractDAO {
         if (codigo != 0) {
             consulta += "AND codigo = ? ";
         }
-        consulta += "order by terminal, codigo";
+        consulta += "ORDER BY terminal, codigo";
 
         try {
             stmTiendas = con.prepareStatement(consulta);
@@ -87,8 +84,8 @@ public class DAOServicios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            String consulta = "INSERT INTO tiendas(terminal, tipoventas, nombre) "
-                            + "VALUES (?, ?, ?)";
+            String consulta = "INSERT INTO tienda(terminal, tipoventas, nombre) "
+                            + "       VALUES (?, ?, ?)";
             stmTienda = con.prepareStatement(consulta);
 
             stmTienda.setInt(1, terminal);
@@ -115,7 +112,7 @@ public class DAOServicios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmTienda = con.prepareStatement("DELETE FROM tiendas "
+            stmTienda = con.prepareStatement("DELETE FROM tienda "
                                            + "WHERE terminal = ? AND codigo = ?");
             stmTienda.setInt(1, terminal);
             stmTienda.setInt(2, codigo);
@@ -140,7 +137,7 @@ public class DAOServicios extends AbstractDAO {
         con = super.getConexion();
 
         try {
-            stmTiendas = con.prepareStatement("UPDATE tiendas "
+            stmTiendas = con.prepareStatement("UPDATE tienda "
                                             + "SET nombre = ?, "
                                             + "    tipoventas = ? "
                                             + "WHERE codigo = ? AND terminal = ?");
@@ -322,12 +319,24 @@ public class DAOServicios extends AbstractDAO {
         Connection con;
         PreparedStatement stmCoche = null;
         ResultSet rsCoche;
+        String consulta;
 
         con = this.getConexion();
 
-        String consulta = "UPDATE cochealquiler "
-                        + "SET retirado = ? "
-                        + "WHERE matricula = ? ";
+        consulta = "UPDATE cochealquiler AS c "
+                 + "SET retirado = ? "
+                 + "WHERE c.matricula = ? AND "
+                 + "      NOT EXISTS (SELECT co.matricula " 
+                 + "		      FROM cochealquiler AS co, alquilar AS a " 
+                 + "		      WHERE co.matricula = a.matricula AND "
+                 + "                        co.matricula = c.matricula AND " 
+                 + "                        a.fechaAlquiler < current_timestamp " 
+                 + "                        AND a.fechaDevolucion = null) AND " 
+                 + "	  NOT EXISTS (SELECT r.fechaInicioReserva, r.fechaFinReserva " 
+                 + "                  FROM reservar AS r, cochealquiler AS co " 
+                 + "                  WHERE co.matricula = r.cocheAlquiler AND "
+                 + "                        co.matricula = c.matricula AND " 
+                 + "                        r.fechaFinReserva > current_timestamp)";
 
         try {
             stmCoche = con.prepareStatement(consulta);
@@ -355,7 +364,7 @@ public class DAOServicios extends AbstractDAO {
         con = this.getConexion();
 
         String consulta = "INSERT INTO cochealquiler VALUES "
-                        + "( ?, ?, ?, ?, ?, ?, ?, ?);";
+                        + "       ( ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
             stmCoche = con.prepareStatement(consulta);
@@ -391,8 +400,8 @@ public class DAOServicios extends AbstractDAO {
 
         String consulta = "SELECT a.fechaAlquiler, a.fechaDevolucion "
                         + "FROM alquilar AS a, cochealquiler AS c "
-                        + "WHERE c.matricula = a.matricula AND c.matricula = ? AND "
-                        + "      a.fechaAlquiler < current_timestamp AND "
+                        + "WHERE c.matricula = a.matricula AND c.matricula = ? "
+                        + "      AND a.fechaAlquiler < current_timestamp AND "
                         + "      fechaDevolucion = null";
 
         try {

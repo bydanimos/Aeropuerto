@@ -67,128 +67,128 @@ insert into reservarparking values
 );
 
 --Insertase tiendas
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'moda y complementos', 'Calvin Klein' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'moda y complementos', 'Pull & Bear' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'moda y complementos', 'Bershka' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'deportes', 'Nike' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'joyería y relojería', 'Tous' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'alimentación', 'Baggeterie Boulevard' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'alimentación', 'Burger King' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'farmacia', 'Farmacia' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     1, 'moda y complementos', 'Ray-Ban' 
 );
 
 
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'joyería y relojería', 'Swarovski' 
 );
 
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'moda y complementos', 'Adolfo Domínguez' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'deportes', 'Adidas' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'moda y complementos', 'Calzedonia' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'moda y complementos', 'Zara' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'alimentación', 'Chocolat Factory' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'alimentación', 'Farga' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'farmacia', 'Farmacia' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     2, 'moda y complementos', 'Mango' 
 );
 
 
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'moda y complementos', 'Massimo Dutti' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'moda y complementos', 'Geox' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'moda y complementos', 'Calzedonia' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'moda y complementos', 'Levis' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'moda y complementos', 'Victoria`s Secret' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'mundo infantil', 'Tutti Frutti' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'regalos y decoración', 'Thinking ETSE' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'regalos y decoración', 'Superskunk' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'alimentación', 'Sibarium' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'alimentación', 'Farga' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'alimentación', 'Baggeterie Boulevard' 
 );
-insert into tiendas(terminal, tipoVentas, nombre) values
+insert into tienda(terminal, tipoVentas, nombre) values
 (
     3, 'farmacia', 'Farmacia' 
 );
