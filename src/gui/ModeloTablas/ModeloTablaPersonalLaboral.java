@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 
-public class ModeloTablaPersonalLaboral extends AbstractTableModel {
+public final class ModeloTablaPersonalLaboral extends AbstractTableModel {
     
     private List<PersonalLaboral> usuarios;
     
@@ -20,17 +20,17 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
     // -------------------------------------------------------------------------
     // ------------------------------ Overrides --------------------------------
     @Override
-    public int getRowCount() {
+    public final int getRowCount() {
         return this.usuarios.size();
     }
 
     @Override
-    public int getColumnCount() {
+    public final int getColumnCount() {
         return 7;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public final Object getValueAt(int rowIndex, int columnIndex) {
         Object resultado = null;
 
         switch (columnIndex){
@@ -55,7 +55,7 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
     }
     
     @Override
-    public String getColumnName(int col) {
+    public final String getColumnName(int col) {
         String nombre = null;
 
         switch (col){
@@ -71,7 +71,7 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
     }
     
     @Override
-    public Class getColumnClass(int col) {
+    public final Class getColumnClass(int col) {
         Class clase = null;
 
         switch (col){
@@ -88,14 +88,14 @@ public class ModeloTablaPersonalLaboral extends AbstractTableModel {
     
     // -------------------------------------------------------------------------
     // ------------------------------ Funciones --------------------------------
-    public void setFilas(List<PersonalLaboral> usuarios) {
+    public final void setFilas(List<PersonalLaboral> usuarios) {
         if (usuarios != null ) {
             this.usuarios = usuarios;
             fireTableDataChanged();
         }
     }
     
-    public PersonalLaboral obtenerPersonalLaboral(int i) {
+    public final PersonalLaboral obtenerPersonalLaboral(int i) {
         return this.usuarios.get(i);
     }
 }
