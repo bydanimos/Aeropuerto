@@ -142,7 +142,7 @@ public class DAOServicios extends AbstractDAO {
         try {
             stmTiendas = con.prepareStatement("UPDATE tiendas "
                                             + "SET nombre = ?, "
-                                            + "tipoventas = ? "
+                                            + "    tipoventas = ? "
                                             + "WHERE codigo = ? AND terminal = ?");
 
             stmTiendas.setString(1, nombre);
