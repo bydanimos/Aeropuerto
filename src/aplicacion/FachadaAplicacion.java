@@ -183,6 +183,10 @@ public class FachadaAplicacion {
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.cs.insertarCocheAlquiler(co);
     }
+    
+    public void actualizarCocheAlquiler(String matricula, float precio) {
+        this.cs.actualizarCocheAlquiler(matricula, precio);
+    }
     // -------------------------------------------------------------------------
     // -------------------------------- Aviones --------------------------------
 

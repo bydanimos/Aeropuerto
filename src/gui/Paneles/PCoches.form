@@ -21,12 +21,18 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="eliminarButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="retiraLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="actualizarButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="269" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="editLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="modificarButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Component id="nuevoButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="720" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="numPlazasLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -39,15 +45,17 @@
                       </Group>
                       <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="modeloLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="modeloLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="modeloTextField" max="32767" attributes="0"/>
+                              <Component id="precioDiaLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="precioDiaTextField" min="-2" pref="202" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="buscarButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="modeloTextField" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="cochesLabel" max="32767" attributes="0"/>
@@ -73,6 +81,8 @@
                   <Component id="numPlazasLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="numPlazasComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buscarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="precioDiaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="precioDiaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="155" max="32767" attributes="0"/>
@@ -81,6 +91,9 @@
                   <Component id="eliminarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nuevoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="actualizarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="modificarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="editLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="retiraLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -185,6 +198,37 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;h1&gt;&lt;CENTER&gt; Coches &lt;/CENTER&gt;&lt;/h1&gt;&#xa;&lt;/html&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="modificarButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificarButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="precioDiaLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Precio Dia: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="precioDiaTextField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="editLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="13" green="e6" red="24" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xa1;Editado con &#xe9;xito!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="retiraLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e" green="e5" red="13" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xa1;Retirado con &#xe9;xito!"/>
       </Properties>
     </Component>
   </SubComponents>

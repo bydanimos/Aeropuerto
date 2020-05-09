@@ -347,6 +347,10 @@ public class VAdministrador extends javax.swing.JFrame {
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.fa.insertarCocheAlquiler(co);
     }
+    
+    public void actualizarCocheAlquiler(String matricula, float precio) {
+        this.fa.actualizarCocheAlquiler(matricula, precio);
+    }
 
     // -------------------------------------------------------------------------
     // ----------------------------- Coche Nuevo -------------------------------

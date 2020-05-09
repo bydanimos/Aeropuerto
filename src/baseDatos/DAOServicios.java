@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Timestamp;
 
-public class DAOServicios extends AbstractDAO {
+public final class DAOServicios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ----------------------------- Constructor -------------------------------
@@ -20,7 +20,7 @@ public class DAOServicios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------- Tiendas ---------------------------------
-    public List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
+    public final List<Tienda> obtenerTiendas(String nombre, int codigo, int terminal) {
         List<Tienda> resultado = new ArrayList<>();
         ArrayList<Terminal> terminales = this.obtenerTerminales();
         Tienda tiendaActual;
@@ -78,7 +78,7 @@ public class DAOServicios extends AbstractDAO {
         return resultado;
     }
 
-    public void anhadirTienda(String nombre, int terminal, String tipo) {
+    public final void anhadirTienda(String nombre, int terminal, String tipo) {
         Connection con;
         PreparedStatement stmTienda = null;
         ResultSet rsTienda;
@@ -107,7 +107,7 @@ public class DAOServicios extends AbstractDAO {
         }
     }
 
-    public void borrarTienda(int terminal, int codigo) {
+    public final void borrarTienda(int terminal, int codigo) {
         Connection con;
         PreparedStatement stmTienda = null;
 
@@ -132,7 +132,7 @@ public class DAOServicios extends AbstractDAO {
         }
     }
 
-    public void editarTienda(int terminal, int codigo, String nombre, String tipo) {
+    public final void editarTienda(int terminal, int codigo, String nombre, String tipo) {
         Connection con;
         PreparedStatement stmTiendas = null;
 
@@ -165,7 +165,7 @@ public class DAOServicios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // ------------------------------ Terminales -------------------------------
-    public ArrayList<Terminal> obtenerTerminales() {
+    public final ArrayList<Terminal> obtenerTerminales() {
         ArrayList<Terminal> resultado = new ArrayList<>();
         Terminal terminalActual;
         Connection con;
@@ -204,7 +204,7 @@ public class DAOServicios extends AbstractDAO {
         return resultado;
     }
 
-    public int obtenerNumTerminales() {
+    public final int obtenerNumTerminales() {
         int resultado = 0;
         Connection con;
         PreparedStatement stmTerminal = null;
@@ -235,7 +235,7 @@ public class DAOServicios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // --------------------------------- Fechas --------------------------------
-    public Timestamp timestampActual() {
+    public final Timestamp timestampActual() {
         Timestamp resultado = null;
         Connection con;
         PreparedStatement stmFecha = null;
@@ -264,7 +264,7 @@ public class DAOServicios extends AbstractDAO {
 
     // -------------------------------------------------------------------------
     // --------------------------------- Coches --------------------------------
-    public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
+    public final ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         ArrayList<CocheAlquiler> resultado = new ArrayList<>();
         CocheAlquiler cocheActual;
         Connection con;
@@ -317,7 +317,7 @@ public class DAOServicios extends AbstractDAO {
         return resultado;
     }
 
-    public void borrarCocheAlquiler(String matricula) {
+    public final void borrarCocheAlquiler(String matricula) {
         Connection con;
         PreparedStatement stmCoche = null;
         ResultSet rsCoche;
@@ -358,7 +358,7 @@ public class DAOServicios extends AbstractDAO {
         }
     }
 
-    public void insertarCocheAlquiler(CocheAlquiler coche) {
+    public final void insertarCocheAlquiler(CocheAlquiler coche) {
         Connection con;
         PreparedStatement stmCoche = null;
         ResultSet rsCoche;
@@ -393,7 +393,7 @@ public class DAOServicios extends AbstractDAO {
     }
 
     // Nos indica si un coche se encuentra alquilado en este momento
-    private boolean cocheAlquilerAlquilado(String matricula) {
+    private final boolean cocheAlquilerAlquilado(String matricula) {
         Connection con;
         PreparedStatement stmCoche = null;
         ResultSet rsCoche;
@@ -428,7 +428,7 @@ public class DAOServicios extends AbstractDAO {
     }
 
     // Nos indica si un coche se encuentra reservado en este momento
-    private boolean cocheAlquilerReservado(String matricula) {
+    private final boolean cocheAlquilerReservado(String matricula) {
         Connection con;
         PreparedStatement stmCoche = null;
         ResultSet rsCoche;
@@ -463,7 +463,7 @@ public class DAOServicios extends AbstractDAO {
         return result;
     }
 
-    public void actualizarCocheAlquiler(CocheAlquiler coche) {
+    public final void actualizarCocheAlquiler(String matricula, float precio) {
         Connection con;
         PreparedStatement stmCoche = null;
         ResultSet rsCoche;
@@ -471,21 +471,13 @@ public class DAOServicios extends AbstractDAO {
         con = this.getConexion();
 
         consulta = "UPDATE cochealquiler "
-                 + "SET modelo = ?, caballos = ?, nplazas = ?, "
-                 + "    npuertas = ?, preciopordia = ?, "
-                 + "    tipocombustible = ?, retirado = ? "
+                 + "SET preciopordia = ? "
                  + "WHERE matricula = ? ";
 
         try {
             stmCoche = con.prepareStatement(consulta);
-            stmCoche.setString(1, coche.getModelo());
-            stmCoche.setInt(2, coche.getCaballos());
-            stmCoche.setInt(3, coche.getNumeroPlazas());
-            stmCoche.setInt(4, coche.getNumeroPuertas());
-            stmCoche.setFloat(5, coche.getPrecioPorDia());
-            stmCoche.setString(6, coche.getTipoCombustible());
-            stmCoche.setBoolean(7, coche.isRetirado());
-            stmCoche.setString(8, coche.getMatricula());
+            stmCoche.setFloat(1, precio);
+            stmCoche.setString(2, matricula);
 
             stmCoche.executeUpdate();
         } catch (SQLException e) {

@@ -45,7 +45,7 @@ public class GestionServicios {
     }
 
     //--------------------------------------------------------------------------
-    // -------------------------------- Coches -----------------------------------
+    // ------------------------------- Coches ----------------------------------
     public ArrayList<CocheAlquiler> obtenerCoches(String matricula, int numPlazas, String modelo) {
         return this.fbd.obtenerCoches(matricula, numPlazas, modelo);
     }
@@ -56,5 +56,9 @@ public class GestionServicios {
 
     public void insertarCocheAlquiler(CocheAlquiler co) {
         this.fbd.insertarCocheAlquiler(co);
+    }
+
+    public void actualizarCocheAlquiler(String matricula, float precio) {
+        this.fbd.actualizarCocheAlquiler(matricula, precio);
     }
 }

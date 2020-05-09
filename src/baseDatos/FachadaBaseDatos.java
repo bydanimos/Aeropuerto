@@ -349,6 +349,10 @@ public class FachadaBaseDatos {
         this.daoServicios.insertarCocheAlquiler(co);
     }
 
+    public void actualizarCocheAlquiler(String matricula, float precio) {
+        this.daoServicios.actualizarCocheAlquiler(matricula, precio);
+    }
+
     // -------------------------------------------------------------------------
     // --------------------------------- Aviones -------------------------------
     public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
@@ -441,5 +445,4 @@ public class FachadaBaseDatos {
         return this.daoPersonalLaboral.trabajadorAnho();
     }
     // -------------------------------------------------------------------------
-
 }
