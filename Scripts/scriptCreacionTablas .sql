@@ -110,17 +110,17 @@ declare
 begin
   case TG_OP
     when 'INSERT' then
-      execute 'create sequence seq_codigo_tiendas_'||cast(NEW.numero as text);
+      execute 'create sequence seq_codigo_tienda_'||cast(NEW.numero as text);
       return new;
     when 'UPDATE' then
       IF OLD.terminal <> NEW.terminal THEN
-	     tienda:=nextval('seq_codigo_tiendas_'||cast(OLD.numero as text));
-	     execute 'drop sequence seq_codigo_tiendas_'||cast(OLD.numero as text);
-	     execute 'create sequence seq_codigo_tiendas_'||cast(NEW.numero as text)|| ' start '||cast(tienda as text);
+	     tienda:=nextval('seq_codigo_tienda_'||cast(OLD.numero as text));
+	     execute 'drop sequence seq_codigo_tienda_'||cast(OLD.numero as text);
+	     execute 'create sequence seq_codigo_tienda_'||cast(NEW.numero as text)|| ' start '||cast(tienda as text);
       END IF;
       return new;
     when 'DELETE' then 
-      execute 'drop sequence seq_codigo_tiendas_'||cast(OLD.numero as text);
+      execute 'drop sequence seq_codigo_tienda_'||cast(OLD.numero as text);
       return old;
     else null;
   end case;
@@ -128,7 +128,7 @@ end;
 $cst$ Language plpgsql;
 
 --Disparador que activa a funcion controla_sequencia_terminal
-create trigger afterTiendas after insert or update or delete on terminal
+create trigger afterTienda after insert or update or delete on terminal
 for each row execute procedure controla_secuencias_terminal();
 
 create table parking
@@ -182,7 +182,7 @@ create table reservarParking
     	on delete cascade on update cascade
 );
 
-create table tiendas
+create table tienda
 (
     terminal integer,
     codigo integer,
@@ -197,13 +197,13 @@ create table tiendas
 --Funcion que introduce os codigos nas tendas
 create or replace function introduce_codigo_tienda() returns trigger as $cst$
 begin
-  new.codigo:=nextval('seq_codigo_tiendas_'||cast(new.terminal as text));
+  new.codigo:=nextval('seq_codigo_tienda_'||cast(new.terminal as text));
   return new;
 end;
 $cst$ Language plpgsql;
 
 --Disparador que activa a funcion introduce_codigo_tienda
-create trigger beforeInsertTienda before insert on tiendas
+create trigger beforeInsertTienda before insert on tienda
 for each row execute procedure introduce_codigo_tienda();
 
 create table cocheAlquiler

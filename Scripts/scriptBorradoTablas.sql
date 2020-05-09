@@ -9,7 +9,7 @@ drop table modeloAvion;
 drop table reservar;
 drop table alquilar;
 drop table cocheAlquiler;
-drop table tiendas;
+drop table tienda;
 drop table reservarParking;
 drop table parking;
 drop table terminal;
