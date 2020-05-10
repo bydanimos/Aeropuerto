@@ -11,6 +11,7 @@ public final class PTiendas extends javax.swing.JPanel {
     private final VAdministrador va;
     private boolean primNombre;
     private boolean editarGuardar;
+    private boolean anhadirGuardar;
 
     // ------------------------------------------------------------------------
     // ----------------------------- Constructor ------------------------------
@@ -18,6 +19,7 @@ public final class PTiendas extends javax.swing.JPanel {
         this.va  = va;
         this.primNombre = true;
         this.editarGuardar = false;
+        this.anhadirGuardar = false;
         initComponents();
         this.borrarExiLabel.setVisible(false);
         this.anhaExitoLabel.setVisible(false);
@@ -331,22 +333,38 @@ public final class PTiendas extends javax.swing.JPanel {
             } 
         }
     }
+    
+    private void editarAnhadir(boolean editar) {
+        this.codigoTextField.setEditable(editar);
+        this.borrarButton.setEnabled(editar);
+        this.buscarButton.setEnabled(editar);
+        this.tiendasTable.setEnabled(editar);
+        this.tiendasTable.setFocusable(editar);
+    }
 
     private void anhadir() {
-        if (!this.nombreTextField.getText().equals("")) {
-            if (this.terminalComboBox.getSelectedIndex() != 0) {
-                if (!this.tipoTextField.getText().equals("")) {
-                    ModeloTablaTiendas mt;
-                    mt = (ModeloTablaTiendas) this.tiendasTable.getModel();
-
-                    this.va.anhadirTienda(this.nombreTextField.getText(),
-                            this.terminalComboBox.getSelectedIndex(),
-                            this.tipoTextField.getText());
-                    this.anhaExitoLabel.setVisible(true);
-                    this.buscarTiendas(true);
+        if (!this.editarGuardar) {
+            this.editarAnhadir(false);
+        this.editarGuardarButton.setEnabled(false);
+            this.anhadirButton.setText("Guardar");
+            this.primNombre = true;
+        } else {
+            if (!this.nombreTextField.getText().equals("")) {
+                if (this.terminalComboBox.getSelectedIndex() != 0) {
+                    if (!this.tipoTextField.getText().equals("")) {
+                        this.va.anhadirTienda(this.nombreTextField.getText(),
+                                              this.terminalComboBox.getSelectedIndex(),
+                                              this.tipoTextField.getText());
+                        this.buscarTiendas(false);
+                        this.anhaExitoLabel.setVisible(true);
+                        this.editarGuardarButton.setEnabled(true);
+                        this.editarAnhadir(true);
+                        this.anhadirButton.setText("Añadir");
+                    }
                 }
             }
         }
+        this.editarGuardar = !this.editarGuardar;
     }
 
     private void borrar() {
@@ -390,14 +408,10 @@ public final class PTiendas extends javax.swing.JPanel {
     }
     
     private void editar(boolean bloquear) {
-        this.codigoTextField.setEditable(bloquear);
+        this.editarAnhadir(bloquear);
         this.terminalComboBox.setEnabled(bloquear);
         this.anhadirButton.setEnabled(bloquear);
-        this.borrarButton.setEnabled(bloquear);
-        this.buscarButton.setEnabled(bloquear);
         this.vacCamposButton.setEnabled(bloquear);
-        this.tiendasTable.setEnabled(bloquear);
-        this.tiendasTable.setFocusable(bloquear);
     }
 
     private void editar() {
