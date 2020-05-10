@@ -11,39 +11,46 @@ public class ReservarCocheAlquiler {
     private Timestamp fechaInicioReserva;
     private Timestamp fechaFinReserva;
 
-    public ReservarCocheAlquiler(CocheAlquiler cocheAlquiler, Usuario usuario, Timestamp fechaInicioReserva, Timestamp fechaFinReserva) {
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public ReservarCocheAlquiler(CocheAlquiler cocheAlquiler, Usuario usuario, 
+                                 Timestamp fechaInicioReserva, Timestamp fechaFinReserva) {
         this.cocheAlquiler = cocheAlquiler;
         this.usuario = usuario;
         this.fechaInicioReserva = fechaInicioReserva;
         this.fechaFinReserva = fechaFinReserva;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     public CocheAlquiler getCocheAlquiler() {
         return cocheAlquiler;
-    }
-
-    public void setCocheAlquiler(CocheAlquiler cocheAlquiler) {
-        this.cocheAlquiler = cocheAlquiler;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Timestamp getFechaInicioReserva() {
         return fechaInicioReserva;
     }
 
-    public void setFechaInicioReserva(Timestamp fechaInicioReserva) {
-        this.fechaInicioReserva = fechaInicioReserva;
-    }
-
     public Timestamp getFechaFinReserva() {
         return fechaFinReserva;
+    }
+
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setCocheAlquiler(CocheAlquiler cocheAlquiler) {
+        this.cocheAlquiler = cocheAlquiler;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setFechaInicioReserva(Timestamp fechaInicioReserva) {
+        this.fechaInicioReserva = fechaInicioReserva;
     }
 
     public void setFechaFinReserva(Timestamp fechaFinReserva) {
