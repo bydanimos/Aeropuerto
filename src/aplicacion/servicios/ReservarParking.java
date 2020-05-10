@@ -1,10 +1,10 @@
+
 package aplicacion.servicios;
 
 import aplicacion.usuarios.Usuario;
-
 import java.sql.Timestamp;
 
-public class ReservarParking {
+public final class ReservarParking {
 
     private Usuario usuario;
     private Parking parking;
@@ -12,7 +12,10 @@ public class ReservarParking {
     private Timestamp fechaSalida;
     private String matricula;
 
-    public ReservarParking(Usuario usuario, Parking parking, Timestamp fechaEntrada, Timestamp fechaSalida, String matricula) {
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public ReservarParking(Usuario usuario, Parking parking, Timestamp fechaEntrada, 
+                           Timestamp fechaSalida, String matricula) {
         this.usuario = usuario;
         this.parking = parking;
         this.fechaEntrada = fechaEntrada;
@@ -20,40 +23,44 @@ public class ReservarParking {
         this.matricula = matricula;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     public Usuario getUsuario() {
         return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public Parking getParking() {
         return parking;
     }
 
-    public void setParking(Parking parking) {
-        this.parking = parking;
-    }
-
     public Timestamp getFechaEntrada() {
         return fechaEntrada;
-    }
-
-    public void setFechaEntrada(Timestamp fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;
     }
 
     public Timestamp getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Timestamp fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
     public String getMatricula() {
         return matricula;
+    }
+
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setParking(Parking parking) {
+        this.parking = parking;
+    }
+
+    public void setFechaEntrada(Timestamp fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
+
+    public void setFechaSalida(Timestamp fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
     public void setMatricula(String matricula) {
