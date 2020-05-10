@@ -38,7 +38,8 @@ public final class DAOAdministrador extends AbstractDAO {
             rsAdministrador = stmAdministrador.executeQuery();
 
             if (rsAdministrador.next()) {
-                resultado = new Administrador(rsAdministrador.getString("dni"), rsAdministrador.getString("id"), 
+                resultado = new Administrador(rsAdministrador.getString("dni"), 
+                                              rsAdministrador.getString("id"), 
                                               rsAdministrador.getString("contrasenha"),
                                               rsAdministrador.getString("correoelectronico"), 
                                               rsAdministrador.getString("nombre"),
@@ -123,24 +124,21 @@ public final class DAOAdministrador extends AbstractDAO {
     public final void modificarAdministrador(Administrador ad) {
         Connection con;
         PreparedStatement stmAdministrador = null;
+        String consulta;
 
         con = super.getConexion();
 
         try {
-            stmAdministrador = con.prepareStatement("UPDATE administrador "
-                    + "SET curriculum=? "
-                    + "WHERE dni=? "
-                    + "UPDATE usuario "
-                    + "SET id=?, "
-                    + "    nombre=?, "
-                    + "    primerapellido=?, "
-                    + "    segundoapellido=?, "
-                    + "    correoelectronico=?, "
-                    + "    contrasenha=crypt(?, gen_salt('md5')), "
-                    + "    paisprocedencia=?, "
-                    + "    telefono=?, "
-                    + "    sexo=? "
-                    + "WHERE dni=?");
+            consulta = "UPDATE administrador "
+                     + "SET curriculum = ? "
+                     + "WHERE dni = ? "
+                     + "UPDATE usuario "
+                     + "SET id = ?, nombre = ?, primerapellido = ?, "
+                     + "    segundoapellido = ?, correoelectronico = ?, "
+                     + "    contrasenha = crypt(?, gen_salt('md5')), "
+                     + "    paisprocedencia = ?, telefono = ?, sexo = ? "
+                     + "WHERE dni = ?";
+            stmAdministrador = con.prepareStatement(consulta);
 
             stmAdministrador.setString(1, ad.getCurriculum());
             stmAdministrador.setString(2, ad.getDni());
@@ -157,12 +155,18 @@ public final class DAOAdministrador extends AbstractDAO {
 
             String ts;
 
-            if (ad.getSexo() == TipoSexo.h) {
-                ts = "h";
-            } else if (ad.getSexo() == TipoSexo.m) {
-                ts = "m";
-            } else {
+            if (null == ad.getSexo()) {
                 ts = "otro";
+            } else switch (ad.getSexo()) {
+                case h:
+                    ts = "h";
+                    break;
+                case m:
+                    ts = "m";
+                    break;
+                default:
+                    ts = "otro";
+                    break;
             }
             stmAdministrador.setString(11, ts);
 
@@ -187,24 +191,34 @@ public final class DAOAdministrador extends AbstractDAO {
         Connection con;
         PreparedStatement stmAdministrador = null;
         ResultSet rsAdministrador;
+        String consulta;
 
-        con=this.getConexion();
+        con = this.getConexion();
                     
         try {
-            stmAdministrador=con.prepareStatement("SELECT u.dni,u.id,u.correoelectronico,u.contrasenha,u.nombre,u.primerapellido,u.segundoapellido,"+
-                                                  "u.paisprocedencia,u.telefono,u.sexo,ad.fechainicio,ad.curriculum "+
-                                                  "FROM usuario as u, administrador as ad "+
-                                                  "WHERE u.dni = ad.usuario "+
-                                                  "AND u.dni = ? ");
+            consulta = "SELECT u.dni, u.id, u.correoelectronico, u.contrasenha, "
+                     + "       u.nombre, u.primerapellido, u.segundoapellido, "
+                     + "       u.paisprocedencia, u.telefono, u.sexo, "
+                     + "       ad.fechainicio, ad.curriculum "
+                     + "FROM usuario as u, administrador as ad "
+                     + "WHERE u.dni = ad.usuario AND u.dni = ? ";
+            stmAdministrador=con.prepareStatement(consulta);
             stmAdministrador.setString(1, dni);
-            rsAdministrador=stmAdministrador.executeQuery();
+            rsAdministrador = stmAdministrador.executeQuery();
            
             if (rsAdministrador.next()){
-                resultado = new Administrador(rsAdministrador.getString("dni"), rsAdministrador.getString("id"),rsAdministrador.getString("contrasenha"),
-                                              rsAdministrador.getString("correoelectronico"), rsAdministrador.getString("nombre"),
-                                              rsAdministrador.getString("primerapellido"),rsAdministrador.getString("segundoapellido"),
-                                              TipoSexo.valueOf(rsAdministrador.getString("sexo")),rsAdministrador.getString("paisprocedencia"),rsAdministrador.getInt("telefono"),
-                                              rsAdministrador.getTimestamp("fechainicio"),rsAdministrador.getString("curriculum"));
+                resultado = new Administrador(rsAdministrador.getString("dni"), 
+                                              rsAdministrador.getString("id"),
+                                              rsAdministrador.getString("contrasenha"),
+                                              rsAdministrador.getString("correoelectronico"),
+                                              rsAdministrador.getString("nombre"),
+                                              rsAdministrador.getString("primerapellido"),
+                                              rsAdministrador.getString("segundoapellido"),
+                                              TipoSexo.valueOf(rsAdministrador.getString("sexo")),
+                                              rsAdministrador.getString("paisprocedencia"),
+                                              rsAdministrador.getInt("telefono"),
+                                              rsAdministrador.getTimestamp("fechainicio"),
+                                              rsAdministrador.getString("curriculum"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
