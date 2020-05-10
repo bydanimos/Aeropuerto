@@ -7,7 +7,7 @@ import gui.ModeloTablas.ModeloTablaDatosUsuarios;
 import gui.VAdministrador;
 
 
-public class PAdminUsuarios extends javax.swing.JPanel {
+public final class PAdminUsuarios extends javax.swing.JPanel {
 
     private final VAdministrador va;
     
