@@ -4,17 +4,12 @@ package gui.Paneles;
 import aplicacion.servicios.CocheAlquiler;
 import gui.VAdministrador;
 
-/**
- *
- * @author dani
- */
-public class PNuevoCoche extends javax.swing.JPanel {
+public final class PNuevoCoche extends javax.swing.JPanel {
 
     private final VAdministrador va;
-    /**
-     * Creates new form PNuevoCoche
-     * @param va
-     */
+    
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public PNuevoCoche(VAdministrador va) {
         this.va  = va;
         initComponents();
@@ -233,12 +228,14 @@ public class PNuevoCoche extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Eventos --------------------------------
     private void guardarCambiosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCambiosButtonActionPerformed
-        anhadirCoche();
+        this.anhadirCoche();
     }//GEN-LAST:event_guardarCambiosButtonActionPerformed
 
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
-        volver();
+        this.volver();
     }//GEN-LAST:event_volverButtonActionPerformed
 
 
@@ -271,6 +268,8 @@ public class PNuevoCoche extends javax.swing.JPanel {
     private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
     private void anhadirCoche() {
         CocheAlquiler co;
         String matricula, modelo, combustible;
