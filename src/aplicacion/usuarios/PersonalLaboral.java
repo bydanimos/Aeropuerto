@@ -1,9 +1,10 @@
+
 package aplicacion.usuarios;
 
 import java.util.ArrayList;
 import java.sql.Timestamp;
 
-public class PersonalLaboral extends Usuario {
+public final class PersonalLaboral extends Usuario {
 
     private String labor;
     private String descripcionTarea;
