@@ -1,10 +1,14 @@
+
 package aplicacion.aviones;
 
-public class Terminal {
+public final class Terminal {
+    
     private int numero;
     private int primeraPuerta;
     private int ultimaPuerta;
 
+    // ------------------------------------------------------------------------
+    // ---------------------------- Constructores -----------------------------
     public Terminal() {
         this.numero = 0;
         this.primeraPuerta = 0;
@@ -17,24 +21,28 @@ public class Terminal {
         this.ultimaPuerta = ultimaPuerta;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     public int getNumero() {
         return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
     }
 
     public int getPrimeraPuerta() {
         return primeraPuerta;
     }
 
-    public void setPrimeraPuerta(int primeraPuerta) {
-        this.primeraPuerta = primeraPuerta;
-    }
-
     public int getUltimaPuerta() {
         return ultimaPuerta;
+    }
+    
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setPrimeraPuerta(int primeraPuerta) {
+        this.primeraPuerta = primeraPuerta;
     }
 
     public void setUltimaPuerta(int ultimaPuerta) {
