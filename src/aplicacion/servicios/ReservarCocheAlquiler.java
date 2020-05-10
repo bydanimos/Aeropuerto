@@ -4,7 +4,7 @@ import aplicacion.usuarios.Usuario;
 
 import java.sql.Timestamp;
 
-public class ReservarCocheAlquiler {
+public final class ReservarCocheAlquiler {
 
     private CocheAlquiler cocheAlquiler;
     private Usuario usuario;
