@@ -13,14 +13,7 @@ public final class PNuevoCoche extends javax.swing.JPanel {
     public PNuevoCoche(VAdministrador va) {
         this.va  = va;
         initComponents();
-        this.matIncorrectaLabel.setVisible(false);
-        this.modeIncorrectLabel.setVisible(false);
-        this.cabIncorrectoLabel.setVisible(false);
-        this.preIncorrectoLabel.setVisible(false);
-        this.pueIncorrectaLabel.setVisible(false);
-        this.plaIncorrectaLabel.setVisible(false);
-        this.comIncorrectoLabel.setVisible(false);
-        this.introCorrectoLabel.setVisible(false);
+        this.mostrarAdvertencias(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -321,8 +314,9 @@ public final class PNuevoCoche extends javax.swing.JPanel {
             co = new CocheAlquiler(matricula, modelo, caballos, precioPorDia, 
                     combustible, numPlazas, numPuertas, false);
             this.va.insertarCocheAlquiler(co);
-            this.introCorrectoLabel.setVisible(true);
             this.vaciarCampos();
+            this.mostrarAdvertencias(false);
+            this.introCorrectoLabel.setVisible(true);
         }
     }
     
@@ -376,5 +370,16 @@ public final class PNuevoCoche extends javax.swing.JPanel {
         this.caballosTextField.setText("");
         this.modeloTextField.setText("");
         this.matriculaTextField.setText("");
+    }
+    
+    private void mostrarAdvertencias(boolean mostrar) {
+        this.matIncorrectaLabel.setVisible(mostrar);
+        this.modeIncorrectLabel.setVisible(mostrar);
+        this.cabIncorrectoLabel.setVisible(mostrar);
+        this.preIncorrectoLabel.setVisible(mostrar);
+        this.pueIncorrectaLabel.setVisible(mostrar);
+        this.plaIncorrectaLabel.setVisible(mostrar);
+        this.comIncorrectoLabel.setVisible(mostrar);
+        this.introCorrectoLabel.setVisible(mostrar);
     }
 }
