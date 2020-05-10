@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PAerolineas extends javax.swing.JPanel {
+public final class PAerolineas extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private List<Aerolinea> aerolineasBorradas;
@@ -362,8 +362,7 @@ public class PAerolineas extends javax.swing.JPanel {
         if (m.getRowCount() > 0) {
             this.tablaAerolineas.setRowSelectionInterval(0, 0);
             this.botonBorrar.setEnabled(true);
-        }
-        else{
+        } else {
             this.botonBorrar.setEnabled(false);
         }
     }
@@ -406,7 +405,7 @@ public class PAerolineas extends javax.swing.JPanel {
         if (this.va.esAerolineaBorrable(a)) {
             this.aerolineasBorradas.add(m.obtenerAerolinea(this.tablaAerolineas.getSelectedRow()));
             m.borrarAerolinea(this.tablaAerolineas.getSelectedRow());
-            if (m.getRowCount()==0) {
+            if (m.getRowCount() == 0) {
                 this.botonBorrar.setEnabled(false);
             } else {
                 this.tablaAerolineas.setRowSelectionInterval(0, 0);
@@ -419,7 +418,7 @@ public class PAerolineas extends javax.swing.JPanel {
     private void actualizarInfo() {
         ModeloTablaAerolineas m;
         m = (ModeloTablaAerolineas) this.tablaAerolineas.getModel();
-        for(int i = 0; i < m.getRowCount(); i++){
+        for (int i = 0; i < m.getRowCount(); i++) {
             this.va.modificarAerolinea(m.obtenerAerolinea(i));
         }
         if (this.aerolineasBorradas.size() > 0) {
