@@ -23,23 +23,31 @@ public final class DAOUsuarios extends AbstractDAO {
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
+        String consulta;
 
         con = this.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
-                    + "paisprocedencia,telefono,sexo "
-                    + "FROM usuario "
-                    + "WHERE id = ? AND contrasenha = crypt(?, contrasenha)");
+            consulta = "SELECT dni, id, correoelectronico, contrasenha, nombre,"
+                     + "        primerapellido,segundoapellido, paisprocedencia,"
+                     + "        telefono,sexo "
+                     + "FROM usuario "
+                     + "WHERE id = ? AND contrasenha = crypt(?, contrasenha)";
+            stmUsuario = con.prepareStatement(consulta);
             stmUsuario.setString(1, idUsuario);
             stmUsuario.setString(2, clave);
             rsUsuario = stmUsuario.executeQuery();
 
             if (rsUsuario.next()) {
-                resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
-                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
-                        rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
+                resultado = new Usuario(rsUsuario.getString("dni"), 
+                        rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
+                        rsUsuario.getString("correoelectronico"), 
+                        rsUsuario.getString("nombre"),
+                        rsUsuario.getString("primerapellido"), 
+                        rsUsuario.getString("segundoapellido"),
+                        TipoSexo.valueOf(rsUsuario.getString("sexo")), 
+                        rsUsuario.getString("paisprocedencia"), 
+                        rsUsuario.getInt("telefono"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -54,7 +62,9 @@ public final class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public final java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, String nombre, String ap1, String ap2) {
+    public final java.util.List<Usuario> consultarRegistroUsuarios(String id, String dni, 
+                                                                   String nombre, String ap1, 
+                                                                   String ap2) {
         java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
@@ -63,14 +73,13 @@ public final class DAOUsuarios extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
-                + "paisprocedencia,telefono,sexo "
-                + "FROM usuario "
-                + "WHERE id like ? "
-                + "AND dni like ? "
-                + "AND nombre like ? "
-                + "AND primerapellido like ? "
-                + "AND segundoapellido like ? ";
+        String consulta;
+        consulta = "SELECT dni, id, correoelectronico, contrasenha, nombre, "
+                 + "        primerapellido, segundoapellido, paisprocedencia, "
+                 + "        telefono,sexo "
+                 + "FROM usuario "
+                 + "WHERE id like ? AND dni like ? AND nombre like ? "
+                 + "      AND primerapellido like ? AND segundoapellido like ? ";
 
         try {
             stmUsuarios = con.prepareStatement(consulta);
@@ -83,10 +92,15 @@ public final class DAOUsuarios extends AbstractDAO {
             rsUsuario = stmUsuarios.executeQuery();
             while (rsUsuario.next()) {
 
-                usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
-                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
-                        rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
+                usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), 
+                                            rsUsuario.getString("contrasenha"),
+                                            rsUsuario.getString("correoelectronico"), 
+                                            rsUsuario.getString("nombre"),
+                                            rsUsuario.getString("primerapellido"), 
+                                            rsUsuario.getString("segundoapellido"),
+                                            TipoSexo.valueOf(rsUsuario.getString("sexo")), 
+                                            rsUsuario.getString("paisprocedencia"), 
+                                            rsUsuario.getInt("telefono"));
 
                 resultado.add(usuarioActual);
             }
@@ -109,14 +123,16 @@ public final class DAOUsuarios extends AbstractDAO {
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
         boolean resultado = false;
+        String consulta;
 
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("INSERT INTO usuario(dni, id, "
-                    + "correoelectronico, contrasenha, nombre, primerapellido, "
-                    + "segundoapellido, paisprocedencia, telefono, sexo) "
-                    + "values (?,?,?,crypt(?, gen_salt('md5')),?,?,?,?,?,?)");
+            consulta = "INSERT INTO usuario(dni, id, correoelectronico, contrasenha, "
+                     + "                    nombre, primerapellido, segundoapellido, "
+                     + "                    paisprocedencia, telefono, sexo) "
+                     + "VALUES (?,?,?,crypt(?, gen_salt('md5')),?,?,?,?,?,?)";
+            stmUsuario = con.prepareStatement(consulta);
             stmUsuario.setString(1, u.getDni());
             stmUsuario.setString(2, u.getId());
             stmUsuario.setString(3, u.getCorreoElectronico());
@@ -166,23 +182,24 @@ public final class DAOUsuarios extends AbstractDAO {
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
         boolean resultado = false;
+        String consulta;
 
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("SELECT * "
-                    + "FROM comprarbillete as cb, reservar as r, alquilar as al, reservarparking as p "
-                    + "WHERE cb.usuario = ? "
-                    + "OR r.usuario = ? "
-                    + "OR al.usuario = ? "
-                    + "OR p.usuario = ? ");
+            consulta = "SELECT * "
+                     + "FROM comprarbillete as cb, reservar as r, alquilar as al, "
+                     + "     reservarparking as p "
+                     + "WHERE cb.usuario = ? OR r.usuario = ? OR "
+                     + "      al.usuario = ? OR p.usuario = ? ";
+            stmUsuario = con.prepareStatement(consulta);
             stmUsuario.setString(1, dni);
             stmUsuario.setString(2, dni);
             stmUsuario.setString(3, dni);
             stmUsuario.setString(4, dni);
             rsUsuario = stmUsuario.executeQuery();
             if (!rsUsuario.next()) {
-                stmUsuario = con.prepareStatement("delete from usuario where dni = ?");
+                stmUsuario = con.prepareStatement("DELETE FROM usuario WHERE dni = ?");
                 stmUsuario.setString(1, dni);
                 stmUsuario.executeUpdate();
                 resultado = true;
@@ -205,21 +222,18 @@ public final class DAOUsuarios extends AbstractDAO {
     public final void modificarUsuario(Usuario u) {
         Connection con;
         PreparedStatement stmUsuario = null;
+        String consulta;
 
         con = super.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("UPDATE usuario "
-                    + "SET id=?, "
-                    + "    nombre=?, "
-                    + "    primerapellido=?, "
-                    + "    segundoapellido=?, "
-                    + "    correoelectronico=?, "
-                    //+ "    contrasenha=crypt(?, gen_salt('md5')), "
-                    + "    paisprocedencia=?, "
-                    + "    telefono=?, "
-                    + "    sexo=? "
-                    + "WHERE dni=?");
+            consulta = "UPDATE usuario "
+                     + "SET id = ?, nombre = ?, primerapellido = ?, "
+                     + "    segundoapellido = ?, correoelectronico = ?, "
+                     //+ "    contrasenha=crypt(?, gen_salt('md5')), "
+                     + "    paisprocedencia = ?, telefono = ?, sexo = ? "
+                     + "WHERE dni = ?";
+            stmUsuario = con.prepareStatement(consulta);
 
             stmUsuario.setString(1, u.getId());
             stmUsuario.setString(2, u.getNombre());
@@ -274,8 +288,8 @@ public final class DAOUsuarios extends AbstractDAO {
 
         try {
             stmUsuario = con.prepareStatement("SELECT * "
-                    + "FROM usuario "
-                    + "WHERE id = ?");
+                                            + "FROM usuario "
+                                            + "WHERE id = ?");
             stmUsuario.setString(1, text);
             rsUsuario = stmUsuario.executeQuery();
             if (rsUsuario.next()) {
@@ -299,22 +313,30 @@ public final class DAOUsuarios extends AbstractDAO {
         Connection con;
         PreparedStatement stmUsuario = null;
         ResultSet rsUsuario;
+        String consulta;
 
         con = this.getConexion();
 
         try {
-            stmUsuario = con.prepareStatement("SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
-                    + "paisprocedencia,telefono,sexo "
-                    + "FROM usuario "
-                    + "WHERE dni = ? ");
+            consulta = "SELECT dni, id, correoelectronico, contrasenha, nombre,"
+                     + "       primerapellido, segundoapellido, "
+                     + "       paisprocedencia, telefono, sexo "
+                     + "FROM usuario "
+                     + "WHERE dni = ? ";
+            stmUsuario = con.prepareStatement(consulta);
             stmUsuario.setString(1, dni);
             rsUsuario = stmUsuario.executeQuery();
 
             if (rsUsuario.next()) {
-                resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
-                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
-                        rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
+                resultado = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), 
+                                        rsUsuario.getString("contrasenha"),
+                                        rsUsuario.getString("correoelectronico"), 
+                                        rsUsuario.getString("nombre"),
+                                        rsUsuario.getString("primerapellido"), 
+                                        rsUsuario.getString("segundoapellido"),
+                                        TipoSexo.valueOf(rsUsuario.getString("sexo")), 
+                                        rsUsuario.getString("paisprocedencia"), 
+                                        rsUsuario.getInt("telefono"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -329,7 +351,9 @@ public final class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-    public final java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, String primerApellido, String segundoApellido) {
+    public final java.util.List<Usuario> obtenerUsuariosControl(String dni, String id, String nombre, 
+                                                                String primerApellido, 
+                                                                String segundoApellido) {
         java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
@@ -338,17 +362,16 @@ public final class DAOUsuarios extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "SELECT dni,id,correoelectronico,contrasenha,nombre,primerapellido,segundoapellido,"
-                + "paisprocedencia,telefono,sexo "
-                + "FROM usuario "
-                + "WHERE id like ? "
-                + "AND dni like ? "
-                + "AND nombre like ? "
-                + "AND primerapellido like ? "
-                + "AND segundoapellido like ? "
-                + "AND dni in (select usuario "
-                + "FROM comprarbillete "
-                + "WHERE pasarcontrol = true )";
+        String consulta;
+        consulta = "SELECT dni, id, correoelectronico, contrasenha, nombre, "
+                 + "       primerapellido, segundoapellido, paisprocedencia,"
+                 + "       telefono,sexo "
+                 + "FROM usuario "
+                 + "WHERE id like ? AND dni like ? AND nombre like ? AND "
+                 + "      primerapellido like ? AND segundoapellido like ? AND "
+                 + "      dni in (SELECT usuario "
+                 + "              FROM comprarbillete "
+                 + "              WHERE pasarcontrol = true )";
 
         try {
             stmUsuarios = con.prepareStatement(consulta);
@@ -361,10 +384,15 @@ public final class DAOUsuarios extends AbstractDAO {
             rsUsuario = stmUsuarios.executeQuery();
             while (rsUsuario.next()) {
 
-                usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), rsUsuario.getString("contrasenha"),
-                        rsUsuario.getString("correoelectronico"), rsUsuario.getString("nombre"),
-                        rsUsuario.getString("primerapellido"), rsUsuario.getString("segundoapellido"),
-                        TipoSexo.valueOf(rsUsuario.getString("sexo")), rsUsuario.getString("paisprocedencia"), rsUsuario.getInt("telefono"));
+                usuarioActual = new Usuario(rsUsuario.getString("dni"), rsUsuario.getString("id"), 
+                                            rsUsuario.getString("contrasenha"),
+                                            rsUsuario.getString("correoelectronico"), 
+                                            rsUsuario.getString("nombre"),
+                                            rsUsuario.getString("primerapellido"), 
+                                            rsUsuario.getString("segundoapellido"),
+                                            TipoSexo.valueOf(rsUsuario.getString("sexo")), 
+                                            rsUsuario.getString("paisprocedencia"), 
+                                            rsUsuario.getInt("telefono"));
 
                 resultado.add(usuarioActual);
             }
@@ -394,10 +422,10 @@ public final class DAOUsuarios extends AbstractDAO {
 
         con = this.getConexion();
 
-        String consulta = "SELECT count(*) as numero, paisprocedencia\n"
-                + "FROM usuario\n"
-                + "GROUP BY paisprocedencia\n"
-                + "ORDER BY numero DESC";
+        String consulta = "SELECT count(*) as numero, paisprocedencia "
+                        + "FROM usuario "
+                        + "GROUP BY paisprocedencia "
+                        + "ORDER BY numero DESC";
 
         try {
             stmUsuarios = con.prepareStatement(consulta);
