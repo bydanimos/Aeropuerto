@@ -6,16 +6,14 @@ import aplicacion.servicios.Tienda;
 import gui.VAdministrador;
 
 
-public class PTiendas extends javax.swing.JPanel {
+public final class PTiendas extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private boolean primNombre;
     private boolean editarGuardar;
 
-    /**
-     * Creates new form PTiendas
-     * @param va
-     */
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public PTiendas(VAdministrador va) {
         this.va  = va;
         this.primNombre = true;
@@ -217,6 +215,8 @@ public class PTiendas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Eventos --------------------------------
     private void nombreTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTextFieldMouseClicked
         if (this.primNombre) {
             this.nombreTextField.setText("");
@@ -282,6 +282,8 @@ public class PTiendas extends javax.swing.JPanel {
     private javax.swing.JButton vacCamposButton;
     // End of variables declaration//GEN-END:variables
 
+    // ------------------------------------------------------------------------
+    // --------------------------- Función publica ----------------------------
     public void buscarTiendas(boolean todas) {
         ModeloTablaTiendas m;
         m = (ModeloTablaTiendas) this.tiendasTable.getModel();
@@ -316,6 +318,8 @@ public class PTiendas extends javax.swing.JPanel {
         }
     }
 
+    // ------------------------------------------------------------------------
+    // -------------------------- Funciones privadas --------------------------
     private void buscar(ModeloTablaTiendas m, String nombre, int term, int cod) {
         if (term > 0) {
             if (cod >= 0) {
@@ -401,7 +405,7 @@ public class PTiendas extends javax.swing.JPanel {
             this.codigoTextField.setEditable(true);
             this.editarGuardarButton.setText("Editar");
             this.va.editarTienda(terminal, codigo, this.nombreTextField.getText(), 
-                    this.tipoTextField.getText());
+                                 this.tipoTextField.getText());
             m.setFilas(this.va.obtenerTiendas("", 0, 0));
             this.tiendasTable.setRowSelectionInterval(fila, 0);
             actualizarTabla();
