@@ -1,6 +1,7 @@
+
 package aplicacion.aviones;
 
-public class ModeloAvion {
+public final class ModeloAvion {
 
     private String nombre;
     private Integer capacidadNormal;
@@ -9,6 +10,8 @@ public class ModeloAvion {
     private String empresaFabricante;
     private boolean eliminable;
 
+    // ------------------------------------------------------------------------
+    // ---------------------------- Constructores -----------------------------
     public ModeloAvion() {
         this.nombre = null;
         this.capacidadNormal = -1;
@@ -18,7 +21,8 @@ public class ModeloAvion {
         this.eliminable = true;
     }
     
-    public ModeloAvion(String nombre, int capacidadNormal, int capacidadPremium, float consumo, String empresaFabricante) {
+    public ModeloAvion(String nombre, int capacidadNormal, int capacidadPremium, 
+                       float consumo, String empresaFabricante) {
         this.nombre = nombre;
         this.capacidadNormal = capacidadNormal;
         this.capacidadPremium = capacidadPremium;
@@ -27,7 +31,8 @@ public class ModeloAvion {
         this.eliminable = false;
     }
     
-    public ModeloAvion(String nombre, int capacidadNormal, int capacidadPremium, float consumo, String empresaFabricante, boolean eliminable) {
+    public ModeloAvion(String nombre, int capacidadNormal, int capacidadPremium, 
+                       float consumo, String empresaFabricante, boolean eliminable) {
         this.nombre = nombre;
         this.capacidadNormal = capacidadNormal;
         this.capacidadPremium = capacidadPremium;
@@ -36,48 +41,52 @@ public class ModeloAvion {
         this.eliminable = eliminable;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     public boolean isEliminable() {
         return eliminable;
-    }
-
-    public void setEliminable(boolean eliminable) {
-        this.eliminable = eliminable;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public int getCapacidadNormal() {
         return capacidadNormal;
-    }
-
-    public void setCapacidadNormal(int capacidadNormal) {
-        this.capacidadNormal = capacidadNormal;
     }
 
     public int getCapacidadPremium() {
         return capacidadPremium;
     }
 
-    public void setCapacidadPremium(int capacidadPremium) {
-        this.capacidadPremium = capacidadPremium;
-    }
-
     public float getConsumo() {
         return consumo;
     }
 
-    public void setConsumo(float consumo) {
-        this.consumo = consumo;
-    }
-
     public String getEmpresaFabricante() {
         return empresaFabricante;
+    }
+
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setEliminable(boolean eliminable) {
+        this.eliminable = eliminable;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCapacidadNormal(int capacidadNormal) {
+        this.capacidadNormal = capacidadNormal;
+    }
+
+    public void setCapacidadPremium(int capacidadPremium) {
+        this.capacidadPremium = capacidadPremium;
+    }
+
+    public void setConsumo(float consumo) {
+        this.consumo = consumo;
     }
 
     public void setEmpresaFabricante(String empresaFabricante) {
