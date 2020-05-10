@@ -11,10 +11,12 @@ import gui.VAdministrador;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class PEstadisticas extends javax.swing.JPanel {
+public final class PEstadisticas extends javax.swing.JPanel {
 
     private final VAdministrador va;
     
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public PEstadisticas(VAdministrador va) {
         this.va = va;
         initComponents();
@@ -89,12 +91,6 @@ public class PEstadisticas extends javax.swing.JPanel {
         jLabel2.setText("Origen");
 
         jLabel3.setText("Destino");
-
-        txtDestinoVuelos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDestinoVuelosActionPerformed(evt);
-            }
-        });
 
         botonBuscarVuelos.setText("Buscar");
         botonBuscarVuelos.addActionListener(new java.awt.event.ActionListener() {
@@ -399,13 +395,11 @@ public class PEstadisticas extends javax.swing.JPanel {
         jTabbedPane1.getAccessibleContext().setAccessibleName("Vuelos");
     }// </editor-fold>//GEN-END:initComponents
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Eventos --------------------------------
     private void botonBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarVuelosActionPerformed
         this.buscarVuelos();
     }//GEN-LAST:event_botonBuscarVuelosActionPerformed
-
-    private void txtDestinoVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDestinoVuelosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDestinoVuelosActionPerformed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
         this.buscarTrabajadores(false);
@@ -469,13 +463,15 @@ public class PEstadisticas extends javax.swing.JPanel {
     private javax.swing.JTextField txtOrigenVuelos;
     // End of variables declaration//GEN-END:variables
 
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
     public void buscarVuelos(){
         ModeloTablaEstadisticasVuelos m;
         Timestamp tSalida = null;
-        if (this.dateSalidaVuelos.getDate() != null){
+        if (this.dateSalidaVuelos.getDate() != null) {
             tSalida = new java.sql.Timestamp(this.dateSalidaVuelos.getDate().getTime());
         }
-        m=(ModeloTablaEstadisticasVuelos) this.tablaEstadisticasVuelos.getModel();
+        m = (ModeloTablaEstadisticasVuelos) this.tablaEstadisticasVuelos.getModel();
         m.setFilas(this.va.obtenerVuelos(this.txtOrigenVuelos.getText(),this.txtDestinoVuelos.getText(),tSalida));
         if (m.getRowCount() > 0) {
             this.tablaEstadisticasVuelos.setRowSelectionInterval(0, 0);
@@ -512,12 +508,12 @@ public class PEstadisticas extends javax.swing.JPanel {
         
         //calculamos las nacionalidades
         List<String> nacionalidades = this.va.calcularEstNacionalidades();
-        if(nacionalidades != null){
-            if(nacionalidades.get(0) != null) this.nacionalidad1Text.setText("1. " + nacionalidades.get(0));
+        if (nacionalidades != null) {
+            if (nacionalidades.get(0) != null) this.nacionalidad1Text.setText("1. " + nacionalidades.get(0));
             else this.nacionalidad1Text.setText("No consta.");
-            if(nacionalidades.get(1) != null) this.nacionalidad2Text.setText("2. " + nacionalidades.get(1));
+            if (nacionalidades.get(1) != null) this.nacionalidad2Text.setText("2. " + nacionalidades.get(1));
             else this.nacionalidad2Text.setText("No consta.");
-            if(nacionalidades.get(2) != null) this.nacionalidad3Text.setText("3. " + nacionalidades.get(2));
+            if (nacionalidades.get(2) != null) this.nacionalidad3Text.setText("3. " + nacionalidades.get(2));
             else this.nacionalidad3Text.setText("No consta.");
         }
         
