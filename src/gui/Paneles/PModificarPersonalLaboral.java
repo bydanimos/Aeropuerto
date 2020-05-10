@@ -4,19 +4,13 @@ package gui.Paneles;
 import aplicacion.usuarios.PersonalLaboral;
 import gui.VAdministrador;
 
-/**
- *
- * @author dani
- */
-public class PModificarPersonalLaboral extends javax.swing.JPanel {
+public final class PModificarPersonalLaboral extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private PersonalLaboral pl;
-    /**
-     * Creates new form PModificarPersonalLaboral
-     * @param va
-     * @param pl
-     */
+    
+   // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public PModificarPersonalLaboral(VAdministrador va, PersonalLaboral pl) {
         this.va = va;
         this.pl = pl;
@@ -128,6 +122,8 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Eventos --------------------------------
     private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
         this.volver();
     }//GEN-LAST:event_volverButtonActionPerformed
@@ -151,6 +147,8 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
     private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 
+    // ------------------------------------------------------------------------
+    // ------------------------------ Funciones -------------------------------
     private void volver() {
         this.va.pulsarPersonalLaboral();
     }
@@ -158,6 +156,7 @@ public class PModificarPersonalLaboral extends javax.swing.JPanel {
     private void guardar() {
         if (!this.laborTextField.getText().equals(this.pl.getLabor()) || 
             !this.descrTextArea.getText().equals(this.pl.getDescripcionTarea())) {
+            
             this.pl.setLabor(this.laborTextField.getText());
             this.pl.setDescripcionTarea(this.descrTextArea.getText());
             this.va.modLaborDescripPersonalLaboral(this.pl);
