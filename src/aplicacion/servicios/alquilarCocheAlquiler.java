@@ -1,10 +1,10 @@
+
 package aplicacion.servicios;
 
 import aplicacion.usuarios.Usuario;
-
 import java.sql.Timestamp;
 
-public class alquilarCocheAlquiler {
+public final class alquilarCocheAlquiler {
 
     private CocheAlquiler cocheAlquiler;
     private Usuario usuario;
@@ -12,7 +12,11 @@ public class alquilarCocheAlquiler {
     private Timestamp fechaTeoricaDevolucion;
     private Timestamp fechaDevolucion;
 
-    public alquilarCocheAlquiler(CocheAlquiler cocheAlquiler, Usuario usuario, Timestamp fechaAlquiler, Timestamp fechaTeoricaDevolucion, Timestamp fechaDevolucion) {
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public alquilarCocheAlquiler(CocheAlquiler cocheAlquiler, Usuario usuario, 
+                                 Timestamp fechaAlquiler, Timestamp fechaTeoricaDevolucion, 
+                                 Timestamp fechaDevolucion) {
         this.cocheAlquiler = cocheAlquiler;
         this.usuario = usuario;
         this.fechaAlquiler = fechaAlquiler;
@@ -20,40 +24,44 @@ public class alquilarCocheAlquiler {
         this.fechaDevolucion = fechaDevolucion;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     public CocheAlquiler getCocheAlquiler() {
         return cocheAlquiler;
-    }
-
-    public void setCocheAlquiler(CocheAlquiler cocheAlquiler) {
-        this.cocheAlquiler = cocheAlquiler;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Timestamp getFechaAlquiler() {
         return fechaAlquiler;
-    }
-
-    public void setFechaAlquiler(Timestamp fechaAlquiler) {
-        this.fechaAlquiler = fechaAlquiler;
     }
 
     public Timestamp getFechaTeoricaDevolucion() {
         return fechaTeoricaDevolucion;
     }
 
-    public void setFechaTeoricaDevolucion(Timestamp fechaTeoricaDevolucion) {
-        this.fechaTeoricaDevolucion = fechaTeoricaDevolucion;
-    }
-
     public Timestamp getFechaDevolucion() {
         return fechaDevolucion;
+    }
+
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setCocheAlquiler(CocheAlquiler cocheAlquiler) {
+        this.cocheAlquiler = cocheAlquiler;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setFechaAlquiler(Timestamp fechaAlquiler) {
+        this.fechaAlquiler = fechaAlquiler;
+    }
+
+    public void setFechaTeoricaDevolucion(Timestamp fechaTeoricaDevolucion) {
+        this.fechaTeoricaDevolucion = fechaTeoricaDevolucion;
     }
 
     public void setFechaDevolucion(Timestamp fechaDevolucion) {
