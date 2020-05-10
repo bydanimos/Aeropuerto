@@ -388,11 +388,22 @@ public final class PTiendas extends javax.swing.JPanel {
         this.tipoTextField.setText("");
         this.terminalComboBox.setSelectedIndex(0);
     }
+    
+    private void editar(boolean bloquear) {
+        this.codigoTextField.setEditable(bloquear);
+        this.terminalComboBox.setEnabled(bloquear);
+        this.anhadirButton.setEnabled(bloquear);
+        this.borrarButton.setEnabled(bloquear);
+        this.buscarButton.setEnabled(bloquear);
+        this.vacCamposButton.setEnabled(bloquear);
+        this.tiendasTable.setEnabled(bloquear);
+        this.tiendasTable.setFocusable(bloquear);
+    }
 
     private void editar() {
         // EditarGuardar a false nos dice que vamos a editar los campos
         if (!this.editarGuardar) {
-            this.codigoTextField.setEditable(false);
+            this.editar(false);
             this.editarGuardarButton.setText("Guardar");
             this.primNombre = true;
         } else {
@@ -402,7 +413,7 @@ public final class PTiendas extends javax.swing.JPanel {
             int terminal = (int) m.getValueAt(fila, 0);
             int codigo = (int) m.getValueAt(fila, 1);
             
-            this.codigoTextField.setEditable(true);
+            this.editar(true);
             this.editarGuardarButton.setText("Editar");
             this.va.editarTienda(terminal, codigo, this.nombreTextField.getText(), 
                                  this.tipoTextField.getText());
