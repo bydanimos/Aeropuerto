@@ -13,7 +13,7 @@ public final class ModeloTablaTiendas extends AbstractTableModel {
     
     // ------------------------------------------------------------------------
     // ----------------------------- Constructor ------------------------------
-    public final ModeloTablaTiendas() {
+    public ModeloTablaTiendas() {
         this.tiendas = new ArrayList<>();
     }
     

@@ -13,7 +13,7 @@ public final class ModeloTablaDatosUsuarios extends AbstractTableModel {
     
     // ------------------------------------------------------------------------
     // ----------------------------- Constructor ------------------------------
-    public final ModeloTablaDatosUsuarios(PAdminUsuarios pa) {
+    public ModeloTablaDatosUsuarios(PAdminUsuarios pa) {
         this.usuarios=new java.util.ArrayList<>();
         this.pa = pa;
     }
