@@ -161,7 +161,7 @@ public class FachadaBaseDatos {
     // -------------------------------------------------------------------------
     // ------------------------ Panel Personal Laboral -------------------------
     public List<PersonalLaboral> obtenerPersonalLaboral(String dni, String id, String nombre, 
-            String ape1, String ape2, boolean servicio) {
+                                                        String ape1, String ape2, boolean servicio) {
         return this.daoPersonalLaboral.obtenerPersonalLaboral(dni, id, nombre, ape1, ape2, servicio);
     }
 
@@ -382,52 +382,52 @@ public class FachadaBaseDatos {
     
     // -------------------------------------------------------------------------
     // --------------------------- Estadisticas Vuelos --------------------------
-    public Aerolinea getAerolineaVuelo(Vuelo vuelo){
+    public Aerolinea getAerolineaVuelo(Vuelo vuelo) {
         return this.daoVuelos.getAerolineaVuelo(vuelo);
     }
     
-    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo){
+    public String getNacionalidadMayoritariaVuelo(Vuelo vuelo) {
         return this.daoVuelos.getNacionalidadMayoritariaVuelo(vuelo);
     }
-    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta){
+    public Integer getNTipoVuelo(Vuelo vuelo,TipoAsiento ta) {
         return this.daoVuelos.getNTipoVuelo(vuelo,ta);
     }
-    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts){
+    public Integer getNSexoVuelo(Vuelo vuelo, TipoSexo ts) {
         return this.daoVuelos.getNSexoVuelo(vuelo,ts);
     }
     
-    public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida){
+    public List<Vuelo> obtenerVuelos(String origen,String destino,Timestamp tSalida) {
         return this.daoVuelos.obtenerVuelos("",origen, destino,tSalida,null);
     }
     
     
     //--------------------------------------------------------------------------
     // ----------------------- Estadísticas Usuarios ---------------------------
-    public List<String> calcularEstNacionalidades(){
+    public List<String> calcularEstNacionalidades() {
         return this.daoUsuarios.calcularEstNacionalidades();
     }
     
-    public float calcularEstSexo(TipoSexo sexo){
+    public float calcularEstSexo(TipoSexo sexo) {
         return this.daoVuelos.calcularEstSexo(sexo);
     }
     
-    public float calcularEstBillete(String tipo){
+    public float calcularEstBillete(String tipo) {
         return this.daoVuelos.calcularEstBillete(tipo);
     }
     
-    public float calcularEstCoche(){
+    public float calcularEstCoche() {
         return this.daoVuelos.calcularEstCoche();
     }
     
-    public float calcularEstAcompanhante(){
+    public float calcularEstAcompanhante() {
         return this.daoVuelos.calcularEstAcompanhante();
     }
     
-    public float calcularEstMaletas(){
+    public float calcularEstMaletas() {
         return this.daoVuelos.calcularEstMaletas();
     }
     
-    public float calcularEstMediaMaletas(){
+    public float calcularEstMediaMaletas() {
         return this.daoVuelos.calcularEstMediaMaletas();
     }
     
