@@ -1,7 +1,7 @@
 
 package aplicacion.usuarios;
 
-public abstract class Usuario {
+public class Usuario {
 
     private String dni;
     private String id;
