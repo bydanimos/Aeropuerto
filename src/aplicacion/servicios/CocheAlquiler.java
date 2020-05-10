@@ -1,6 +1,7 @@
+
 package aplicacion.servicios;
 
-public class CocheAlquiler {
+public final class CocheAlquiler {
 
     private String matricula;
     private String modelo;
@@ -13,7 +14,10 @@ public class CocheAlquiler {
     private boolean alquilado;
     private boolean reservado;
 
-    public CocheAlquiler(String matricula, String modelo, int caballos, float precioPorDia, String tipoCombustible, int numeroPlazas, int numeroPuertas, boolean retirado) {
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
+    public CocheAlquiler(String matricula, String modelo, int caballos, float precioPorDia, 
+                         String tipoCombustible, int numeroPlazas, int numeroPuertas, boolean retirado) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.caballos = caballos;
@@ -26,64 +30,76 @@ public class CocheAlquiler {
         this.reservado = false;
     }
 
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getters --------------------------------
     public String getMatricula() {
         return matricula;
     }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
+    
     public String getModelo() {
         return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
 
     public int getCaballos() {
         return caballos;
     }
 
-    public void setCaballos(int caballos) {
-        this.caballos = caballos;
-    }
-
     public float getPrecioPorDia() {
         return precioPorDia;
-    }
-
-    public void setPrecioPorDia(float precioPorDia) {
-        this.precioPorDia = precioPorDia;
     }
 
     public String getTipoCombustible() {
         return tipoCombustible;
     }
 
-    public void setTipoCombustible(String tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
-    }
-
     public int getNumeroPlazas() {
         return numeroPlazas;
-    }
-
-    public void setNumeroPlazas(int numeroPlazas) {
-        this.numeroPlazas = numeroPlazas;
     }
 
     public int getNumeroPuertas() {
         return numeroPuertas;
     }
 
-    public void setNumeroPuertas(int numeroPuertas) {
-        this.numeroPuertas = numeroPuertas;
-    }
-
     public boolean isRetirado() {
         return retirado;
+    }
+   
+    public boolean isAlquilado() {
+        return this.alquilado;
+    }
+       
+    public boolean isReservado() {
+        return this.reservado;
+    }
+    
+    // ------------------------------------------------------------------------
+    // ------------------------------- Setters --------------------------------
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setCaballos(int caballos) {
+        this.caballos = caballos;
+    }
+
+    public void setPrecioPorDia(float precioPorDia) {
+        this.precioPorDia = precioPorDia;
+    }
+
+    public void setTipoCombustible(String tipoCombustible) {
+        this.tipoCombustible = tipoCombustible;
+    }
+
+    public void setNumeroPlazas(int numeroPlazas) {
+        this.numeroPlazas = numeroPlazas;
+    }
+
+    public void setNumeroPuertas(int numeroPuertas) {
+        this.numeroPuertas = numeroPuertas;
     }
 
     public void setRetirado(boolean retirado) {
@@ -93,16 +109,8 @@ public class CocheAlquiler {
     public void setAlquilado(boolean alquilado) {
         this.alquilado = alquilado;
     }
-    
-    public boolean isAlquilado() {
-        return this.alquilado;
-    }
-    
+ 
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
-    }
-    
-    public boolean isReservado() {
-        return this.reservado;
     }
 }
