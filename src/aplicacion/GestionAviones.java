@@ -12,15 +12,33 @@ public class GestionAviones {
     private final FachadaGui fgui;
     private final FachadaBaseDatos fbd;
 
+    // -------------------------------------------------------------------------
+    // ------------------------------- Constructor -----------------------------
     public GestionAviones(FachadaGui fgui, FachadaBaseDatos fbd) {
         this.fgui = fgui;
         this.fbd = fbd;
     }
 
+    // -------------------------------------------------------------------------
+    // --------------------------------- Aviones -------------------------------
     public List<Avion> obtenerAviones(String codigo, String aerolinea, int retirado) {
         return this.fbd.obtenerAviones(codigo, aerolinea, retirado);
     }
+      
+    public boolean actualizarAviones(List<Avion> aviones) {
+        for (Avion avion : aviones) {
+            if(!this.fbd.actualizarAvion(avion))
+                return false;
+        }
+        return true;
+    }
     
+    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion){
+        return this.fbd.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
+    }
+    
+    // -------------------------------------------------------------------------
+    // -------------------------------- Aerolíneas -----------------------------
     public List<Aerolinea> obtenerAerolineas(String nombre) {
         return this.fbd.obtenerAerolineas(nombre);
     }
@@ -43,13 +61,11 @@ public class GestionAviones {
     public boolean esAerolineaBorrable(Aerolinea aerolinea) {
         return this.fbd.esAerolineaBorrable(aerolinea);
     }
-    
-    public boolean actualizarAviones(List<Avion> aviones) {
-        for (Avion avion : aviones) {
-            if(!this.fbd.actualizarAvion(avion))
-                return false;
-        }
-        return true;
+        
+    // -------------------------------------------------------------------------
+    // ----------------------------- Modelos Aviones ---------------------------
+    public List<ModeloAvion> obtenerModelosAvion(String nombre) {
+        return this.fbd.obtenerModelosAvion(nombre);
     }
     
     public boolean actualizarModelosAvion(List<ModeloAvion> modelosAvion) {
@@ -59,14 +75,6 @@ public class GestionAviones {
             }
         }
         return true;
-    }
-    
-    public List<ModeloAvion> obtenerModelosAvion(String nombre) {
-        return this.fbd.obtenerModelosAvion(nombre);
-    }
-    
-    public boolean añadirAvion(String codigo, Aerolinea aerolinea, ModeloAvion modeloAvion, int anhoFabricacion){
-        return this.fbd.añadirAvion(codigo, aerolinea, modeloAvion, anhoFabricacion);
     }
     
     public void borrarModeloAvion(ModeloAvion modeloAvion){
