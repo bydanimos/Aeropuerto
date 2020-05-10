@@ -5,18 +5,14 @@ import aplicacion.usuarios.PersonalLaboral;
 import gui.ModeloTablas.ModeloTablaPersonalLaboral;
 import gui.VAdministrador;
 
-/**
- *
- * @author dani
- */
-public class PPersonalLaboral extends javax.swing.JPanel {
+
+public final class PPersonalLaboral extends javax.swing.JPanel {
 
     private final VAdministrador va;
     private ModeloTablaPersonalLaboral mp;;
-    /**
-     * Creates new form PPersonalLaboral
-     * @param va
-     */
+    
+    // ------------------------------------------------------------------------
+    // ----------------------------- Constructor ------------------------------
     public PPersonalLaboral(VAdministrador va) {
         this.va = va;
         initComponents();
@@ -55,12 +51,7 @@ public class PPersonalLaboral extends javax.swing.JPanel {
         idLabel.setText("ID: ");
 
         servicioCheckBox.setText("De servicio");
-        servicioCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                servicioCheckBoxActionPerformed(evt);
-            }
-        });
-
+    
         buscarButton.setText("Buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,10 +153,8 @@ public class PPersonalLaboral extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void servicioCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicioCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_servicioCheckBoxActionPerformed
-
+    // ------------------------------------------------------------------------
+    // ------------------------------- Eventos --------------------------------
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
         this.buscar(false);
     }//GEN-LAST:event_buscarButtonActionPerformed
@@ -198,10 +187,14 @@ public class PPersonalLaboral extends javax.swing.JPanel {
     private javax.swing.JCheckBox servicioCheckBox;
     // End of variables declaration//GEN-END:variables
 
+    // ------------------------------------------------------------------------
+    // --------------------------- Función pública ----------------------------
     public void buscar() {
         this.buscar(true);
     }
     
+    // ------------------------------------------------------------------------
+    // -------------------------- Funciones privadas --------------------------
     private void buscar(boolean fuera) {
         this.mp = (ModeloTablaPersonalLaboral) this.personalTable.getModel();
         if (!fuera) {
