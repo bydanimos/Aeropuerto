@@ -52,12 +52,14 @@ public final class DAOPersonalExterno extends AbstractDAO {
         } catch (SQLException e){
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
+        } finally {
             try {stmPersonalExterno.close();} catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
         return resultado;
     }
     
+    // ------------------------------------------------------------------------
+    // ------------------------------- Getter ---------------------------------
     public final PersonalExterno getPersonalExterno(String dni) {
         PersonalExterno resultado = null;
         Connection con;
@@ -77,7 +79,7 @@ public final class DAOPersonalExterno extends AbstractDAO {
             stmPersonalExterno.setString(1, dni);
             rsPersonalExterno = stmPersonalExterno.executeQuery();
            
-            if (rsPersonalExterno.next()){
+            if (rsPersonalExterno.next()) {
                 resultado = new PersonalExterno(rsPersonalExterno.getString("dni"), 
                                                 rsPersonalExterno.getString("id"),
                                                 rsPersonalExterno.getString("contrasenha"),
@@ -93,7 +95,7 @@ public final class DAOPersonalExterno extends AbstractDAO {
         } catch (SQLException e){
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
+        } finally {
             try {
                 stmPersonalExterno.close();
             } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
@@ -101,6 +103,8 @@ public final class DAOPersonalExterno extends AbstractDAO {
         return resultado;
     }
     
+    // ------------------------------------------------------------------------
+    // ----------------------------- Inserción --------------------------------
     public final void insertarPersonalExterno(PersonalExterno pe) {
         Connection con;
         PreparedStatement stmPersonalExterno = null;
@@ -117,16 +121,18 @@ public final class DAOPersonalExterno extends AbstractDAO {
             stmPersonalExterno.setBoolean(2, pe.isEstarDentro());
                 
             stmPersonalExterno.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
+        } finally {
             try {
                 stmPersonalExterno.close();
             } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
     
+    // ------------------------------------------------------------------------
+    // ------------------------------ Eliminar --------------------------------
     public final void borrarPersonalExterno(String dni) {
         Connection con;
         PreparedStatement stmPersonalExterno = null;
@@ -139,17 +145,19 @@ public final class DAOPersonalExterno extends AbstractDAO {
             stmPersonalExterno.setString(1, dni);
             stmPersonalExterno.executeUpdate();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
           System.out.println(e.getMessage());
           this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
+        } finally {
           try {
             stmPersonalExterno.close();
           } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
         }
     }
     
-    public final void modificarPersonalExterno(PersonalExterno pe){
+    // ------------------------------------------------------------------------
+    // ------------------------------ Modificar -------------------------------
+    public final void modificarPersonalExterno(PersonalExterno pe) {
         Connection con;
         PreparedStatement stmPersonalExterno = null;
         String consulta;
@@ -182,9 +190,9 @@ public final class DAOPersonalExterno extends AbstractDAO {
             
             String ts;
                 
-            if(null==pe.getSexo()){
+            if (null == pe.getSexo()) {
                 ts = "o";
-            }else switch (pe.getSexo()) {
+            } else switch (pe.getSexo()) {
                 case h:
                     ts = "h";
                     break;
@@ -203,7 +211,7 @@ public final class DAOPersonalExterno extends AbstractDAO {
         } catch (SQLException e){
             System.out.println(e.getMessage());
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
-        }finally{
+        } finally {
             try {
                 stmPersonalExterno.close();
             } catch (SQLException e){System.out.println("Imposible cerrar cursores");}
