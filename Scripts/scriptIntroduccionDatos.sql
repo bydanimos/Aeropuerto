@@ -3,14 +3,11 @@ insert into usuario values (
 '48116361Q', 'eliPita', 'eliPita@gmail.com', crypt('eli', gen_salt('md5')), 'Eliseo','Pita','Vilariño','Noruega','981666789','m'
 ); --Administrador
 insert into usuario values (
-'12726187B', 'Username', 'username@gmail.com', crypt('Password', gen_salt('md5')), 'Super','user','user','Noruega','981666789','m'
-); --Administrador
-insert into usuario values (
 '49204425L', 'antong', 'antong@gmail.com', crypt('ant', gen_salt('md5')), 'Anton','Gomez','Lopez','Galicia','604025148','o'
 );--Personal Laboral
 insert into usuario values (
 '12345678Z', 'crisl', 'crisl@gmail.com', crypt('cri', gen_salt('md5')), 'Cristina','Lopez','Amado','Portugal','981234666','m'
-);
+);--Administrador
 insert into usuario values (
 '45678913Q', 'danim', 'danim@gmail.com', crypt('dan', gen_salt('md5')), 'Daniel','Mosteiro','Angueira','Francia','981234166','h'
 ); --Personal Laboral
@@ -38,15 +35,14 @@ insert into personallaboral(usuario, labor, descripcionTarea)
 	values('49204425L', 'controlador', 'controla los accesos de los pasajeros');
 
 --Insertase historial de Traballo
-insert into historialtrabajo(personalLaboral, fechaentrada, fechasalida)
-	values('45678913Q', current_timestamp::timestamp - '5 hours'::interval, current_timestamp);
-insert into historialtrabajo(personalLaboral, fechaentrada, fechasalida)
-	values('49204425L', current_timestamp::timestamp - '7 hours'::interval, current_timestamp);
+insert into historialtrabajo(personalLaboral)
+	values('45678913Q');
+insert into historialtrabajo(personalLaboral)
+	values('49204425L');
 
 --Insertase administrador
-insert into administrador(usuario, curriculum) values('48116361Q', '- Son un inutil.');
-insert into administrador(usuario, curriculum) values('12726187B', '- Super User.');
-insert into administrador(usuario, curriculum) values('49204425L', '- Trabellei na NASA durante 3 anos, pero deixeino porque eran uns incompetentes.');
+insert into administrador(usuario, curriculum) values('48116361Q', '- Traballei como becario en Repsol');
+insert into administrador(usuario, curriculum) values('12345678Z', '- Trabellei na NASA durante 3 anos.');
 
 --Insertase terminal
 insert into terminal values (1, 1, 20);
@@ -208,9 +204,9 @@ insert into cochealquiler values
 );
 
 --Insertar en alquilar
-insert into alquilar(fechaAlquiler, usuario, matricula, fechateoricadevolucion, retirado) values
+insert into alquilar(fechaAlquiler, usuario, matricula, fechateoricadevolucion) values
 (
-    '2020-04-20', '12345678Z', '7385CFT', '2020-04-29', false
+    '2020-04-20', '12345678Z', '7385CFT', '2020-04-29'
 );
 
 --Insertar en reservar
@@ -307,6 +303,8 @@ insert into vuelo values('1016','Lisboa','Folgoso do Courel','2020-09-26 22:36',
 insert into vuelo values('1017','Berlín','Folgoso do Courel','2020-08-27 09:31','2020-08-27 09:31','2020-08-27 11:37','2020-08-27 11:37','364.21545',null,'false','2','1009');
 insert into vuelo values('1018','Folgoso do Courel','Maldivas','2020-08-04 08:00', '2020-08-04 08:00','2020-08-04 18:00','2020-08-04
     18:00', '2500.0',null,'false','1','900');
+insert into vuelo values('1019','Berlín','Folgoso do Courel','2020-05-06 23:44:31','2020-05-06 23:57:31','2020-05-07 08:55:30','2020-05-07 08:59:30','334.78632',null,'false','2','1009');
+insert into vuelo values('1020','Vigo','Folgoso do Courel','2020-05-05 23:53:31','2020-05-05 23:58:31','2020-05-06 05:55:30','2020-05-06 05:59:30','334.78632',null,'false','1','1006');
 
 insert into comprarbillete values ('59518667A',964,'2020-01-15',1,'normal',0,false,true,90);
 insert into comprarbillete values ('65892114N',964,'2020-01-18',2,'normal',1,false,true,90);
@@ -314,6 +312,11 @@ insert into comprarbillete values ('09308274J',965,'2020-01-16',1,'normal',1,fal
 insert into comprarbillete values ('60749238M',965,'2020-01-16',2,'normal',1,false,true,60);
 insert into comprarbillete values ('48116361Q',964,'2020-01-15',3,'normal',0,false,true,90);
 insert into comprarbillete values ('48116361Q',965,'2020-01-15',3,'normal',0,false,true,60);
+insert into comprarbillete values ('49204425L',985,'2020-05-15 20:01:00',1,'normal',0,false,false,60);
+insert into comprarbillete values ('49204425L',987,'2020-03-30 22:12:05',2,'normal',0,false,false,80);
+insert into comprarbillete values ('49204425L',1017,'2020-01-30 19:56:43',4,'normal',0,false,false,90);
+insert into comprarbillete values ('49204425L',1019,'2020-02-28 19:56:43',7,'normal',0,false,false,90);
+insert into comprarbillete values ('49204425L',1020,'2020-03-30 19:56:43',9,'normal',0,false,true,90);
 
 
 insert into facturarmaleta (usuario,vuelo,peso) values ('65892114N', 964, 10);

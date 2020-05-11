@@ -1,6 +1,5 @@
 -- borramos las tablas
 drop table facturarmaleta;
-drop table maleta;
 drop table comprarBillete;
 drop table vuelo;
 drop table avion;
@@ -25,4 +24,7 @@ drop function valida_dni(dni char);
 drop sequence seq_id_maleta;
 drop function comprobarPlazaParking;
 drop function Estacion;
-drop EXTENSION pgcrypto;
+drop extension pgcrypto;
+drop function plazaDisponible;
+drop function cocheDisponibleRes;
+drop function cocheDisponibleAlq;
