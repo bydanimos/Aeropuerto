@@ -3,6 +3,9 @@ insert into usuario values (
 '48116361Q', 'eliPita', 'eliPita@gmail.com', crypt('eli', gen_salt('md5')), 'Eliseo','Pita','Vilariño','Noruega','981666789','m'
 ); --Administrador
 insert into usuario values (
+'12726187B', 'Username', 'username@gmail.com', crypt('Password', gen_salt('md5')), 'Super','user','user','Noruega','981666789','m'
+); --Administrador
+insert into usuario values (
 '49204425L', 'antong', 'antong@gmail.com', crypt('ant', gen_salt('md5')), 'Anton','Gomez','Lopez','Galicia','604025148','o'
 );--Personal Laboral
 insert into usuario values (
@@ -35,13 +38,14 @@ insert into personallaboral(usuario, labor, descripcionTarea)
 	values('49204425L', 'controlador', 'controla los accesos de los pasajeros');
 
 --Insertase historial de Traballo
-insert into historialtrabajo(personalLaboral)
-	values('45678913Q');
-insert into historialtrabajo(personalLaboral)
-	values('49204425L');
+insert into historialtrabajo(personalLaboral, fechaentrada, fechasalida)
+	values('45678913Q', current_timestamp::timestamp - '5 hours'::interval, current_timestamp);
+insert into historialtrabajo(personalLaboral, fechaentrada, fechasalida)
+	values('49204425L', current_timestamp::timestamp - '7 hours'::interval, current_timestamp);
 
 --Insertase administrador
 insert into administrador(usuario, curriculum) values('48116361Q', '- Traballei como becario en Repsol');
+insert into administrador(usuario, curriculum) values('12726187B', '- Super User.');
 insert into administrador(usuario, curriculum) values('12345678Z', '- Trabellei na NASA durante 3 anos.');
 
 --Insertase terminal
